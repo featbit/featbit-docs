@@ -1,15 +1,11 @@
 {
   "index": "Introduction",
   "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
-  "contact": {
-    "title": "Contact ↗",
+  "advanced": "\uD83E\uDDE9 ⏐ Advanced",
+  "support": {
+    "title": "Support ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "https://dashboard.featbit.co",
     "newWindow": true
   }
 }
