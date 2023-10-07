@@ -1,0 +1,167 @@
+# Partial installation
+
+You may already have your MongoDB, Redis, Kafka, Zookeeper and / or ClickHouse services running in your own infrastructure, and you want to run FeatBit with your own services, this is totally possible and easy to do. This document will illustrate how to do it with docker compose, it can also be easily converted to Kubernetes.
+
+This document will show you how to run the following FeatBit services:
+
+* **UI :** Provides users a visual UI interface for managing and publishing feature flags, segments and experiments etc.
+* **API Server :** Provides data management capabilities for the UI and external integration services, such as flag triggers, code-references etc.&#x20;
+* **Evaluation Server :** Provides a scalable and high-performance flag rule evaluation engine and a data distribution server.
+* **Data Analytics server :** Provides a data analytics engine. It assures the following services
+  * Calculates the experiments and return its results in near real time.&#x20;
+  * Provides insights services for all analytics in the UI, the feature flag reporting for example.
+
+## Prerequisites
+
+* Docker (version 20.10.7 or above)
+* Docker-Compose (version 1.29.2 or above)
+
+{% hint style="info" %}
+Windows users are recommended to use PowerShell for running commands below.
+{% endhint %}
+
+## Preparation
+
+* Clone the repository
+
+```bash
+git clone https://github.com/featbit/featbit
+cd featbit
+```
+
+* If you are doing a quick test, we have created a **docker-compose-infra.yaml** file, you can use it to install the infra services (Redis, MongoDB, Kafka, Zookeeper and ClickHouse) of FeatBit, so the next steps can be done smoothly.  Run the following command to start those services, if you would like to use your own infra services, skip this step.
+
+```sh
+docker compose -f docker-compose-infra.yml up -d
+```
+
+* **Skip this step if you already run the previous step**. We also create another docker compose file **docker-compose-clickhouse.yml** to install ClickHouse only in case you decide to use your own infrastructure but you don't have ClickHouse. In this case, set Zookeeper config in the following path: **featbit/infra/clickhouse/single\_node/config.xml** with
+
+```xml
+<zookeeper>
+    <node>
+        <host>{your-zookeeper-host}</host>
+        <port>{your-zookeeper-port}</port>
+    </node>
+</zookeeper>
+```
+
+and then run  the following command
+
+```sh
+docker compose -f docker-compose-clickhouse.yml up -d
+```
+
+*   Open _**docker-compose-partial.yml**_ in your favorite editor, you would see the following configs. Assuming that infra services(Redis, MongoDB, Kafka, ClickHouse) run in the same network as FeatBit services we'll install in this doc.\
+    &#x20;  &#x20;
+
+    <pre class="language-yaml"><code class="lang-yaml"><strong>ui:   
+    </strong>  image: featbit/featbit-ui:latest
+      environment:
+        - API_URL=[REPLACE_WITH_THE_API_SERVER_IP_OR_DOMAIN] # example: http://localhost:5000 
+        - DEMO_URL=https://featbit-samples.vercel.app # keep it like this, this is for tutorial
+        - EVALUATION_URL=[REPLACE_WITH_THE_EVALUATION_SERVER_IP_OR_DOMAIN] # example: http://localhost:5100 
+      depends_on:
+        - api-server
+      ports:
+        - "8081:80"
+      networks:
+        - featbit-network-service
+
+    api-server:
+      image: featbit/featbit-api-server:latest
+      environment:
+          - MongoDb__ConnectionString=[REPLACE_WITH_MONGODB_CONNECTION_STRING] # example: mongodb://admin:password@mongodb:27017
+          - MongoDb__Database=[REPLACE_WITH_MONGODB_NAME] # example featbit
+          - Kafka__BootstrapServers=[REPLACE_WITH_KAFKA_CONNECTION_STRING] # example: 192.168.56.1:9092
+          - OLAP__ServiceHost=[REPLACE_WITH_DA_SERVER_IP_OR_DOMAIN]:8200 # example: http://192.168.56.1:8200
+      ports:
+        - "5000:5000"
+      networks:
+        - featbit-network-service
+
+    evaluation-server:
+      image: featbit/featbit-evaluation-server:latest
+      environment:
+          - MongoDb__ConnectionString=[REPLACE_WITH_MONGODB_CONNECTION_STRING] # same as api-server
+          - MongoDb__Database=[REPLACE_WITH_MONGODB_NAME] # same as api-server
+          - Kafka__BootstrapServers=[REPLACE_WITH_KAFKA_CONNECTION_STRING] # same as api-server
+          - Redis__ConnectionString=[REPLACE_WITH_REDIS_CONNECTION_STRING] # example: http://192.168.56.1:6379
+      ports:
+        - "5100:5100"
+      networks:
+        - featbit-network-service
+
+    da-server:
+      image: featbit/featbit-data-analytics-server:latest
+      ports:
+        - "8200:80"
+      networks:
+        - featbit-network-service
+      environment:
+        KAFKA_HOSTS: [REPLACE_WITH_KAFKA_CONNECTION_STRING] # example: kafka:9092
+        REDIS_HOST: [REPLACE_WITH_REDIS_IP_OR_DOMAIN] # example: redis
+        REDIS_PORT: [REPLACE_WITH_REDIS_PORT] # example: 6379
+        CLICKHOUSE_HOST: [REPLACE_WITH_CLICKHOUSE_DB_HOST_IP_OR_DOMAIN] # example clickhouse-server
+        CLICKHOUSE_KAFKA_HOSTS: [REPLACE_WITH_KAFKA_CONNECTION_STRING] # example kafka:9092
+        # the following env variables are security related, they are optional
+        # if any redis pwd
+        REDIS_PASSWORD: [REPLACE_WITH_REDIS_PWD]
+        KAFKA_SECURITY_PROTOCOL: [REPLACE_WITH_KAFKA_SECURITY_PROTOCOL] # one of PLAINTEXT, SASL_PLAINTEXT, SASL_SSL, SSL
+        # if kafka security protocol is in SASL_PLAINTEXT, SASL_SSL, set the following 3 variables
+        # KAFKA_SASL_MECHANISM: [REPLACE_WITH_KAFKA_SASL_MECHANISM]
+        # KAFKA_SASL_USER: [REPLACE_WITH_KAFKA_SASL_USER]
+        # KAFKA_SASL_PASSWORD: [REPLACE_WITH_KAFKA_SASL_PASSWORD]
+
+    networks:
+      featbit-network-service:
+        name: featbit-network
+        external: true
+    </code></pre>
+
+## Data Seeding
+
+### Kafka Topics
+
+You need to create the following topics in your kafka:
+
+* featbit-feature-flag-change
+* featbit-segment-change
+* featbit-insights
+* featbit-endusers
+
+### MongoDB
+
+We provide a [mongodb-seed-script](https://github.com/featbit/featbit/blob/main/infra/mongodb/docker-entrypoint-initdb.d/init.js) to seed our MongoDB database. This script assumes the database name is "featbit" (you can change it) which should be the same as MongoDb\_\_Database environment variable.
+
+You can run the seed script with following command or any other tools.
+
+```sh
+mongo < init.js
+# or mongosh < init.js
+```
+
+## Installation
+
+*   Once you finished modifying the docker compose file, run the following command
+
+    <pre class="language-bash"><code class="lang-bash"><strong>docker compose -f docker-compose-partial.yml up -d
+    </strong></code></pre>
+* Once all containers have started, go to FeatBit's portal [http://localhost:8081](http://localhost:8081/) and use the default credentials to log in.
+  * Username: **test@featbit.com**
+  * Password: **123456**
+
+## Update
+
+Run the following commands to update to the latest FeatBit images:
+
+```bash
+docker-compose pull
+docker-compose rm -fsv featbit
+docker-compose up -d
+```
+
+## FAQ
+
+* [How to solve the docker container port conflict problem?](faq.md#how-to-solve-docker-container-port-conflict-problem)
+* [How to make FeatBit portal accessible publically?](faq.md#how-to-make-featbit-portal-accessible-publicly)
