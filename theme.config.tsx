@@ -4,7 +4,7 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 import { useConfig } from 'nextra-theme-docs'
 import Image from 'next/image';
 import slackLogo from './public/slack-new-logo.svg';
-import logoImg from '/public/logo.png'
+import logoImg from './public/logo.png'
 
 const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com/featbit/featbit-docs/tree/main',
@@ -24,7 +24,7 @@ const config: DocsThemeConfig = {
           width={33}
           alt="FeatBit"
       />
-      <h1 style={{ marginLeft: '9px', fontWeight: 800, fontSize: '24px',  lineHeight: '33px'}}>
+      <h1 style={{ marginLeft: '12px', fontWeight: 800, fontSize: '24px',  lineHeight: '33px'}}>
         FeatBit Docs
       </h1>
     </>

@@ -1,7 +1,8 @@
 {
-  "index": "Introduction",
+  "overview": "Overview",
   "another": "Another Page",
-  "advanced": "\uD83E\uDDE9 ⏐ Advanced",
+  "advanced": "Advanced",
+  "gitbook": "GitBook",
   "support": {
     "title": "Support ↗",
     "type": "page",
