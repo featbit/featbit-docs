@@ -70,7 +70,7 @@ We believe the reported performance is largely enough for small businesses with 
 
 In the above tests, we used 5 feature flags and 2 segments. Test data is attached below.
 
-[Feature flags test sample file](../tech-stack/assets/flags.json)
+[Feature flags test sample file](https://github.com/featbit/featbit-docs/blob/main/pages/tech-stack/assets/flags.json)
 
-[Segments test sample file](../tech-stack/assets/segments.json)
+[Segments test sample file](https://github.com/featbit/featbit-docs/blob/main/pages/tech-stack/assets/segments.json)
 
