@@ -70,10 +70,7 @@ We believe the reported performance is largely enough for small businesses with 
 
 In the above tests, we used 5 feature flags and 2 segments. Test data is attached below.
 
-{% file src="../.gitbook/assets/flags.json" %}
-Feature flags
-{% endfile %}
+[Feature flags test sample file](../tech-stack/assets/flags.json)
 
-{% file src="../.gitbook/assets/segments.json" %}
-Segments
-{% endfile %}
+[Segments test sample file](../tech-stack/assets/segments.json)
+
