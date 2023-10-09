@@ -8,9 +8,9 @@
 
 We assume that you've already completed the last three tutorials in "Get Started":
 
-* You have successfully created two feature flags, `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../2.-create-two-feature-flags.md).
-* You have essential experience with how to [interact with the "`Dino Game` " demo](../3.-try-interacting-with-the-demo.md).
-* You know how to [connect an SDK](../4.-connect-an-sdk/) to your program or the "Dino Game" demo:
+* You have successfully created two feature flags, `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.md).
+* You have essential experience with how to [interact with the "`Dino Game` " demo](../try-interacting-with-the-demo.md).
+* You know how to [connect an SDK](../connect-an-sdk/) to your program or the "Dino Game" demo:
   * Download a demo code sample
   * Initialize SDK
   * Identify a user with customized properties.
@@ -22,13 +22,13 @@ You have lots of feature flags to control features and several subscriptions. Ea
 
 You need to create standard subscription segment to access features. For example, you can create a subscription named "Basic Subscription".
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/entitlement/001.webp)
 
 ## Sales use feature flags for giving features access to a subscription segment
 
 Add this segment to feature flags. For example, we let users who are in "Basic Subscription" can access the feature "Change Request". In the feature flag "Change request", you just need to add a rule that **if user is in segment 'basic subscription or higher', this user can see and access this feature**.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/entitlement/002.webp)
 
 After saving the change of feature flag, only users who are in basic subscription can see and use faeture "Change request".
 
@@ -36,18 +36,16 @@ After saving the change of feature flag, only users who are in basic subscriptio
 
 First, we create a segment for beta users. Everytime PM update this segment, it will be updated in all feature flags which used this segment.
 
-<figure><img src="../../.gitbook/assets/image (219).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/entitlement/003.webp)
 
 Imaging that the feature "Change request" has a version 2, before the we upgrade this new version to customers, PM want to do a beta test in production with Beta users. We just need to add another customized rule that **If users are in "Common Beta Users" segment, they have access to version 2 of feature "Change request"**.
 
-<figure><img src="../../.gitbook/assets/image (265).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/entitlement/004.webp)
 
 ## Feature usage statistics and management
 
 You can see feature usage statistics in **Reporting** tab of a feature flag.
 
-<figure><img src="../../.gitbook/assets/img_v2_099d5064-7df3-4376-b522-ae1925b9ff6g.jpg" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/entitlement/005.webp)
 
 FeatBit didn't allow you to create a customized dashboard for managing features, but we think it's a must-have feature in many situations when teams manage their entitlement. Especially when they connect their entitlement system with the billing system for monetizing their software.
-
-We're glad to hear your voice and opinions, don't hesitate to write your proposal in our [GitHub Discussion](https://github.com/featbit/featbit/discussions). &#x20;

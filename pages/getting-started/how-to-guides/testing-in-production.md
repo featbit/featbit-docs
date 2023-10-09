@@ -8,9 +8,9 @@
 
 We assume that you've already completed the last 3 tutorials in "Get Started":
 
-* You have successfully created two feature flags `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../2.-create-two-feature-flags.md).
-* You have basic experience with how to [interact with the "`Dino Game` " demo](../3.-try-interacting-with-the-demo.md).
-* You know how to [connect an SDK](../4.-connect-an-sdk/) to your program or to "Dino Game" demo:
+* You have successfully created two feature flags `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.md).
+* You have basic experience with how to [interact with the "`Dino Game` " demo](../try-interacting-with-the-demo.md).
+* You know how to [connect an SDK](../connect-an-sdk/) to your program or to "Dino Game" demo:
   * Download a demo code sample
   * Initialize SDK
   * Identify a user with customized properties.
@@ -30,19 +30,21 @@ To add your friends to the "allowlist", we just need to:
 
 Three steps above told to FeatBit that the feature flag "game runner" is turned on. Only users in the true list of Targeting users section can have a `true` variation (can play game).
 
-<figure><img src="../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/testing-in-production/001.webp)
 
 ### Where users come from?
 
 Users in the true list can imported by three ways:
 
-1. In "Data sync" section, you can import all users to FeatBit through a predefined JSON file.![](<../../.gitbook/assets/image (49).png>)
-2. When user registered in your running application, user information is saved to system.![](<../../.gitbook/assets/image (120).png>)
+1. In "Data sync" section, you can import all users to FeatBit through a predefined JSON file.
+![](../../getting-started/assets/testing-in-production/002.webp)
+2. When user registered in your running application, user information is saved to system.
+![](../../getting-started/assets/testing-in-production/003.webp)
 3. You can also input username directly in "Targeting users" selection-lists. If user doesn't exist, it will add a new user in "End users" list.
 
 Users information can be found in "End users" page.
 
-<figure><img src="../../.gitbook/assets/image (175).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/testing-in-production/004.webp)
 
 ## Use the QA segment to test in production
 
@@ -50,11 +52,11 @@ Your friends like your game, they want to always test new features before releas
 
 Go to page "Segments", create a segment with name "my lovely QA team".
 
-<figure><img src="../../.gitbook/assets/image (114).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/testing-in-production/005.webp)
 
 In the segment detail page, we add my lovely test users into "Including users" list, then we click save. This segment can be shared cross different feature flags.
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/testing-in-production/006.webp)
 
 We go back to the feature flag list and open "game runner" feature flag's "Targeting" page.&#x20;
 
@@ -65,10 +67,10 @@ We go back to the feature flag list and open "game runner" feature flag's "Targe
    3. Select "my lovely QA team" section to section list.
    4. Select `true` in serve area.
 
-<figure><img src="../../.gitbook/assets/image (279).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/testing-in-production/007.webp)
 
 The configuration above means if users is in segment "my lovely QA team", DinoGame will release to this user. This configuration can also be implemented in other feature flags for testing in production for other features, like "difficulty mode".&#x20;
 
-<figure><img src="../../.gitbook/assets/image (156).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/testing-in-production/008.webp)
 
 The segment is also called a reusable segment, it can be used across different feature flags. Update one segment means updating all feature flags which used this segment.

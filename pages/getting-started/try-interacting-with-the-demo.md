@@ -1,4 +1,4 @@
-# 3. Try interacting with the demo
+# 2. Try interacting with the demo
 
 You created two feature flags "game runner" and "difficulty mode" in the last step, you can use these two flags to interact with the "Dino Game" demo.&#x20;
 
@@ -15,4 +15,4 @@ You will also learn how to use a feature flag's variation to control the game's 
 
 ![](../getting-started/assets/try-interacting-with-demo/003.png)
 
-After playing with the demo, you can continue with the next step "[Connect an SDK](4.-connect-an-sdk)".
+After playing with the demo, you can continue with the next step "[Connect an SDK](connect-an-sdk)".
