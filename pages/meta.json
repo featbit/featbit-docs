@@ -1,7 +1,11 @@
 {
   "index": "OVERVIEW",
+  "getting-started": "GETTING STARTED",
+  "installation": "INSTALLATION",
+  "tech-stack": "TECH STACK",
+  "gitbook": "GitBook- in progress",
   "support": {
-    "title": "Support & Pricing ↗",
+    "title": "Support ↗",
     "type": "page",
     "href": "https://dashboard.featbit.co",
     "newWindow": true
