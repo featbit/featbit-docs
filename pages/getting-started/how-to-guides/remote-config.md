@@ -4,7 +4,7 @@
 
 Remote config lets you alter an application in real-time, without having to wait for a deployment or app store approval. At a high level, it’s a key-value store in the cloud, and apps running on end-user devices use these key-value pairs to configure desired user experiences.
 
-## Difference with feature flag <a href="#difference" id="difference"></a>
+## Difference with feature flag
 
 To summarize the difference, it comes down to the type of data managed by each. Feature flags are, by their very nature, binary - they’re either on or off. Developers often use Remote configuration for managing settings that can’t be represented through a boolean.
 
@@ -20,11 +20,11 @@ Here are some remote config examples.
 
 In this example, we created a "bg color" remote config to get different color for different user.
 
-<figure><img src="../../.gitbook/assets/bg-color-remote-config.png" alt=""><figcaption><p>The "bg color" remote config</p></figcaption></figure>
+![](../../getting-started/assets/remote-config/001.webp)
 
 ### MySql Connection
 
 In this example, we created a "mysql connection" remote config to get different mysql connections for different regional instances.
 
-<figure><img src="../../.gitbook/assets/mysql-connection-remote-config.png" alt=""><figcaption><p>The "mysql-connection" remote config</p></figcaption></figure>
+![](../../getting-started/assets/remote-config/002.webp)
 

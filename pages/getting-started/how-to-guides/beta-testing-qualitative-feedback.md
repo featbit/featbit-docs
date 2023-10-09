@@ -4,8 +4,7 @@
 
 **Beta Testing** is performed by “real users” of the software application in “real environment” and it can be considered as a form of external User Acceptance Testing. It is the final test before shipping a product to the customers. Direct feedback from customers is a major advantage of Beta Testing. This testing helps to test products in customer’s environment.
 
-![](../getting-started/assets/connect-to-sdk/001.png)
-<figure><img src="../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/beta-testing/001.webp)
 
 Beta version of the software is released to a limited number of end-users of the product to obtain feedback on the product quality. Beta testing reduces product failure risks and provides increased quality of the product through customer validation.
 
@@ -23,9 +22,9 @@ The goal of the alpha test is to catch as many issues as possible before the pro
 
 We assume that you've already completed the last three tutorials in "Get Started":
 
-* You have successfully created two feature flags, `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../2.-create-two-feature-flags.md).
-* You have essential experience with how to [interact with the "`Dino Game` " demo](../3.-try-interacting-with-the-demo.md).
-* You know how to [connect an SDK](../4.-connect-an-sdk/) to your program or the "Dino Game" demo:
+* You have successfully created two feature flags, `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.md).
+* You have essential experience with how to [interact with the "`Dino Game` " demo](../try-interacting-with-the-demo.md).
+* You know how to [connect an SDK](../connect-an-sdk/) to your program or the "Dino Game" demo:
   * Download a demo code sample
   * Initialize SDK
   * Identify a user with customized properties.
@@ -44,13 +43,13 @@ and to collect their feedbacks.
 
 1. Go to Segments page and create a segment with following configuration
 
-<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/beta-testing/002.webp)
 
 &#x20; With this configurations, users in the **Including users** are added in the segment.
 
-2\. Go to the feature flag **game runner**'s targeting page, set the default rule to return false and add the following two rules
+2. Go to the feature flag **game runner**'s targeting page, set the default rule to return false and add the following two rules
 
-<figure><img src="../../.gitbook/assets/image (213).png" alt=""><figcaption></figcaption></figure>
+![](../../getting-started/assets/beta-testing/003.webp)
 
 With this configuration, the feature is released to only internal users and all external users younger than 20 years old.
 
