@@ -1,8 +1,12 @@
 {
-  "index": "Overview",
+  "index": "OVERVIEW",
+  "getting-started": "GETTING STARTED",
+  "installation": "INSTALLATION",
+  "feature-flags": "FEATURE FLAGS",
+  "tech-stack": "TECH STACK",
+  "gitbook": "GitBook",
   "another": "Another Page",
   "advanced": "Advanced",
-  "gitbook": "GitBook",
   "support": {
     "title": "Support ↗",
     "type": "page",
