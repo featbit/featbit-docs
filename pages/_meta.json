@@ -1,8 +1,9 @@
 {
-  "index": "Overview",
-  "getting-started": "Getting Started",
-  "installation": "Installation",
-  "feature-flags": "Feature Flags",
+  "index": "OVERVIEW",
+  "getting-started": "GETTING STARTED",
+  "installation": "INSTALLATION",
+  "feature-flags": "FEATURE FLAGS",
+  "tech-stack": "TECH STACK",
   "gitbook": "GitBook",
   "another": "Another Page",
   "advanced": "Advanced",

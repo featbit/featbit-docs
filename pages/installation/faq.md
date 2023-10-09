@@ -8,7 +8,7 @@
 
 For example, if you already have a Redis container using the host machine's port 6379, when you try to launch our system with `docker-compose up -d`, you can see the port conflict error from docker daemon like this
 
-<figure><img src="../.gitbook/assets/port-conflict.png" alt=""><figcaption><p>The port conflict error.</p></figcaption></figure>
+![](./assets/faq/001.webp)
 
 To solve this problem, go to **docker-compose.yml**, find the Redis service and change it's binding port to something other than 6379.
 
@@ -33,7 +33,7 @@ redis:
 
 With the default configuration, the FeatBit's portal is only accessible from the local machine on which you ran docker compose.&#x20;
 
-To make the UI accessible from other machines or even from the internet, you need a public IP or domain name for the machine on which it is running. Additionally, if the API and Evaluation services are running on different machines than the UI service, you may also need public IP addresses or domain names for them. Then, set the correct values for **API\_URL** and **EVALUATION\_URL** in the docker-compose file. Please check our [architecture doc](broken-reference) for a detail explanation of all the services of FeatBit.
+To make the UI accessible from other machines or even from the internet, you need a public IP or domain name for the machine on which it is running. Additionally, if the API and Evaluation services are running on different machines than the UI service, you may also need public IP addresses or domain names for them. Then, set the correct values for **API\_URL** and **EVALUATION\_URL** in the docker-compose file. Please check our architecture doc of [standard version](../tech-stack/architecture) and [pro version](../tech-stack/architecture-professional) for a detail explanation of all the services of FeatBit.
 
 ```yaml
 # docker-compose.yml

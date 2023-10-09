@@ -1,4 +1,6 @@
-# Full installation
+import { Callout } from 'nextra/components'
+
+# Installation with Docker Compose
 
 ## Prerequisites
 
@@ -35,9 +37,9 @@ docker compose up -f docker-compose-dev.yml -d
 docker compose -f docker-compose-pro-dev.yml up -d
 ```
 
-{% hint style="info" %}
+<Callout type="info">
 The Pro version's docker compose file contains a "run once" service called **init-kafka-topics** that creates the kafka topics required by the system. This service is meant to run only once and then exit, so it’s ok for this service to be in Exited status.
-{% endhint %}
+</Callout>
 
 ## Update
 

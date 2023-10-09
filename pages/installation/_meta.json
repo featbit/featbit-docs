@@ -1,0 +1,17 @@
+{
+  "full-installation": "Docker Compose",
+  "partial-installation": "Partial installation",
+  "helm-chart": {
+    "title": "Deploy on K8s using Helm Charts ↗",
+    "type": "page",
+    "href": "https://github.com/featbit/featbit-charts",
+    "newWindow": true
+  },
+  "azure": {
+    "title": "Deploy on Azure using Terraform ↗",
+    "type": "page",
+    "href": "https://github.com/featbit/azure-container-apps",
+    "newWindow": true
+  },
+  "faq": "FAQ"
+}
