@@ -1,8 +1,11 @@
+import { Callout } from 'nextra/components'
+
 # FeatBit Agent
 
-{% hint style="info" %}
+<Callout type="info">
 This is a general introduction of FeatBit Agent, if you are looking for detailed instructions of installing FeatBit Agent, please refer to this [doc](https://github.com/featbit/featbit-agent#installation).
-{% endhint %}
+</Callout>
+
 
 FeatBit Agent (the GitHub repo is [here](https://github.com/featbit/featbit-agent)) is a small program that sits between the FeatBit Server and your SDKs and providing both a cached read replica and a relay proxy of your FeatBit Server. This means you can scale up your FeatBit to serve tens of thousands of connected SDKs without increasing the load on your FeatBit Server.
 
@@ -22,7 +25,7 @@ FeatBit Agent supports two different modes:
 
 ### Agent Mode
 
-<figure><img src="../.gitbook/assets/image (51).png" alt=""><figcaption><p>Agent Mode</p></figcaption></figure>
+![](../relay-proxy/assets/featbit-agent/001.webp)
 
 Agent is the default mode and should be used by default in most cases. It connects to the FeatBit Server and uses it as the source of truth for feature flags, segments and environment keys.
 
@@ -34,7 +37,7 @@ When using Redis as storage solution, multiple agents can share the same Redis, 
 
 ### Offline Mode
 
-<figure><img src="../.gitbook/assets/image (192).png" alt=""><figcaption><p>Offline Mode</p></figcaption></figure>
+![](../relay-proxy/assets/featbit-agent/002.webp)
 
 Offline mode should be used when you don't have a connection to the FeatBit Server. It can also be used when you need to have full control over both the data your clients receive and which environment keys can be used to access it.
 

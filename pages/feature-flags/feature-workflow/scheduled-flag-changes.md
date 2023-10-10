@@ -27,7 +27,7 @@ To schedule a set of flag changes:
 
 ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/001.webp)
 
-4.  In the "Schedule" section, put a title and select a date, time for when you want the changes to take effect.\
+4.  In the "Schedule" section, put a title and select a date, time for when you want the changes to take effect.
 
 ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/002.webp)
 

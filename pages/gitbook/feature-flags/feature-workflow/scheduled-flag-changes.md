@@ -27,7 +27,7 @@ To schedule a set of flag changes:
 
 
     <figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Schedule changes</p></figcaption></figure>
-4.  In the "Schedule" section, put a title and select a date, time for when you want the changes to take effect.\
+4.  In the "Schedule" section, put a title and select a date, time for when you want the changes to take effect.
 
 
     <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
