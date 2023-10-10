@@ -1,18 +1,18 @@
 # Creating Experiments
 
-## Overview <a href="#overview" id="overview"></a>
+## Overview
 
 This topic explains how to set up and configure an experiment in FeatBit. It introduces the concepts of metrics, explains different metric types, and explains how metrics interact with feature flags to create experiments.
 
-In FeatBit, the combination of metrics and flags is an experiment. Experiments let you measure the effect of flags on users by mapping them to the metrics your team cares about.&#x20;
+In FeatBit, the combination of metrics and flags is an experiment. Experiments let you measure the effect of flags on users by mapping them to the metrics your team cares about.
 
-## Creating metrics <a href="#creating-metrics" id="creating-metrics"></a>
+## Creating metrics 
 
 Metrics are the measure against which you evaluate flag events. You can use metrics to track all kinds of things, from how often users access a URL to how long that URL takes to load a page. If users load a URL, click an element, or otherwise participate in the behavior the metric tracks, you can use FeatBit SDK to send an event to your experiment.
 
 You don't need to create a new metric for each new experiment. You can reuse existing metrics in multiple experiments, which allows you to compare how the metric performs with different flags. Similarly, a single experiment can use primary and secondary metrics, which allow you to observe how the variations perform against various measurements.
 
-### Using primary and secondary metrics <a href="#using-primary-and-secondary-metrics" id="using-primary-and-secondary-metrics"></a>
+### Using primary and secondary metrics 
 
 You can designate only one metric as the primary metric in an experiment, but you can attach secondary metrics to your experiments if you want to track the performance of additional measurements. We recommend using no more than ten metrics per experiment.
 
@@ -30,13 +30,13 @@ The following table explains the kinds of events you can track with a metric and
 
 ### Create a metric
 
-Go to **Experiments** page, in **Metrics** tab, click on **Add Metric** button.&#x20;
+Go to **Experiments** page, in **Metrics** tab, click on **Add Metric** button.
 
-<figure><img src="../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/001.webp)
 
 In Metric drawer, fill information of the metric.
 
-<figure><img src="../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/002.webp)
 
 * `Name`, name of the metric
 * `Description`, (optional) description of the metric
@@ -46,40 +46,40 @@ In Metric drawer, fill information of the metric.
   * Custom numeric, you need to choose **Numeric** below the selector
   * Click conversion & Pageview conversion, these can be treated as custom conversion
 * `Event name`, the name which will identify events in FeatBit experimentation evaluation. This name will be passed as a parameter when you call SDK to track the events.
-* `Unit`, when you choose Numeric as event type, this is will be identify which kind of numeric you're measuring.&#x20;
+* `Unit`, when you choose Numeric as event type, this is will be identify which kind of numeric you're measuring.
 * `Winning criteria`, define winning criteria by choose `higher than baseline` or `lower than baseline`
 
 ## Create an experimentation
 
 Go back to the Overview sub-panel and click the **Add** button
 
-<figure><img src="../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/003.webp)
 
 In the **Experiment** drawer, select the feature flag you created before, choose a **Metric**, choose a variation as baseline. Click on the **Save** button.
 
-<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/004.webp)
 
 ## Run experiment
 
 In the experiment list, click on button **Check result** of an experimentation.
 
-<figure><img src="../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/005.webp)
 
 You'll be directed to the feature flag **Experimentation** tab. Click on the start button in the Experiment. It starts to run!
 
-<figure><img src="../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/006.webp)
 
-## Creating experiment audiences <a href="#creating-experiment-audiences" id="creating-experiment-audiences"></a>
+## Creating experiment audiences 
 
 You can run an experiment on a flag's default rule, or you can create a custom experiment audience by selecting a specific flag targeting rule to include in your experiment. You can target by any user attribute you collect. To learn how, read [Targeting rules](../feature-flags/targeting-users-with-flags/targeting-rules.md).
 
 When you build your experiment, you can allocate all or a percentage of the user traffic that encounters a flag in an experiment. Audience allocation gives you flexibility when selecting your experiment audience and ensures accurate experiment results. FeatBit analyzes only users that you choose to be part of the experiment.
 
-You can selecting a specific flag targeting rule by click on button **Set A/B test rule**.&#x20;
+You can selecting a specific flag targeting rule by click on button **Set A/B test rule**.
 
-<figure><img src="../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/007.webp)
 
 You can configure specific ab test traffic in the drawer panel. The image below shows only 10% of total users who matched default rule are included in the experiment. 80% of users who matched default rule of v1 are excluded in the experiment.
 
-<figure><img src="../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
+![](../experimentation/assets/creating-experiments/008.webp)
 

@@ -12,7 +12,7 @@ You can delete an archived flag after you determine that it will no longer be ne
 
 Flags are good candidates for archival when they are **serving only one variation** in the environment you choose and **have not been requested in the last seven days**.
 
-When you archive a flag in FeatBit, you should also remove the flag from your code.&#x20;
+When you archive a flag in FeatBit, you should also remove the flag from your code.
 
 {% hint style="warning" %}
 If you do not remove an archived flag from your code, then all end users encountering the feature will receive the fallback value.

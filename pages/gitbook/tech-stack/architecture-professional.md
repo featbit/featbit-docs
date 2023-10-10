@@ -13,10 +13,10 @@ The overall architecture is as follows:
 <figure><img src="../.gitbook/assets/image (266).png" alt=""><figcaption><p>Architecture</p></figcaption></figure>
 
 * **UI :** Provides users a visual UI interface for managing and publishing feature flags, segments and experiments etc.
-* **API Server :** Provides data management capabilities for the UI and external integration services, such as flag triggers, code-references etc.&#x20;
+* **API Server :** Provides data management capabilities for the UI and external integration services, such as flag triggers, code-references etc.
 * **Evaluation Server :** Provides a scalable and high-performance flag rule evaluation engine and a data distribution server.
 * **Data Analytics server :** Provides a data analytics engine. It assures the following services
-  * Calculates the experiments and return its results in near real time.&#x20;
+  * Calculates the experiments and return its results in near real time.
   * Provides insights services for all analytics in the UI, the feature flag reporting for example.
 * **SDK:** We provide SDKs for all major languages and frameworks, providing quick access to FeatBit from your services and applications.
 * **Redis :** The cache layer to boost the performance.
@@ -26,11 +26,11 @@ The overall architecture is as follows:
 
 ## Scalable and high performance
 
-When designing the architecture, our most important and the only concerns were how to make it scalable and how to obtain the best performance possible. To do so, we carefully selected our tech stack and containerized all services, which makes it very easy to be deployed as a cluster and **scale horizontally**.&#x20;
+When designing the architecture, our most important and the only concerns were how to make it scalable and how to obtain the best performance possible. To do so, we carefully selected our tech stack and containerized all services, which makes it very easy to be deployed as a cluster and **scale horizontally**.
 
 As for the data storage and data flow between services, in order to obtain the best performance possible, we introduced MongoDB as our main data store, Redis as system cache, Kafka as message queue, ClickHouse as data store for analytic and A/B/n testing data etc. We are using **Multiplexing** and **Pub & Sub system** to send/receive messages between services, the average reaction time is in milliseconds.
 
-The push of feature flag changes or other configurations to SDKs is near real time. It takes less than **100** milliseconds to push the data to SDKs when a flag is changed from the UI. Instead of long polling, the WebSocket solution is adopted as it can proactively push the changes to SDKs once it happens. Of course, this is not cost free, it can consume enormous memory when huge number of concurrent requests happen. To avoid being a memory monster, we have carefully selected the way to serialize and deserialize data, so it doesn't consume extra memory during the serialization and deserialization process.&#x20;
+The push of feature flag changes or other configurations to SDKs is near real time. It takes less than **100** milliseconds to push the data to SDKs when a flag is changed from the UI. Instead of long polling, the WebSocket solution is adopted as it can proactively push the changes to SDKs once it happens. Of course, this is not cost free, it can consume enormous memory when huge number of concurrent requests happen. To avoid being a memory monster, we have carefully selected the way to serialize and deserialize data, so it doesn't consume extra memory during the serialization and deserialization process.
 
 ## Data flows
 
@@ -49,7 +49,7 @@ After a connection has been established between a client or server SDK and evalu
 
 ### Feature flag / Segment changes data flow
 
-When a user changes a feature flag or a segment from the UI, in addition to store data in MongoDB, the API server also pushes the changes to Kafka, Evaluation server reads those changes, update Redis, evaluate feature flags related to the changes and sends related feature flags or evaluation results to client/server side SDK through WebSocket connections.&#x20;
+When a user changes a feature flag or a segment from the UI, in addition to store data in MongoDB, the API server also pushes the changes to Kafka, Evaluation server reads those changes, update Redis, evaluate feature flags related to the changes and sends related feature flags or evaluation results to client/server side SDK through WebSocket connections.
 
 <figure><img src="../.gitbook/assets/image (209).png" alt=""><figcaption><p>Feature flag / Segment changes data flow</p></figcaption></figure>
 
@@ -63,7 +63,7 @@ When client SDK establishes a WebSocket connection or switches to another user (
 
 ### Feature flag and metric track data flow
 
-Feature flag and metric track data is stored in ClickHouse and serves for A/B/n testing (experimentation) and reporting.&#x20;
+Feature flag and metric track data is stored in ClickHouse and serves for A/B/n testing (experimentation) and reporting.
 
 When client/server SDK sends feature flag and metric track messages to Evaluation server, the latter forwards the track messages to Kafka, Data analytics servers reads track messages from Kafka and stores them in ClickHouse.
 

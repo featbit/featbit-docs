@@ -30,7 +30,7 @@ User uage data can be configured to remain on the agent or to be anonymised befo
 
 By default, Agent mode uses an in-memory cache to store the features it fetches from the FeatBit Server. However, you may want to use a more persistent storage solution. For this purpose, the FeatBit Agent supports either Redis or a backup file, which you can configure by passing in when starting the Agent. The FeatBit Agent will then check on startup to see if the persistent backup option is specified, in which case it will use it to populate its internal caches. This can be useful if your FeatBit server is unreachable.
 
-When using Redis as storage solution, multiple agents can share the same Redis, allowing FeatBit Agent to scale horizontally to a cluster and maintain the data consistancy.&#x20;
+When using Redis as storage solution, multiple agents can share the same Redis, allowing FeatBit Agent to scale horizontally to a cluster and maintain the data consistancy.
 
 ### Offline Mode
 
@@ -38,4 +38,4 @@ When using Redis as storage solution, multiple agents can share the same Redis, 
 
 Offline mode should be used when you don't have a connection to the FeatBit Server. It can also be used when you need to have full control over both the data your clients receive and which environment keys can be used to access it.
 
-Since this mode does not connect to a FeatBit Server, it requires a JSON dump of feature flags, segments and environment keys. You can configure FeatBit Server to send this dump to your FeatBit Agent instance by creating a relay proxy on the FeatBit UI or by starting the Agent with a dump file containing the data.&#x20;
+Since this mode does not connect to a FeatBit Server, it requires a JSON dump of feature flags, segments and environment keys. You can configure FeatBit Server to send this dump to your FeatBit Agent instance by creating a relay proxy on the FeatBit UI or by starting the Agent with a dump file containing the data.

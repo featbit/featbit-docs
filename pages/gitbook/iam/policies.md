@@ -1,6 +1,6 @@
 # Policies
 
-You manage access in FeatBit by creating policies and attaching them to IAM identities (users, groups of users) or FeatBit resources. A policy is an object in FeatBit that, when associated with an identity or resource, defines their permissions. FeatBit evaluates these policies when an IAM member makes a request. Permissions in the policies determine whether the request is allowed or denied.&#x20;
+You manage access in FeatBit by creating policies and attaching them to IAM identities (users, groups of users) or FeatBit resources. A policy is an object in FeatBit that, when associated with an identity or resource, defines their permissions. FeatBit evaluates these policies when an IAM member makes a request. Permissions in the policies determine whether the request is allowed or denied.
 
 ## Control level (Resource types)
 
@@ -8,7 +8,7 @@ FeatBit policy now supports three control levels (also called resource types):
 
 * **All**, which controls if all resources are allowed or denied for members (or group of member).
 * **General**, which controls members' access permission of resource-level of Account, IAM and Project
-* **Project**, which controls members' access permission of projects.&#x20;
+* **Project**, which controls members' access permission of projects.
 * **Environment**, which controls members' access permission of all environments.
 
 ## Built-in policies

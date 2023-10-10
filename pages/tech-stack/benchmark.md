@@ -1,12 +1,12 @@
 # Benchmark
 
-One of the goals of FeatBit is to create a scalable and fast real-time feature flag management service. For this point, we focus on the capacity to handle concurrent users, this mainly depends on the performance of the Evaluation Server service. The document gives a performance report of the Evaluation Server in an isolated minimum environment.&#x20;
+One of the goals of FeatBit is to create a scalable and fast real-time feature flag management service. For this point, we focus on the capacity to handle concurrent users, this mainly depends on the performance of the Evaluation Server service. The document gives a performance report of the Evaluation Server in an isolated minimum environment.
 
 ## Test objectives
 
 We need to find out if Evaluation Server meets the performance requirements as specified below.
 
-Evaluation Server needs to be able to handle 1000 new connections per second providing the industry standard level of service in terms of response time and error rate. The 99th pencentile (P99) response time needs to be less than 200 milliseconds and the acceptable error rate is less than 1%. With this criteria, we would assure the max capacity of Evaluation Server while offering a high reliable service.&#x20;
+Evaluation Server needs to be able to handle 1000 new connections per second providing the industry standard level of service in terms of response time and error rate. The 99th pencentile (P99) response time needs to be less than 200 milliseconds and the acceptable error rate is less than 1%. With this criteria, we would assure the max capacity of Evaluation Server while offering a high reliable service.
 
 The max number of user connections FeatBit can hold for a given time is not covered in this document as we observed that the CPU and memory usages are low when there is no data synchronization happening. The ability to push changes to connected users would be covered in future report.
 
@@ -60,7 +60,7 @@ The performed test has shown that the Evaluation Server preserves the desired qu
 
 ## Conclusion
 
-With a minimum hardware setting: **AWS EC2 t2.micro (1 vCPU + 1 G RAM)**, the Evaluation Server is capable of providing a reliable service for until 1100 new connections per second, the maximum number of connections held for a given time reaches 22000 (this is not the limit).&#x20;
+With a minimum hardware setting: **AWS EC2 t2.micro (1 vCPU + 1 G RAM)**, the Evaluation Server is capable of providing a reliable service for until 1100 new connections per second, the maximum number of connections held for a given time reaches 22000 (this is not the limit).
 
 The web server resource utilization measured during the testing shows that the bottleneck of the hardware is the CPU, which is comprehensible as CPU is intensely used to evaluate the feature flags during the data synchronization stage. By using an instance with more vCPUs (or compute optimized instances), we can surely increase the capacity of number of max new connections per second.
 

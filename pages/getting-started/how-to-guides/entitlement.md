@@ -26,7 +26,7 @@ You need to create standard subscription segment to access features. For example
 
 ## Sales use feature flags for giving features access to a subscription segment
 
-Add this segment to feature flags. For example, we let users who are in "Basic Subscription" can access the feature "Change Request". In the feature flag "Change request", you just need to add a rule that **if user is in segment 'basic subscription or higher', this user can see and access this feature**.&#x20;
+Add this segment to feature flags. For example, we let users who are in "Basic Subscription" can access the feature "Change Request". In the feature flag "Change request", you just need to add a rule that **if user is in segment 'basic subscription or higher', this user can see and access this feature**.
 
 ![](../../getting-started/assets/entitlement/002.webp)
 
