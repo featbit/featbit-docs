@@ -6,6 +6,8 @@
   "sdk": "SDK",
   "feature-flags": "FEATURE FLAGS",
   "experimentation": "EXPERIMENTATION",
+  "data-import-and-export": "DATA IMPORT & EXPORT",
+  "relay-proxy": "RELAY PROXY",
   "support": {
     "title": "Support ↗",
     "type": "page",
