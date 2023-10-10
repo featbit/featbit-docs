@@ -26,9 +26,9 @@ You can filter users on the **Users** list by standard or custom attributes.
 
 To filter users:
 
-1. Select the attributes.\
+1. Select the attributes.
 ![](../../feature-flags/assets/users-and-user-segments/the-user-list/002.webp)
-2. Input the filtering value.\
+2. Input the filtering value.
 ![](../../feature-flags/assets/users-and-user-segments/the-user-list/003.webp)
 
 It supports only String type filters. Please give us feedback in [FeatBit GitHub's issues or discussion](https://github.com/featbit/featbit) if you want more.

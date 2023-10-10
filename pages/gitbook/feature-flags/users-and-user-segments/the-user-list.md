@@ -26,9 +26,9 @@ You can filter users on the **Users** list by standard or custom attributes.
 
 To filter users:
 
-1. Select the attributes.\
+1. Select the attributes.
    ![](<../../.gitbook/assets/image (103).png>)
-2. Input the filtering value.\
+2. Input the filtering value.
    ![](<../../.gitbook/assets/image (23).png>)
 
 It supports only String type filters. Please give us feedback in [FeatBit GitHub's issues or discussion](https://github.com/featbit/featbit) if you want more.

@@ -52,7 +52,7 @@ and then run  the following command
 docker compose -f docker-compose-clickhouse.yml up -d
 ```
 
-*   Open _**docker-compose-partial.yml**_ in your favorite editor, you would see the following configs. Assuming that infra services(Redis, MongoDB, Kafka, ClickHouse) run in the same network as FeatBit services we'll install in this doc.\
+*   Open _**docker-compose-partial.yml**_ in your favorite editor, you would see the following configs. Assuming that infra services(Redis, MongoDB, Kafka, ClickHouse) run in the same network as FeatBit services we'll install in this doc.
     &#x20;  &#x20;
 
     <pre class="language-yaml"><code class="lang-yaml"><strong>ui:   

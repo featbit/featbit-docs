@@ -24,12 +24,12 @@ You can view segments on the **Segments** list. From the list, you can filter se
 To create a new segment:
 
 1. Navigate to the **Segments** list.
-2.  Click **Add**. The "Add segment" panel appears.\
+2.  Click **Add**. The "Add segment" panel appears.
 
 
     <figure><img src="../../.gitbook/assets/image (290).png" alt=""><figcaption></figcaption></figure>
 3. Give your segment a human-readable **Name**.
-4. (Optional) Add a **Description**.\
+4. (Optional) Add a **Description**.
    ![](<../../.gitbook/assets/image (244).png>)
 5. Click **Save**. The segment's **Targeting** tab appears.
 
@@ -40,7 +40,7 @@ You can customize a segment to apply to different users or attributes, or exclud
 To customize a segment:
 
 1. Navigate to the **Targeting** tab of the user segment you wish to modify.
-2.  Individually target users with the **Including users** or **Excluding users** options.\
+2.  Individually target users with the **Including users** or **Excluding users** options.
 
 
     <figure><img src="../../.gitbook/assets/image (256).png" alt=""><figcaption></figcaption></figure>
@@ -49,7 +49,7 @@ To customize a segment:
 
     <figure><img src="../../.gitbook/assets/image (152).png" alt=""><figcaption></figcaption></figure>
 4. Specify an **attribute**, an **operator**, and **values** for the rule.
-5.  If you want to add more criteria, click the **plus button** beside the rule criteria.\
+5.  If you want to add more criteria, click the **plus button** beside the rule criteria.
 
 
     <figure><img src="../../.gitbook/assets/image (294).png" alt=""><figcaption></figcaption></figure>

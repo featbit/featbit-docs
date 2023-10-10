@@ -6,7 +6,7 @@ This topic explains how to manage team members, team maintainers, and team permi
 
 ## **Managing members in default Team**
 
-At the moment, FeatBit provides only one default team. You can create, update, delete and manage members on the team page in the IAM section.\
+At the moment, FeatBit provides only one default team. You can create, update, delete and manage members on the team page in the IAM section.
 
 
 <figure><img src="../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>

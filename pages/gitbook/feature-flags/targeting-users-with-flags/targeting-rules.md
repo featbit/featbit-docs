@@ -20,7 +20,7 @@ Here is an image of a user targeting rule:
 
 To create a rule that serves `true` to all users whose email address ends with `gmail.com`:
 
-1. Click **Add rules** icon.\
+1. Click **Add rules** icon.
    ![](<../../.gitbook/assets/image (15).png>)
 2. Enter a name for the rule.
 3. Choose `email` from the **Select an attribute** menu.
@@ -112,7 +112,7 @@ The **Targeting** tab evaluates rules in the order below:
 3. Target remaining users through the configuration in **Default Rule**
 
 {% hint style="info" %}
-If a user matches multiple rules, the first matching rule applies.\
+If a user matches multiple rules, the first matching rule applies.
 \
 Customized rules can be re-ordered by clicking on the left edge of a rule and dragging it up or down.
 {% endhint %}

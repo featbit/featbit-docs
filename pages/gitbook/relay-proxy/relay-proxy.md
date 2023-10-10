@@ -23,7 +23,7 @@ To be able to create a Relay Proxy Configurationn, you must have the **ManageRel
 
 You can create an relay proxy configuration from the **Relay Proxies** page.
 
-1.  Navigate to **Relay Proxy** page.\
+1.  Navigate to **Relay Proxy** page.
 
 
     <figure><img src="../.gitbook/assets/image (62).png" alt=""><figcaption><p>Relay proxies</p></figcaption></figure>
@@ -35,7 +35,7 @@ You can create an relay proxy configuration from the **Relay Proxies** page.
 4. Set the scopes: select the environments from which you want to synchronize the feature flags and segments to the agents.
 5. Set the agent names and hosts
 6. Click **Save** button.
-7.  Copy and save the key somewhere secure. After you leave this page, the key is obscured.\
+7.  Copy and save the key somewhere secure. After you leave this page, the key is obscured.
 
 
     <figure><img src="../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>

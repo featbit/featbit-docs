@@ -39,12 +39,12 @@ You can customize a segment to apply to different users or attributes, or exclud
 To customize a segment:
 
 1. Navigate to the **Targeting** tab of the user segment you wish to modify.
-2.  Individually target users with the **Including users** or **Excluding users** options.\
+2.  Individually target users with the **Including users** or **Excluding users** options.
 ![](../../feature-flags/assets/users-and-user-segments/user-segments/004.webp)
 3.  Click  **+** button beside **Rules** to create a custom rule for this segment. The custom rule menu appears:\
 ![](../../feature-flags/assets/users-and-user-segments/user-segments/005.webp)
 4. Specify an **attribute**, an **operator**, and **values** for the rule.
-5.  If you want to add more criteria, click the **plus button** beside the rule criteria.\
+5.  If you want to add more criteria, click the **plus button** beside the rule criteria.
 ![](../../feature-flags/assets/users-and-user-segments/user-segments/006.webp)
 6. Click **Save**.
 
