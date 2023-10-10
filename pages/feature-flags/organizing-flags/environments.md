@@ -16,7 +16,7 @@ Your first project has two environments, Dev and Prod, by default. Each environm
 
 There is an area that shows you the current organization, projects and environment in the top-right corner. Click on the project or environment or switch button allows you to quickly switch between projects and environments.
 
-![](../feature-flags/assets/organizing-flags/environments/001.webp)
+![](../../feature-flags/assets/organizing-flags/environments/001.webp)
 
 ## Manage environments
 
@@ -25,7 +25,7 @@ You can manage your environments from the **Projects** page.
 1. Navigate to the **Organization** page.
 2.  Click the **Projects** tab.
 
-![](../feature-flags/assets/organizing-flags/environments/002.webp)
+![](../../feature-flags/assets/organizing-flags/environments/002.webp)
 
 Here are a few things you can do:
 
@@ -33,6 +33,6 @@ Here are a few things you can do:
 * delete an existing environment by clicking **Remove**, you cannot delete the current environment.
 * Update existing environment by clicking **Edit**
 
-## Migrating content between environments <a href="#migrating-content-between-environments" id="migrating-content-between-environments"></a>
+## Migrating content between environments
 
 You can migrate some, but not all, content between environments from the flags list. To learn more, read [Copying feature flags](the-flags-list.md#copying-feature-flags).

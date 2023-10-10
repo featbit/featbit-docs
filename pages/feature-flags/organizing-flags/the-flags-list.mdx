@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # The flags list
 
 ## Overview
@@ -12,7 +14,7 @@ By default, the most recently updated flags appear first, and archived flags **w
 
 Here is an image of the feature flags list:&#x20;
 
-![](../feature-flags/assets/organizing-flags/the-flags-list/001.webp)
+![](../../feature-flags/assets/organizing-flags/the-flags-list/001.webp)
 
 ## Creating feature flags
 
@@ -23,11 +25,11 @@ To create a feature flag:
 3. Enter a unique, human-readable Name.
 4. Click **Save** button.
 
-![](../feature-flags/assets/organizing-flags/the-flags-list/002.webp)
+![](../../feature-flags/assets/organizing-flags/the-flags-list/002.webp)
 
-{% hint style="info" %}
-_**NOTE:**_ A suggested key auto-populates when you enter the name, you'll use this key to reference the flag in your code. After you save the flag key, you **cannot modify** it. You can change a flag's name, however, whenever you want.
-{% endhint %}
+<Callout type="info">
+**NOTE:** A suggested key auto-populates when you enter the name, you'll use this key to reference the flag in your code. After you save the flag key, you **cannot modify** it. You can change a flag's name, however, whenever you want.
+</Callout>
 
 You just created a feature flag. It appears in the list.
 
@@ -39,14 +41,14 @@ To copy flags from one environment to another environment:
 2. Choose the flags you wish to copy.
 3.  Hover on the overflow menu button and choose **Copy to environment**.
 
-![](../feature-flags/assets/organizing-flags/the-flags-list/003.webp)
+![](../../feature-flags/assets/organizing-flags/the-flags-list/003.webp)
 
 4.  Check the selected flags again and choose the targeting environment which flags will be copied to.
 
-![](../feature-flags/assets/organizing-flags/the-flags-list/004.webp)
+![](../../feature-flags/assets/organizing-flags/the-flags-list/004.webp)
 
 5. Click **Ok** button.
 
-{% hint style="warning" %}
-**Note:  **_**The Targeting user and rules will not be copied.**_ Because one of your rules may references a segment that does not exist in the target environment and the targeting user also may not exist in the target environment.
-{% endhint %}
+<Callout type="warning">
+**Note: The Targeting user and rules will not be copied.** Because one of your rules may references a segment that does not exist in the target environment and the targeting user also may not exist in the target environment.
+</Callout>

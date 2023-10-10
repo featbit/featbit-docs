@@ -23,7 +23,7 @@ An unguessable URL is functionally similar to an access token in that it does no
 
 When you create a new trigger, its URL only displays once and prompts you to copy it locally. After the initial display, URLs are obscured so future viewers of the flag's **Triggers** tab cannot view them.
 
-If you lose a trigger's URL, you can reset it from the trigger's bottom action area. To learn more, read [Managing existing flag triggers](https://docs.launchdarkly.com/home/feature-workflows/triggers#managing-existing-flag-triggers).
+If you lose a trigger's URL, you can reset it from the trigger's bottom action area.
 
 #### Creating a new flag trigger <a href="#creating-a-new-flag-trigger" id="creating-a-new-flag-trigger"></a>
 

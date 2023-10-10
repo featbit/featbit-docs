@@ -8,7 +8,7 @@ The **Users** list gives you a summary view of how each user experiences all of 
 
 ### Understanding the Users list <a href="#understanding-the-users-list" id="understanding-the-users-list"></a>
 
-The **Users** list populates automatically when users encounter a feature flag and are evaluated by a FeatBit SDK. The data in the list is populated from the user data you send in variation calls, as well as data from identify calls. To learn more about users and user attributes, read [Understanding user attributes](https://docs.launchdarkly.com/home/users/attributes#understanding-user-attributes).
+The **Users** list populates automatically when users encounter a feature flag and are evaluated by a FeatBit SDK. The data in the list is populated from the user data you send in variation calls, as well as data from identify calls. 
 
 > **Warning!** The SDK does not use the attributes on the **Users** list to evaluate flags
 >

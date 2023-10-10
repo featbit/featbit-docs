@@ -8,7 +8,7 @@ Scheduling flag changes lets you define and schedule changes to your flag’s ta
 
 For example, you can schedule a feature to turn on for internal testing two days from today, then enable it for your ‘beta’ customer segment four days later, and finally start an automated rollout increasing to 100% over the following five days.
 
-### Benefits of scheduling flag changes <a href="#benefits-of-scheduling-flag-changes" id="benefits-of-scheduling-flag-changes"></a>
+### Benefits of scheduling flag changes
 
 Benefits of scheduling flag changes include:
 
@@ -17,7 +17,7 @@ Benefits of scheduling flag changes include:
 * **Temporary access**: You can schedule rules that target certain contexts and segments to be added to or removed from your flag’s targeting to better manage customer access.
 * **Flag hygiene**: You can schedule your flag’s targeting rules to clean up once your flag has been rolled out to 100% of your user base.
 
-### Creating scheduled flag changes <a href="#creating-scheduled-flag-changes" id="creating-scheduled-flag-changes"></a>
+### Creating scheduled flag changes 
 
 To schedule a set of flag changes:
 
@@ -49,16 +49,14 @@ To view all the scheduled changes for a flag:
 ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/003.png)
 
 3.  To view the complete list of changes, click on the **clock** icon. A panel appears that displays all the pending changes that are scheduled for this flag. The changes are listed chronologically, with the earliest upcoming change listed first:\
-    \
-    
+
     ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/004.webp)
 
-## Deleting scheduled flag changes <a href="#deleting-scheduled-flag-changes" id="deleting-scheduled-flag-changes"></a>
+## Deleting scheduled flag changes 
 
 To delete a scheduled flag change:
 
 1. Follow the steps in [Viewing scheduled flag changes](scheduled-flag-changes.md#viewing-scheduled-flag-changes) to open the list of pending scheduled changes for the flag.
 2.  For the scheduled change you wish to delete, click on the **Remove** button in the upper right:\
-    \
 
     ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/005.png)
