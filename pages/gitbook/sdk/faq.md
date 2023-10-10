@@ -21,6 +21,6 @@ Hover on the environment icon in the top right corner on any page and click to c
 
 1. Go to **Get Started** page
 2. Create a feature flag or select an existing one and click on next
-3.  On the SDK Configs section of the page, you will find the **Streaming URL** and **Event URL**. In most cases, both URLs will be the same and correspond to the evaluation server URL.&#x20;
+3.  On the SDK Configs section of the page, you will find the **Streaming URL** and **Event URL**. In most cases, both URLs will be the same and correspond to the evaluation server URL.
 
     <figure><img src="../.gitbook/assets/image (275).png" alt=""><figcaption><p>SDK Configs</p></figcaption></figure>

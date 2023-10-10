@@ -7,9 +7,9 @@ FeatBit IAM gives you precise access control to everything in FeatBit, including
 * Allow different permissions at the flag level, such as between experiment flags and operational flags (Work in progress)
 * Create private projects that only the team members you select can view.
 
-Our IAM system is inspired by [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/). If you're familiar with IAM, there are some similarities.Each team member must have at least one policy.&#x20;
+Our IAM system is inspired by [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/). If you're familiar with IAM, there are some similarities.Each team member must have at least one policy.
 
-You can assign team members a built-in policy or one or more custom policies to give them the exact permissions they need.&#x20;
+You can assign team members a built-in policy or one or more custom policies to give them the exact permissions they need.
 
 A team member's initial policy is set when you add a new member to FeatBit.
 

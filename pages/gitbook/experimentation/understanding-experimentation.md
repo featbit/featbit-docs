@@ -49,7 +49,7 @@ As you use Experimentation, consider these best practices:
 * **Consider experiments from day one.** Create hypotheses in the planning stage of feature development, so you and your team are ready to run experiments as soon as your feature launches.
 * **Define what you're measuring.** Align with your team on which tangible metrics you're optimizing for, and what results constitute success.
 * **Plan your experiments in relation to each other.** If you're running multiple experiments simultaneously, make sure they don't collect similar or conflicting data.
-* **Associate users who interact with your app before and after logging in.** If a user accesses your experiment from both a logged out and logged in state, each state will generate its own user key.&#x20;
+* **Associate users who interact with your app before and after logging in.** If a user accesses your experiment from both a logged out and logged in state, each state will generate its own user key.
 
 You can use experiments to measure a variety of different outcomes. Some example experiments include:
 
@@ -81,4 +81,4 @@ If you prefer to import metric events from your existing data pipeline, read [Cl
 
 #### Understanding evaluation events <a href="#understanding-evaluation-events" id="understanding-evaluation-events"></a>
 
-All FeatBit SDKs send a `feature` conversion event when you call the SDK's `.variation()` method for a flag in an experiment.&#x20;
+All FeatBit SDKs send a `feature` conversion event when you call the SDK's `.variation()` method for a flag in an experiment.

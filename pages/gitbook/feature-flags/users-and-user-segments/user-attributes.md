@@ -10,7 +10,7 @@ Users are people, services, machines, or other resources that encounter feature 
 
 A more precise way to refer to one user is as a "user object." A user object is a collection of a user's attributes, identified by a unique user key. It includes all of the information about a user that FeatBit can use in a feature flag evaluation.
 
-FeatBit provides two types of user attributes: built-in attributes, and custom attributes. By default, a user's values for both types of user attributes are displayed on the **Users** list.&#x20;
+FeatBit provides two types of user attributes: built-in attributes, and custom attributes. By default, a user's values for both types of user attributes are displayed on the **Users** list.
 
 ## Targeting based on user attributes <a href="#targeting-based-on-user-attributes" id="targeting-based-on-user-attributes"></a>
 

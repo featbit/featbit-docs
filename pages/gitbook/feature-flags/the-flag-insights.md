@@ -2,7 +2,7 @@
 
 ## Overview
 
-This topic explains how to use the flag evaluations graph on the **Insights** tab to observe flag performance over time.&#x20;
+This topic explains how to use the flag evaluations graph on the **Insights** tab to observe flag performance over time.
 
 {% hint style="info" %}
 The insights data is near real time and may have some delay, if you see no data, just wait a while then refresh the page

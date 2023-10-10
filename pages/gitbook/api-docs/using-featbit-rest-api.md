@@ -79,7 +79,7 @@ In this example, the `-X` option specifies the type of request, `PATCH`. The URL
 
 #### Getting the environment Id <a href="#reading-a-flag" id="reading-a-flag"></a>
 
-As mentioned above, feature flags are environment specific. To list the feature flags of an environment, we need the environment ID (in the feature, it would be possible to call API with environment key).&#x20;
+As mentioned above, feature flags are environment specific. To list the feature flags of an environment, we need the environment ID (in the feature, it would be possible to call API with environment key).
 
 To get the environment Id:
 

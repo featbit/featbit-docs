@@ -77,7 +77,7 @@ To create an access token:
 6. Click **Save** button.
 7. Copy and save the token somewhere secure. After you leave this page, the token is obscured.
 
-After you create a token, you can edit it's name, activate, deactivate or delete it. You can also manage existing tokens from this page.&#x20;
+After you create a token, you can edit it's name, activate, deactivate or delete it. You can also manage existing tokens from this page.
 
 ### Manage access tokens <a href="#cloning-and-deleting-access-tokens" id="cloning-and-deleting-access-tokens"></a>
 

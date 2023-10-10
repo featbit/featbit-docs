@@ -34,7 +34,7 @@ The API always returns errors in a common format. Here's an example:
 }
 ```
 
-The **errors** indicates the general class of error.&#x20;
+The **errors** indicates the general class of error.
 
 ### CORS
 

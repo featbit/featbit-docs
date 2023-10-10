@@ -36,7 +36,7 @@ You just created a project. It appears in the list.
 
 ## Deleting projects
 
-You can delete a project when you are no longer using it.&#x20;
+You can delete a project when you are no longer using it.
 
 {% hint style="danger" %}
 Delete with caution, as deleting a project is permanent and also deletes all the environments and flags within it.
@@ -47,7 +47,7 @@ To delete a project:
 1. Navigate to the **Organization** page.
 2. Click the **Projects** tab.
 3. Find the project you want to delete.
-4.  Click **Remove**. A confirm dialog appears.&#x20;
+4.  Click **Remove**. A confirm dialog appears.
 
     <figure><img src="../../.gitbook/assets/delete-project.png" alt=""><figcaption><p>The delete project confirm dialog.</p></figcaption></figure>
 5. Click **Ok**.

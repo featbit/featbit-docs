@@ -5,10 +5,10 @@ You may already have your MongoDB, Redis, Kafka, Zookeeper and / or ClickHouse s
 This document will show you how to run the following FeatBit services:
 
 * **UI :** Provides users a visual UI interface for managing and publishing feature flags, segments and experiments etc.
-* **API Server :** Provides data management capabilities for the UI and external integration services, such as flag triggers, code-references etc.&#x20;
+* **API Server :** Provides data management capabilities for the UI and external integration services, such as flag triggers, code-references etc.
 * **Evaluation Server :** Provides a scalable and high-performance flag rule evaluation engine and a data distribution server.
 * **Data Analytics server :** Provides a data analytics engine. It assures the following services
-  * Calculates the experiments and return its results in near real time.&#x20;
+  * Calculates the experiments and return its results in near real time.
   * Provides insights services for all analytics in the UI, the feature flag reporting for example.
 
 ## Prerequisites

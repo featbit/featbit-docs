@@ -20,11 +20,11 @@ We assume that you've already completed the last 3 tutorials in "Get Started":
 
 The game has been deployed online. Before you release it to all players, you want to test it with some close friends. You can use the "Targeting users" section to add your friends to the "allowlist".
 
-Go to the targeting page of your "game runner" feature flag, expand the section "Targeting Users". You will see two selection-list for each variation `true` and `false`.&#x20;
+Go to the targeting page of your "game runner" feature flag, expand the section "Targeting Users". You will see two selection-list for each variation `true` and `false`.
 
 To add your friends to the "allowlist", we just need to:
 
-1. Add your friends' game username to selection-list below `true`.&#x20;
+1. Add your friends' game username to selection-list below `true`.
 2. Turn on the feature flag.
 3. Set the default rule to `false`.
 
@@ -58,7 +58,7 @@ In the segment detail page, we add my lovely test users into "Including users" l
 
 ![](../../getting-started/assets/testing-in-production/006.webp)
 
-We go back to the feature flag list and open "game runner" feature flag's "Targeting" page.&#x20;
+We go back to the feature flag list and open "game runner" feature flag's "Targeting" page.
 
 1. Remove all users in the true list of "Targeting users" section.
 2. Add "my lovely QA team" to customized rule.
@@ -69,7 +69,7 @@ We go back to the feature flag list and open "game runner" feature flag's "Targe
 
 ![](../../getting-started/assets/testing-in-production/007.webp)
 
-The configuration above means if users is in segment "my lovely QA team", DinoGame will release to this user. This configuration can also be implemented in other feature flags for testing in production for other features, like "difficulty mode".&#x20;
+The configuration above means if users is in segment "my lovely QA team", DinoGame will release to this user. This configuration can also be implemented in other feature flags for testing in production for other features, like "difficulty mode".
 
 ![](../../getting-started/assets/testing-in-production/008.webp)
 

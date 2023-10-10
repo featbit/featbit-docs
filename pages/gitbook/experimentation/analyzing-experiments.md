@@ -10,7 +10,7 @@ When your experiments are running, you can view information about them on the **
 
 Here are some things you can do with each experiment:
 
-1. Stop the experiment or start a new iteration.&#x20;
+1. Stop the experiment or start a new iteration.
 2. Edit the metrics connected to the experiment and start a new iteration.
 3. View experiment data over set periods of time.
 
@@ -26,15 +26,15 @@ As a result, to express uncertainty in our knowledge after an experiment, the fr
 
 ### Confidence intervals and p-values
 
-* A confidence interval calculated for a measure of treatment effect shows the range within which the true treatment effect is likely to lie (subject to a number of assumptions).&#x20;
-* A p-value is calculated to assess whether trial results are likely to have occurred simply through chance (assuming that there is no real difference between new treatment and old, and assuming, of course, that the study was well conducted).&#x20;
-* Confidence intervals are preferable to p-values, as they tell us the range of possible effect sizes compatible with the data.&#x20;
-* P-values simply provide a cut-off beyond which we assert that the findings are ‘statistically significant’ (by convention, this is p<0.05).&#x20;
-* A confidence interval that embraces the value of no difference between treatments indicates that the treatment under investigation is not significantly different from the control.&#x20;
-* Confidence intervals aid interpretation of clinical trial data by putting upper and lower bounds on the likely size of any true effect.&#x20;
-* Bias must be assessed before confidence intervals can be interpreted. Even very large samples and very narrow confidence intervals can mislead if they come from biased studies.&#x20;
-* Non-significance does not mean ‘no effect’. Small studies will often report non-significance even when there are important, real effects which a large study would have detected.&#x20;
-* Statistical significance does not necessarily mean that the effect is real: by chance alone about one in 20 significant findings will be spurious.&#x20;
+* A confidence interval calculated for a measure of treatment effect shows the range within which the true treatment effect is likely to lie (subject to a number of assumptions).
+* A p-value is calculated to assess whether trial results are likely to have occurred simply through chance (assuming that there is no real difference between new treatment and old, and assuming, of course, that the study was well conducted).
+* Confidence intervals are preferable to p-values, as they tell us the range of possible effect sizes compatible with the data.
+* P-values simply provide a cut-off beyond which we assert that the findings are ‘statistically significant’ (by convention, this is p<0.05).
+* A confidence interval that embraces the value of no difference between treatments indicates that the treatment under investigation is not significantly different from the control.
+* Confidence intervals aid interpretation of clinical trial data by putting upper and lower bounds on the likely size of any true effect.
+* Bias must be assessed before confidence intervals can be interpreted. Even very large samples and very narrow confidence intervals can mislead if they come from biased studies.
+* Non-significance does not mean ‘no effect’. Small studies will often report non-significance even when there are important, real effects which a large study would have detected.
+* Statistical significance does not necessarily mean that the effect is real: by chance alone about one in 20 significant findings will be spurious.
 * Statistically significant does not necessarily mean clinically important. It is the size of the effect that determines the importance, not the presence of statistical significance.
 
 ## Choosing a winning variation <a href="#choosing-a-winning-variation" id="choosing-a-winning-variation"></a>

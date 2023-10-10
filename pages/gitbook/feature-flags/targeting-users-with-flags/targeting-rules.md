@@ -50,7 +50,7 @@ To learn more, read [Percentage rollouts](percentage-rollouts.md).
 
 #### Experimentation <a href="#experimentation" id="experimentation"></a>
 
-After you save a targeting rule, you can click the **Set A/B test rule** button to run an experiment on the rule. To learn more, read [Creating experiments](../../experimentation/creating-experiments.md).&#x20;
+After you save a targeting rule, you can click the **Set A/B test rule** button to run an experiment on the rule. To learn more, read [Creating experiments](../../experimentation/creating-experiments.md).
 
 Here is an image of the **et A/B test rule** button on a flag's targeting rule:
 

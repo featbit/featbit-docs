@@ -35,7 +35,7 @@ This means 10% of users will receive return variation `true`, and the DinoGame w
 
 ![](../../getting-started/assets/targeted-progressive-delivery/002.webp)
 
-Whenever you met a worse feedback (bugs) during the release process, you can rollback your feature release immediately by reallocating the rollout percentage.&#x20;
+Whenever you met a worse feedback (bugs) during the release process, you can rollback your feature release immediately by reallocating the rollout percentage.
 
 <Callout type="info">
   The rollout percentage algorithm is a normal random distribution algorithm and is computed based on end user id.
@@ -53,7 +53,7 @@ First, you need to create rule property in Portal. Go to "End users" page, click
 
 ![](../../getting-started/assets/targeted-progressive-delivery/004.webp)
 
-Add a new property name "orgId", and click "Save" to create it.&#x20;
+Add a new property name "orgId", and click "Save" to create it.
 
 ![](../../getting-started/assets/targeted-progressive-delivery/005.webp)
 
@@ -73,9 +73,9 @@ The FeatBit system will compare the property and its value you passed through SD
 
 Go back to "game runner" feature flag's "Targeting" page. Create a rule with the property "orgId" you just created. You need to：
 
-1. Add a new rule with a name (ex. Progressively release to company AA).&#x20;
+1. Add a new rule with a name (ex. Progressively release to company AA).
 2. Add a condition, if user's "orgId" is in the list, this user has 10% opportunity to receive a `true` variation.
 
 ![](../../getting-started/assets/targeted-progressive-delivery/008.webp)
 
-With the rule we set above, the DinoGame will release to 10% of users in Company AA. Whenever you met a worse feedback (bugs) during the release process, you can rollback your feature release immediately by reallocating the rollout percentage.&#x20;
+With the rule we set above, the DinoGame will release to 10% of users in Company AA. Whenever you met a worse feedback (bugs) during the release process, you can rollback your feature release immediately by reallocating the rollout percentage.

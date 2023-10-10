@@ -4,7 +4,7 @@
 
 This topic explains how to set up and configure an experiment in FeatBit. It introduces the concepts of metrics, explains different metric types, and explains how metrics interact with feature flags to create experiments.
 
-In FeatBit, the combination of metrics and flags is an experiment. Experiments let you measure the effect of flags on users by mapping them to the metrics your team cares about.&#x20;
+In FeatBit, the combination of metrics and flags is an experiment. Experiments let you measure the effect of flags on users by mapping them to the metrics your team cares about.
 
 ## Creating metrics <a href="#creating-metrics" id="creating-metrics"></a>
 
@@ -30,7 +30,7 @@ The following table explains the kinds of events you can track with a metric and
 
 ### Create a metric
 
-Go to **Experiments** page, in **Metrics** tab, click on **Add Metric** button.&#x20;
+Go to **Experiments** page, in **Metrics** tab, click on **Add Metric** button.
 
 <figure><img src="../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
 
@@ -46,7 +46,7 @@ In Metric drawer, fill information of the metric.
   * Custom numeric, you need to choose **Numeric** below the selector
   * Click conversion & Pageview conversion, these can be treated as custom conversion
 * `Event name`, the name which will identify events in FeatBit experimentation evaluation. This name will be passed as a parameter when you call SDK to track the events.
-* `Unit`, when you choose Numeric as event type, this is will be identify which kind of numeric you're measuring.&#x20;
+* `Unit`, when you choose Numeric as event type, this is will be identify which kind of numeric you're measuring.
 * `Winning criteria`, define winning criteria by choose `higher than baseline` or `lower than baseline`
 
 ## Create an experimentation
@@ -75,7 +75,7 @@ You can run an experiment on a flag's default rule, or you can create a custom e
 
 When you build your experiment, you can allocate all or a percentage of the user traffic that encounters a flag in an experiment. Audience allocation gives you flexibility when selecting your experiment audience and ensures accurate experiment results. FeatBit analyzes only users that you choose to be part of the experiment.
 
-You can selecting a specific flag targeting rule by click on button **Set A/B test rule**.&#x20;
+You can selecting a specific flag targeting rule by click on button **Set A/B test rule**.
 
 <figure><img src="../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
 

@@ -12,13 +12,13 @@ The **Users** list populates automatically when users encounter a feature flag a
 
 > **Warning!** The SDK does not use the attributes on the **Users** list to evaluate flags
 >
-> The SDK only evaluates flags based on the user object you provide in the evaluation call. The SDK does not use the attributes shown on the **Users** list, and user attributes are not synchronized across SDK instances. You must provide all applicable user attributes for each evaluation for your targeting rules to apply correctly.&#x20;
+> The SDK only evaluates flags based on the user object you provide in the evaluation call. The SDK does not use the attributes shown on the **Users** list, and user attributes are not synchronized across SDK instances. You must provide all applicable user attributes for each evaluation for your targeting rules to apply correctly.
 
 Here is an image of the **Users** list:
 
 ![](../../feature-flags/assets/users-and-user-segments/the-user-list/001.webp)
 
-From the list, you can filter users by standard or custom attributes.&#x20;
+From the list, you can filter users by standard or custom attributes.
 
 ### Filtering users 
 
@@ -41,7 +41,7 @@ You can customize which attributes appear on the **Users** list. To start, click
 
 ## User storage
 
-The **Users** list shows stored user information. A user will appear on the list after a flag sends an `identify` or `flag evaluation` event for them. Users won't be deleted automatically. Users information are stored in MongoDB.&#x20;
+The **Users** list shows stored user information. A user will appear on the list after a flag sends an `identify` or `flag evaluation` event for them. Users won't be deleted automatically. Users information are stored in MongoDB.
 
 ## Removing a user
 
