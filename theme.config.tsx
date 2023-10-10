@@ -83,6 +83,16 @@ const config: DocsThemeConfig = {
     icon:  <Image priority src={slackLogo} width={24} alt="FeatBit Slack" height={24} />,
     link: 'https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ',
   },
+  sidebar: {
+    titleComponent({ title, type }) {
+      if (type === 'separator') {
+        return <span className="cursor-default">{title}</span>
+      }
+      return <>{title}</>
+    },
+    defaultMenuCollapseLevel: 1,
+    toggleButton: true
+  },
   footer: {
     text: `© ${new Date().getFullYear()} FeatBit`,
   },
