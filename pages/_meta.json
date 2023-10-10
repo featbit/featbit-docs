@@ -4,7 +4,8 @@
   "installation": "INSTALLATION",
   "tech-stack": "TECH STACK",
   "sdk": "SDK",
-  "gitbook": "GitBook- in progress",
+  "feature-flags": "FEATURE FLAGS",
+  "experimentation": "EXPERIMENTATION",
   "support": {
     "title": "Support ↗",
     "type": "page",
