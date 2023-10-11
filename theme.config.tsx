@@ -26,7 +26,7 @@ const config: DocsThemeConfig = {
   ),
   head: function Head() {
     const { title } = useConfig()
-    const socialCard = 'https://dashboard.featbit.co/og.png'
+    const socialCard = 'https://www.featbit.co/og.png'
 
     return (
         <>
