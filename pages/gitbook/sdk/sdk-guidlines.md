@@ -1,3 +1,0 @@
-# SDK guidlines
-
-Under constructions
