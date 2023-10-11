@@ -20,6 +20,3 @@ You can read our topics below to understand how to set permission for a specific
 * [Teams](teams.md)
 * [Groups](groups.md)
 * [Policies](policies.md)
-
-\
-\
