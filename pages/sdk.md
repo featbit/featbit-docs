@@ -1,4 +1,4 @@
-# Overview
+# SDK
 
 The use of SDK is an essential skill for understanding how to deliver, control, and experiment with the software through feature flags.
 

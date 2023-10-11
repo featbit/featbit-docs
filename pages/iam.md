@@ -1,4 +1,4 @@
-# About
+# Identity and Access Management (IAM)
 
 FeatBit IAM gives you precise access control to everything in FeatBit, including feature flags, projects, environments, metrics, and teams, so you can enforce access policies that meet your exact workflow needs.With custom roles, you can:
 
@@ -17,6 +17,6 @@ The one exception to this is the first team member, the default user. His policy
 
 You can read our topics below to understand how to set permission for a specific team member or a group of members.
 
-* [Teams](teams.md)
-* [Groups](groups.md)
-* [Policies](policies.md)
+* [Teams](iam/teams.md)
+* [Groups](iam/groups.md)
+* [Policies](iam/policies.md)
