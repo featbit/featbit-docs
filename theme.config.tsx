@@ -77,7 +77,7 @@ const config: DocsThemeConfig = {
     labels: 'feedback'
   },
   project: {
-    link: 'https://github.com/featbit/featbit-docs',
+    link: 'https://github.com/featbit/featbit',
   },
   chat: {
     icon:  <Image priority src={slackLogo} width={24} alt="FeatBit Slack" height={24} />,
