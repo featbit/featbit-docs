@@ -15,21 +15,15 @@ FeatBit policy now supports three control levels (also called resource types):
 
 FeatBit provides three built-in policies which can't be modified. If needed, you can make a copy and modify it for your own needs.
 
-<figure><img src="../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/policies/001.webp)
 
 ## Add a policy
 
 1\. Go to Policy page, click Add button
 
-<figure><img src="https://utcdtips2c.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjQzZjMyYzNiZDc1ZDU2NjZiMGUyMDI5MTIzYTA2ZmRfMHhpYVBuR0pHMHkyM1ZqWWVZVmluT3pYTGFHdVhyVGpfVG9rZW46Ym94Y253dEZlaFlVT01maTFmbkI2NThYZ0tkXzE2Njg2NzQ5Njc6MTY2ODY3ODU2N19WNA" alt=""><figcaption></figcaption></figure>
-
 2\. In the Add policy drawer, input name and description of new policy. Then click **Save** to create.
 
-<figure><img src="https://utcdtips2c.feishu.cn/space/api/box/stream/download/asynccode/?code=Mzc5NGM3ZTAzODM3ZWU3YmZiZTQ3ODYzMGZmYmQwYmVfUXZuY1V2NFVqbVBZbTVNbTRsNVVHT1ozb3VkVFI0cWpfVG9rZW46Ym94Y24zZUtxdUIzWERkV0c1MFM4eVJLVnpmXzE2Njg2NzQ5Njc6MTY2ODY3ODU2N19WNA" alt=""><figcaption></figcaption></figure>
-
 3\. A new item is added to the policy list. You can filter policies by name to find the policy you just created.
-
-<figure><img src="https://utcdtips2c.feishu.cn/space/api/box/stream/download/asynccode/?code=OWViMmQ0ZTAyNzk3MGM3NmJjNjRkNjdjZjVkYzViNGRfRVpIUHlmaW5wRkVMVEFiYk1TR1lTakxkcVBkQjdMWUtfVG9rZW46Ym94Y25PczI1TnNocVpUYklPYXQxSDNlS0JmXzE2Njg2NzQ5Njc6MTY2ODY3ODU2N19WNA" alt=""><figcaption></figcaption></figure>
 
 4\. Click on the policy you just created (or click on the **Details** action button). Go to the policy detail page.
 
@@ -44,13 +38,9 @@ The policy detail page is composed of 6 parts:
 * Team, which can assign this policy to members or remove the policy from members
 * Groups, which can assign this policy to groups or remove it from groups.
 
-<figure><img src="https://utcdtips2c.feishu.cn/space/api/box/stream/download/asynccode/?code=NzMxOGUyMmExZjg5YzdjODI5YTA5YTVjNzQzY2Y4MmRfWURlYjBvNTY1S2pNbjVEdlVtVlRHcWdNMlNIak90WkVfVG9rZW46Ym94Y25uWDlReHZBdmVOTlZJRmZVVzd0ZmVnXzE2Njg2NzQ5Njc6MTY2ODY3ODU2N19WNA" alt=""><figcaption></figcaption></figure>
-
 ## Add permissions
 
-1\. Click <img src="../.gitbook/assets/image (149).png" alt="" data-size="line"> icon, a new and empty permission form appears.
-
-<figure><img src="https://utcdtips2c.feishu.cn/space/api/box/stream/download/asynccode/?code=MDVlZjFlZmIzZDhlNGY2NzNjZGM2YTA4Yjc3ZjI5ZDJfRlNqdnRMRzNZQzQwd3N3MFZiNlR4ZHBoSk4zeWR4OTRfVG9rZW46Ym94Y252bHNNSGZFdTJDQXNoRVBZTmhpWWxoXzE2Njg2NzQ5Njc6MTY2ODY3ODU2N19WNA" alt=""><figcaption></figcaption></figure>
+1\. Click `(+)` icon, a new and empty permission form appears.
 
 2\. Choose the control-level (resource type). If you want to control access permission of environment-level, choose **`Environment`**
 
@@ -59,8 +49,6 @@ The policy detail page is composed of 6 parts:
 * In resource selector, we choose project/explore:env/Dev. It means the `product` environment we want to assign access to belongs to project `explore`. You can choose multiple resources, here we choose only one.
 * In allow or deny selector, we choose `Allow`
 * In action selector, we choose `Access environments`.
-
-<figure><img src="https://utcdtips2c.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjE1MjkwY2VhYTg2MGQwNWYwZDE0MWYyMWU1OWQzNzlfQjlBVzBlRkZhN0tvNlE3WlV0SWRKN1pYNWlrdlVzNFlfVG9rZW46Ym94Y255U1ZpWGJlYjBTc280OHdpRFpBRDJjXzE2Njg2NzQ5Njc6MTY2ODY3ODU2N19WNA" alt=""><figcaption></figcaption></figure>
 
 4\. Click **Save**. You can create multiple permissions in on policy.
 
@@ -72,7 +60,7 @@ Each policy can add multiple permissions.
 
 You can remove permission by clicking on the `Remove` button from permission list.
 
-<figure><img src="../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/policies/002.webp)
 
 ## Assign permission to members
 
@@ -80,13 +68,13 @@ You can remove permission by clicking on the `Remove` button from permission lis
 
 2\. Set selector to `All`, you will see all members in the organization
 
-<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/policies/003.webp)
 
 3\. Find the members whom you assign the policy to. Click **Add** button on the member item in the list.
 
 4\. Change the selector from `All` to `Members with current policy`. You will only see the members who have the current policy.
 
-<figure><img src="../.gitbook/assets/image (243).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/policies/004.webp)
 
 5\. Click the **Remove** button to remove members from the policy.
 
@@ -96,13 +84,13 @@ You can remove permission by clicking on the `Remove` button from permission lis
 
 2\. Set selector to `All`, you will see all groups in the organization
 
-<figure><img src="../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/policies/005.webp)
 
 3\. Find the groups that you assign the policy to. Click **Add** button on the group item in the list.
 
 4\. Change the selector from `All` to `Groups with current policy`. You will only see the members who have the current policy.
 
-<figure><img src="../.gitbook/assets/image (258).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/policies/006.webp)
 
 5\. Click the **Remove** button to remove groups from the policy.
 

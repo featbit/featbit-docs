@@ -17,19 +17,19 @@ You can attach a policy to a group so that all of the users in the user group re
 
 2\. Click **Add** button
 
-<figure><img src="../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/001.webp)
 
 3\. Input the name and the description (optional) of the group
 
 4\. Click **Save** button
 
-<figure><img src="../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/002.webp)
 
 5\. Click on the group you just created in the groups list to go to the group detail page.
 
 6\. You will see the group page
 
-<figure><img src="../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/003.webp)
 
 ## Group detail page
 
@@ -44,7 +44,7 @@ Group detail page is composed of 4 parties:
 
 In the group list, you can filter groups by name
 
-<figure><img src="../.gitbook/assets/image (295).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/004.webp)
 
 ## Add members to the group
 
@@ -52,15 +52,15 @@ In the group list, you can filter groups by name
 
 2\. Set selector to `All`, you will see all members in the organization
 
-<figure><img src="../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/005.webp)
 
 3\. Find the memebrs you want to add to the group. (you can filter by email). Click **Add** button on the member item in list.
 
-<figure><img src="../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/006.webp)
 
 4\. Change selector from `All` to `Contained by current group`. You will only see the members contained in the group.
 
-<figure><img src="../.gitbook/assets/image (224).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/007.webp)
 
 5\. Click **Remove** button if you want to remove members from a group.
 
@@ -70,16 +70,15 @@ In the group list, you can filter groups by name
 
 2\. Set selector to `All`, you will see all policies
 
-<figure><img src="../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/008.webp)
 
 3\. Find the policies you want to attach to the group. (you can filter by policy's name). Click **Add** button on the member item in list.
 
-<figure><img src="../.gitbook/assets/image (282).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/009.webp)
 
 4\. Change selector from `All` to `Attached to current group`. You will only see the policies attached to this group.
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+![](../iam/assets/groups/010.webp)
 
 5\. Click **Remove** button if you want to remove policies from a group.
 
-\
