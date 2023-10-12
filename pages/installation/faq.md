@@ -48,7 +48,7 @@ ui:
     # example: 192.168.56.1:5100
     - EVALUATION_URL=http://[REPLACE_WITH_THE_EVALUATION_SERVER_IP_OR_DOMAIN]
   depends_on:
-    - api-server
+    - api-docs-server
   ports:
     - "8081:80"
   networks:

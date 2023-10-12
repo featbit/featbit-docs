@@ -17,6 +17,6 @@ The one exception to this is the first team member, the default user. His policy
 
 You can read our topics below to understand how to set permission for a specific team member or a group of members.
 
-* [Teams](iam/teams.md)
-* [Groups](iam/groups.md)
-* [Policies](iam/policies.md)
+* [Teams](teams.md)
+* [Groups](groups.md)
+* [Policies](policies.md)
