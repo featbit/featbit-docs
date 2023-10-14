@@ -1,0 +1,104 @@
+import { Callout } from 'nextra/components'
+
+# DataDog (Preview)
+
+FeatBit offers the following ways to integrate with DataDog:
+
+1. [DataDog's RUM feature flags system](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection/?tab=browser#analyze-your-feature-flag-performance-in-rum) to send feature flag evaluation data to DataDog.
+2. [DataDog's events](https://docs.datadoghq.com/api/?lang=bash#events) to receive any activity from FeatBit such as Feature Flags and segment updates.
+3. Toggle a flag's targeting on or off if a performance metric drops below a certain threshold using FeatBit's flag trigger or REST APIs.
+4. Send feature flag usage events and custom events to DataDog Metrics and Traces.
+
+## Using the Datadog RUM integration
+
+[Feature Flag Tracking](https://docs.datadoghq.com/real_user_monitoring/feature_flag_tracking/) gives you greater visibility into your user experience and performance monitoring by allowing you to determine which users are being shown a specific feature and if any change you introduce is impacting your user experience or negatively affecting performance.
+
+### Setup feature flag data collection
+
+To get started, you'll need to [setup DataDog feature flag data collection](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection). For **javascript/typescript** project, you need to initialize the RUM SDK and configure the `enableExperimentalFeatures` initialization parameter with `["feature_flags"]`. This will enable the feature flag tracking feature and send feature flag evaluation data to DataDog.
+
+```javascript
+datadogRum.init({
+  applicationId: "sample-application-id",
+  clientToken: "sample-client-token",
+  site: "datadoghq.com",
+  service: "demo-app",
+  env: "dev",
+  version: "1.0.0",
+  sessionSampleRate: 100,
+  sessionReplaySampleRate: 100,
+  trackUserInteractions: true,
+  trackResources: true,
+  trackLongTasks: true,
+  defaultPrivacyLevel: "mask-user-input",
+  // This enables the beta feature flag tracking
+  enableExperimentalFeatures: ["feature_flags"],
+});
+
+datadogRum.startSessionReplayRecording();
+```
+
+Then, you can use the `addFeatureFlagEvaluation` method built in to the datadogRum package when evaluating `FeatBit` Feature Flags.
+
+```javascript
+import { datadogRum } from "@datadog/browser-rum";
+import fbClient from "featbit-js-client-sdk";
+
+const flagEvalResult = fbClient.variation("feature-flag-key", flagsDefaultValues[prop] || '')
+datadogRum.addFeatureFlagEvaluation("feature-flag-key", flagEvalResult);
+```
+
+If you don't want to write two lines of code everywhere, you can encapsulate the `.variation(...)` and `.addFeatureFlagEvaluation(...)` into a function. In our [React sample](https://github.com/featbit/featbit-samples/blob/main/samples/dino-game/interactive-demo-react/src/featBit/featBitSlice.js) and [Vue sample](https://github.com/featbit/featbit-samples/blob/main/samples/dino-game/interactive-demo-vue/src/featbit.js) projects, we create a `Flags Proxy` to provide a unified interface for getting feature flag values. So you can add the addFeatureFlagEvaluation to the Flags Proxy and use it like this:
+
+```javascript
+import { datadogRum } from "@datadog/browser-rum";
+import fbClient from "featbit-js-client-sdk";
+
+export const createFlagsProxy = () => {
+    return new Proxy({}, {
+        get(target, prop, receiver) {
+          let returnValue = ''
+          if(typeof prop === 'string' && !prop.startsWith('__v_')){
+            returnValue = fbClient.variation(prop, flagsDefaultValues[prop] || '');
+            datadogRum.addFeatureFlagEvaluation(prop, returnValue);
+          }
+          return returnValue;
+        }
+    })
+}
+```
+
+So when you call feature flag in your code, it will automatically sends feature flag evaluation data to DataDog, as shown in the following code:
+
+```javascript
+//React example
+featureFlags["game-runner"] == true ? 
+  <DinoGameCore difficulty={featureFlags["difficulty-mode"]} /> : <>
+
+// Vue example
+<DinoGameCore v-if="featBitStore.flags['game-runner']== true" 
+              :difficulty="featBitStore.flags['difficulty-mode']" />
+```
+
+
+<Callout type="info">
+**NOTE**: The tutorial above showed how to collect feature flag evaluation data in the browser. For other platforms such as iOS and Android, please refer to the [DataDog documentation](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection/?tab=ios#custom-feature-flag-management).
+</Callout>
+
+<Callout type="info">
+**NOTE**: If you are using [DataDog APM](https://www.datadoghq.com/product/apm/), you can do something similar by adding Feature Flag data to your traces. DataDog then has a helpful guide on how to [Connect Rum and Traces](https://docs.datadoghq.com/real_user_monitoring/connect_rum_and_traces/?tab=browserrum). This route will enable you do have alerts built around both front-end and back-end errors.
+</Callout>
+
+### Analyze your Feature Flag performance in RUM
+
+## DataDog Metrics and Traces
+
+Datadog provides various tools and features for monitoring the performance and behavior of applications and systems. In Datadog, metrics and traces serve different purposes and are used for distinct types of monitoring and analysis.
+
+**Metrics** in Datadog are used for high-level, real-time monitoring of performance data like request rates, error rates, and resource utilization.
+
+**Traces**, particularly in Datadog's APM, are for detailed tracking of request flow through your application, helping with debugging and optimization.
+
+By exporting FeatBit's Feature Flag Insights events to DataDog, you can choose Metrics for an overview of flag usage (counts, high-level impact) and Traces for in-depth insights into how flags affect individual requests. Using both metrics and traces can provide a comprehensive view of feature flag behavior and application performance.
+
+I hope you can give us feedback if you have any ideas about this implementation.
