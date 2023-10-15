@@ -4,9 +4,9 @@ import { Callout } from 'nextra/components'
 
 FeatBit offers the following ways to integrate with DataDog:
 
-1. [DataDog's RUM feature flags system](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection/?tab=browser#analyze-your-feature-flag-performance-in-rum) to send feature flag evaluation data to DataDog.
-2. [DataDog's events](https://docs.datadoghq.com/api/?lang=bash#events) to receive any activity from FeatBit such as Feature Flags and segment updates.
-3. Toggle a flag's targeting on or off if a performance metric drops below a certain threshold using FeatBit's flag trigger or REST APIs.
+1. [Using the Datadog RUM integration](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection/?tab=browser#analyze-your-feature-flag-performance-in-rum) to send feature flag evaluation data to DataDog.
+2. [Using the Datadog events integration](https://docs.datadoghq.com/api/?lang=bash#events) to receive activities from FeatBit such as Feature Flags updates.
+3. [Using flag triggers with Datadog]() to toggle a flag's targeting on or off if a performance metric drops below a certain threshold using FeatBit's flag trigger or REST APIs.
 4. Send feature flag usage events and custom events to DataDog Metrics and Traces.
 
 ## Using the Datadog RUM integration
@@ -71,13 +71,14 @@ export const createFlagsProxy = () => {
 So when you call feature flag in your code, it will automatically sends feature flag evaluation data to DataDog, as shown in the following code:
 
 ```javascript
-//React example
+// Vue example with Pinia, code below also guarantees the real-time update of the feature flag value
+<DinoGameCore v-if="featBitStore.flags['game-runner']== true" 
+              :difficulty="featBitStore.flags['difficulty-mode']" />
+
+// React example with Redux, code below also guarantees the real-time update of the feature flag value
 featureFlags["game-runner"] == true ? 
   <DinoGameCore difficulty={featureFlags["difficulty-mode"]} /> : <>
 
-// Vue example
-<DinoGameCore v-if="featBitStore.flags['game-runner']== true" 
-              :difficulty="featBitStore.flags['difficulty-mode']" />
 ```
 
 
@@ -86,19 +87,37 @@ featureFlags["game-runner"] == true ?
 </Callout>
 
 <Callout type="info">
-**NOTE**: If you are using [DataDog APM](https://www.datadoghq.com/product/apm/), you can do something similar by adding Feature Flag data to your traces. DataDog then has a helpful guide on how to [Connect Rum and Traces](https://docs.datadoghq.com/real_user_monitoring/connect_rum_and_traces/?tab=browserrum). This route will enable you do have alerts built around both front-end and back-end errors.
+**NOTE**: If you are using [DataDog APM](https://www.datadoghq.com/product/apm/), DataDog provides a method to connect your front-end feature flag data to your traces. See [Connect Rum and Traces](https://docs.datadoghq.com/real_user_monitoring/connect_rum_and_traces/?tab=browserrum). This way you can have alerts based on both front-end and back-end errors.
 </Callout>
 
 ### Analyze your Feature Flag performance in RUM
 
+## Using the Datadog events integration
+
+The Datadog integration lets you set up [Datadog Events](https://docs.datadoghq.com/api) to receive any activity from FeatBit. When something changes, such as a feature flag updates or a new account member is added to FeatBit, FeatBit sends an event to Datadog. Use this integration to correlate and understand how changes to your features in FeatBit impact your app and infrastructure metrics.
+
+Full event integration is still in the works. But you can currently write your own program to monitor the event changes in our MongoDB `AuditLogs` collection. Here's an official tutorial of how to [monitor the collection changes in .NET](https://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/change_streams/).
+
+![](../integrations/assets/datadog/mongodb-auditlog-collection.png)
+
+Then you can use the [DataDog Events API](https://docs.datadoghq.com/api/latest/events/#post-an-event) to send the activities to DataDog. 
+
+<Callout type="info" emoji='💡'>
+Please let us know if you would like us to accelerate feature development for this implementation.
+</Callout>
+
+
+## Using flag triggers with Datadog
+
+
+<Callout type="info" emoji='💡'>
+You can also use [FeatBit REST API](../api-docs/using-featbit-rest-api) endpoint to toggle status of a feature flag.
+</Callout>
+
 ## DataDog Metrics and Traces
 
-Datadog provides various tools and features for monitoring the performance and behavior of applications and systems. In Datadog, metrics and traces serve different purposes and are used for distinct types of monitoring and analysis.
+Datadog provides various tools and features for monitoring the performance and behavior of applications and systems. In Datadog, metrics and traces serve different purposes and are used for distinct types of monitoring and analysis. **Metrics** in Datadog are used for high-level, real-time monitoring of performance data like request rates, error rates, and resource utilization. **Traces**, particularly in Datadog's APM, are for detailed tracking of request flow through your application, helping with debugging and optimization.
 
-**Metrics** in Datadog are used for high-level, real-time monitoring of performance data like request rates, error rates, and resource utilization.
+By exporting FeatBit's Feature Flag Insights events to DataDog via **ClickHouse** in Pro version or **MongoDB** in Standard version, you can choose Metrics for an overview of flag usage (counts, high-level impact) and Traces for in-depth insights into how flags affect individual requests. Using both metrics and traces can provide a comprehensive view of feature flag behavior and application performance. 
 
-**Traces**, particularly in Datadog's APM, are for detailed tracking of request flow through your application, helping with debugging and optimization.
-
-By exporting FeatBit's Feature Flag Insights events to DataDog, you can choose Metrics for an overview of flag usage (counts, high-level impact) and Traces for in-depth insights into how flags affect individual requests. Using both metrics and traces can provide a comprehensive view of feature flag behavior and application performance.
-
-I hope you can give us feedback if you have any ideas about this implementation.
+**We hope to hear from your if you have any ideas about this implementation**.
