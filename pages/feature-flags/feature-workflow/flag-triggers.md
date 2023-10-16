@@ -62,8 +62,8 @@ To modify an existing trigger:
 
 ## Invoke a trigger
 
-To invoke a trigger, make a **PUT** request to the trigger **URL**, no other parameter is needed. For example, with curl, you can do :
+To invoke a trigger, make a **POST** request to the trigger **URL**, no other parameter is needed. For example, with curl, you can do :
 
 ```bash
-curl -X PUT http://localhost:5000/api/v1/triggers/run/MTQyMDY5OTI0ODc2MQw4yPzGndlkezFEsZE_uPnA
+curl -X POST http://localhost:5000/api/v1/triggers/run/MTQyMDY5OTI0ODc2MQw4yPzGndlkezFEsZE_uPnA
 ```
