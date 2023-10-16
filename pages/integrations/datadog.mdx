@@ -102,6 +102,10 @@ If you are using [DataDog APM](https://www.datadoghq.com/product/apm/), DataDog 
 
 The Datadog integration lets you set up [Datadog Events](https://docs.datadoghq.com/api) to receive any activity from FeatBit. When something changes, such as a feature flag updates or a new account member is added to FeatBit, FeatBit sends an event to Datadog. Use this integration to correlate and understand how changes to your features in FeatBit impact your app and infrastructure metrics.
 
+The image below shows the correlation discovered between a feature flag event and the failure detections in a service APM dashboard. After we turned off the feature flag, the outage disappeared.
+
+![](../integrations/assets/datadog/discover-apm-error-by-events.png)
+
 Full event integration is still in the works. But you can currently write your own program to monitor the event changes in our MongoDB `AuditLogs` collection. Here's an official tutorial of how to [monitor the collection changes in .NET](https://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/change_streams/).
 
 ![](../integrations/assets/datadog/mongodb-auditlog-collection.png)
@@ -129,12 +133,12 @@ Please let us know if you would like us to accelerate feature development for th
 
 ![](../integrations/assets/datadog/monitor-notify-team.png)
 
-
+4. After the WebHook is triggered, the feature flag is automatically toggled on/off.
 
 ## Export Feature Flags Insights to DataDog APM
 
 Datadog provides various tools and features for monitoring the performance and behavior of applications and systems. You can use **Metrics** to assess the health of your environment at a glance. Visualize how quickly users are loading your website, or the average memory consumption of your servers, for instance. Once you identify a problem, you can use **logs** and **tracing** to further troubleshoot.
 
-You can deeply integrate with DataDog APM and Metrics by exporting FeatBit's Feature Flag Insights data (for both front-end and back-end feature flag usage data) and custom event data to DataDog via **ClickHouse** in the Pro version or **MongoDB** in the Standard version. Then you can choose Metrics for an overview of flag usage (counts, high-level impact) and Traces for deep insight into how flags affect individual requests. Using both metrics and traces can provide a comprehensive view of feature flag behavior and application performance.
+In additional sending activity events to APM as mentioned above ([Using the Datadog events integration](#using-the-datadog-events-integration)), you can deeply integrate with DataDog APM and Metrics by exporting FeatBit's Feature Flag Insights data (for both front-end and back-end feature flag usage data) and custom event data to DataDog via **ClickHouse** in the Pro version or **MongoDB** in the Standard version. Then you can choose Metrics for an overview of flag usage (counts, high-level impact) and Traces for deep insight into how flags affect individual requests. Using both metrics and traces can provide a comprehensive view of feature flag behavior and application performance.
 
 **We hope to hear from your if you have any ideas about this implementation**.
