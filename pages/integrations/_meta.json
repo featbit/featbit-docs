@@ -1,4 +1,5 @@
 {
   "datadog": "DataDog",
-  "api-access-tokens": "API Access Token"
+  "api-access-tokens": "API Access Token",
+  "single-sign-on": "Single Sign-On"
 }
