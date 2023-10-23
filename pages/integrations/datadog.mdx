@@ -15,7 +15,7 @@ FeatBit offers the following ways to integrate with DataDog:
 
 ### Setup feature flag data collection
 
-To get started, you'll need to [setup DataDog feature flag data collection](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection). For **javascript/typescript** project, you need to initialize the RUM SDK and configure the `enableExperimentalFeatures` initialization parameter with `["feature_flags"]`. This will enable the feature flag tracking feature and send feature flag evaluation data to DataDog.
+To get started, you'll need to [set up DataDog feature flag data collection](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection). For **javascript/typescript** project, you need to initialize the RUM SDK and configure the `enableExperimentalFeatures` initialization parameter with `["feature_flags"]`. This will enable the feature flag tracking feature and send feature flag evaluation data to DataDog.
 
 ```javascript
 datadogRum.init({
@@ -32,7 +32,7 @@ datadogRum.init({
   trackLongTasks: true,
   defaultPrivacyLevel: "mask-user-input",
   // This enables the beta feature flag tracking
-  enableExperimentalFeatures: ["feature_flags"],
+  enableExperimentalFeatures: ["feature_flags"]
 });
 
 datadogRum.startSessionReplayRecording();
@@ -56,7 +56,7 @@ import fbClient from "featbit-js-client-sdk";
 
 export const createFlagsProxy = () => {
     return new Proxy({}, {
-        get(target, prop, receiver) {
+        get(target, prop, _) {
           let returnValue = ''
           if(typeof prop === 'string' && !prop.startsWith('__v_')){
             returnValue = fbClient.variation(prop, flagsDefaultValues[prop] || '');
@@ -68,11 +68,11 @@ export const createFlagsProxy = () => {
 }
 ```
 
-So when you call feature flag in your code, it will automatically sends feature flag evaluation data to DataDog, as shown in the following code:
+So when you call feature a flag in your code, it will automatically send feature flag evaluation data to DataDog, as shown in the following code:
 
 ```javascript
 // Vue example with Pinia, code below also guarantees the real-time update of the feature flag value
-<DinoGameCore v-if="featBitStore.flags['game-runner']== true" 
+<DinoGameCore v-if="featBitStore.flags['game-runner']== true"
               :difficulty="featBitStore.flags['difficulty-mode']" />
 
 // React example with Redux, code below also guarantees the real-time update of the feature flag value
