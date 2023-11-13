@@ -1,4 +1,5 @@
 {
   "datadog": "DataDog",
+  "newrelic": "New Relic One",
   "api-access-tokens": "API Access Token"
 }
