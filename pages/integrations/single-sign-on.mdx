@@ -3,24 +3,35 @@ import {Callout} from 'nextra/components'
 # Single Sign-On
 
 <Callout type="info">
-    The Single-Sign-On capability is only available for customers on the Enterprise subscription. Check out the [FeatBit plans](https://dashboard.featbit.co/en) for details.
+    This article is compatible with FeatBit 3.0.0 and above.
+</Callout>
+
+<Callout type="info">
+    The Single-Sign-On capability is only available for customers on the Enterprise subscription. Check out the [FeatBit plans](https://dashboard.featbit.co/en) for details. You can also try this feature with a trial license, the trial license can be generated here [Featbit dashboard](https://dashboard.featbit.co/account)
 </Callout>
 
 SSO is available on FeatBit Self-hosted via OpenID Connect. To enable SSO on your self-hosted FeatBit instance, you will need an active license key, and then you may add the SSO settings for your provider.
 
 ## SSO Settings
 
-To enable SSO, you will need to add the following environment variables for the FeatBit Api service
+To enable SSO, you will need to add the following settings
 
-- `SSO__enabled`: Set to `true` to enable SSO.
-- `SSO__OIDC__clientId`: The OIDC client ID.
-- `SSO__OIDC__clientSecret`: The OIDC client secret.
-- `SSO__OIDC__redirectUri`: The OIDC redirect URI.
-- `SSO__OIDC__tokenEndpoint`: The OIDC token endpoint.
-- `SSO__OIDC__clientAuthenticationMethod`: The OIDC client authentication method. Set to `client_secret_post` for most of the time, we also support `client_secret_basic`.
-- `SSO__OIDC__authorizationEndpoint`: The OIDC authorization endpoint.
-- `SSO__OIDC__scope`: The OIDC scopes to request. Set to `openid profile email` for most of the time.
-- `SSO__OIDC__userEmailClaim`: The OIDC user email claim. Set to `email` if you use the above scope.
+### Add environment variable for the FeatBit Api service
+
+- `SSOEnabled`: Set to `true` to enable SSO.
+
+### Add OpenId Connect settings via UI
+
+Once FeatBit successfully launched, go to the UI **http://localhost:8081/workspace** and add the following settings:
+
+- `clientId`: The OIDC client ID.
+- `clientSecret`: The OIDC client secret.
+- `redirectUri`: The OIDC redirect URI.
+- `tokenEndpoint`: The OIDC token endpoint.
+- `clientAuthenticationMethod`: The OIDC client authentication method. Set to `client_secret_post` for most of the time, we also support `client_secret_basic`.
+- `authorizationEndpoint`: The OIDC authorization endpoint.
+- `scope`: The OIDC scopes to request. Set to `openid profile email` for most of the time.
+- `userEmailClaim`: The OIDC user email claim. Set to `email` if you use the above scope.
 
 ## Example
 
@@ -39,25 +50,33 @@ We have tested FeatBit SSO with **Keycloak, Okta, and Auth0**. Let's take Keyclo
     - Enable Client authentication
 
     ![](../integrations/assets/single-sign-on/client-settings.png)
+
 4. Create a user on KeyCloak and set a password for that user
-5. Setting the following environment variables for FeatBit Api Service in `docker-compose.yml`, please **replace the client secret** with your own value
+
+5. Setting the following environment variables for FeatBit Api Service in `docker-compose.yml`
 
     ```yaml
-    SSO__enabled=true
-    SSO__OIDC__clientId=test-oidc-client
-    SSO__OIDC__clientSecret=dfFJlh6Fac7wdktbmzzW3RGtzxDWS0Ho
-    SSO__OIDC__redirectUri=http://localhost:8081/login?sso-logged-in=true
-    SSO__OIDC__tokenEndpoint=http://host.docker.internal:9000/realms/featbit/protocol/openid-connect/token
-    SSO__OIDC__clientAuthenticationMethod=client_secret_post
-    SSO__OIDC__authorizationEndpoint=http://localhost:9000/realms/featbit/protocol/openid-connect/auth
-    SSO__OIDC__scope=openid profile email
-    SSO__OIDC__userEmailClaim=email
+    SSOEnabled=true
     ```
-6. Start FeatBit and you should see the SSO button on the login page
+6. Start FeatBit and you should see the SSO tab on the login page
     ```bash
     cd featbit
     docker-compose up -d
     ```
     ![](../integrations/assets/single-sign-on/login-page.png)
-7. Click the `Login with SSO` link button and the browser will take you to the Keycloak login page, then you can log in with the user you created in step 4
+
+7. You need firstly to log in with your username and password
+
+8. Add the user created in step 4 to your team here **http://localhost:8081/iam/team**, you can ignore the default password, you won't need it.
+![](../integrations/assets/single-sign-on/invite-member.png)
+
+9. Go to **http://localhost:8081/workspace** and add your OpenID Connect settings and click on **Update**, please **replace the client secret** with your own value
+![](../integrations/assets/single-sign-on/oidc-settings.png)
+
+10. In the same page copy the workspace key in the **General settings**, you will need it when login with SSO
+![](../integrations/assets/single-sign-on/ws-key.png)
+
+11. Log out and then Click SSO, use the workspace key copied in step 10 and click on **Continue**, the browser will take you to the Keycloak login page, then you can log in with the user you created in step 4
+![](../integrations/assets/single-sign-on/login-page.png)
+
 
