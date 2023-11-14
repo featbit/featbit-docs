@@ -22,19 +22,19 @@ To view FeatBit events in New Relic One, navigate to your application's APM dash
 1. The Summary page, to directly view the impact of that flag change.
 2. The Change Tracking page, to view the deployment events.
 
-![]()
+![Analyze Deployment Impact](../integrations/assets/newrelic/newrelicone-apm-short.png)
 
 For example, the figure above illustrates:
 
-1. An abnormal increase in Web Transaction Time and Errors after a feature flag is turned on.
-2. A critical issue is detected.
-3. Shortly afterward, a feature flag turn-off deployment event occurs.
-4. The response time peak and errors return to normal.
-5. The critical issue is resolved.
+1. A noticeable rise in Web Transaction Time and Errors occurs following the activation of a feature flag.
+2. A critical issue is identified.
+3. Subsequently, the feature flag is turned off automatically in response to the triggered alert.
+4. The response time peak and error rates return to normal.
+5. The critical issue is successfully resolved.
 
-You can click on the activity stream items to clearly see what happened before and after the deployment event.
+Click on the activity stream items to clearly observe the differences before and after the feature flag deployment event. The image below demonstrates the comparison between the events when the feature flag is turned on and off.
 
-![]()
+![Compare Deployment Events](../integrations/assets/newrelic/feature-turnon-off-compare.png)
 
 ## Using flag triggers with New Relic One
 
@@ -42,7 +42,7 @@ You can use FeatBit's triggers to toggle a flag's targeting on or off when a per
 
 1. Click on Button "Set up alerts"
 
-![](../integrations/assets/datadog/alert-trigger-001.png)
+![](../integrations/assets/newrelic/alert-trigger-001.png)
 
 2. 
 
