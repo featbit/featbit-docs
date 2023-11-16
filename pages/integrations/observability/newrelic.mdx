@@ -22,7 +22,7 @@ To view FeatBit events in New Relic One, navigate to your application's APM dash
 1. The Summary page, to directly view the impact of that flag change.
 2. The Change Tracking page, to view the deployment events.
 
-![Analyze Deployment Impact](../integrations/assets/newrelic/newrelicone-apm-short.png)
+![Analyze Deployment Impact](../../integrations/assets/newrelic/newrelicone-apm-short.png)
 
 For example, the figure above illustrates:
 
@@ -34,7 +34,7 @@ For example, the figure above illustrates:
 
 Click on the activity stream items to clearly observe the differences before and after the feature flag deployment event. The image below demonstrates the comparison between the events when the feature flag is turned on and off.
 
-![Compare Deployment Events](../integrations/assets/newrelic/feature-turnon-off-compare.png)
+![Compare Deployment Events](../../integrations/assets/newrelic/feature-turnon-off-compare.png)
 
 ## Using flag triggers with New Relic One
 
@@ -45,38 +45,38 @@ You can use FeatBit's triggers to toggle a flag's targeting on or off when a per
 
 You need to first create a Flag Trigger in a Feature Flags. See [Workflow/Flag Triggers](/feature-flags/feature-workflow/flag-triggers). For this tutorial's use case, you need to create a trigger to deactivate the feature flag.
 
-![](../integrations/assets/newrelic/create-trigger.png)
+![](../../integrations/assets/newrelic/create-trigger.png)
 
 ### Set Up Alert
 
 Click the "Set up alerts" button on the right side.
 
-![](../integrations/assets/newrelic/newrelicone-apm-add-alert-001.png)
+![](../../integrations/assets/newrelic/newrelicone-apm-add-alert-001.png)
 
 Configure the alert by following New Relic's instructions and selecting your preferred metrics. Specify what should be monitored:
 
-![](../integrations/assets/newrelic/newrelicone-apm-add-alert-004.png)
+![](../../integrations/assets/newrelic/newrelicone-apm-add-alert-004.png)
 
 Set threholds:
 
-![](../integrations/assets/newrelic/newrelicone-apm-add-alert-005.png)
+![](../../integrations/assets/newrelic/newrelicone-apm-add-alert-005.png)
 
 Add a webhook as the notification destination:
 
-![](../integrations/assets/newrelic/newrelicone-apm-add-alert-007.png)
+![](../../integrations/assets/newrelic/newrelicone-apm-add-alert-007.png)
 
 ### Set the webhook URL to call FeatBit's trigger
 
 In the webhook editor, enter the URL of the trigger you just created.
 
-![](../integrations/assets/newrelic/newrelicone-apm-add-alert-009.png)
+![](../../integrations/assets/newrelic/newrelicone-apm-add-alert-009.png)
 
 Test the notification and save.
 
-![](../integrations/assets/newrelic/newrelicone-apm-last-addalert-3.png)
+![](../../integrations/assets/newrelic/newrelicone-apm-last-addalert-3.png)
 
 ### Show Trigger History in Feature Flag's Audit Log
 
 In the 'Analyze Deployment Impact in APM' section, we mentioned that the feature flag's trigger is automatically activated following an alert, and a deployment event is recorded alongside the alert. It's also possible to view the trigger action in the Feature Flag's Audit Log. The figure below shows the trigger action recorded as a 'System update flag' event, described as Turned off by trigger.
 
-![](../integrations/assets/newrelic/audit-log.png)
+![](../../integrations/assets/newrelic/audit-log.png)

@@ -92,7 +92,7 @@ featureFlags["game-runner"] == true ?
 
 Once you have integrated FeatBit with DataDog, you can [analyze the performance of your feature flags in RUM](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection/?tab=browser#analyze-your-feature-flag-performance-in-rum). You can filter your **Sessions**, **Views**, and **Errors** using DataDog's RUM dashboard. For example, you can find all the errors in the specified time frame that occurred in the view where your FeatBit was evaluated, as shown in the figure below:
 
-![](../integrations/assets/datadog/filter-errors-with-feature-flag-in-rum.webp)
+![](../../integrations/assets/datadog/filter-errors-with-feature-flag-in-rum.webp)
 
 To view and analyze your feature flags, please refer to [DataDog Feature Flags Tracking tutorial](https://docs.datadoghq.com/real_user_monitoring/feature_flag_tracking/#view-your-feature-flags).
 
@@ -104,11 +104,11 @@ The Datadog integration lets you set up [Datadog Events](https://docs.datadoghq.
 
 The image below shows the correlation discovered between a feature flag event and the failure detections in a service APM dashboard. After we turned off the feature flag, the outage disappeared.
 
-![](../integrations/assets/datadog/dashboard-apm-error-turn-off-events.png)
+![](../../integrations/assets/datadog/dashboard-apm-error-turn-off-events.png)
 
 Full event integration is still in the works. But you can currently write your own program to monitor the event changes in our MongoDB `AuditLogs` collection. Here's an official tutorial of how to [monitor the collection changes in .NET](https://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/change_streams/).
 
-![](../integrations/assets/datadog/mongodb-auditlog-collection.png)
+![](../../integrations/assets/datadog/mongodb-auditlog-collection.png)
 
 Then you can use the [DataDog Events API](https://docs.datadoghq.com/api/latest/events/#post-an-event) to send the activities to DataDog. 
 
@@ -123,15 +123,15 @@ Please let us know if you would like us to accelerate feature development for th
 
 1. You need to first create a Flag Trigger in a Feature Flags. See [Workflow/Flag Triggers](/feature-flags/feature-workflow/flag-triggers).
 
-![](../integrations/assets/datadog/flag-trigger.png)
+![](../../integrations/assets/datadog/flag-trigger.png)
 
 2. In the DataDog Integration, create a new WebHook and copy the Flag Trigger URL in the new WebHook.
 
-![](../integrations/assets/datadog/create-webhook.png)
+![](../../integrations/assets/datadog/create-webhook.png)
 
 3. Go to the Monitor page, create a metric with a search query and condition. Then add `@webhook-name_of_the_webhook` to the text of the alert. The webhook will be triggered when the metric falls below the threshold set in the condition.
 
-![](../integrations/assets/datadog/monitor-notify-team.png)
+![](../../integrations/assets/datadog/monitor-notify-team.png)
 
 4. After the WebHook is triggered, the feature flag is automatically toggled on/off.
 

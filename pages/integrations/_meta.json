@@ -1,6 +1,5 @@
 {
-  "datadog": "DataDog",
-  "newrelic": "New Relic One",
+  "observability": "Observability",
   "api-access-tokens": "API Access Token",
   "single-sign-on": "Single Sign-On"
 }
