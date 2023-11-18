@@ -1,12 +1,12 @@
 # License
 
-FeatBit is an Open Core product. The bulk of the code is under permissive MIT license. See the [LICENSE](https://github.com/featbit/featbit/blob/main/LICENSE) file for details.
+FeatBit is an Open Core product, with the majority of its code under the permissive MIT license. For detailed information, refer to the [LICENSE](https://github.com/featbit/featbit/blob/main/LICENSE) file.
 
-The following listed features are protected by a license key
+Certain features in FeatBit are subject to licensing restrictions and require a valid license key. These features include:
 
 - Schedule
 - Change request
-- SSO
+- Single Sign-On (SSO)
 - Multi-organizations
 
-A license key is associated with a workspace, once a license key is setup, it's applicalble to all organizations of the workspace.
+Each license key is associated with a specific workspace. Once set up, the license key applies to all organizations within that workspace.
