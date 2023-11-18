@@ -1,4 +1,10 @@
+import {Callout} from 'nextra/components'
+
 # Set up license key
+
+<Callout type="info">
+  This article is compatible with FeatBit 3.0.0 and above.
+</Callout>
 
 This guide illustrates the process of setting up FeatBit with a license key.
 
