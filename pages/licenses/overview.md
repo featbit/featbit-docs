@@ -9,4 +9,4 @@ The following listed features are protected by a license key
 - SSO
 - Multi-organizations
 
-A license key is associated to a workspace, once a license key is setup, it's applicalble to all organizations of the workspace.
+A license key is associated with a workspace, once a license key is setup, it's applicalble to all organizations of the workspace.

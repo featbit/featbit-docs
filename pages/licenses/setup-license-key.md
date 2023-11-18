@@ -28,7 +28,7 @@ For the purpose of evaluating all features of FeatBit, you can generate a free t
   ![](./assets/request-trial-license2.png)
 - Find the license generated in the license table, and click the copy button
   
-  ![](./assets/request-trial-license2.png)
+  ![](./assets/request-trial-license3.png)
 
 # Get a commercial license key
 
