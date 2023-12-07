@@ -1,6 +1,5 @@
 {
   "index": "Overview",
-  "licenses": "Licenses",
   "getting-started": "Getting Started",
   "installation": "Installation",
   "feature-flags": "Feature Flags",
@@ -11,6 +10,7 @@
   "experimentation": "Experimentation",
   "relay-proxy": "Relay Proxy",
   "iam": "IAM",
+  "licenses": "Licenses",
   "tech-stack": "Tech Stack",
   "support": {
     "title": "Support ↗",
