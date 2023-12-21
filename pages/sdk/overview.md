@@ -31,6 +31,12 @@ We provide a client-side [Javascript/Typescript SDK](https://github.com/featbit/
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
+### Node.js
+
+We provide a [server-side Node.js SDK](https://github.com/featbit/featbit-node-server-sdk) for you to use. This SDK can be used in your console APP or Express.js and other web application framework APP.
+
+The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
+
 ### .NET
 
 We provide a [server-side .NET SDK](https://github.com/featbit/featbit-dotnet-sdk) for you to use. This SDK can be used in your console APP or ASP.NET Core APP.
