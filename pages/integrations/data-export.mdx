@@ -2,15 +2,19 @@ import {Callout} from 'nextra/components'
 
 ## Overview
 
-This topic explains how you can currently export feature flag usage (evaluation) data and custom event (for metric) to your own data store or warehouse.
+This section describes a temporary method for exporting feature flag usage data and experiment events to your preferred data store or warehouse. This allows you to analyze the data using your own tools and systems.
 
-> Here mention "currently" because it's a temporary solution before we deeply understand customer's best practice and needs. You're very welcome to [join our slack](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) to discuss more about this topic or sending us email to contact@featbit.co.
+![Analyze Deployment Impact](../integrations/assets/export-data/featbit-export-data.png)
 
-## Export to 3rd party data warehouse through SDK evaluation event call back
+As the diagram above shows, the current process involves extracting data from FeatBit's ClickHouse database (or MongoDB for the standard version) and then transferring it to a third-party or your own Custom Data Platform, Message Brokers, Data Warehouse, etc.
 
-## Export Data To Segment
+> We refer to this as the '**temporary method**' because it's an interim measure while we better understand the specific needs and best practices of each customer. We invite you to [join our Slack](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) channel for further discussion on this topic, or you can email us at `contact@featbit.co` for more information.
 
-## Export Data To Azure Event Hub
+## Extract Data From ClickHouse
+
+## Send Data To Segment
+
+## Send Data To Azure Event Hub
 
 ## Export Data To GrowthBook
 
@@ -20,3 +24,7 @@ Growthbook support ClickHouse as its data source. You can use the following SQL 
 
 ```sql
 ```
+
+## Feedback
+
+If you want us to support other data warehouse, data analytic tools, etc, please let us know by sending us email or join our slack. We appreciate any practice suggestions that may help you.
