@@ -4,7 +4,7 @@ import {Callout} from 'nextra/components'
 
 This section describes a temporary method for exporting feature flag usage data and experiment events to your preferred data store or warehouse. This allows you to analyze the data using your own tools and systems.
 
-![Analyze Deployment Impact](../data-import-and-export/assets/data-export/featbit-export-data.png)
+![](../data-import-and-export/assets/data-export/featbit-export-data.png)
 
 As the diagram above shows, the current process involves extracting data from FeatBit's ClickHouse database (or MongoDB for the standard version) and then transferring it to a third-party or your own Custom Data Platform, Message Brokers, Data Warehouse, etc.
 
@@ -138,7 +138,14 @@ LIMIT {Your Page Size}
 
 ### Sample Project
 
-I use .NET 8 to write a sample project to extract data from ClickHouse. You can find the source code [here]().
+I use .NET 8 to write a sample project for extracting data from ClickHouse. The [source code can be found here](https://github.com/featbit/featbit-samples/tree/main/samples/export-data).
+
+In this sample solution, the project `FeatBit.DataExport.ClickHouse` provides two functions in the `ClickHouseReader` class:
+
+- `RetrieveFlagValueEventsAsync`: This function retrieves feature flag usage data from ClickHouse.
+- `RetrieveCustomEventEventsAsync`: This function retrieves experiment events from ClickHouse.
+
+![](../data-import-and-export/assets/data-export/query-clickhouse.png)
 
 ## Send Data To Segment
 
