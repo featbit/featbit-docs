@@ -27,20 +27,118 @@ For the FeatBit Standard version, both types of data are stored in the `Events` 
 
 The data structures are not exactly the same between the FeatBit Pro and Standard versions. However, the data are similar. The following table explains what each property means.
 
-### Feature Flag Usage Data - FlagValue
+### Feature Flag Usage Data
+
+**Feature Flag Usage Data**: Each time a feature flag is evaluated for a user (whether in the backend SDK or frontend SDK), a record is created in the database. The data in the insights view on your feature flag page are derived from these records.
 
 | Property | Description |
 | --- | --- |
 | `uuid` | The unique id of the record |
+| `env_id` | The unique id of the environment |
+| `distinct_id` |  |
+| `event` | The type of event: `FlagValue` represents "Feature Flag Usage Data" or `CustomEvent` represents Experiment Events |
+| `timestamp` | The timestamp of the event treated in SDK or API |
+| `_timestamp` | The timestamp sent to Clickhouse. No such property in MongoDB |
+| `properties` | The information of the event, a json data in string format |
+| `properties`/`route` | The route of the event |
+| `properties`/`flagId` | The unique id of the feature flag |
+| `properties`/`featureFlagKey` | The key of the feature flag |
+| `properties`/`sendToExperiment` | Whether the FlagValue event should be considered in experiment |
+| `properties`/`userKeyId` | The unique id of the user |
+| `properties`/`userName` | The name of the user |
+| `properties`/`variationId` | The unique id of the variation. E.g. the id of True variation in a Boolean feature flag |
+| `properties`/`tag_0` | The first tag of the event |
+| `properties`/`tag_1` | The second tag of the event |
+| `properties`/`tag_2` | The third tag of the event |
+| `properties`/`tag_3` | The fourth tag of the event |
 
-### Experiment Events - CustomEvent
+This is a ClickHouse query statement that I have refined:
 
+```sql
+SELECT 
+    uuid as Id,
+    env_id as EnvId,
+    distinct_id as DistinctId,
+    event as EventName,
+    timestamp as Timestamp,
+    _timestamp as CHTimestamp,
+    JSONExtract(properties, 'route', 'String') as Route,
+    JSONExtract(properties, 'flagId', 'String') as FeatureFlagId,
+    JSONExtract(properties, 'accountId', 'String') as AccountId,
+    JSONExtract(properties, 'projectId', 'String') as ProjectId,
+    JSONExtract(properties, 'featureFlagKey', 'String') as FeatureFlagKey,
+    JSONExtract(properties, 'sendToExperiment', 'Bool') as SendToExperiment,
+    JSONExtract(properties, 'userKeyId', 'String') as UserId,
+    JSONExtract(properties, 'userName', 'String') as Username,
+    JSONExtract(properties, 'variationId', 'String') as VariationId,
+    JSONExtract(properties, 'tag_0', 'String') as Tag0,
+    JSONExtract(properties, 'tag_1', 'String') as Tag1,
+    JSONExtract(properties, 'tag_2', 'String') as Tag2,
+    JSONExtract(properties, 'tag_3', 'String') as Tag3
+FROM events
+WHERE
+    timestamp > '{Your TimeStamp}' AND
+    event = 'FlagValue' AND
+    env_id = '{Your FeatBit Environment Id}'
+ORDER BY timestamp
+LIMIT {Your Page Size}
+```
+
+### Experiment Events
+
+**Experiment Events**: These are custom events for metrics like button click events, page stay duration, or any Boolean or Double values you track for further data analysis needs. These events are created by calling the `track` method in the SDK.
 
 | Property | Description |
 | --- | --- |
-| `id` | The unique id of the record |
+| `uuid` | The unique id of the record |
+| `env_id` | The unique id of the environment |
+| `distinct_id` |  |
+| `event` | The type of event: `FlagValue` for "Feature Flag Usage Data" or `CustomEvent` for Experiment Events |
+| `timestamp` | The timestamp of the event treated in SDK or API |
+| `properties` | The information of the event, a json data in string format |
+| `properties`/`route` | The route of the event |
+| `properties`/`eventName` | The name of the metric |
+| `properties`/`numericValue` | The numeric value of the metric |
+| `properties`/`applicationType` | The type of the application: web, mobile, backend, etc. |
+| `properties`/`tag_0` | The first tag of the event |
+| `properties`/`tag_1` | The second tag of the event |
+| `properties`/`tag_2` | The third tag of the event |
+| `properties`/`tag_3` | The fourth tag of the event |
+
+This is a ClickHouse query statement that I have refined:
+
+```sql
+SELECT 
+    uuid as Id,
+    env_id as EnvId,
+    distinct_id as DistinctId,
+    event as EventName,
+    timestamp as Timestamp,
+    _timestamp as CHTimestamp,
+    JSONExtract(JSONExtract(properties, 'user', 'String'), 'keyId', 'String')  as UserId, 
+    JSONExtract(JSONExtract(properties, 'user', 'String'), 'name', 'String')  as Username, 
+    JSONExtract(properties, 'route', 'String') as Route,    
+    JSONExtract(properties, 'eventName', 'String') as CustomEventName,    
+    JSONExtract(properties, 'numericValue', ' Float32') as NumericValue,   
+    JSONExtract(properties, 'applicationType', ' String') as ApplicationType,   
+    JSONExtract(properties, 'projectId', 'String') as ProjectId,
+    JSONExtract(properties, 'accountId', 'String') as AaccountId,
+    JSONExtract(properties, 'tag_0', 'String') as Tag0,
+    JSONExtract(properties, 'tag_1', 'String') as Tag1,
+    JSONExtract(properties, 'tag_2', 'String') as Tag2,
+    JSONExtract(properties, 'tag_3', 'String') as Tag3
+FROM events
+WHERE
+    timestamp > '{Your TimeStamp}' AND
+    event = 'CustomEvent' AND
+    env_id = '{Your FeatBit Environment Id}'
+ORDER BY timestamp
+LIMIT {Your Page Size}
+```
 
 ### Sample Project
+
+I use .NET 8 to write a sample project to extract data from ClickHouse. You can find the source code [here]().
 
 ## Send Data To Segment
 
