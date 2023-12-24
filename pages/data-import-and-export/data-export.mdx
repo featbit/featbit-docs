@@ -1,0 +1,61 @@
+import {Callout} from 'nextra/components'
+
+## Overview
+
+This section describes a temporary method for exporting feature flag usage data and experiment events to your preferred data store or warehouse. This allows you to analyze the data using your own tools and systems.
+
+![Analyze Deployment Impact](../data-import-and-export/assets/data-export/featbit-export-data.png)
+
+As the diagram above shows, the current process involves extracting data from FeatBit's ClickHouse database (or MongoDB for the standard version) and then transferring it to a third-party or your own Custom Data Platform, Message Brokers, Data Warehouse, etc.
+
+> We refer to this as the '**temporary method**' because it's an interim measure while we better understand the specific needs and best practices of each customer. We invite you to [join our Slack](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) channel for further discussion on this topic, or you can email us at `contact@featbit.co` for more information.
+
+## Extract Data From ClickHouse
+
+In the Pro version of FeatBit, we store data related to feature flag usage and custom experiment events in the ClickHouse database. For those using the Standard version, this information, along with insights on feature flag evaluations, is housed in the MongoDB database. You can access data from these databases.
+
+- **Feature Flag Usage Data**: Each time a feature flag is evaluated for a user (whether in the backend SDK or frontend SDK), a record is created in the database. The data in the insights view on your feature flag page are derived from these records.
+- **Experiment Events**: These are custom events for metrics like button click events, page stay duration, or any Boolean or Double values you track for further data analysis needs. These events are created by calling the `track` method in the SDK.
+
+For the FeatBit Pro version, both types of data are stored in the `events` table in ClickHouse.
+
+![](../data-import-and-export/assets/data-export/events-clickhouse.png)
+
+For the FeatBit Standard version, both types of data are stored in the `Events` collection in MongoDB.
+
+![](../data-import-and-export/assets/data-export/events-mongodb.png)
+
+The data structures are not exactly the same between the FeatBit Pro and Standard versions. However, the data are similar. The following table explains what each property means.
+
+### Feature Flag Usage Data - FlagValue
+
+| Property | Description |
+| --- | --- |
+| `uuid` | The unique id of the record |
+
+### Experiment Events - CustomEvent
+
+
+| Property | Description |
+| --- | --- |
+| `id` | The unique id of the record |
+
+### Sample Project
+
+## Send Data To Segment
+
+## Send Data To Azure Event Hub
+
+
+## Export Data To GrowthBook
+
+Growthbook is an AB Testing tool that allows you to use your own data warehouse to run experiments. It's a great tool for companies that want to own their own data and run experiments on it.
+
+Growthbook support ClickHouse as its data source. You can use the following SQL to create the tables needed for Growthbook to work with Featbit.
+
+```sql
+```
+
+## Feedback
+
+If you want us to support other data warehouse, data analytic tools, etc, please let us know by sending us email or join our slack. We appreciate any practice suggestions that may help you.
