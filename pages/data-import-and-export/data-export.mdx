@@ -12,6 +12,8 @@ As the diagram above shows, the current process involves extracting data from Fe
 
 ## Extract Data From ClickHouse
 
+### Data Store
+
 In the Pro version of FeatBit, we store data related to feature flag usage and custom experiment events in the ClickHouse database. For those using the Standard version, this information, along with insights on feature flag evaluations, is housed in the MongoDB database. You can access data from these databases.
 
 - **Feature Flag Usage Data**: Each time a feature flag is evaluated for a user (whether in the backend SDK or frontend SDK), a record is created in the database. The data in the insights view on your feature flag page are derived from these records.
@@ -40,17 +42,17 @@ The data structures are not exactly the same between the FeatBit Pro and Standar
 | `timestamp` | The timestamp of the event treated in SDK or API |
 | `_timestamp` | The timestamp sent to Clickhouse. No such property in MongoDB |
 | `properties` | The information of the event, a json data in string format |
-| `properties`/`route` | The route of the event |
-| `properties`/`flagId` | The unique id of the feature flag |
-| `properties`/`featureFlagKey` | The key of the feature flag |
-| `properties`/`sendToExperiment` | Whether the FlagValue event should be considered in experiment |
-| `properties`/`userKeyId` | The unique id of the user |
-| `properties`/`userName` | The name of the user |
-| `properties`/`variationId` | The unique id of the variation. E.g. the id of True variation in a Boolean feature flag |
-| `properties`/`tag_0` | The first tag of the event |
-| `properties`/`tag_1` | The second tag of the event |
-| `properties`/`tag_2` | The third tag of the event |
-| `properties`/`tag_3` | The fourth tag of the event |
+| `properties/route` | The route of the event |
+| `properties/flagId` | The unique id of the feature flag |
+| `properties/featureFlagKey` | The key of the feature flag |
+| `properties/sendToExperiment` | Whether the FlagValue event should be considered in experiment |
+| `properties/userKeyId` | The unique id of the user |
+| `properties/userName` | The name of the user |
+| `properties/variationId` | The unique id of the variation. E.g. the id of True variation in a Boolean feature flag |
+| `properties/tag_0` | The first tag of the event |
+| `properties/tag_1` | The second tag of the event |
+| `properties/tag_2` | The third tag of the event |
+| `properties/tag_3` | The fourth tag of the event |
 
 This is a ClickHouse query statement that I have refined:
 
@@ -96,14 +98,16 @@ LIMIT {Your Page Size}
 | `event` | The type of event: `FlagValue` for "Feature Flag Usage Data" or `CustomEvent` for Experiment Events |
 | `timestamp` | The timestamp of the event treated in SDK or API |
 | `properties` | The information of the event, a json data in string format |
-| `properties`/`route` | The route of the event |
-| `properties`/`eventName` | The name of the metric |
-| `properties`/`numericValue` | The numeric value of the metric |
-| `properties`/`applicationType` | The type of the application: web, mobile, backend, etc. |
-| `properties`/`tag_0` | The first tag of the event |
-| `properties`/`tag_1` | The second tag of the event |
-| `properties`/`tag_2` | The third tag of the event |
-| `properties`/`tag_3` | The fourth tag of the event |
+| `properties/user/keyId` | The unique id of the user |
+| `properties/user/name` | The name of the user |
+| `properties/route` | The route of the event |
+| `properties/eventName` | The name of the metric |
+| `properties/numericValue` | The numeric value of the metric |
+| `properties/applicationType` | The type of the application: web, mobile, backend, etc. |
+| `properties/tag_0` | The first tag of the event |
+| `properties/tag_1` | The second tag of the event |
+| `properties/tag_2` | The third tag of the event |
+| `properties/tag_3` | The fourth tag of the event |
 
 This is a ClickHouse query statement that I have refined:
 
@@ -149,18 +153,49 @@ In this sample solution, the project `FeatBit.DataExport.ClickHouse` provides tw
 
 ## Send Data To Segment
 
+### Source: HTTP API
+
+You can send data to Segment through HTTP APIs. First, you need to create an HTTP API as a data source in Segment.
+
+- Go to the "Source" page, click on the **+ Add source** button. 
+- In the "Catalog" page, search "HTTP API". Then click on the source.
+- Click on the **Add Source ->** button.
+- On the "Add Source" page, enter the name of the source, then click on the **Add Source** button.
+- After the source is created, go to **Settings** page, enable the source, and then click on the **Save Changes** button.
+
+![](../data-import-and-export/assets/data-export/segment-http-api-source.png)
+
+### Destination
+
+In Segment, you can add any destination you desire. For example, you can add Snowflake as a destination. For more information, you can follow the [tutorial](https://segment.com/docs/connections/destinations/).
+
+### Sample Project
+
+
+https://segment.com/docs/connections/sources/catalog/libraries/server/http-api/
+
 ## Send Data To Azure Event Hub
 
+### Prerequisites
+
+Before sending data to Azure Event Hub, you need:
+
+1. 
 
 ## Export Data To GrowthBook
 
-Growthbook is an AB Testing tool that allows you to use your own data warehouse to run experiments. It's a great tool for companies that want to own their own data and run experiments on it.
+GrowthBook is an A/B Testing tool that enables you to use your own data warehouse to conduct experiments. It's an excellent tool for companies that wish to own their data and run experiments on it.
 
-Growthbook support ClickHouse as its data source. You can use the following SQL to create the tables needed for Growthbook to work with Featbit.
+GrowthBook supports ClickHouse as its data source. You can use the following SQL to create the necessary tables for GrowthBook to integrate with FeatBit.
 
-```sql
-```
 
 ## Feedback
 
-If you want us to support other data warehouse, data analytic tools, etc, please let us know by sending us email or join our slack. We appreciate any practice suggestions that may help you.
+We welcome any feedback and suggestions for features, such as:
+
+- Creating a native data export feature in FeatBit for Segment.com and Azure Event Hub.
+- Enabling data export to other Customer Data Platforms (CDPs), Data Warehouses, and Message Brokers.
+- Incorporating the ability to send data to third-party tools in SDK's evaluation callbacks.
+- And more.
+
+Please let us know your thoughts by sending us an email at `contact@featbit.co` or by joining our [Slack](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) channel. We appreciate any practical suggestions that may assist you.
