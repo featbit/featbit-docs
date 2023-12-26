@@ -11,9 +11,38 @@ FeatBit offers the following ways to integrate with New Relic One:
 
 ### Subscribe flag changes then send to New Relic One
 
-You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then create an event sender for New Relic One.
+You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then create an event sender (Deployment Event) for New Relic One.
 
-The related documentation will be provided after the Webhook feature is released.
+1. On the menu, under **Integrations**, select **Webhook** to go to the webhook configuration page.
+2. Click the **+ Add** button. 
+3. In the 'Add Webhook' drawer, enter the **Name** for the webhook.
+4. Enter the URL of the New Relic One event sender. The API Url can be found [in this official tutorial](https://docs.newrelic.com/docs/apm/apm-ui-pages/events/record-deployments/#api-instructions)
+5. Select the scope of WebHook you would like to subscrilbe to by choosing the **Project** and **Environments**.
+6. Select the **Events** you would like to subscribe to. For this tutorial, select **Flag Change** and **Segment.
+7. Add header **X-Api-Key** for authorization. The API key can be found [in this official tutorial](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
+8. In the **Payload Template, enter the following template:
+
+```json
+{
+    "deployment": {
+{{#eq data.kind "feature flag"}}
+        "revision": "Feature Flag {{data.object.key}} updated at {{happenedAt}}",
+{{/eq}}
+{{#eq data.kind "segment"}}
+        "revision": "Segment {{data.object.name}} updated at {{happenedAt}}",
+{{/eq}}
+        "changelog": "Changes are: {{#each changes}}{{this}}{{#unless @last}} ; {{/unless}}{{/each}}",
+        "description": "{{project.name}}/{{environment.name}}: {{#each changes}}{{this}}{{#unless @last}} ; {{/unless}}{{/each}}",
+        "user": "FeatBit Webhook"
+    }
+}
+```
+
+![Add WebHook](../../integrations/assets/newrelic/add-webhook-001.png)
+
+9. Test your webhook configuration by clicking the **Test your webhook configuration** link. If the test is successful, you will see a success message. If the test fails, you will see an error message.
+
+For more information about WebHook, please follow this [tutorial](/integrations/webhook).
 
 ### Analyze Deployment Impact in APM
 
