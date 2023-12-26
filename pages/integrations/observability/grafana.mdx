@@ -35,7 +35,37 @@ To use the Grafana integration, you need to create a Grafana service account and
 
 You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then create an event sender for Grafana.
 
-The related documentation will be provided after the Webhook feature is released.
+1. On the menu, under **Integrations**, select **Webhook** to access the webhook configuration page.
+2. Click the **+ Add** button. 
+3. In the 'Add Webhook' drawer, enter the **Name** for the webhook.
+4. Enter the URL of the Grafana's Annotation API. You can find the API URL in the [official tutorial](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/).
+5. Select the scope of WebHook you wish to subscrilbe to by choosing the **Project** and **Environments**.
+6. Choose the **Events** you want to subscribe to. For this tutorial, select **Flag Change** and **Segment**.
+7. Add the header **Authorization** for authorization. It uses bearer token for authorization. The token is the service account token you generated in the previous section.
+8. In the **Payload Template** enter the following template (you can also customize your own payload template):
+
+```json
+{
+{{#eq data.kind "feature flag"}}
+  "tags":["featbit-feature-flag", "env:{{environment.name}}", "proj:{{project.name}}"],
+  "text":"At {{happenedAt}} Feature Flag '{{data.object.name}}' in {{project.name}}/{{environment.name}}: <br/> {{#each changes}}{{this}}{{#unless @last}} ; {{/unless}}{{/each}}"
+{{/eq}}
+{{#eq data.kind "segment"}}
+  "tags":["featbit-segment", "env:{{environment.name}}", "proj:{{project.name}}"],
+  "text":"At {{happenedAt}} Segment '{{data.object.name}}' in {{project.name}}/{{environment.name}}: <br/> {{#each changes}}{{this}}{{#unless @last}} ; {{/unless}}{{/each}}"
+{{/eq}}
+}
+```
+
+**For more information about WebHook, please refer this [tutorial](/integrations/webhook).**
+
+![Add WebHook](../../integrations/assets/grafana/create-webhook.png)
+
+9. Test your webhook configuration by clicking on the **Test your webhook configuration** link. If the test is successful, you will see a success message. If the test fails, you will see an error message.
+
+![Add WebHook](../../integrations/assets/grafana/add-annotation.png)
+
+10. You will see the webhook you created in the webhook list.
 
 ## Adding FeatBit annotations to Grafana dashboards
 

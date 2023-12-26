@@ -98,7 +98,9 @@ To view and analyze your feature flags, please refer to [DataDog Feature Flags T
 
 If you are using [DataDog APM](https://www.datadoghq.com/product/apm/), DataDog provides a method to connect your front-end feature flag data to your traces. See [Connect Rum and Traces](https://docs.datadoghq.com/real_user_monitoring/connect_rum_and_traces/?tab=browserrum). This way you can have alerts based on both front-end and back-end errors.
 
-## Using the Datadog events integration
+
+
+## Using the DataDog events integration
 
 The Datadog integration lets you set up [Datadog Events](https://docs.datadoghq.com/api) to receive any activity from FeatBit. When something changes, such as a feature flag updates or a new account member is added to FeatBit, FeatBit sends an event to Datadog. Use this integration to correlate and understand how changes to your features in FeatBit impact your app and infrastructure metrics.
 
@@ -106,16 +108,54 @@ The image below shows the correlation discovered between a feature flag event an
 
 ![](../../integrations/assets/datadog/dashboard-apm-error-turn-off-events.png)
 
-Full event integration is still in the works. But you can currently write your own program to monitor the event changes in our MongoDB `AuditLogs` collection. Here's an official tutorial of how to [monitor the collection changes in .NET](https://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/change_streams/).
+### Setting up WebHook for DataDog events integration
 
-![](../../integrations/assets/datadog/mongodb-auditlog-collection.png)
+You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then create an event sender for DataDog.
 
-Then you can use the [DataDog Events API](https://docs.datadoghq.com/api/latest/events/#post-an-event) to send the activities to DataDog. 
+1. On the menu, under **Integrations**, select **Webhook** to access the webhook configuration page.
+2. Click the **+ Add** button. 
+3. In the 'Add Webhook' drawer, enter the **Name** for the webhook.
+4. Enter the URL of the DataDog Events API. You can find the API URL in the [official tutorial](https://docs.datadoghq.com/api/latest/events/?code-lang=curl#post-an-event).
+5. Select the scope of WebHook you wish to subscrilbe to by choosing the **Project** and **Environments**.
+6. Choose the **Events** you want to subscribe to. For this tutorial, select **Flag Change** and **Segment**.
+7. Add the header **DD-API-KEY** for authorization. You can find the API key [in this official tutorial](https://docs.datadoghq.com/account_management/api-app-keys/#add-an-api-key-or-client-token).
+8. In the **Payload Template** enter the following template (you can also customize your own payload template):
 
-<Callout type="info" emoji='💡'>
-Please let us know if you would like us to accelerate feature development for this implementation.
-</Callout>
+```json
+{
+{{#eq data.kind "feature flag"}}
+  "title": "Feature Flag {{data.object.key}} updated at {{happenedAt}}",
+{{/eq}}
+{{#eq data.kind "segment"}}
+  "title": "Segment {{data.object.name}} updated at {{happenedAt}}",
+{{/eq}}
+  "text": "Changes are: {{#each changes}}{{this}}{{#unless @last}} ; {{/unless}}{{/each}}",
+  "source_type_name": "featbit",
+  "alert_type": "info",
+  "tags": [
+    "featbit-env:{{environment.name}}",
+    "featbit-proj:{{project.name}}"
+  ]
+}
+```
 
+**For more information about WebHook, please refer this [tutorial](/integrations/webhook).**
+
+![Create FeatBit WebHook](../../integrations/assets/datadog/create-webhook-001.png)
+
+9. Test your webhook configuration by clicking on the **Test your webhook configuration** link. If the test is successful, you will see a success message. If the test fails, you will see an error message.
+
+![](../../integrations/assets/datadog/webhook-sent.png)
+
+10. You will see the webhook you created in the webhook list.
+
+### Adding an Events View to Your Dashboard
+
+The easiest way to view event history is by creating a widget on your dashboard, as shown below:
+
+![](../../integrations/assets/datadog/dashboard-widget.png)
+
+By organizing your Dashboard and configuring your APM services, you can correlate and understand how changes to your features in FeatBit impact your application and infrastructure metrics.
 
 ## Using flag triggers with Datadog
 
