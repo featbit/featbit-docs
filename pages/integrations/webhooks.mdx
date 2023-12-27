@@ -5,3 +5,28 @@
 This topic explains how to create and use webhooks in FeatBit. FeatBit's webhooks allow you to build your own
 integrations that subscribe to flag/segment changes in FeatBit. When a feature flag or a segment is updated,
 FeatBit sends an HTTP POST payload to the webhook's configured URL.
+
+## Creating a webhook
+
+To create a webhook:
+
+1. Navigate to the **Integrations/Webhooks** page in the FeatBit dashboard.
+2. Click **Add Webhook**.
+3. Enter a human-readable **Name** for the webhook.
+4. Enter the **URL** that FeatBit should send the HTTP POST payload to.
+5. Select the **Scopes(environments)** that this webhook should monitor. The webhook will be triggered for events in any of the selected environments.
+6. Select the **Events** you would like to trigger this webhook.
+7. Optionally, you can add some custom **Headers** to the webhook request. Checkout [Delivery headers](#delivery-headers) for more information.
+8. Configure the **Payload Template**. This is a Handlebars template that will be used to generate the payload sent to the webhook URL. Checkout [Payload template](#payload-template) for more information.
+9. Optionally, enter a secret. If you enter a secret, FeatBit will send the secret in the **X-FeatBit-Signature-256** header of the webhook payload. Checkout [Validating webhook deliveries](#validating-webhook-deliveries) for more information.
+10. Set the webhook **Active** status.
+11. Optionally, you can perform a **Live Debug** before saving the webhook. This will send a test payload to the webhook URL and show the request/response details. Checkout [Live Debug](#live-debug) for more information.
+12. Click **Save**.
+
+## Delivery headers
+
+## Payload template
+
+## Live Debug
+
+## Validating webhook deliveries
