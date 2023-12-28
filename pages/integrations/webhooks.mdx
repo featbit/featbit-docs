@@ -176,3 +176,32 @@ Select an event and click **Send test webhook**, the system will send a test pay
 ![](../integrations/assets/webhooks/live-debug-response.png)
 
 ## Validating webhook deliveries
+
+Once your server is configured to receive payloads, it will listen for any delivery that's sent to the endpoint you configured.
+To ensure that your server only processes webhook deliveries that were sent by FeatBit and to ensure that the delivery was not tampered with, you should validate the webhook signature before processing the delivery further.
+This will help you avoid spending server time to process deliveries that are not from FeatBit and will help avoid man-in-the-middle attacks.
+
+To do this, you need to
+
+1. Provide a `secret` while creating the webhook. Note that you should securely store this secret.
+2. In your code that handles webhook deliveries, you should calculate a hash using your `secret` token and the `payload` contents.
+3. Compare the hash that FeatBit sent (the value of the `X-Hub-Signature-256` header) with the hash that you calculated, and ensure that they match.
+
+There are a few important things to keep in mind when validating webhook payloads:
+
+- FeatBit uses an HMAC hex digest to compute the hash.
+- The hash signature always starts with `sha256=`.
+- The hash signature is generated using your webhook's secret token and the payload contents.
+- If your language and server implementation specifies a character encoding, ensure that you handle the payload as UTF-8. Webhook payloads can contain unicode characters.
+
+### Testing the webhook payload validation
+
+You can use the following secret and payload values to verify that your implementation is correct:
+
+- secret: "It's a Secret to Everybody"
+- payload: "Hello, World!"
+
+If your implementation is correct, the signatures that you generate should match the following signature values:
+
+- signature: `757107ea0eb2509fc211221cce984b8a37570b6d7586c22c46f4379c8b043e17`
+- X-Hub-Signature-256: `sha256=757107ea0eb2509fc211221cce984b8a37570b6d7586c22c46f4379c8b043e17`
