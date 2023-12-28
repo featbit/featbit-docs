@@ -160,4 +160,19 @@ You can test these helpers [online](https://handlebarsjs.com/examples/simple-exp
 
 ## Live Debug
 
+The Webhook Live Debug functionality allows you to perform real-time testing of your webhooks by sending a test payload to the webhook URL. This feature is useful during webhook setup or for routine checks to ensure your integrations are working as expected.
+
+To perform a Live Debug:
+
+- While creating/editing a webhook, click the **Live debug webhook configuration** button at the bottom of the drawer. Note that this button is enabled only if the form is valid.
+- For an existing webhook, click the **Live Debug** button in the **Actions** column.
+
+Select an event and click **Send test webhook**, the system will send a test payload (based on your payload template) to the webhook URL. You will then be presented with request/response details.
+
+### Request details
+![](../integrations/assets/webhooks/live-debug-request.png)
+
+### Response details
+![](../integrations/assets/webhooks/live-debug-response.png)
+
 ## Validating webhook deliveries
