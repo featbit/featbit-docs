@@ -8,6 +8,36 @@ This topic explains how to create and use webhooks in FeatBit. FeatBit's webhook
 integrations that subscribe to flag/segment changes in FeatBit. When a feature flag or a segment is updated,
 FeatBit sends an HTTP POST payload to the webhook's configured URL.
 
+## Webhook Events
+
+Webhook events are triggered when certain actions occur in FeatBit. These events can be related to feature flags or segments. Below is a list of all possible events:
+
+### Feature Flag Events
+
+- `feature_flag.created`: Triggered when a new feature flag is created.
+- `feature_flag.toggled`: Triggered when a feature flag is turned on or off.
+- `feature_flag.archived`: Triggered when a feature flag is archived.
+- `feature_flag.restored`: Triggered when a feature flag is restored from the archive.
+- `feature_flag.variation_changed`: Triggered when a variation of a feature flag is added, removed, updated, or its type is changed.
+- `feature_flag.off_variation_changed`: Triggered when the off variation of a feature flag is updated.
+- `feature_flag.default_rule_changed`: Triggered when the default rule variation or dispatch key of a feature flag is updated.
+- `feature_flag.target_users_changed`: Triggered when target users are added, removed, or set for a feature flag.
+- `feature_flag.targeting_rules_changed`: Triggered when a rule is added, removed, updated, or set for a feature flag.
+- `feature_flag.basic_info_updated`: Triggered when the name, description, or tags of a feature flag are updated.
+- `feature_flag.deleted`: Triggered when a feature flag is deleted.
+
+### Segment Events
+
+- `segment.created`: Triggered when a new segment is created.
+- `segment.archived`: Triggered when a segment is archived.
+- `segment.restored`: Triggered when a segment is restored from the archive.
+- `segment.rules_changed`: Triggered when a rule is added, removed, updated, or set for a segment.
+- `segment.target_users_changed`: Triggered when target users are added to or removed from the included or excluded list of a segment.
+- `segment.basic_info_updated`: Triggered when the name or description of a segment is updated.
+- `segment.deleted`: Triggered when a segment is deleted.
+
+Each event corresponds to a specific action in FeatBit. By listening to these events, you can build integrations that react to changes in your feature flags or segments.
+
 ## Creating a webhook
 
 To create a webhook:
