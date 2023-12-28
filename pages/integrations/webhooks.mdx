@@ -36,6 +36,128 @@ Besides the built-in headers, you can also add custom headers to the webhook req
 
 ## Payload template
 
+We can build a custom payload for the webhook request using a [Handlebars template](https://handlebarsjs.com/guide/). Here is the default payload template:
+
+```handlebars
+{
+  "event": "{{events}}",
+  "operator": "{{operator}}",
+  "happenedAt": "{{happenedAt}}",
+  "changes": {{json changes}},
+  "organization": {
+    "id": "{{organization.id}}",
+    "name": "{{organization.name}}"
+  },
+  "project": {
+    "id": "{{project.id}}",
+    "name": "{{project.name}}"
+  },
+  "environment": {
+    "id": "{{environment.id}}",
+    "name": "{{environment.name}}"
+  },
+  "data": {
+    "kind": "{{data.kind}}",
+    "object": {
+      "id": "{{data.object.id}}",
+      "name": "{{data.object.name}}",
+      "description": "{{data.object.description}}",
+{{#eq data.kind "feature flag"}}
+      "key": "{{data.object.key}}",
+      "variationType": "{{data.object.variationType}}",
+      "variations": {{json data.object.variations}},
+      "targetUsers": {{json data.object.targetUsers}},
+      "rules": {{json data.object.rules}},
+      "isEnabled": {{data.object.isEnabled}},
+      "disabledVariationId": "{{data.object.disabledVariationId}}",
+      "fallthrough": {{json data.object.fallthrough}},
+      "exptIncludeAllTargets": {{data.object.exptIncludeAllTargets}},
+      "tags": {{json data.object.tags}},
+{{/eq}}
+{{#eq data.kind "segment"}}
+      "included": {{json data.object.included}},
+      "excluded": {{json data.object.excluded}},
+      "rules": {{json data.object.rules}},
+      "flagReferences": {{json data.object.flagReferences}},
+{{/eq}}
+      "isArchived": {{data.object.isArchived}}
+    }
+  }
+}
+```
+
+### Available variables
+
+| Value               | Description                                                                                                                                         |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `events`            | The event(s) that triggered the webhook.<br />Example: `"feature_flag.toggled"` or `"segment.target_users_changed"`                                 |
+| `operator`          | The operator who performed the action that triggered the webhook.<br />Example: `"tester"`                                                          |
+| `happenedAt`        | The time when the action that triggered the webhook occurred.<br />Example: `"2023-12-24T19:04:01.6699268Z"`                                        |
+| `changes`           | An array of strings detailing the changes that were made.<br />Example: `["Turn off flag: test"] or ["Update rule: Rule 1", "Update rule: Rule 2"]` |
+| `organization.id`   | The ID of the organization.<br />Example: `"2c3f7175-60b0-4d4d-9205-772f118cc719"`                                                                  |
+| `organization.name` | The name of the organization.<br />Example: `"My Organization"`                                                                                     |
+| `project.id`        | The ID of the project.<br />Example: `"71d204b5-f4c1-4cda-9621-b0000003f220"`                                                                       |
+| `project.name`      | The name of the project.<br />Example: `"WebApp"`                                                                                                   |
+| `environment.id`    | The ID of the environment.<br />Example: `"3cd33e9e-2ee9-472f-95e0-0e3e82938885"`                                                                   |
+| `environment.name`  | The name of the environment.<br />Example: `"Prod"`                                                                                                 |
+| `data.kind`         | The type of data being processed (either "feature flag" or "segment").<br />Example: `"feature flag"` or `"segment"`                                |
+| `data.object.*`     | The properties of the object being processed. This could be a feature flag or a segment, depending on `data.kind`.                                  |
+
+### Handlebars Helpers
+
+Besides the [built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.html), we also provide some custom helpers to make it easier to build the payload template.
+
+#### eq
+
+The `eq` helper is used to compare two values. It returns the block if the two values are equal, and the inverse block otherwise.
+
+```typescript
+Handlebars.registerHelper('eq', function (a, b, options) {
+  return a === b ? options.fn(this) : options.inverse(this);
+});
+```
+
+Example: Render the block if the `value` equals `a`
+```handlebars
+{{#eq value "a"}}
+  A
+{{/eq}}
+```
+
+#### json
+
+The `json` helper is used to convert an object to JSON string. It is useful when you want to include an object in the payload template.
+
+```typescript
+Handlebars.registerHelper('json', function (obj) {
+  // disable HTML-escaping of return values
+  // ref: https://handlebarsjs.com/guide/expressions.html#prevent-html-escaping-of-helper-return-values
+  return new Handlebars.SafeString(JSON.stringify(obj, null, 2));
+});
+```
+
+Example: Show the JSON string of an object
+```handlebars
+{{json theObject}}
+```
+
+You can test these helpers [online](https://handlebarsjs.com/examples/simple-expressions.html).
+
+### Example Templates
+
+#### Build change text
+
+```handlebars
+{
+{{#eq data.kind "feature flag"}}
+  "text": "Feature flag {{data.object.name}} was changed by {{operator}} at {{happenedAt}}. Changes: {{#each changes}}{{this}}{{#unless @last}};{{/unless}}{{/each}}"
+{{/eq}}
+{{#eq data.kind "segment"}}
+  "text": "Segment {{data.object.name}} was changed by {{operator}} at {{happenedAt}}. Changes: {{#each changes}}{{this}}{{#unless @last}};{{/unless}}{{/each}}"
+{{/eq}}
+}
+```
+
 ## Live Debug
 
 ## Validating webhook deliveries
