@@ -1,3 +1,5 @@
+import {Callout} from 'nextra/components'
+
 # Webhooks
 
 ## Overview
@@ -184,8 +186,8 @@ This will help you avoid spending server time to process deliveries that are not
 To do this, you need to
 
 1. Provide a `secret` while creating the webhook. Note that you should securely store this secret.
-2. In your code that handles webhook deliveries, you should calculate a hash using your `secret` token and the `payload` contents.
-3. Compare the hash that FeatBit sent (the value of the `X-Hub-Signature-256` header) with the hash that you calculated, and ensure that they match.
+2. In your code that handles webhook deliveries, you should compute an HMAC with the SHA256 hash function. Use your `secret` as the key, and use the payload contents as the message.
+3. Compare the signature that FeatBit sent (the value of the `X-Hub-Signature-256` header) with the signature that you computed, and ensure that they match.
 
 There are a few important things to keep in mind when validating webhook payloads:
 
@@ -205,3 +207,28 @@ If your implementation is correct, the signatures that you generate should match
 
 - signature: `757107ea0eb2509fc211221cce984b8a37570b6d7586c22c46f4379c8b043e17`
 - X-Hub-Signature-256: `sha256=757107ea0eb2509fc211221cce984b8a37570b6d7586c22c46f4379c8b043e17`
+
+## Best practices
+
+### Respond within 10 seconds
+
+Your server should respond with a `2XX` response within `10` seconds of receiving a webhook delivery. If your server takes longer than that to respond, then FeatBit terminates the connection and considers the delivery a failure.
+
+To respond in a timely manner, you may want to set up a queue to process webhook payloads asynchronously. Your server can respond when it receives the webhook, and then process the payload in the background without blocking future webhook deliveries.
+
+### Only listen to event types your integration requires
+
+Configure your webhook endpoints to receive only the types of events required by your integration. Listening for extra events (or all events) puts undue strain on your server and we don’t recommend it.
+
+### Use a webhook secret
+
+You should set a webhook secret for your webhook and verify that the signature of each webhook delivery matches the secret. This helps to ensure that the webhook delivery is from FeatBit. For more information, see ["Validating webhook deliveries"](#validating-webhook-deliveries).
+
+The webhook secret should be a random string of text with high entropy. You should securely store your webhook secret in a way that your server can access.
+
+### Use the X-FeatBit-Delivery header
+
+In a replay attack, a bad actor intercepts a webhook delivery and re-sends the delivery. To protect against replay attacks, you can use the `X-GitHub-Delivery` header to ensure that each delivery is unique.
+<Callout type="info">
+    If we're doing a redelivery, the `X-GitHub-Delivery` header will be the same as in the original delivery.
+</Callout>
