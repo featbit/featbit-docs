@@ -6,7 +6,10 @@ import {Callout} from 'nextra/components'
 
 This topic explains how to create and use webhooks in FeatBit. FeatBit's webhooks allow you to build your own
 integrations that subscribe to flag/segment changes in FeatBit. When a feature flag or a segment is updated,
-FeatBit sends an HTTP POST payload to the webhook's configured URL.
+FeatBit sends an HTTP POST request to the webhook's configured URL.
+
+Each webhook request has a timeout limit of **10 seconds**. If the request failed, such as a disruption in the connection or the receiving server being unavailable,
+FeatBit will attempt to resend the request up to **3 times**, with a delay of **2 seconds** between each retry. This ensures that temporary issues do not result in missed updates.
 
 ## Webhook Events
 
