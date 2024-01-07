@@ -1,5 +1,6 @@
 {
-  "datadog": "DataDog",
+  "observability": "Observability",
+  "data-analytic": "Data Analytic",
   "api-access-tokens": "API Access Token",
   "single-sign-on": "Single Sign-On",
   "webhooks": "Webhooks"
