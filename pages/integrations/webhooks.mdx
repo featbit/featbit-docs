@@ -146,7 +146,7 @@ Besides the [built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.ht
 
 The `eq` helper is used to compare two values. It returns the block if the two values are equal, and the inverse block otherwise.
 
-```typescript
+```javascript
 Handlebars.registerHelper('eq', function (a, b, options) {
   return a === b ? options.fn(this) : options.inverse(this);
 });
@@ -163,7 +163,7 @@ Example: Render the block if the `value` equals `a`
 
 The `json` helper is used to convert an object to JSON string. It is useful when you want to include an object in the payload template.
 
-```typescript
+```javascript
 Handlebars.registerHelper('json', function (obj) {
   // disable HTML-escaping of return values
   // ref: https://handlebarsjs.com/guide/expressions.html#prevent-html-escaping-of-helper-return-values
