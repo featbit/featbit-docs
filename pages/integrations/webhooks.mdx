@@ -180,64 +180,7 @@ You can test these helpers [online](https://handlebarsjs.com/examples/simple-exp
 
 ### Example Templates
 
-#### Slack notification template
-
-We can use the [Slack Sending Messages Api](https://api.slack.com/messaging/sending#publishing) to send a notification to a Slack channel.
-
-**Preview**
-
-![](../integrations/assets/webhooks/slack-message-example.png)
-
-**Template**
-```handlebars
-{
-   "channel":"YOUR_CHANNEL_ID",
-   "blocks":[
-      {
-         "type":"header",
-         "text":{
-            "type":"plain_text",
-            "text":"[{{organization.name}}/{{project.name}}/{{environment.name}}]"
-         }
-      },
-      {
-         "type":"section",
-         "fields":[
-            {
-               "type":"mrkdwn",
-               "text":"*{{#eq data.kind "feature flag"}}Feature flag{{/eq}}{{#eq data.kind "segment"}}Segment{{/eq}}:*\n{{data.object.name}}"
-            },
-            {
-               "type":"mrkdwn",
-               "text":"*Event:*\n{{events}}"
-            }
-         ]
-      },
-      {
-         "type":"section",
-         "fields":[
-            {
-               "type":"mrkdwn",
-               "text":"*Operator:*\n{{operator}}"
-            },
-            {
-               "type":"mrkdwn",
-               "text":"*Happened At:*\n{{happenedAt}}"
-            }
-         ]
-      },
-      {
-         "type":"section",
-         "fields":[
-            {
-               "type":"mrkdwn",
-               "text":"*Changes:*\n{{#each changes}}• {{this}}{{#unless @last}}\n{{/unless}}{{/each}}"
-            }
-         ]
-      }
-   ]
-}
-```
+- [Slack Notification](../integrations/chat-apps/slack#message-template)
 
 ## Live Debug
 
