@@ -1,5 +1,3 @@
-import { Callout } from 'nextra/components'
-
 # New Relic One
 
 FeatBit offers the following ways to integrate with New Relic One:
@@ -22,7 +20,7 @@ You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then cre
 7. Add the header **X-Api-Key** for authorization. You can find the API key [in this official tutorial](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
 8. In the **Payload Template** enter the following template (you can also customize your own payload template):
 
-```json
+```handlebars
 {
     "deployment": {
 {{#eq data.kind "feature flag"}}

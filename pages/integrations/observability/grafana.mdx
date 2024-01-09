@@ -1,5 +1,3 @@
-import { Callout } from 'nextra/components'
-
 # Grafana
 
 ## Overview
@@ -44,7 +42,7 @@ You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then cre
 7. Add the header **Authorization** for authorization. It uses bearer token for authorization. The token is the service account token you generated in the previous section.
 8. In the **Payload Template** enter the following template (you can also customize your own payload template):
 
-```json
+```handlebars
 {
 {{#eq data.kind "feature flag"}}
   "tags":["featbit-feature-flag", "env:{{environment.name}}", "proj:{{project.name}}"],
