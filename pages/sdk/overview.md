@@ -75,7 +75,7 @@ We are continuously dedicated to expanding our platform support. However, it is 
 
 #### Javascript
 
-We provide a [OpenFeature provider for Node.js SDK](https://github.com/featbit/openfeature-provider-node-server) for you to use. This SDK can be used in your console APP or Express.js and other web application framework APP.
+We provide a [OpenFeature provider for Javascript SDK](https://github.com/featbit/featbit-js-client-openfeature-provider) for you to use. Be aware, this is a client side SDK, it is intended for use in a single-user context, which can be mobile, desktop or embedded applications. This SDK can only be ran in a browser environment, it is not suitable for NodeJs applications.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
