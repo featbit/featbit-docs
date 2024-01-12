@@ -10,7 +10,7 @@ You can utilize FeatBit's Webhook integration to transmit updates about flags, e
 
 To use the Grafana integration, you need to create a Grafana service account and generate a service account token:
 
-1. In Grafana, open the the **Administration** menu and select "Service accounts." The "Service accounts" tab appears.
+1. In Grafana, open the **Administration** menu and select "Service accounts." The "Service accounts" tab appears.
 
 ![](../../integrations/assets/grafana/add-service-account.png)
 
@@ -27,7 +27,7 @@ To use the Grafana integration, you need to create a Grafana service account and
 
 ![](../../integrations/assets/grafana/add-service-account-4.png)
 
-9. Copy the token and save if somewhere secure. Grafana displays this token only once, so you must copy and store it now. You will use it to set up the Grafana integration in LaunchDarkly.
+9. Copy the token and save if somewhere secure. Grafana displays this token only once, so you must copy and store it now. You will use it to set up the Grafana integration in FeatBit.
 
 ## Setting up WebHook for Grafana integration
 
@@ -36,8 +36,8 @@ You can use FeatBit's Webhook to subscribe to changes in Feature Flags, then cre
 1. On the menu, under **Integrations**, select **Webhook** to access the webhook configuration page.
 2. Click the **+ Add** button. 
 3. In the 'Add Webhook' drawer, enter the **Name** for the webhook.
-4. Enter the URL of the Grafana's Annotation API. You can find the API URL in the [official tutorial](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/).
-5. Select the scope of WebHook you wish to subscrilbe to by choosing the **Project** and **Environments**.
+4. Enter the URL of the Grafana Annotation API. You can find the API URL in the [official tutorial](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/).
+5. Select the scope of WebHook you wish to subscribe to by choosing the **Project** and **Environments**.
 6. Choose the **Events** you want to subscribe to. For this tutorial, select **Flag Change** and **Segment**.
 7. Add the header **Authorization** for authorization. It uses bearer token for authorization. The token is the service account token you generated in the previous section.
 8. In the **Payload Template** enter the following template (you can also customize your own payload template):
@@ -76,7 +76,7 @@ To add FeatBit Webhook events as annotations in Grafana dashboards:
 
 3. Click **Annotations**.
 4. Click **New query**. The "New annotation" page appears.
-5. Enter a human readable name for the annotation, such as "LaunchDarkly feature flags."
+5. Enter a human-readable name for the annotation, such as "FeatBit feature flags."
 6. In the **Data source** menu, select "-- Grafana --."
 7. In the **Filter by** menu, select "Tags."
 8. In the **Tag** field, enter tag(s) that you specified in the webhook. These are tags that you used to filter the annotations that appear on your dashboard.

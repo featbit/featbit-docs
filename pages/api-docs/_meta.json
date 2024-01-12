@@ -1,6 +1,6 @@
 {
   "overview": "Overview",
   "using-featbit-rest-api": "Using FeatBit REST API",
-  "get-users-feature-flags-with-api": "Evaluate Flags using APIs",
+  "flag-evaluation-api": "Flag Evaluation API",
   "faq": "FAQ"
 }
