@@ -19,7 +19,7 @@ In this guide, you will:
 * Create and update FeatBit resources using the REST API
 * Learn common use cases for working with the REST API
 
-### Prerequisites <a href="#prerequisites" id="prerequisites"></a>
+### Prerequisites
 
 To complete this guide, you must have the following prerequisites:
 
@@ -29,41 +29,39 @@ To complete this guide, you must have the following prerequisites:
   * [Postman](https://www.postman.com/)
   * [FeatBit API documentation](overview.md)
 
-#### Curl <a href="#curl" id="curl"></a>
+#### Curl
 
 [Curl](https://curl.se/) is a common command line tool that you can use to make calls to the REST API. This guide uses curl in its examples. You can run the examples in this guide from your own command line.
 
-#### Postman <a href="#postman" id="postman"></a>
+#### Postman
 
 The [Postman](https://www.postman.com/) platform is another option for making calls to the REST API. It offers tooling for setting up, executing, and storing REST requests. You can create a free Postman account and run the examples in this guide from the Postman client.
 
-#### FeatBit API documentation <a href="#launchdarkly-api-documentation" id="launchdarkly-api-documentation"></a>
+#### FeatBit API documentation
 
 The FeatBit API documentation provides examples of each documented request.
 
-#### FeatBit data hierarchy <a href="#launchdarkly-data-hierarchy" id="launchdarkly-data-hierarchy"></a>
+#### FeatBit data hierarchy
 
-FeatBit accounts can contain one or more **projects**. A project can contain multiple **environments**, and **feature flags** exist within an environment of a project. When you create a new flag, it is created only in that environment. All flag configuration settings are specific to each environment. The changes you make in one environment do not apply to any other environment. If you want to, you can configure the same flag in a unique way for every environment you have.
+An **organization** can contain one or more **projects**. A project can contain multiple **environments**, and **feature flags** exist within an environment of a project. When you create a new flag, it is created only in that environment. All flag configuration settings are specific to each environment. The changes you make in one environment do not apply to any other environment. If you want to, you can configure the same flag in a unique way for every environment you have.
 
 Many software projects have a test, staging, and production environment within each project. In FeatBit, you can define any environment structure that suits your organization's needs. For example, your mobile team might need `android test`, `android prod`, `ios test`, and `ios prod` environments in a "Mobile apps" project.
 
-### Setting up your headers <a href="#setting-up-your-headers" id="setting-up-your-headers"></a>
+### Setting up your headers
 
-Each request you make has a required header information. The header comprises a key/value pair. Many tools for making requests, including curl and Postman, save these headers for you across requests.
+Each request you make has the required header information. The header comprises a key/value pair. Many tools for making requests, including curl and Postman, save these headers for you across requests.
 
 <Callout type="info">
 If you are using Postman, make sure the **Host** and **Content-Length** headers are selected. Those two headers are added automatically if you are using **curl** or other tools.
 </Callout>
 
-#### Required headers <a href="#required-headers" id="required-headers"></a>
+#### Required headers
 
 For all requests, the `Authorization` header is required. This header authenticates you and checks whether you are authorized to take the requested action on the specified resource. For example, if you request information about a project, but you do not have read access to that project, the response will be an error indicating you don't have sufficient permission.
 
 The value of the `Authorization` header is an API access token. The access token can be either a personal or service token. In FeatBit, you can create access tokens from the **Integrations/Access tokens** page. For this guide, you'll need a token with feature flag **ManageFeatureFlag** permission, so select the **ManageFeatureFlag** permission (it is selected by default) when you create your token.
 
 To learn more, read [Creating API access tokens](../integrations/api-access-tokens.md).
-
-You cannot use SDK keys as access tokens
 
 For all requests that include a request body, the API requires a `Content-Type` header with the value `application/json`. If the request does not include a body, the API ignores the `Content-Type` header. This means it is safe to always include the `Content-Type` header, even when the API doesn't require it.
 
@@ -77,9 +75,9 @@ curl -X GET 'http://localhost:5000/api/v1/envs/9d782f01-6ffb-4a7c-83a2-79304d801
 
 In this example, the `-X` option specifies the type of request, `PATCH`. The URL specifies the resource that the request is acting on. Each `-H` option specifies a header that will be included in the request. You must include the `-X`, request type, URL, and headers each time you use curl to make a request.
 
-### Exercise: Reading flag list <a href="#exercise-reading-flag-and-environment-information" id="exercise-reading-flag-and-environment-information"></a>
+### Exercise: Reading flag list
 
-#### Getting the environment Id <a href="#reading-a-flag" id="reading-a-flag"></a>
+#### Getting the environment Id
 
 As mentioned above, feature flags are environment specific. To list the feature flags of an environment, we need the environment ID (in the feature, it would be possible to call API with environment key).
 
