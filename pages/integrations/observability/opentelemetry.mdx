@@ -1,84 +1,35 @@
-import {Callout} from 'nextra/components'
-
 # Open Telemetry
 
 ## Overview
 
-FeatBit's backend services, including the Api, Evaluation-Server, and Data Analytic Service, can be seamlessly instrumented with OpenTelemetry. This integration allows you to send logs, traces, and metrics to observability backends, enabling you to gain insights into FeatBit's performance and behavior.
+FeatBit's backend services, including the Api, Evaluation-Server, and Data Analytic Service, are instrumented with
+OpenTelemetry to publish observability metrics, traces, and logs, enabling you to gain insights into FeatBit's
+performance and behavior.
 
 ## Configuration
 
-You can use the **auto-instrumentation approach provided by OpenTelemetry** to instrument FeatBit's services without modifying the source code.
+### Basic Configuration
 
-### Api & Evaluation-Server Service
+To enable OpenTelemetry, the following environment variables need to be set for each service:
 
-FeatBit's Api and Evaluation-Server services are written in .NET/C#. We use [.NET Automatic Instrumentation](https://opentelemetry.io/docs/languages/net/automatic/) to instrument these services.
+- `ENABLE_OPENTELEMETRY`: Tells the app that OpenTelemetry is enabled. Set to `true` to enable OpenTelemetry.
+- `OTEL_SERVICE_NAME`: This is used to identify the service in the observability backends. Set to the name of the
+  service. For example, `featbit-api` for the Api service, `featbit-els` for the Evaluation-Server service,
+  and `featbit-das` for the Data Analytic service.
+- `OTEL_EXPORTER_OTLP_ENDPOINT`: Sets the **grpc endpoint** of the OpenTelemetry exporter. For
+  example: `http://otel-collector:4317`.
 
-The following environment variables are required to enable OpenTelemetry for these services:
+### Additional Configuration
 
-<Callout type="info">
-    **NOTE**: Replace `OTEL_SERVICE_NAME` with the corresponding service name. For example, `featbit-api` for the Api
-    service, and `featbit-els` for the Evaluation-Server service.
-</Callout>
+FeatBit's Api and Evaluation-Server services are written in .NET/C#, are instrumented with
+using [.NET Automatic Instrumentation](https://opentelemetry.io/docs/languages/net/automatic/). For a complete list of
+supported environment variables, refer to
+the [documentation](https://github.com/open-telemetry/opentelemetry-dotnet-instrumentation/blob/main/docs/config.md).
 
-```ini
-# Tells our app that the OpenTelemetry is enabled
-ENABLE_OPENTELEMETRY=true
-
-# OpenTelemetry .NET Automatic Instrumentation environment variables
-CORECLR_ENABLE_PROFILING="1"
-CORECLR_PROFILER='{918728DD-259F-4A6A-AC2B-B85E1B658318}'
-CORECLR_PROFILER_PATH="/app/linux-x64/OpenTelemetry.AutoInstrumentation.Native.so"
-DOTNET_ADDITIONAL_DEPS="/app/AdditionalDeps"
-DOTNET_SHARED_STORE="/app/store"
-DOTNET_STARTUP_HOOKS="/app/net/OpenTelemetry.AutoInstrumentation.StartupHook.dll"
-OTEL_DOTNET_AUTO_HOME="/app"
-
-OTEL_SERVICE_NAME=<REPLACE_WITH_THE_CORRESPONDING_SERVICE_NAME>
-```
-
-Additionally, you need to configure the OTEL exporter.
-Here's an example of how to configure the OTEL exporter to send telemetry data to an OpenTelemetry Collector using OTLP over gRPC:
-
-```ini
-OTEL_TRACES_EXPORTER=otlp
-OTEL_METRICS_EXPORTER=otlp
-OTEL_LOGS_EXPORTER=otlp
-OTEL_EXPORTER_OTLP_PROTOCOL=grpc
-OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
-```
-
-Refer to the [documentation](https://github.com/open-telemetry/opentelemetry-dotnet-instrumentation/blob/main/docs/config.md) for a complete list of supported environment variables.
-
-### Data Analytic Service
-
-FeatBit's Data Analytic service is written in Python. We use the [Python Automatic Instrumentation](https://opentelemetry.io/docs/languages/python/automatic/) to instrument the service.
-
-```ini
-# Tells our app that the OpenTelemetry is enabled
-ENABLE_OPENTELEMETRY=true
-
-# OpenTelemetry Python Automatic Instrumentation environment variables
-OTEL_PYTHON_LOG_CORRELATION=true
-OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
-OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
-
-OTEL_SERVICE_NAME=featbit-das
-```
-
-Similar to the .NET services, you need to configure the OTEL exporter.
-Here's an example of how to configure the OTEL exporter to send telemetry data to an OpenTelemetry Collector using OTLP over gRPC:
-
-```ini
-OTEL_TRACES_EXPORTER=otlp
-OTEL_METRICS_EXPORTER=otlp
-OTEL_LOGS_EXPORTER=otlp
-OTEL_EXPORTER_OTLP_PROTOCOL=grpc
-OTEL_EXPORTER_OTLP_INSECURE=true
-OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
-```
-
-Refer to the [documentation](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html) for a complete list of supported environment variables.
+The Data Analytic service, written in Python, is instrumented using
+the [Python Automatic Instrumentation](https://opentelemetry.io/docs/languages/python/automatic/). For a complete list
+of supported environment variables, refer to
+the [documentation](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html).
 
 ## A Ready-To-Run Example
 
