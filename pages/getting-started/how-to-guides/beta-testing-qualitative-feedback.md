@@ -6,9 +6,9 @@
 
 ![](../../getting-started/assets/beta-testing/001.webp)
 
-Beta version of the software is released to a limited number of end-users of the product to obtain feedback on the product quality. Beta testing reduces product failure risks and provides increased quality of the product through customer validation.
+Beta version of the software is released to a limited number of end-users of the product to obtain feedback on the product quality. [Beta testing](https://www.featbit.co) reduces product failure risks and provides increased quality of the product through customer validation.
 
-Beta testing with feature management is far less painful than without. In a feature management setting, developers build the new incomplete feature — while attaching a feature flag to it, of course — and then empower product managers to release it to select beta users. In addition to controlling the beta test itself, PMs can also control who to include in the beta group. With PMs thus empowered, developers can spend less time administering beta tests and more time building high-value functionality. And both parties can manage all of this in the FeatBit dashboard.
+Beta testing with [feature management](https://www.featbit.co/blogs/Free-and-Open-Source-Feature-Flag-Tools) is far less painful than without. In a feature management setting, developers build the new incomplete feature — while attaching a feature flag to it, of course — and then empower product managers to release it to select beta users. In addition to controlling the beta test itself, PMs can also control who to include in the beta group. With PMs thus empowered, developers can spend less time administering beta tests and more time building high-value functionality. And both parties can manage all of this in the FeatBit dashboard.
 
 Owing to the ease of running beta tests with FeatBit, teams end up conducting more tests than they would otherwise. Consequently, they gather more customer feedback earlier in the development process. Product updates are more thoroughly vetted by customers as a result. In heeding customer feedback, developers avoid wasting months building things that flop when brought to market. Instead, they devote their time to creating features and services that customers love.
 

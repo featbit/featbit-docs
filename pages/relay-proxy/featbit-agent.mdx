@@ -11,7 +11,7 @@ FeatBit Agent (the GitHub repo is [here](https://github.com/featbit/featbit-agen
 
 FeatBit Agent provides four important features:
 
-* **Performance**: FeatBit Agent caches the feature flags and segments in memory. A single FeatBit Agent instance running on a machine with minimal resources can support thousands of WebSocket connections, you can scale it up to support tens of thousands of WebSocket connections without duplicating FeatBit Server. &#x20;
+* **Performance**: FeatBit Agent caches the [feature flags](https://www.featbit.co) and segments in memory. A single FeatBit Agent instance running on a machine with minimal resources can support thousands of WebSocket connections, you can scale it up to support tens of thousands of WebSocket connections without duplicating FeatBit Server. &#x20;
 * **Low latency**: The FeatBit Agent has the capability to run in close proximity to end users, resulting in a significant reduction in latency for users located far from the FeatBit Server.
 * **Data Protection**: When you deploy FeatBit Agent on your customer's infrastructure, you can configure it to either not forward user usage data to the FeatBit Server and keep the data locally, or to perform data anonymization before sending it to the FeatBit Server. This ensures compliance with GDPR and other data protection laws, and promotes the protection of user data and privacy.
 * **Resilience**: The FeatBit Agent is designed to survive restarts and operate properly even if you lose connection to your FeatBit Server.
@@ -41,4 +41,4 @@ When using Redis as storage solution, multiple agents can share the same Redis, 
 
 Offline mode should be used when you don't have a connection to the FeatBit Server. It can also be used when you need to have full control over both the data your clients receive and which environment keys can be used to access it.
 
-Since this mode does not connect to a FeatBit Server, it requires a JSON dump of feature flags, segments and environment keys. You can configure FeatBit Server to send this dump to your FeatBit Agent instance by creating a relay proxy on the FeatBit UI or by starting the Agent with a dump file containing the data.
+Since this mode does not connect to a FeatBit Server, it requires a JSON dump of [feature flags](https://www.featbit.co), segments and environment keys. You can configure FeatBit Server to send this dump to your FeatBit Agent instance by creating a relay proxy on the FeatBit UI or by starting the Agent with a dump file containing the data.
