@@ -18,7 +18,7 @@ We assume that you've already completed the last three tutorials in "Get Started
 
 ## Use segment as a subscription group
 
-You have lots of feature flags to control features and several subscriptions. Each subscription is allowed to access some of features which are controlled by feature flags.
+You have lots of [feature flags](https://www.featbit.co) to control features and several subscriptions. Each subscription is allowed to access some of features which are controlled by feature flags.
 
 You need to create standard subscription segment to access features. For example, you can create a subscription named "Basic Subscription".
 
@@ -48,4 +48,4 @@ You can see feature usage statistics in **Reporting** tab of a feature flag.
 
 ![](../../getting-started/assets/entitlement/005.webp)
 
-FeatBit didn't allow you to create a customized dashboard for managing features, but we think it's a must-have feature in many situations when teams manage their entitlement. Especially when they connect their entitlement system with the billing system for monetizing their software.
+FeatBit didn't allow you to create a customized dashboard for [feature management](https://www.featbit.co/blogs/Free-and-Open-Source-Feature-Flag-Tools), but we think it's a must-have feature in many situations when teams manage their entitlement. Especially when they connect their entitlement system with the billing system for monetizing their software.

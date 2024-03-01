@@ -1,4 +1,4 @@
-# Testing in production
+# [Testing in production](https://www.featbit.co)
 
 > What is **Testing in production**
 >
@@ -8,7 +8,7 @@
 
 We assume that you've already completed the last 3 tutorials in "Get Started":
 
-* You have successfully created two feature flags `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.md).
+* You have successfully created two [feature flags](https://www.featbit.co) `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.md).
 * You have basic experience with how to [interact with the "`Dino Game` " demo](../try-interacting-with-the-demo.md).
 * You know how to [connect an SDK](../connect-an-sdk/) to your program or to "Dino Game" demo:
   * Download a demo code sample
@@ -69,7 +69,7 @@ We go back to the feature flag list and open "game runner" feature flag's "Targe
 
 ![](../../getting-started/assets/testing-in-production/007.webp)
 
-The configuration above means if users is in segment "my lovely QA team", DinoGame will release to this user. This configuration can also be implemented in other feature flags for testing in production for other features, like "difficulty mode".
+The configuration above means if users is in segment "my lovely QA team", DinoGame will release to this user. This configuration can also be implemented in other [feature flags](https://www.featbit.co) for testing in production for other features, like "difficulty mode".
 
 ![](../../getting-started/assets/testing-in-production/008.webp)
 

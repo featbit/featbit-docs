@@ -2,7 +2,7 @@
 
 ## Overview
 
-This topic explains how to manage team members, team maintainers, and team permissions in FeatBit.
+This topic explains how to manage team members, team maintainers, and team permissions in FeatBit (an [open source feature flags](https://www.featbit.co/blogs/Free-and-Open-Source-Feature-Flag-Tools) service).
 
 ## **Managing members in default Team**
 

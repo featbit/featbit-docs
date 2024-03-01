@@ -17,7 +17,7 @@ Benefits of scheduling flag changes include:
 * **Temporary access**: You can schedule rules that target certain contexts and segments to be added to or removed from your flag’s targeting to better manage customer access.
 * **Flag hygiene**: You can schedule your flag’s targeting rules to clean up once your flag has been rolled out to 100% of your user base.
 
-### Creating scheduled flag changes 
+### Creating scheduled [feature flags](https://www.featbit.co) changes 
 
 To schedule a set of flag changes:
 
