@@ -6,16 +6,16 @@
 2. Create a feature flag or select an existing one and click on next
 3. Copy the **Open API Endpoint** from the **SDK Configs** section
 
-![](/assets/faq/001.png)
+![](./assets/faq/001.png)
 
 ## How to check the REST API doc
 
 You have two ways to check the REST API doc
 
-1. You can check it on the demo site: [https://featbit-tio-eu-api.azurewebsites.net/docs/index.html](https://featbit-tio-eu-api.azurewebsites.net/docs/index.html)
+1. You can check it on the demo site: https://featbit-tio-api.zeabur.app/docs/index.html
 2. If you are running FeatBit on premise, find the OPEN API Endpoint and add the suffix **/docs/index.html**
 
-![](/assets/faq/002.png)
+![](./assets/faq/002.png)
 
 for example: it should be **http://localhost:5000/docs/index.html** in the above example.
 
