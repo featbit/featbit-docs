@@ -12,7 +12,7 @@
 
 You have two ways to check the REST API doc
 
-1. You can check it on the demo site: https://featbit-tio-api.zeabur.app/docs/index.html
+1. You can check it on the demo site: https://app-api.featbit.co/docs/index.html
 2. If you are running FeatBit on premise, find the OPEN API Endpoint and add the suffix **/docs/index.html**
 
 ![](./assets/faq/002.png)
