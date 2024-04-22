@@ -42,13 +42,34 @@ curl -X POST {Host}/api/public/sdk/client/latest-all \
 **Response**
 
 ```json
-[
-    {
-       "id":"hello-world",
-       "variation":"true",
-       "variationType":"boolean"
-    }
-]
+{
+   "messageType":"data-sync",
+   "data":{
+      "eventType":"full",
+      "userKeyId":"bot-id",
+      "featureFlags":[
+         {
+            "id":"/hello-world",
+            "variation":"false",
+            "variationType":"boolean",
+            "variationId":"3f02a597-a150-4c3f-83b9-27a2de80c7dc",
+            "matchReason":"flag disabled",
+            "variationOptions":[
+               {
+                  "id":"fafb6319-9270-4a4b-b2c3-12d2be29e69a",
+                  "value":"true"
+               },
+               {
+                  "id":"3f02a597-a150-4c3f-83b9-27a2de80c7dc",
+                  "value":"false"
+               }
+            ],
+            "sendToExperiment":false,
+            "timestamp":1712755780494
+         }
+      ]
+   }
+}
 ```
 
 ## Server Side
