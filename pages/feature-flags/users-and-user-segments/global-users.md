@@ -1,11 +1,9 @@
 # Global Users
 
-Global users can be used across all projects and environments in your organization.
+Global users can be used across the whole workspace.
 
 1. You can add a global user to a feature flag or a segment's Targeting rules.
 2. You can add a global user to a shared segment's Targeting rules.
-
-This can simplify the feature flag and segment target settings across multiple projects and teams.
 
 For example, a QA team might be responsible for testing new features across multiple projects. Instead of configuring the same QA segments in each environment and project every time, you can create a global user for the QA team and add it to the global shared QA segments. This prevents redundant work.
 
