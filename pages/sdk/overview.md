@@ -32,9 +32,15 @@ We provide a variety of client-side, server-side, and mobile SDKs to choose from
 
 ### Javascript
 
-We provide a client-side [Javascript/Typescript SDK](https://github.com/featbit/featbit-js-client-sdk). We also provide a "Dino Game" sample for [React](https://github.com/featbit/featbit-samples/tree/main/samples/dino-game/interactive-demo-react) and [Vue](https://github.com/featbit/featbit-samples/tree/main/samples/dino-game/interactive-demo-vue). This SDK works perfectly with Typescript, React, Vue, Angular, etc.
+We provide a client-side [Javascript/Typescript SDK](https://github.com/featbit/featbit-js-client-sdk). We also provide a "Dino Game" sample for [Vue](https://github.com/featbit/featbit-samples/tree/main/samples/dino-game/interactive-demo-vue). This SDK works perfectly with Typescript, React, Vue, Angular, etc.
 
-The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
+The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it. It also provides a sample project for you to try out.
+
+### ReactJs
+
+We provide a client-side [React SDK](https://github.com/featbit/featbit-react-client-sdk).
+
+The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it.
 
 ### Node.js
 
