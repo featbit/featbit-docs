@@ -26,17 +26,17 @@ To getting started with our SDKs, we offer two ways:
 - Follow the guide in the portal to quickly implement SDK in your project. You can read quick start guide [here](../getting-started/connect-an-sdk).
 - Read the README file of the SDK on GitHub to manually implement SDK in your project.
 
-## Connect SDKs manually
+## Supported SDKs
 
 We provide a variety of client-side, server-side, and mobile SDKs to choose from. You can select the language you're good at to accelerate completing your quick start.
 
-### Javascript
+### JavaScript
 
 We provide a client-side [Javascript/Typescript SDK](https://github.com/featbit/featbit-js-client-sdk). We also provide a "Dino Game" sample for [Vue](https://github.com/featbit/featbit-samples/tree/main/samples/dino-game/interactive-demo-vue). This SDK works perfectly with Typescript, React, Vue, Angular, etc.
 
 The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it. It also provides a sample project for you to try out.
 
-### ReactJs
+### ReactJS
 
 We provide a client-side [React SDK](https://github.com/featbit/featbit-react-client-sdk).
 
@@ -48,22 +48,19 @@ We provide a [server-side Node.js SDK](https://github.com/featbit/featbit-node-s
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-
 ### .NET
 
-We provide a [server-side .NET SDK](https://github.com/featbit/featbit-dotnet-sdk) for you to use. This SDK can be used in your console APP or ASP.NET Core APP.
+We provide .NET SDKs for both client-side and server-side applications.
+- The [Server-Side .NET SDK](https://github.com/featbit/featbit-dotnet-sdk)  is designed primarily for use in multi-user systems such as ASP.NET Core.
+- The [Client-Side .NET SDK](https://github.com/featbit/featbit-dotnet-client-sdk) is intended for use in a single-user context, which can be mobile, desktop or embedded applications.
 
-Although not recommended, it can also work for front-end application such as WPF, WinForm, MAUI, etc.
-
-The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
+The SDK's GitHub repository contains a full tutorial on how to use it. It also provides some examples project for you to try out.
 
 ### Java
 
 We provide a [Java SDK](https://github.com/featbit/featbit-java-sdk) for you to use. This SDK can be used in your console APP or Spring Boot APP. 
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
-
-
 
 ### Python
 
@@ -73,18 +70,9 @@ We provide a [Python SDK](https://github.com/featbit/featbit-python-sdk). The SD
 
 We provide a [Go SDK](https://github.com/featbit/featbit-go-sdk). The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-### REST APIs & WebSocket
-
-We are continuously dedicated to expanding our platform support. However, it is possible that the specific platform you are targeting may not currently have an available SDK. In such instances, we offer two alternatives:
-
-- Use our REST APIs to get feature flags and evaluation result. See the documentation [Evaluation with REST APIs](retrieve-feature-flags-with-api). 
-- Use our WebSocket interface to get real-time feature flags update and evaluation result of a feature flag. Please join our [Slack channel](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) to get more information about this feature.
-
-
-
 ### OpenFeature Providers
 
-#### Javascript
+#### JavaScript
 
 We provide a [OpenFeature provider for Javascript SDK](https://github.com/featbit/featbit-js-client-openfeature-provider) for you to use. Be aware, this is a client side SDK, it is intended for use in a single-user context, which can be mobile, desktop or embedded applications. This SDK can only be ran in a browser environment, it is not suitable for NodeJs applications.
 
@@ -102,6 +90,12 @@ We provide a [OpenFeature provider for Java Server SDK](https://github.com/featb
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
+## REST APIs & WebSocket
+
+We are continuously dedicated to expanding our platform support. However, it is possible that the specific platform you are targeting may not currently have an available SDK. In such instances, we offer two alternatives:
+
+- Use our REST APIs to get feature flags and evaluation result. See the documentation [Evaluation with REST APIs](retrieve-feature-flags-with-api).
+- Use our WebSocket interface to get real-time feature flags update and evaluation result of a feature flag. Please join our [Slack channel](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) to get more information about this feature.
 
 ## Contribution
 
