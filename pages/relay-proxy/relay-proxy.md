@@ -15,7 +15,7 @@ The FeatBit UI displays the following agent statuses
 
 ## Restricting who can create and manage relay proxies 
 
-To be able to create a Relay Proxy Configurationn, you must have the **ManageRelayProxies** and **ListRelayProxies** permissions, if you own one of the built-in policies (Owner, Administrator, Developer), you already have these permissions.
+To be able to create a Relay Proxy Configuration, you must have the **ManageRelayProxies** and **ListRelayProxies** permissions, if you own one of the built-in policies (Owner, Administrator, Developer), you already have these permissions.
 
 ![](../relay-proxy/assets/relay-proxy/001.webp)
 
@@ -24,11 +24,10 @@ To be able to create a Relay Proxy Configurationn, you must have the **ManageRel
 You can create an relay proxy configuration from the **Relay Proxies** page.
 
 1.  Navigate to **Relay Proxy** page.
-
-![](../relay-proxy/assets/relay-proxy/002.png)
-2.  Click on the **Add** button on the top right of the page, the **Add Relay Proxy** panel appears\
-![](../relay-proxy/assets/relay-proxy/003.png)
-3. Give your token a human-readable **Name** and a description**.**
+    ![](../relay-proxy/assets/relay-proxy/002.png)
+2.  Click on the **Add** button on the top right of the page, the **Add Relay Proxy** panel appears
+    ![](../relay-proxy/assets/relay-proxy/003.png)
+3. Give your token a human-readable **Name** and a description.
 4. Set the scopes: select the environments from which you want to synchronize the feature flags and segments to the agents.
 5. Set the agent names and hosts
 6. Click **Save** button.
