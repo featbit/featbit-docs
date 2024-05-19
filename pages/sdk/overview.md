@@ -40,7 +40,14 @@ The SDK's GitHub repository contains full tutorials for React and NextJs APPs on
 
 We provide a client-side [React SDK](https://github.com/featbit/featbit-react-client-sdk).
 
-The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it.
+The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it. It also provides three sample projects for you to try out.
+
+### React Native
+
+We provide a client-side [React Native SDK](https://github.com/featbit/featbit-react-native-sdk).
+
+The SDK's GitHub repository contains full tutorials for React Native APPs on how to use it. It also provides two sample projects for you to try out.
+
 
 ### Node.js
 
