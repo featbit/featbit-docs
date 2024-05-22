@@ -1,80 +1,75 @@
 import { Callout } from 'nextra/components'
 
-# 1. Create two feature flags
+# 1. Create a feature flag
 
-In this topic, you will learn how to create [feature flags](https://www.featbit.co) for the demo "Dino Game".
+In this topic, you will learn how to create feature flags for the demo "Dino Game".
 
 ## Prerequisites
 
-We assume that you have successfully installed FeatBit through [Docker Installation](../installation/full-installation.md).
+We assume that 
 
-## Login to the portal
+1. You have successfully logged in to the [FeatBit Cloud](https://app.featbit.co).
+2. Or you have successfully installed FeatBit through [Docker Installation](../installation/full-installation.md).
 
-Before creating the feature flag, you must log in to the portal. Open your browser, and open the website [`http://localhost:8081/`](http://localhost:8081/). Default username and password are:
-
-* username: test@featbit.com
-* password: 123456
-
-![The "login" page.](../getting-started/assets/create-2-feature-flag/001-login.png)
+## Login and Create Organization and Project
 
 If this is your first time login in, you need to specify your organization and project through the guide below. Click on the "Complete" button to finish this step.
 
 ![The "Initialize Organization" page.](../getting-started/assets/create-2-feature-flag/002-init-org.webp)
 
-After completing the process above, you will be redirected to the feature flag list page. You will see an onboarding guide (shown in the image below).
+After completing the process above, you will be redirected to the **Get Started** page. You will see an onboarding guide (shown in the image below).
 
-![The "Onboarding" dialog.](../getting-started/assets/create-2-feature-flag/003.webp)
+![The "Onboarding" dialog.](../getting-started/assets/create-2-feature-flag/get-started.png)
 
-## Create two flags for demo
+## Create a feature flag
 
-### 1. Create a "game runner" feature flag
-
-In the flag list, click **Add** button, and then texts "**game runner**" as the name of the [feature flag](https://www.featbit.co).
+Create a new feature flag and name it "**game runner**" in the dropdown box, then click **Next** button.
 
 <Callout type="info" emoji="ℹ️">
-  This feature flag will be used in the following topics, be sure you have the same information as the image below. The flag's key are case sensitive.
+  This is a quick start, so that you can only create a boolean feature flag in this guide. If you want to create a feature flag with other data types, you can follow the guide in the [Create a feature flag](../feature-flags/create-a-feature-flag/) article.
 </Callout>
 
-![Create "game runner" flag dialog.](../getting-started/assets/create-2-feature-flag/004.webp)
+![](../getting-started/assets/create-2-feature-flag/get-started-001.png)
 
-Click on the "Save" button to create the feature flag, then you will see the detail page of feature flag "game runner".
+## Use feature flag with SDKs
 
-![The "game runner" details page.](../getting-started/assets/create-2-feature-flag/005.webp)
+A feature flag can control remotely the behavior of your application. You can use the feature flag in your application by integrating the FeatBit SDK. In the second step "Connect an SDK", it includes the integration code for the FeatBit SDKs.
 
-> See the article [Targeting users with flags](../feature-flags/targeting-users-with-flags/) to get more information about the Targeting tab.
+![](../getting-started/assets/create-2-feature-flag/get-started-002.png)
 
-### 2. Create a "difficulty mode" feature flag&#x20;
+As image shown above, by default the "Get Started" page showed the code snippet for 5 SDKs:
 
-Go back to "the flag list", create a feature flag, and name it "**difficulty mode**".
+- Javascript SDK for web applications.
+- Node.js SDK
+- Python SDK
+- Java SDK
+- Go SDK
+- .NET SDK for server-side applications
+
+You can copy the code snippet and paste it into your application. The code snippet is a simple example of how to use the FeatBit SDK in your application, it includes:
+
+- Initialize the FeatBit SDK with the API key.
+- Identify the user.
+- Evaluate a feature flag.
+- And so on.
+
+FeatBit also provides other SDKs for different platforms (such as React, React Native, .NET client, and so on), you can find the SDKs in the [SDKs](../sdk/overview) page. In the detail page of each SDK, you will discover the more information and examples of how to use the SDK.
+
+
+## Verification SDK's connection
+
+After integrate the SDK and running your application, you can verify the connection between your application and FeatBit by checking the testing result in the 3rd step of "Get Started". As shown in the image below, you can see the testing result of the feature flag "game runner".
+
+![](../getting-started/assets/create-2-feature-flag/get-started-003.png)
 
 <Callout type="info" emoji="ℹ️">
-  This feature flag will be used in the following topics, be sure you have the same information as the image below. The flag's key are case sensitive.
+  If the verification is failed, it may just a small bug of verification process. You can continue to read the next articles to see if you can control the feature behavior by changing the feature flag's status.
 </Callout>
-
-![Create "difficulty mode" flag dialog.](../getting-started/assets/create-2-feature-flag/006.webp)
-
-In the targeting page of this feature flag, find the flag variation area on the left side panel.
-
-#### 1. To edit variation values
-
-* Enter edit variations mode
-* Modify the value of `true` to `hard`&#x20;
-* Modify the value of `false` to `easy`
-* Add a new variation with the value `normal`
-
-#### 2. Changed the `DateType` from `boolean` to `string`
-
-![Change flag variation.](../getting-started/assets/create-2-feature-flag/007.webp)
-
-#### 3. Click on save button to save the modification.
-
-You will see the return variations are changed:
-
-1. The default rule section's return value is changed from `true` to `hard`
-2. The return variation when feature flag is OFF is changed from `false` to `easy`
-
-![After variation change saved.](../getting-started/assets/create-2-feature-flag/008.png)
 
 ## Next
 
-**Congratulation**, now you have successfully created 2 feature flags, you will learn how to use these feature flags in the next topic ["Try interacting with the demo"](try-interacting-with-the-demo.md).
+In the next topic, you will learn how to play with FeatBit's feature flag and control the feature behavior in the ["Try interacting with the demo"](try-interacting-with-the-demo.md) article.
+```
+
+
+
