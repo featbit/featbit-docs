@@ -1,74 +1,54 @@
 import { Callout } from 'nextra/components'
 
-# 1. Create a feature flag
+# Create a Feature Flag
 
-In this topic, you will learn how to create feature flags for the demo "Dino Game".
+## Introduction
+
+Feature flags, also known as feature toggles, allow developers to enable or disable certain features in their applications dynamically. 
+This guide will walk you through the process of creating and managing feature flags for the Dino Game demo using FeatBit.
+
 
 ## Prerequisites
 
-We assume that 
+Before proceeding, ensure the following:
 
 1. You have successfully logged in to the [FeatBit Cloud](https://app.featbit.co).
-2. Or you have successfully installed FeatBit through [Docker Installation](../installation/full-installation.md).
+2. Alternatively, you have installed FeatBit via [Docker Installation](../installation/full-installation.md).
 
-## Login and Create Organization and Project
+## Initialize Environment
 
-If this is your first time login in, you need to specify your organization and project through the guide below. Click on the "Complete" button to finish this step.
+If this is your initial login, follow the steps below to specify your organization and project name.
 
-![The "Initialize Organization" page.](../getting-started/assets/create-2-feature-flag/002-init-org.webp)
+![Initialize Organization page](../getting-started/assets/create-2-feature-flag/002-init-org.webp)
 
-After completing the process above, you will be redirected to the **Get Started** page. You will see an onboarding guide (shown in the image below).
+Once completed, click the **Get Started** button to proceed.
 
-![The "Onboarding" dialog.](../getting-started/assets/create-2-feature-flag/003.png)
+![Onboarding dialog](../getting-started/assets/create-2-feature-flag/003.png)
 
 ## Create a feature flag
 
-Create a new feature flag and name it "**game runner**" in the dropdown box, then click **Next** button.
+Create a new feature flag named "**game runner**" and click **Next**.
 
 <Callout type="info" emoji="ℹ️">
-  This is a quick start, so that you can only create a boolean feature flag in this guide. If you want to create a feature flag with other data types, you can follow the guide in the [Create a feature flag](create-a-multi-variant-feature-flag) article.
+  This guide demonstrates creating a boolean feature flag for simplicity. For different data types, refer to our [Create a multi-variant feature flag](create-a-multi-variant-feature-flag) guide.
 </Callout>
 
 ![](../getting-started/assets/create-2-feature-flag/get-started.png)
 
-## Use feature flag with SDKs
+## Connect An SDK
 
-A feature flag can control remotely the behavior of your application. You can use the feature flag in your application by integrating the FeatBit SDK. In the second step "Connect an SDK", it includes the integration code for the FeatBit SDKs.
+The second step provides starter code to integrate FeatBit into your app and demonstrates basic usages of the SDK. 
+The image below shows the JavaScript starter code. For a list of supported SDKs, please check out the [SDK Overview](../sdk/overview#supported-sdks) page.
 
 ![](../getting-started/assets/create-2-feature-flag/get-started-002.png)
 
-As image shown above, by default the "Get Started" page showed the code snippet for 5 SDKs:
+## Verify SDK Connection
 
-- Javascript SDK for web applications.
-- Node.js SDK
-- Python SDK
-- Java SDK
-- Go SDK
-- .NET SDK for server-side applications
-
-You can copy the code snippet and paste it into your application. The code snippet is a simple example of how to use the FeatBit SDK in your application, it includes:
-
-- Initialize the FeatBit SDK with the API key.
-- Identify the user.
-- Evaluate a feature flag.
-- And so on.
-
-FeatBit also provides other SDKs for different platforms (such as React, React Native, .NET client, and so on), you can find them in the [SDKs page](../sdk/overview). In the detail page of each SDK, you will discover the more information and examples of how to use the SDK.
-
-
-## Verification SDK's connection
-
-After integrate the SDK and running your application, you can verify the connection between your application and FeatBit by checking the testing result in the 3rd step of "Get Started". As shown in the image below, you can see the testing result of the feature flag "game runner".
+You can verify the connection between your application and FeatBit in the third step of "Get Started" by running the starter code provided in the second step. 
+The image below shows the testing result of the feature flag "game runner".
 
 ![](../getting-started/assets/create-2-feature-flag/get-started-003.png)
 
-<Callout type="info" emoji="ℹ️">
-  If the verification fails, it might just be a small bug in the verification process. You can continue reading the next articles to see if you can control the behavior of the feature by changing its flag status.
-</Callout>
+## Next Steps
 
-## Next
-
-In the next topic, you will learn how to play with FeatBit's feature flag and control the feature behavior in the ["Try interacting with the demo"](try-interacting-with-the-demo.md) article.
-
-
-
+In the following chapter, you will learn how to interact with the Dino Game demo.
