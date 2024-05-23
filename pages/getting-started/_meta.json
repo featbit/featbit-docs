@@ -1,5 +1,5 @@
 {
-  "create-a-feature-flag": "1. Create a feature flag",
+  "create-two-feature-flag": "1. Create a feature flag",
   "try-interacting-with-the-demo": "2. Interacting with the demo",
   "create-a-multi-variant-feature-flag": "3. Create a multi variant flag",
   "connect-an-sdk": "4. Connect an SDK",
