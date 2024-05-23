@@ -4,19 +4,20 @@ import { Callout } from 'nextra/components'
 
 ## Create feature flag
 
-Return to the **Feature Flags** page and click "**+ Add**" button at the top right corner to create a new feature flag.
+To create a feature flag with multiple variants, follow these steps:
 
-Create a feature flag, and name it "difficulty mode", and then:
-
-- Select `string` as the **Variation type**. 
-- Add three variants and give them the values `easy`, `normal`, and `hard`.
+1. Navigate to the **Feature Flags** page.
+2. Click on the "**+ Add**" button located at the top right corner.
+3. Name the feature flag "difficulty mode".
+4. Configure the flag as follows:
+   - Choose **string** as the **Variation type**.
+   - Add three variants: `easy`, `normal`, and `hard`.
 
 ![](../getting-started/assets/create-a-multi-variant-feature-flag/create-feature-flag-001.png)
 
-
-- If the flag is OFF, serve ``easy`` as the default value. 
-- If the flag is ON, serve ``normal`` as the default value.
-- By default, trun the feature flag OFF.
+- If the flag is turned OFF, it serves the `easy` value.
+- If the flag is turned ON, it serves the `normal` value.
+- By default, this flag is set to `OFF`.
 
 ![](../getting-started/assets/create-a-multi-variant-feature-flag/create-feature-flag-002.png)
 
@@ -36,5 +37,5 @@ Follow the instructions in the image above, change the rule, you will see the ch
 
 You have successfully completed the task of creating feature flags and interacting with the demo. In the upcoming topics, you will learn more about:
 
-- [Integrating the FeatBit SDK into your application.](connect-an-sdk.md).
+- [Integrating the FeatBit SDK into your application](connect-an-sdk.md).
 - [Basic guides for using FeatBit](how-to-guides/testing-in-production.md).
