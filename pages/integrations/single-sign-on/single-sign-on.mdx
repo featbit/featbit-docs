@@ -1,0 +1,40 @@
+import {Callout} from 'nextra/components'
+
+# Single Sign-On
+
+<Callout type="info">
+    This article is compatible with FeatBit 3.0.0 and above.
+</Callout>
+
+<Callout type="info">
+    The Single-Sign-On capability is only available for customers on the Enterprise subscription. Check out the [FeatBit plans](https://dashboard.featbit.co/en) for details. You can also try this feature with a trial license, the trial license can be generated here [Featbit dashboard](https://dashboard.featbit.co/account).
+</Callout>
+
+SSO is available on FeatBit(an [open source feature flags](https://www.featbit.co/blogs/Free-and-Open-Source-Feature-Flag-Tools) service) Self-hosted via OpenID Connect. To enable SSO on your self-hosted FeatBit instance, you will need an active license key, and then you may add the SSO settings for your provider.
+
+## SSO Settings
+
+To enable SSO, you will need to add the following settings
+
+### Add environment variable for the FeatBit Api service (You can skip this step if you are using FeatBit SaaS)
+
+- `SSOEnabled`: Set to `true` to enable SSO.
+
+### Add OpenId Connect settings via UI
+
+Once FeatBit successfully launched, go to the UI **http://localhost:8081/workspace** (**https://app.featbit.co/en/workspace** if using SaaS) and add the following settings:
+
+- `clientId`: The OIDC client ID.
+- `clientSecret`: The OIDC client secret.
+- `tokenEndpoint`: The OIDC token endpoint.
+- `clientAuthenticationMethod`: The OIDC client authentication method. Set to `client_secret_post` for most of the time, we also support `client_secret_basic`.
+- `authorizationEndpoint`: The OIDC authorization endpoint.
+- `scope`: The OIDC scopes to request. Set to `openid profile email` for most of the time.
+- `userEmailClaim`: The OIDC user email claim. Set to `email` if you use the above scope.
+
+## Example
+
+We have tested FeatBit SSO with **Keycloak, Okta, and Auth0**, please follow the above links for more details:
+- [Auth0](./auth0)
+- [Keycloak](./keycloak)
+
