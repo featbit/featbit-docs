@@ -1,0 +1,5 @@
+{
+  "single-sign-on": "Single Sign-On",
+  "auth0": "Single Sign-On with Auth0",
+  "keycloak": "Single Sign-On with KeyCloak"
+}
