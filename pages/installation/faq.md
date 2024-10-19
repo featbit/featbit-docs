@@ -60,20 +60,25 @@ ui:
 Cosmos DB always requires an index for the fields being sorted. To use FeatBit with Cosmos DB, you need to create these indexes manually. Below is the script for creating them:
 
 ```javascript
-const createdAtCollections = ["RelayProxies", "Projects", "AccessTokens", "Policies", "AuditLogs"];
+const createdAtCollections = ["RelayProxies", "Projects", "AccessTokens", "Policies", "AuditLogs", "Webhooks"];
 createdAtCollections.forEach(collection => {
     db.getCollection(collection).createIndex(
-        { "createdAt": -1 },
+        { "createdAt": 1 },
         { background: true }
     );
 });
-const updatedAtCollections = ["EndUsers", "FeatureFlags", "Segments"]
+const updatedAtCollections = ["EndUsers", "FeatureFlags", "Segments", "ExperimentMetrics"]
 updatedAtCollections.forEach(collection => {
     db.getCollection(collection).createIndex(
-        { "updatedAt": -1 },
+        { "updatedAt": 1 },
         { background: true }
     );
 });
+
+db.getCollection("Webhooks").createIndex(
+    { "startedAt": 1 },
+    { background: true }
+);
 ```
 
 #### Reference
