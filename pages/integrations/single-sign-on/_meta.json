@@ -1,6 +1,6 @@
 {
   "single-sign-on": "Single Sign-On",
-  "okta": "Single Sign-On with okta",
+  "okta": "Single Sign-On with Okta",
   "auth0": "Single Sign-On with Auth0",
   "keycloak": "Single Sign-On with KeyCloak"
 }
