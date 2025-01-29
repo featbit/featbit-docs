@@ -29,16 +29,36 @@ FeatBit Agent supports two different modes:
 
 Agent is the default mode and should be used by default in most cases. It connects to the FeatBit Server and uses it as the source of truth for feature flags, segments and environment keys.
 
-User uage data can be configured to remain on the agent or to be anonymised before being sent to the FeatBit Server.
+By default, Agent mode uses an in-memory cache to store the features it fetches from the FeatBit Server. However, you may want to use a more persistent storage solution. For this purpose, the FeatBit Agent supports a backup file (.db sqlite), which you can configure by passing in when starting the Agent. The FeatBit Agent will then check on startup to see if the persistent backup option is specified, in which case it will use it to populate its internal caches. This can be useful if your FeatBit server is unreachable.
 
-By default, Agent mode uses an in-memory cache to store the features it fetches from the FeatBit Server. However, you may want to use a more persistent storage solution. For this purpose, the FeatBit Agent supports either Redis or a backup file, which you can configure by passing in when starting the Agent. The FeatBit Agent will then check on startup to see if the persistent backup option is specified, in which case it will use it to populate its internal caches. This can be useful if your FeatBit server is unreachable.
+For now, you can only use relay proxy and manually synchronize the feature flag configuration from the FeatBit server to the FeatBit Agent. Here’s the process:
 
-When using Redis as storage solution, multiple agents can share the same Redis, allowing FeatBit Agent to scale horizontally to a cluster and maintain the data consistancy.
+1. Prepare a virtual machine that can be exposed to the internet with a public IP (or URL) to host the FeatBit Agent, ensuring it is accessible by the FeatBit service.
+2. Create a relay proxy in the FeatBit portal and enter the FeatBit Agent endpoint created in the first step. Copy the Relay Proxy secret token. ([tutorial](https://docs.featbit.co/relay-proxy/relay-proxy#create-a-relay-proxy-configuration)).
+3. Host the FeatBit Agent on the virtual machine created in the first step. ([tutorial](https://github.com/featbit/featbit-agent?tab=readme-ov-file#installation)).
+4. Synchronize the feature flag configuration from the FeatBit server to the FeatBit Agent.
+
+**NOTE**, we're developing a new version of the FeatBit Agent in collaboration with our customer, which will significantly enhance the user experience:
+
+- No need to create a relay proxy and register FeatBit Agent in the FeatBit portal.
+- No need to manually synchronize the feature flag configuration from the FeatBit server to the FeatBit Agent.
+- And so on.
+
+Check out this [GitHub issue](https://github.com/featbit/featbit/issues/665) for more details.
 
 ### Offline Mode
 
 ![](../relay-proxy/assets/featbit-agent/002.webp)
 
+
 Offline mode should be used when you don't have a connection to the FeatBit Server. It can also be used when you need to have full control over both the data your clients receive and which environment keys can be used to access it.
 
-Since this mode does not connect to a FeatBit Server, it requires a JSON dump of [feature flags](https://www.featbit.co), segments and environment keys. You can configure FeatBit Server to send this dump to your FeatBit Agent instance by creating a relay proxy on the FeatBit UI or by starting the Agent with a dump file containing the data.
+Since this mode does not connect to a FeatBit Server, it requires a JSON dump of [feature flags](https://www.featbit.co), segments and environment keys. Here’s the process to get the dump file:
+
+1. Prepare a virtual machine that can be exposed to the internet with a public IP (or URL) to host the FeatBit Agent, ensuring it is accessible by the FeatBit service.
+2. Create a relay proxy in the FeatBit portal and enter the FeatBit Agent endpoint created in the first step. Copy the Relay Proxy secret token. ([tutorial](https://docs.featbit.co/relay-proxy/relay-proxy#create-a-relay-proxy-configuration)).
+3. Host the FeatBit Agent on the virtual machine created in the first step. ([tutorial](https://github.com/featbit/featbit-agent?tab=readme-ov-file#installation)).
+4. Synchronize the feature flag configuration from the FeatBit server to the FeatBit Agent.
+5. The feature flag configuration (featbit.db) will be stored persistently in the FeatBit Agent directory.
+
+Once the FeatBit Agent is restarted, it will load the feature flag configuration from the featbit.db file. You can also host additional FeatBit Agents and copy the featbit.db file to the root directory of each Agent. 
