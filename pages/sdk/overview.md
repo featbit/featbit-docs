@@ -91,6 +91,12 @@ We provide a [OpenFeature provider for Node.js SDK](https://github.com/featbit/o
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
+#### .NET
+
+We provide a [OpenFeature Provider for .NET Server-Side SDK](https://github.com/featbit/openfeature-provider-dotnet-server) for you to use. This SDK can be used in your .NET web or desktop application.
+
+The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
+
 #### Java
 
 We provide a [OpenFeature provider for Java Server SDK](https://github.com/featbit/featbit-openfeature-provider-java-server) for you to use. This SDK can be used in your console APP or Spring Boot APP. 
