@@ -1,0 +1,35 @@
+import { Callout } from 'nextra/components'
+
+## Installation
+
+The fastest way to install FeatBit is to use Docker Compose, which allows you to quickly set up and run FeatBit with all its dependencies in isolated containers. 
+
+FeatBit support three deployment options: **Standalone**, **Standard**, and **Professional**. For more information about the differences between these options, please check [Deployment Options](deployment-options.md).
+
+*   Clone the repository to your server or local machine and boot up the containers.
+
+    ```bash
+    git clone https://github.com/featbit/featbit
+    cd featbit
+
+    # for Standalone version, run
+    docker compose up -d
+    
+    # for Standard version, run
+    docker compose -f docker-compose-standard.yml up -d
+
+    # for Professional version, run
+    docker compose -f docker-compose-pro.yml up -d
+    ```
+* Once all containers have started, go to FeatBit's portal [http://localhost:8081](http://localhost:8081/) and use the default credentials to log in.
+  * username: **test@featbit.com**
+  * password: **123456**
+
+<Callout type="info">
+The Professional version's docker compose file contains a "run once" service called **init-kafka-topics** that creates the kafka topics required by the system. This service is meant to run only once and then exit, so it’s ok for this service to be in Exited status.
+</Callout>
+
+## FAQ
+
+* [How to solve the docker container port conflict problem?](faq.md#how-to-solve-docker-container-port-conflict-problem)
+* [How to make FeatBit portal accessible publically?](faq.md#how-to-make-featbit-portal-accessible-publicly)
