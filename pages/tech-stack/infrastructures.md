@@ -1,39 +1,5 @@
 # Infrastructures
 
-## Database
-
-The main database, used to store all feature flags, segments, end users, etc.
-
-The database provider can be either MongoDB or Postgres, for Data Analytics Service (DAS) it can also be ClickHouse.
-
-In Standalone and Standard version, the DAS will use the same database as the API and ELS, which is
-MongoDB or Postgres, to store the insights data. In Professional version, the DAS will use ClickHouse
-to store the insights data.
-
-## Message Queue
-
-There are two types of messages across the whole system: real-time messages and job messages. Real-time messages should
-be delivered as quickly as possible, while job messages can be processed in sequence, order by the timestamp.
-
-In FeatBit, the real-time messages include feature flag changed and segment changed message, which are used to notify
-the SDKs that data have been updated.
-
-The message queue provider has three options available
-
-1. Postgres. For real-time messages, we use Postgres LISTEN/NOTIFY, for job messages we poll messages in batch, order by
-   the timestamp and handle them one by one.
-2. Redis. For real-time messages, we use Redis PUB/SUB, for job messages we use Redis List's RPUSH/LPOP.
-3. Kafka. We use Kafka's topic and partition system to handle all messages.
-
-## Caching
-
-The cache provider is used to boost the performance of the ELS. Can be set to `Redis` or `None`.
-
-If set to `Redis`, the ELS will read data from Redis and the API will make sure the data in Redis is up to date.
-If set to `None`, API will do nothing and the ELS will read data from the database directly.
-
-# Infrastructures
-
 FeatBit application services relies on three critical infrastructure components: database, message queue, and caching,
 
 ## Database
