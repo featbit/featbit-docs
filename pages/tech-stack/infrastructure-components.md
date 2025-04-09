@@ -1,49 +1,45 @@
 # Infrastructure Components
 
-FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: database,
-message queue, and caching.
+FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: **Database**, **Message Queue**, and **Caching**.
 
 ## Database
 
 The main database, used to store all feature flags, segments, end-users, etc. It corresponds to the **DbProvider**
 environment variable **for API, ELS, and DAS**.
 
-### Available Options
+Available options include:
 
-| Version               | Primary Database          | Analytics Database                                   |
-|-----------------------|---------------------------|------------------------------------------------------|
-| Standalone & Standard | `MongoDB` or `PostgreSQL` | Same as primary                                      |
-| Professional          | `MongoDB` or `PostgreSQL` | ClickHouse for better performance on large datasets. |
+- **Primary Database**: `MongoDB` or `Postgres` for storing feature flags, segments, end-users data, etc.
+- **Analytics Database**: Standalone and Standard version will use the primary database, while Professional version
+  leverages
+  `ClickHouse` for high-performance analytics on large datasets
 
 ## Message Queue
 
 The message queue system ensures reliable communication between FeatBit services and enables real-time updates to SDKs.
 It corresponds to the **MqProvider** environment variable **for API and ELS**.
 
-### Message Types
+There are two types of messages across the system:
 
-- **Real-time Messages**: Feature flag and segment changes that require immediate delivery
-- **Job Messages**: Background tasks processed sequentially based on timestamp
+- Real-time Messages: Feature flag and segment changes that require immediate delivery
+- Job Messages: Background tasks processed sequentially based on timestamp
 
-### Available Options
+Available options include:
 
-| Provider     | Real-time Mechanism   | Job Processing                        |
-|--------------|-----------------------|---------------------------------------|
-| `PostgreSQL` | LISTEN/NOTIFY         | Batch polling with timestamp ordering |
-| `Redis`      | PUB/SUB               | List operations (RPUSH/LPOP)          |
-| `Kafka`      | Topics and partitions | Topics and partitions                 |
+- **Postgres**: Uses `LISTEN/NOTIFY` for real-time messages and batch polling with timestamp ordering for job
+  processing
+- **Redis**: Uses `PUB/SUB` for real-time messages and list operations (`RPUSH/LPOP`) for job processing
+- **Kafka**: Uses topics and partitions for both real-time messages and job processing
 
 ## Caching
 
 The caching layer is used to boost the performance of the ELS. It corresponds to the **CacheProvider** environment
 variable **for API and ELS**.
 
-### Available Options
+Available options include:
 
-| Provider | Description                                                                |
-|----------|----------------------------------------------------------------------------|
-| `Redis`  | ELS reads data from Redis and the API ensures data in Redis is up to date. |
-| `None`   | ELS reads data directly from the database.                                 |
+- **Redis**: ELS reads data from Redis and the API ensures data in Redis is up to date.
+- **None**: ELS reads data directly from the database.
 
 ## How to Choose
 

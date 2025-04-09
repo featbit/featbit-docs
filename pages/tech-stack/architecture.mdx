@@ -1,30 +1,4 @@
-## **Overview**
-
-FeatBit is a **scalable** and **fast** Feature Management platform. The mission of FeatBit is to empower all teams to deliver, control, experiment with, and monetize their software.
-
-The overall architecture is as follows:
-
-![](../tech-stack/assets/architecture/001.webp)
-
-* **UI :** Provides users a visual UI interface for managing and publishing feature flags, segments and experiments etc.
-* **API Server :** Provides data management capabilities for the UI and external integration services, such as flag triggers, code-references etc.
-* **Evaluation Server :** Provides a scalable and high-performance flag rule evaluation engine and a data distribution server.
-* **Data Analytics server :** Provides a data analytics engine. It assures the following services
-  * Calculates the experiments and return its results in near real time.
-  * Provides insights services for all analytics in the UI, the feature flag reporting for example.
 * **SDK:** We provide SDKs for all major languages and frameworks, providing quick access to FeatBit from your services and applications.
-* **Redis :** It has two roles
-  * The cache layer to boost the performance.
-  * The message queue assuring high throughput asynchronous data communications among different services.
-* **MongoDB :** The main database. All feature flags, segments, experiments, end users and analytics data are stored in MongoDB.
-
-## Scalable and high performance
-
-When designing the architecture, our most important and the only concerns were how to make it scalable and how to obtain the best performance possible. To do so, we carefully selected our tech stack and containerized all services, which makes it very easy to be deployed as a cluster and **scale horizontally**.
-
-As for the data storage and data flow between services, in order to obtain the best performance possible, we introduced MongoDB as our main data store, Redis as system cache and message queue. We are using **Multiplexing** and **Pub & Sub system** to send/receive messages between services, the average reaction time is in milliseconds.
-
-The push of feature flag changes or other configurations to SDKs is near real time. It takes less than **100** milliseconds to push the data to SDKs when a flag is changed from the UI. Instead of long polling, the WebSocket solution is adopted as it can proactively push the changes to SDKs once it happens. Of course, this is not cost free, it can consume enormous memory when huge number of concurrent requests happen. To avoid being a memory monster, we have carefully selected the way to serialize and deserialize data, so it doesn't consume extra memory during the serialization and deserialization process.
 
 ## Data flows
 
