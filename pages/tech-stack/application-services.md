@@ -1,9 +1,24 @@
 # Application Services
 
-FeatBit consists of four application services, each with its own responsibilities and features. The services are
-designed to work together seamlessly, providing a comprehensive solution for feature management and experimentation.
+FeatBit's consists of four core services that work together, each service can be deployed independently, allowing teams
+to adapt their deployment strategy based on organizational requirements, traffic volume, and infrastructure preferences.
 
-FeatBit is designed to be microservice-oriented, allowing for easy scaling and deployment. Each service can be deployed
-independently, enabling teams to choose the best deployment strategy for their needs. The services can be run in a
-single instance or distributed across multiple instances, depending on the scale of the application and the requirements
-of the organization.
+### UI Service (UI)
+
+An Angular-based web interface for managing feature flags, segments, experiments, and other
+configurations through an intuitive dashboard.
+
+### API Service (API)
+
+RESTful backend service that handles data management, authentication, webhooks, integrations,
+and provides endpoints for the UI and external systems.
+
+### Evaluation Server Service (ELS)
+
+High-performance evaluation engine that evaluate flag rules and distributes flag updates in realtime to SDKs. Optimized
+for minimal latency and high throughput.
+
+### Data Analytics Service (DAS)
+
+Near real-time analytics engine that processes event data, calculates experiment
+results, and generates insights for feature flag usage metrics.

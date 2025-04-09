@@ -1,11 +1,12 @@
-# Infrastructures
+# Infrastructure Components
 
-FeatBit application services relies on three critical infrastructure components: database, message queue, and caching,
+FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: database,
+message queue, and caching.
 
 ## Database
 
-The main database, used to store all feature flags, segments, end-users, etc. Corresponding to the `DbProvider`
-environment variable for API, ELS, and DAS.
+The main database, used to store all feature flags, segments, end-users, etc. It corresponds to the **DbProvider**
+environment variable **for API, ELS, and DAS**.
 
 ### Available Options
 
@@ -17,7 +18,7 @@ environment variable for API, ELS, and DAS.
 ## Message Queue
 
 The message queue system ensures reliable communication between FeatBit services and enables real-time updates to SDKs.
-Corresponding to the `MqProvider` environment variable for API and ELS.
+It corresponds to the **MqProvider** environment variable **for API and ELS**.
 
 ### Message Types
 
@@ -34,8 +35,8 @@ Corresponding to the `MqProvider` environment variable for API and ELS.
 
 ## Caching
 
-The caching layer is used to boost the performance of the ELS. Corresponding to the `CacheProvider` environment variable
-for API and ELS.
+The caching layer is used to boost the performance of the ELS. It corresponds to the **CacheProvider** environment
+variable **for API and ELS**.
 
 ### Available Options
 
@@ -44,7 +45,7 @@ for API and ELS.
 | `Redis`  | ELS reads data from Redis and the API ensures data in Redis is up to date. |
 | `None`   | ELS reads data directly from the database.                                 |
 
-## Selection Considerations
+## How to Choose
 
 When selecting infrastructure providers, consider:
 
