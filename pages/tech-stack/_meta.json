@@ -2,5 +2,6 @@
   "overview": "Overview",
   "application-services": "Application Services",
   "infrastructure-components": "Infrastructure Components",
-  "data-flows": "Data Flows"
+  "data-flows": "Data Flows",
+  "benchmark": "Benchmark"
 }
