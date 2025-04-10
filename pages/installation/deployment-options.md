@@ -1,47 +1,48 @@
 # Deployment Options
 
-You have three deployment options for FeatBit:
+FeatBit offers multiple deployment options to suit your infrastructure requirements and team size. Each option
+provides the same core feature flag functionality while differing in performance and infrastructure dependencies.
 
-Both of them are **scalable and fast**, and **have identical features**.
+Before selecting a deployment option, we recommend reviewing
+the [Infrastructure Components](../tech-stack/infrastructure-components.md) to understand what each component does.
 
-It better if you've already read the [Infrastructures](../tech-stack/infrastructures.md) of FeatBit.
+## Comparison Overview
 
-#### FeatBit Standalone
+| Capability    | Standalone | Standard         | Professional                  |
+|---------------|------------|------------------|-------------------------------|
+| Database      | Postgres   | Postgres/MongoDB | Postgres/MongoDB + ClickHouse |
+| Message Queue | Postgres   | Redis            | Kafka                         |
+| Caching       | None       | Redis            | Redis                         |
 
-The simplest deployment option, where Postgres is all you need to run FeatBit.
+## FeatBit Standalone
 
-- DbProvider: Postgres
-- MqProvider: Postgres
-- CacheProvider: None
+The simplest deployment option with minimal infrastructure requirements using Postgres for all core functions.
+Suitable for small to medium teams and applications with moderate traffic.
 
-Dependencies: Postgres. There is no cache layer for Evaluation Server Service, so ELS will directly read data from
-Postgres.
+- **Database (DbProvider)**: Postgres
+- **Message Queue (MqProvider)**: Postgres
+- **Caching (CacheProvider)**: None
 
-#### FeatBit Standard
+## FeatBit Standard
 
-Compared to the standalone version, the standard version is more scalable and fast. It is ideal for small to medium
-teams.
+A balanced deployment option offering improved scalability and performance using Redis for caching and messaging.
+Suitable for small to medium teams and applications with moderate traffic.
 
-- DbProvider: MongoDB or Postgres
-- MqProvider: Redis
-- CacheProvider: Redis
+- **Database (DbProvider)**: Postgres or MongoDB
+- **Message Queue (MqProvider)**: Redis
+- **Caching (CacheProvider)**: Redis
 
-Dependencies: Postgres/MongoDb as the database tool, Redis is used the cache layer for ELS so the ELS can read data from
-Redis instead of database. Redis is also used as the message queue
+## FeatBit Professional
 
-#### FeatBit Professional
+A complex deployment with advanced analytics capabilities for large datasets and high-volume environments. Suitable for
+large teams, high traffic applications, and organizations requiring robust data analytics.
 
-In professional version, we use Kafka and ClickHouse to make the data processing more scalable and fast.
+For API service (API) and Evaluation Server Service (ELS):
 
-For API and ELS:
+- **Database (DbProvider)**: Postgres or MongoDB
+- **Message Queue (MqProvider)**: Kafka
+- **Caching (CacheProvider)**: Redis
 
-- DbProvider: MongoDB or Postgres
-- MqProvider: Kafka
-- CacheProvider: Redis
+For Data Analytics Service (DAS):
 
-For DAS:
-
-DbProvider: ClickHouse
-
-Dependencies: Postgres/MongoDb as the database tool, Redis as the cache layer for ELS, Kafka as the messaging tool and
-ClickHouse as the data analytics tool.
+- **Analytics Database(DbProvider)**: ClickHouse

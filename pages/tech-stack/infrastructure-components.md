@@ -1,7 +1,6 @@
 # Infrastructure Components
 
-FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: **Database
-**, **Message Queue**, and **Caching**.
+FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: **Database**, **Message Queue**, and **Caching**.
 
 ## Database
 
@@ -38,7 +37,7 @@ variable **for API and ELS**.
 
 Available options include:
 
-- **Redis**: ELS reads data from Redis and the API ensures data in Redis is up to date.
+- **Redis**: ELS reads data from Redis and API ensures data in Redis is up to date.
 - **None**: ELS reads data directly from the database.
 
 ## How to Choose
