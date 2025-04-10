@@ -16,11 +16,11 @@ only for client SDK), the result would be sent back to SDK. The response has one
 
 ### Feature flag / Segment changes flow
 
-When a user changes a feature flag or a segment from the UI, in addition to store data in MongoDB, the API server also
-pushes the changes to Kafka, ELS reads those changes, update Redis, evaluate feature flags related to the
-changes and sends related feature flags or evaluation results to client/server side SDK through WebSocket connections.
+When a user changes a feature flag or a segment from the UI, in addition to update data in Database, the API server also
+pushes the changes to Message Queue, ELS reads those changes, evaluate feature flags related to the
+changes and then sends related feature flags or evaluation results to client/server side SDK through WebSocket connections.
 
-![](../tech-stack/assets/architecture/003.png)
+![](../tech-stack/assets/data-change-flow.svg)
 
 ### End user data flow
 
