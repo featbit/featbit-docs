@@ -18,7 +18,8 @@ only for client SDK), the result would be sent back to SDK. The response has one
 
 When a user changes a feature flag or a segment from the UI, in addition to update data in Database, the API server also
 pushes the changes to Message Queue, ELS reads those changes, evaluate feature flags related to the
-changes and then sends related feature flags or evaluation results to client/server side SDK through WebSocket connections.
+changes and then sends related feature flags or evaluation results to client/server side SDK through WebSocket
+connections.
 
 ![](../tech-stack/assets/data-changed-flow.svg)
 
@@ -39,10 +40,13 @@ Insights data contains
 - feature flag evaluation result: for feature flag reporting
 - experiment metric track data: for A/B/n testing (experimentation)
 
+For professional version, there is a dedicated Analytics database (Clickhouse) that is not the same as the Primary
+database. For the other two versions, the Primary database is used for both.
+
 When client/server SDK sends insights data to ELS, the latter forwards the track
-messages to Message Queue, the in
+messages to Message Queue, then in
 
 - Standalone and Standard version: API server reads the data and updates/inserts into MongoDB
 - Professional version: Clickhouse consume the data from Kafka
 
-![](../tech-stack/assets/architecture/005.png)
+![](../tech-stack/assets/insights-flow.svg)

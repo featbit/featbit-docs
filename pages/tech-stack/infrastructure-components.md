@@ -1,6 +1,7 @@
 # Infrastructure Components
 
-FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: **Database**, **Message Queue**, and **Caching**.
+FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: **Database
+**, **Message Queue**, and **Caching**.
 
 ## Database
 
@@ -11,8 +12,7 @@ Available options include:
 
 - **Primary Database**: `MongoDB` or `Postgres` for storing feature flags, segments, end-users data, etc.
 - **Analytics Database**: Standalone and Standard version will use the primary database, while Professional version
-  leverages
-  `ClickHouse` for high-performance analytics on large datasets
+  leverages `ClickHouse` for high-performance analytics on large datasets
 
 ## Message Queue
 
