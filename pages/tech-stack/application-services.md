@@ -15,7 +15,7 @@ the UI and external systems.
 
 ## Evaluation Server Service (ELS)
 
-High-performance evaluation engine that evaluate flag rules and distributes flag updates in realtime to SDKs. Optimized
+High-performance evaluation engine that evaluates flag rules and distributes flag updates in real-time to SDKs. Optimized
 for minimal latency and high throughput.
 
 ## Data Analytics Service (DAS)
