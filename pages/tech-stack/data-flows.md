@@ -20,28 +20,29 @@ When a user changes a feature flag or a segment from the UI, in addition to upda
 pushes the changes to Message Queue, ELS reads those changes, evaluate feature flags related to the
 changes and then sends related feature flags or evaluation results to client/server side SDK through WebSocket connections.
 
-![](../tech-stack/assets/data-change-flow.svg)
+![](../tech-stack/assets/data-changed-flow.svg)
 
 ### End user data flow
 
-End user data is stored in MongoDB and serves for feature flag and segment targeting.
+End users can be used in feature flag and segment targeting.
 
 When client SDK establishes a WebSocket connection or switches to another user (by calling the identify API), or
-client/server SDK sends track message, ELS sends end user information to Kafka, then API server reads that
-data and update/insert into MongoDB.
+client/server SDK sends insights message, ELS sends end user information to Message Queue, then API server reads that
+data and update/insert into Database.
 
-![](../tech-stack/assets/architecture/004.png)
+![](../tech-stack/assets/end-user-flow.svg)
 
 ### Insights data flow
 
-Feature flag and metric track data is stored in ClickHouse and serves for A/B/n testing (experimentation) and reporting.
+Insights data contains
 
-When client/server SDK sends feature flag and metric track messages to ELS, the latter forwards the track
-messages to Kafka, Data analytics servers reads track messages from Kafka and stores them in ClickHouse.
+- feature flag evaluation result: for feature flag reporting
+- experiment metric track data: for A/B/n testing (experimentation)
+
+When client/server SDK sends insights data to ELS, the latter forwards the track
+messages to Message Queue, the in
+
+- Standalone and Standard version: API server reads the data and updates/inserts into MongoDB
+- Professional version: Clickhouse consume the data from Kafka
 
 ![](../tech-stack/assets/architecture/005.png)
-
-## **You are the only owner of all your data**
-
-The overall architecture also ensures privacy aspects since all the data and communication stays within the system. It
-will not send any data to any third party service.
