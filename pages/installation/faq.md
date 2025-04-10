@@ -33,7 +33,7 @@ redis:
 
 With the default configuration, the FeatBit's portal is only accessible from the local machine on which you ran docker compose.
 
-To make the UI accessible from other machines or even from the internet, you need a public IP or domain name for the machine on which it is running. Additionally, if the API and Evaluation services are running on different machines than the UI service, you may also need public IP addresses or domain names for them. Then, set the correct values for **API\_URL** and **EVALUATION\_URL** in the docker-compose file. Please check [Application Services](../tech-stack/application-services.md) for a detail explanation of all the services of FeatBit.
+To make the UI accessible from other machines or even from the internet, you need a public IP or domain name for the machine on which it is running. Additionally, if the API and Evaluation services are running on different machines than the UI service, you may also need public IP addresses or domain names for them. Then, set the correct values for **API\_URL** and **EVALUATION\_URL** in the docker-compose file. Please check [Application Services](../tech-stack/application-services.md) for a detailed explanation of all the services of FeatBit.
 
 ```yaml
 # docker-compose.yml
