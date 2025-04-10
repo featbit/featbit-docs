@@ -33,7 +33,7 @@ redis:
 
 With the default configuration, the FeatBit's portal is only accessible from the local machine on which you ran docker compose.
 
-To make the UI accessible from other machines or even from the internet, you need a public IP or domain name for the machine on which it is running. Additionally, if the API and Evaluation services are running on different machines than the UI service, you may also need public IP addresses or domain names for them. Then, set the correct values for **API\_URL** and **EVALUATION\_URL** in the docker-compose file. Please check our architecture doc of [standard version](../tech-stack/architecture) and [pro version](../tech-stack/architecture-professional) for a detail explanation of all the services of FeatBit.
+To make the UI accessible from other machines or even from the internet, you need a public IP or domain name for the machine on which it is running. Additionally, if the API and Evaluation services are running on different machines than the UI service, you may also need public IP addresses or domain names for them. Then, set the correct values for **API\_URL** and **EVALUATION\_URL** in the docker-compose file. Please check [Application Services](../tech-stack/application-services.md) for a detailed explanation of all the services of FeatBit.
 
 ```yaml
 # docker-compose.yml
@@ -54,35 +54,4 @@ ui:
   networks:
     - featbit-network
 ```
-
-### Use FeatBit with Azure Cosmos DB
-
-Cosmos DB always requires an index for the fields being sorted. To use FeatBit with Cosmos DB, you need to create these indexes manually. Below is the script for creating them:
-
-```javascript
-const createdAtCollections = ["RelayProxies", "Projects", "AccessTokens", "Policies", "AuditLogs", "Webhooks"];
-createdAtCollections.forEach(collection => {
-    db.getCollection(collection).createIndex(
-        { "createdAt": 1 },
-        { background: true }
-    );
-});
-const updatedAtCollections = ["EndUsers", "FeatureFlags", "Segments", "ExperimentMetrics"]
-updatedAtCollections.forEach(collection => {
-    db.getCollection(collection).createIndex(
-        { "updatedAt": 1 },
-        { background: true }
-    );
-});
-
-db.getCollection("Webhooks").createIndex(
-    { "startedAt": 1 },
-    { background: true }
-);
-```
-
-#### Reference
-
-* [https://learn.microsoft.com/en-us/azure/cosmos-db/mongodb/error-codes-solutions](https://learn.microsoft.com/en-us/azure/cosmos-db/mongodb/error-codes-solutions)
-* [https://www.mongodb.com/community/forums/t/sort-in-cosmosdb-mongo-apis-mandates-indexing/115529](https://www.mongodb.com/community/forums/t/sort-in-cosmosdb-mongo-apis-mandates-indexing/115529)
 

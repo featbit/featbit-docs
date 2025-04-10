@@ -1,6 +1,7 @@
 {
-  "full-installation": "Docker Compose",
-  "partial-installation": "Partial installation",
+  "docker-compose": "Docker Compose",
+  "use-your-own-infrastructure": "Use your own infrastructure",
+  "deployment-options": "Deployment Options",
   "helm-chart": {
     "title": "Deploy on K8s ↗",
     "type": "page",
