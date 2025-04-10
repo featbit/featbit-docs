@@ -1,52 +1,104 @@
 # Data Flows
 
-When the system is running, data flows between different services. There are four main data flows:
+FeatBit's architecture relies on a set of well-defined data flows between its interconnected services. These flows are
+essential for the platform's core functions: synchronizing feature flag configurations, propagating changes in
+real-time, managing user data for targeting, and collecting analytics for insights and experimentation. Understanding
+these flows provides insight into how FeatBit operates internally.
 
-### Data sync flow
+## Data sync flow
 
-After a websocket connection has been established between a client or server SDK and ELS, the SDK would then send a data
-sync request attached with the timestamp of the latest changes to ELS, ELS will then check that timestamp and fetch
-eligible feature flags and segments from Caching/Database component, after an eventual evaluation process (
-only for client SDK), the result would be sent back to SDK. The response has one of the two types:
+### Purpose
 
-* **full**: the response contains all feature flags and segments
-* **patch**: the response contains only the new feature flags and segments created or updated since the timestamp
+To ensure that connected SDKs have the correct set of feature flags, segments, and (for client-side SDKs) evaluated flag
+results necessary for their operation.
+
+### Trigger
+
+An SDK (client-side or server-side) establishes a connection or reconnects to the Evaluation Server Service (ELS).
+
+### Process
+
+1. Upon connection, the SDK sends a data synchronization request to the ELS. This request includes a timestamp
+   indicating the last time the SDK received updates.
+2. The ELS uses this timestamp to query its Caching Layer or the Primary Database for all feature flags and segments
+   that have been created or modified since that time.
+3. **For client-side SDKs only**: The ELS performs an evaluation of the relevant feature flags based on the user context
+   provided during connection.
+4. The ELS constructs a response containing the necessary data and sends it back to the requesting SDK.
+    - **Server Side SDKs**: Receive the raw feature flag configurations and segment definitions.
+    - **Client Side SDKs**: Receive the pre-evaluated feature flag results relevant to their provided user context.
 
 ![](../tech-stack/assets/data-sync-flow.svg)
 
-### Feature flag / Segment changes flow
+## Feature flag / Segment changes flow
 
-When a user changes a feature flag or a segment from the UI, in addition to update data in Database, the API server also
-pushes the changes to Message Queue, ELS reads those changes, evaluate feature flags related to the
-changes and then sends related feature flags or evaluation results to client/server side SDK through WebSocket
-connections.
+### Purpose
+
+To distribute modifications made to feature flags or segments (typically via the UI) to all actively
+connected SDKs in real-time, ensuring consistent behavior across the application.
+
+### Trigger
+
+A user modifies a feature flag or segment definition through the FeatBit UI.
+
+### Process
+
+1. The API persists the changes into the Primary Database.
+2. After successful persistence, the API then publishes a change notification message to the Message Queue.
+3. The ELS consumes this change notification from the Message Queue
+    * It re-evaluates relevant flags for connected client-side SDKs based on their known user contexts.
+    * It prepares the updated flag/segment definitions for server-side SDKs.
+4. The ELS pushes the updated data (evaluated results for client-side, definitions for server-side) to the relevant
+   connected SDKs via WebSocket connections.
 
 ![](../tech-stack/assets/data-changed-flow.svg)
 
-### End user data flow
+## End user data flow
 
-End users can be used in feature flag and segment targeting.
+### Purpose
 
-When client SDK establishes a WebSocket connection or switches to another user (by calling the identify API), or
-client/server SDK sends insights message, ELS sends end user information to Message Queue, then API server reads that
-data and update/insert into Database.
+To collect and persist end-user information provided by the SDKs. We can then use this data for feature flag targeting
+and user segmentation.
+
+### Trigger
+
+This flow is triggered by several events:
+
+* A client-side SDK establishes its initial WebSocket connection (sending initial user context).
+* A client-side SDK explicitly identifies or updates the current user via the SDK's `identify` method (or equivalent).
+* An SDK (client-side or server-side) sends insights data (like evaluation results) which includes user information.
+
+### Process
+
+1. The ELS receives user data from an SDK and publishes it to the Message Queue.
+2. The API consumes these user data messages from the Message Queue, updating existing user records or inserting
+   new ones into the Primary Database.
 
 ![](../tech-stack/assets/end-user-flow.svg)
 
-### Insights data flow
+## Insights data flow
 
-Insights data contains
+### Purpose
 
-- feature flag evaluation result: for feature flag reporting
-- experiment metric track data: for A/B/n testing (experimentation)
+To collect and process analytics data generated by SDKs, powering FeatBit's reporting features and A/B/n experimentation
+analysis.
 
-For professional version, there is a dedicated Analytics database (Clickhouse) that is not the same as the Primary
-database. For the other two versions, the Primary database is used for both.
+### Trigger
 
-When client/server SDK sends insights data to ELS, the latter forwards the track
-messages to Message Queue, then in
+SDKs send insights data to the ELS. Insights data include:
 
-- Standalone and Standard version: API server reads the data and updates/inserts into MongoDB
-- Professional version: Clickhouse consume the data from Kafka
+* Flag Evaluation Events: Records detailing which flag variations were served to which users.
+* Experiment Metrics: Data tracking user interactions or conversions relevant to ongoing A/B/n tests (e.g., custom
+  events like button clicks, page views).
+
+### Process
+
+1. SDKs send insights data packets to the ELS.
+2. The ELS receives the data and forwards it to the Message Queue.
+3. Persisting the data varies by deployment version:
+    * **Standalone & Standard Versions:** The API consumes the insights data from the Message Queue and persists it into
+      the Primary Database.
+    * **Professional Version:** ClickHouse consumes the insights data directly from the Message Queue (
+      Kafka).
 
 ![](../tech-stack/assets/insights-flow.svg)
