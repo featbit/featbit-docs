@@ -25,8 +25,9 @@ Suitable for small to medium teams and applications with moderate traffic.
 
 ## FeatBit Standard
 
-A balanced deployment option offering improved scalability and performance using Redis for caching and messaging.
-Suitable for small to medium teams and applications with moderate traffic.
+A balanced deployment option that offers improved scalability and performance by using Redis for caching and messaging.
+It is suitable for small to large teams and applications, supporting high-volume feature flag requests and moderate data
+analysis traffic.
 
 - **Database (DbProvider)**: Postgres or MongoDB
 - **Message Queue (MqProvider)**: Redis
