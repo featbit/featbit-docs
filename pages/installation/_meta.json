@@ -1,6 +1,7 @@
 {
   "docker-compose": "Docker Compose",
   "use-your-own-infrastructure": "Use your own infrastructure",
+  "terraform-aws": "Deploy on AWS with Terraform",
   "deployment-options": "Deployment Options",
   "helm-chart": {
     "title": "Deploy on K8s ↗",
