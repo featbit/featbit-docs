@@ -1,4 +1,9 @@
 {
-  "relay-proxy": "Relay Proxy",
-  "featbit-agent": "FeatBit Agent"
+  "overview": "Overview",
+  "featbit-agent": {
+    "title": "FeatBit Agent ↗",
+    "type": "page",
+    "href": "https://github.com/featbit/featbit-agent",
+    "newWindow": true
+  }
 }
