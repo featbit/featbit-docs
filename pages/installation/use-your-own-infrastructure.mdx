@@ -1,6 +1,8 @@
+import { Callout } from 'nextra/components'
+
 # Use your own infrastructure
 
-If you want to run FeatBit with your own infrastructure, this is totally possible and easy to do. This document will illustrate how to do it with docker compose, it can also be easily converted to Kubernetes.
+If you want to run FeatBit with your own infrastructure, this guide will show you how to configure each component. This approach gives you more control over your deployment and allows you to use existing infrastructure.
 
 ## Set Environment Variables
 
@@ -15,11 +17,15 @@ To use your own infrastructure, you need to modify some environment variables fo
 
 ### MongoDB
 
-Check the [MongoDB seed script](https://github.com/featbit/featbit/blob/main/infra/mongodb/docker-entrypoint-initdb.d/init.js) to seed your MongoDB database. This script assumes the database name is "featbit" (you can change it) which should be the same as `MongoDb__Database` environment variable.
+Check the [MongoDB initialization scripts](https://github.com/featbit/featbit/blob/main/infra/mongodb/docker-entrypoint-initdb.d) for the database schema and seed data.
 
 ### Postgres
 
 Check the [Postgres initialization scripts](https://github.com/featbit/featbit/tree/main/infra/postgresql/docker-entrypoint-initdb.d) for the database schema and seed data.
+
+<Callout type="info">
+You should run initialization scripts in version order, from oldest to your version. For example, if you're installing FeatBit v5.0.5, you'd need to run v0.0.0, then v5.0.4, and finally v5.0.5 against your database. The v0.0.0 script is the base, and subsequent scripts like v5.0.4 are migration scripts that apply incremental updates.
+</Callout>
 
 ### Kafka
 
@@ -29,6 +35,10 @@ You need to create the following topics in your kafka:
 * featbit-segment-change
 * featbit-insights
 * featbit-endusers
+
+<Callout type="info">
+Configure appropriate retention policies and partitioning strategies based on your expected data volume and performance requirements.
+</Callout>
 
 ## FAQ
 
