@@ -3,48 +3,70 @@ import {Callout} from 'nextra/components'
 # Set up license key
 
 <Callout type="info">
-  This article is compatible with FeatBit 3.0.0 and above.
+  This guide applies to FeatBit version 3.0.0 and above.
 </Callout>
 
-This guide illustrates the process of setting up FeatBit with a license key.
+This guide walks you through the complete process of obtaining and configuring a license key for FeatBit, enabling access to enterprise features.
 
-## Obtain Workspace ID
+After that, you should be able to see the **License** details as the following screenshot:
 
-Before acquiring a license key, you need the workspace ID. Follow these steps:
+![License details](./assets/license-example.png)
 
-1. Make sure your FeatBit is running, and we assume the FeatBit UI is available at http://localhost:8081
-2. Log in to FeatBit using your email and password. For default settings, use:
-   - Username: test@featbit.com
-   - Password: 123456
-  
-3. Go to http://localhost:8081/en/workspace, in the **License Settings** section, click the **Copy** button
+## Step 1: Retrieve Your Workspace ID
+
+Your workspace ID is required to generate a license key. Here's how to find it:
+
+1. Navigate to the `Workspace` page in the FeatBit dashboard.
+2. Click the `License` tab and you should be able to see your **Workspace ID**.
+3. Click the **Copy Id** button to copy the ID to your clipboard.
+
+## Step 2: Obtain Your License Key
+
+Choose one of the following options based on your needs:
+
+### Option A: Free Trial License (Recommended for Evaluation)
+
+Perfect for testing all FeatBit enterprise features:
+
+1. **Create Account**
+  - Visit the [FeatBit Dashboard](https://dashboard.featbit.co/account)
+  - Sign up with your email or authenticate via GitHub
+
+2. **Generate Trial License**
+  - Navigate to the **Account** page
+  - Click **Generate Trial License**
    
-   ![](./assets/workspaceid.png)
+  ![Generate trial license button](./assets/request-trial-license1.png)
 
-## Get a Free Trial License Key
+3. **Provide Details**
+  - Enter your **Company Name**
+  - Paste your **Workspace ID** (from Step 1)
+  - Click **OK**
+   
+  ![License generation form](./assets/request-trial-license2.png)
 
-To evaluate all FeatBit features, generate a free trial license key from the [FeatBit Dashboard](https://dashboard.featbit.co/account):
+4. **Copy License Key**
+  - Find your generated license in the license table
+  - Click **Copy** to copy the license key
+   
+  ![Copy license key](./assets/request-trial-license3.png)
 
-- Create an account using your email or log in via GitHub.
-- Click **Generate Trial License** in the **Account** page.
+### Option B: Commercial License
 
-  ![](./assets/request-trial-license1.png)
-- In the modal, input your Company Name and the Workspace ID, then click **OK**
+For production use and ongoing support, you can contact FeatBit team through either channel:
 
-  ![](./assets/request-trial-license2.png)
-- Locate the generated license in the license table and click Copy.
+- **Email**: [contact@featbit.co](mailto:contact@featbit.co)
+- **Slack**: Join our [Community Slack](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ)
 
-  ![](./assets/request-trial-license3.png)
+We'll respond promptly with pricing and licensing information.
 
-## Get a commercial license key
+## Step 3: Apply Your License Key
 
-For a commercial license key, email [contact@featbit.co](mailto:contact@featbit.co) or join our [Slack Channel](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ), and we'll respond promptly.
-## Upload the License Key
+Now that you have your license key, we can go back to the FeatBit dashboard to apply it:
 
-Now go back to http://localhost:8081/en/workspace, go to the **License Settings** section, input the license key obtained earlier, and click **Update**.
+1. Go to the `Workspace` page in the FeatBit dashboard.
+2. Click the `License` tab.
+3. Paste your license key into the **License** field.
+4. Click the **Update** button to apply the license.
 
-![](./assets/save_license_key.png)
-
-Once saved, hover over the Enterprise button, you will be able to view the license details as following
-
-![](./assets/check-license.png)
+For additional support, reach out via our [Slack community](https://join.slack.com/t/featbit/shared_invite/zt-1ew5e2vbb-x6Apan1xZOaYMnFzqZkGNQ) or email [contact@featbit.co](mailto:contact@featbit.co).
