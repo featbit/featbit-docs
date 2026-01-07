@@ -18,8 +18,8 @@ Here is an image of the feature flags list:
 By default, the most recently created flags appear first, and you can configure this default sorting behavior at the **organization level**.
 We currently support two sorting options:
 
-- **Recently created**: Flags are sorted based on their creation date, with the most recently created flags appearing first.
-- **Key Alphabetical order**: Flags are sorted in alphabetical order based on their keys.
+- **Recently created**: Flags are sorted based on their creation date, in **descending** order.
+- **Key Alphabetical order**: Flags are sorted in alphabetical order based on their keys, in **ascending** order (a to z).
 
 Here is an image showing how to configure the default sorting behavior:
 
