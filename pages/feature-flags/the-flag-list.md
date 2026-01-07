@@ -7,7 +7,7 @@ This topic explains how to use the feature flags list, which shows your feature 
 ## Viewing feature flags
 
 All of your feature flags **within an environment** appear on the flags list. Creating a new flag adds it to the list, and archiving a flag removes it from the list. You can use the search bar to find a flag by name, key, tag, or status.
-By default, the archived flags **will not** be shown in the list, to view them, you need to check the **Archived** checkbox.
+By default, the archived flags **will not** be shown in the list. To view them, you need to check the **Archived** checkbox.
 
 Here is an image of the feature flags list:
 
