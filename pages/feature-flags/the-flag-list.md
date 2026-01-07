@@ -1,6 +1,4 @@
-import { Callout } from 'nextra/components'
-
-# The flags list
+# The flag list
 
 ## Overview
 
@@ -9,11 +7,11 @@ This topic explains how to use the feature flags list, which shows your feature 
 ## Viewing feature flags
 
 All of your feature flags **within an environment** appear on the flags list. Creating a new flag adds it to the list, and archiving a flag removes it from the list. You can use the search bar to find a flag by name, key, tag, or status.
-By default the archived flags **will not** be shown in the list, to view them, you need to check the **Archived** checkbox.
+By default, the archived flags **will not** be shown in the list, to view them, you need to check the **Archived** checkbox.
 
 Here is an image of the feature flags list:
 
-![](../feature-flags/assets/the-flag-list/overview.png)
+![Flag List](../feature-flags/assets/the-flag-list/overview.png)
 
 ## Sort Feature Flags
 
@@ -25,4 +23,4 @@ We currently support two sorting options:
 
 Here is an image showing how to configure the default sorting behavior:
 
-![](../feature-flags/assets/the-flag-list/sort-flags-by.png)
+![Sort Flags By](../feature-flags/assets/the-flag-list/sort-flags-by.png)
