@@ -137,14 +137,103 @@ The only difference between this and the previous section is to set a specific f
 
 Then save the permission and assign the policy to members or groups.
 
+For multiple feature flags, you need to create multiple permissions, one for each feature flag. Or you can create a `tag` for these feature flags, then set the permission for the tag. As shown below, you can specify the tag name in resource editor popup:
+
+![](../iam/assets/rbac/set-feature-flag-permission-tag.png)
+
+You can add multiple tags by separating them with commas `,`.
+
 ### Disable User to Operate a Specific Feature Flag
 
+You may only want to disable user to operate a specific feature flag, while still allow them to operate other feature flags in the same project/environment. In this case, you need to create a deny policy for the specific feature flag.
+
+![](../iam/assets/rbac/deny-specific-feature-flag.png)
+
+As shown above, we create a deny permission for a specific feature flag. You can select the actions that you want to deny for this feature flag.
+
+Then save the permission and assign the policy to members or groups.
 
 ## Example Walkthrough
 
-- Project A and B. Each project has 2 environments (dev and prod)
-- Dev Team A can only see Project A, and can only operate feature flags in dev env.
-- Dev Team A can only create feature flags in pro env in Project A.
-- The QA Team can see project A and project B, but can't operate feature flags.
-- The PM team can do everything for project A except remove feature flags.
-- Only Project Maintainer can remove feature flags.
+### Context
+
+Imaging that in an organization, we have multiple projects. We have the following requirements:
+
+- A specifc member that own the `Project A`: Can do everything for `Project A`.
+- QAs can access both `Project A` and `Project B`, but they can only view feature flags, not operate them.
+- PMs in the group `PM Team A` can do everything for feature flags in `Project A`, except delete feature flags.
+- Only developers in the group `Dev Team A` to access `Project A`.
+  - Dev Team A can only operate feature flags in `dev` environment in Project A.
+  - Dev Team A can only create feature flags in `prod` environment in Project A.
+- Developers in the group `Dev Team A`:
+    - Can do everything for feature flags in `Project A`, `dev` environment.
+    - Only view feature flags in `Project A`, `prod` environment.
+    - For specific feature flag `flag-123` in `Project A`, `prod` environment, they're allowed to operate it.
+
+### Solution
+
+To achieve the above requirements, we need to create the following policies:
+- Policy `Project A Maintainer` to allow full access to Project A (all environments) for given members.
+- Policy `Project A QA` to allow read-only access to Project A (all environments).
+- Policy `Project A PM` to allow full access to Project A's all feature flags except delete action.
+- Policy `project-b-pm` to allow read-only access to Project B (all environments).
+
+### Policy `Project A Maintainer`
+
+1. Create a policy named `Project A Maintainer`. Resource Name (RN) is `policy/policy/Project A Maintainer`.
+2. Add a permission for project level access:
+    - Control Level: `Project`
+    - Resource Selector: `project/project-a`
+    - Allow or Deny: `Allow`
+    - Actions: all actions for project owner.
+
+![](../iam/assets/rbac/example-owner-001.png)
+
+3. Add a permission for environment `dev` feature-flag level access:
+    - Control Level: `Feature Flag`
+    - Resource Selector/Editor: `project/project-a:env/dev:flag/*`
+        - Project: `project-a`
+        - Environment: `dev`
+        - Feature Flag: `*`
+    - Allow or Deny: `Allow`
+    - Actions: all actions for feature flags.
+
+![](../iam/assets/rbac/example-owner-002.png)
+
+4. Add a permission for environment `prod` feature-flag level access:
+    - Control Level: `Feature Flag`
+    - Resource Selector/Editor: `project/project-a:env/prod:flag/*`
+        - Project: `project-a`
+        - Environment: `prod`
+        - Feature Flag: `*`
+    - Allow or Deny: `Allow`
+    - Actions: all actions for feature flags.
+
+![](../iam/assets/rbac/example-owner-003.png)
+
+5. Save the policy and assign it to member `project-a-owner@featbit.co`
+
+![](../iam/assets/rbac/example-owner-004.png)
+
+
+### Policy `Project A QA`
+
+1. Create a policy named `Project A QA`. Resource Name (RN) is `policy/policy/Project A QA`.
+2. Add a permission for project level access:
+    - Control Level: `Project`
+    - Resource Selector: `project/project-a`
+    - Allow or Deny: `Allow`
+    - Actions: `CanAccessProject`.
+
+![](../iam/assets/rbac/example-qa-001.png)
+
+### Policy `Project A PM`
+
+1. Create a policy named `Project A PM`. Resource Name (RN) is `policy/policy/Project A PM`.
+2. Add a permission for project level access:
+    - Control Level: `Project`
+    - Resource Selector: `project/project-a`
+    - Allow or Deny: `Allow`
+    - Actions: all actions for project owner.
+
+### Policy for Project PMs
