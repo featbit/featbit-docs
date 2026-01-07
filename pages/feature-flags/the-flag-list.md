@@ -13,7 +13,7 @@ Here is an image of the feature flags list:
 
 ![Flag List](../feature-flags/assets/the-flag-list/overview.png)
 
-## Sort Feature Flags
+## Sort feature flags
 
 By default, the most recently created flags appear first, and you can configure this default sorting behavior at the **organization level**.
 We currently support two sorting options:
