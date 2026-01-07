@@ -109,9 +109,33 @@ As shown above, we assign the policy to the member `project-a-owner@featbit.com`
 
 ## Feature Flag Access Control
 
-### Enable User to Read Feature Flags of Specific Projects/Environments
+Before read or operate a feature flag access control, **make sure the user has access to the project and environment where the feature flag belongs to**.
+
+### Enable User to Operate Feature Flags of Specific Projects/Environments
+
+We will create a policy that includes only permission settings for feature flag in a specific project/environment.
+
+1. Go to the `Policies` page under `IAM` menu.
+2. Click on `Add` button, input the policy name and description, then click `Save`.
+3. In the policy detail page, click on `(+)` icon to add a new permission
+    - Choose `Feature Flag` as the control-level (resource type).
+    - Select the project and environment where the feature flag belongs to in resource selector. By default, you can only select all flags of all projects/environments, you need to select it then click on the label to change it to specific project/environment.
+    ![](../iam/assets/rbac/specify-ff-prod-n-env.png)
+    - In allow or deny selector, choose `Allow`.
+    - In action selector, choose all actions.
+
+![](../iam/assets/rbac/operate-all-ff-in-proj-n-env.png)
+
+4. Click **Save** to save the permission.
+5. Go to `Team` or `Groups` tab to assign this policy to members or groups that need to operate feature flags in the specific project/environment.
 
 ### Enable User to Operate a Specific Feature Flag
+
+The only difference between this and the previous section is to set a specific feature flag in resource selector, as shown below:
+
+![](../iam/assets/rbac/set-feature-flag-permission.png)
+
+Then save the permission and assign the policy to members or groups.
 
 ### Disable User to Operate a Specific Feature Flag
 
