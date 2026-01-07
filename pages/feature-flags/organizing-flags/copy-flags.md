@@ -26,7 +26,7 @@ Choose the target environment to which you want to copy the flags. Then, check t
 
 ## Current Restrictions
 
-Certain scenarios will prevent the fully copying of feature flags:
+Certain scenarios will prevent fully copying feature flags:
 
 1. **Duplicate Keys**: A flag cannot be copied if the target environment already contains a flag with the same key.
 2. **Individual Users**: Individual user targets cannot be copied because user data is environment-specific.
