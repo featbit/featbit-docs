@@ -1,4 +1,4 @@
-# Role Based Access Control - Step by Step
+# Permision Access Control (RBAC)
 
 ## Organization Level Access Control
 
@@ -62,12 +62,50 @@ For groups like `Project Maintainers` and `Project Owner`, they need more permis
 
 As shown in the picture above, we assign the `policy/project-a-owner-full-permission` policy to `Project A Owner` group. Because only project owner should have full management permissions for the project, such as deleting project.
 
-
 ## Environment Access Control
+
+For each project, you can have multiple environments, such as `development`, `staging`, and `production`. You can also control who can access each environment and what management permissions they have for each environment.
+
+For example, developers of Project A can see all environments under Project A, but they can only create and manage feature flags in the `development` environment. They can only read feature flags in the `production` environment.
 
 ### Enable User Access to Specific Environments
 
+1. Go to the `Policies` page under `IAM` menu.
+2. Click on `Add` button, input the policy name and description, then click `Save`.
+3. In the policy detail page, click on `(+)` icon to add a new permission
+4. Add a project access permission first, if not already added:
+5. Add an environment access permission:
+    - Choose `Environment` as the control-level (resource type).
+    - Select the environment you want to allow access to in resource selector.
+    - In allow or deny selector, choose `Allow`.
+    - In action selector, choose `CanAccessEnvironment`.
+
+![](../iam/assets/rbac/enable-env-access-policy.png)
+
+As shown above, we create a policy to allow access to `dev` and `prod` environment in `Project A`.
+
+6. Click **Save** to save the permission.
+7. Assign this policy to members or groups in `Team` or `Groups` tab.
+
+![](../iam/assets/rbac/enable-env-access-policy-assign-groups.png)
+
+As shown above, we assign the policy to the `Project A Developers` related groups. They should all able to read feature flags in both `dev` and `prod` environments.
+
 ### Set Environment Management Permissions
+
+We may assign a environment maintainer roles to allow them to modify environment settings, such as update environment secret. In this case, we need to create a policy to allow them to manage the environment, as image below:
+
+![](../iam/assets/rbac/update-env-settings.png)
+
+- Select `Environment` as the control-level (resource type).
+- Select the specific environment in resource selector.
+- In allow or deny selector, choose `Allow`.
+- In action selector, choose `DeleteEnvSecret`, `CanAccessEnv` and `UpdateEnvSettings`.
+- Save the permission and assign the policy to the related groups.
+
+![](../iam/assets/rbac/assign-env-settings.png)
+
+As shown above, we assign the policy to the member `project-a-owner@featbit.com`, who should be able to update environment settings.
 
 ## Feature Flag Access Control
 
