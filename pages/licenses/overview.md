@@ -12,6 +12,6 @@ Certain features in FeatBit are subject to licensing restrictions and require a 
 - Shareable Segments
 - Auto Agents
 - Fine-grained Access Control
-- Flag Comparision
+- Flag Comparison
 
 Each license key is associated with a specific workspace. Once set up, the license key applies to all organizations within that workspace.
