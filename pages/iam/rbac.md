@@ -14,6 +14,10 @@ Before you start to manage access control, you should:
 - Have teams and members created in your organization. You can refer to [User and Team Management](./teams) to add members and teams.
 - Have groups (member collections) created in your organization. You can refer to [Group Management](./groups) to add groups.
 
+## Quick Start
+
+You can go section [`Example Walkthrough`](#example-walkthrough) directly to see a complete example of how to manage access control for an organization with multiple projects and multiple teams.
+
 ## Project Access Control
 
 After you switch to the organization you want to manage, you will see all projects under this organization as shown below:
@@ -171,9 +175,15 @@ Imaging that in an organization, we have multiple projects. We have the followin
 ### Solution
 
 To achieve the above requirements, we need to create the following policies:
-- Policy `Project A Maintainer` to allow full access to Project A (all environments) for given members.
-- Policy `Project A QA` to allow read-only access to Project A (all environments).
-- Policy `Project A PM` to allow full access to Project A's all feature flags except create and archive action.
+- Policy `Project A Maintainer` to allow full access to Project A (all environments) for given members. [See [Policy `Project A Maintainer`](#policy-project-a-maintainer)].
+- Policy `Project A QA` to allow read-only access to Project A (all environments). [See [Policy `Project A QA`](#policy-project-a-qa)].
+- Policy `Project A PM` to allow full access to Project A's all feature flags except create and archive action. [See [Policy `Project A PM`](#policy-project-a-pm)].
+- Policy `Project A Dev` to allow [See [Policy `Project A Dev`](#policy-project-a-dev)]: 
+    - Full access to Project A's feature flags in `dev` environment.
+    - Read-only access to Project A's feature flags in `prod` environment.
+    - Allow operate a specific feature flag in `prod` environment.
+- Policy `Project A External Dev` to allow [See [Policy `Project A External Dev`](#policy-project-a-external-dev)]:
+    - Read and operate access to Project A's feature flags in `dev` environment.
 
 
 ### Policy `Project A Maintainer`
@@ -243,4 +253,71 @@ NOTE: Be sure that all members in QA groups have removed their default policy as
 
 NOTE: Be sure that all members in `Project A PMs` groups have removed their default policy assignments, otherwise they may still have more permissions than expected.
 
-### Policy for Project PMs
+### Policy `Project A Dev`
+
+1. Create a policy named `Project A Dev`. Resource Name (RN) is `policy/Project A Dev`.
+2. Add a permission for project level access:
+    - Control Level: `Project`
+    - Resource Selector: `project/project-a`
+    - Allow or Deny: `Allow`
+    - Actions: `CanAccessProject`
+3. Add a permission for feature-flag level access in `dev` environment:
+    - Control Level: `Feature Flag`
+    - Resource Selector/Editor: `project/project-a:env/dev:flag/*`
+        - Project: `project-a`
+        - Environment: `dev`
+        - Feature Flag: `*`
+    - Allow or Deny: `Allow`
+    - Actions: all actions for feature flags.
+4. Add a permission for specific feature-flag in `prod` environment:
+    - Control Level: `Feature Flag`
+    - Resource Selector/Editor: `project/project-a:env/prod:flag/*`
+        - Project: `project-a`
+        - Environment: `prod`
+        - Feature Flag: `a-specific-flag-for-dev`
+    - Allow or Deny: `Allow`
+    - Actions: `UpdateFlagTags`, `UpdateFlagDefaultRule`, `UpdateFlagIndividualTargeting`, `UpdateFlagTargetingRules`
+
+![](../iam/assets/rbac/example-dev-001.png)
+
+
+5. Save the policy and assign it to group `Project A Devs`.
+
+![](../iam/assets/rbac/example-dev-002.png)
+
+Note: Be sure that all members in `Project A Devs` groups have removed their default policy assignments, otherwise they may still have more permissions than expected.
+
+### Policy `Project A External Dev`
+
+1. Create a policy named `Project A External Dev`. Resource Name (RN) is `policy/Project A External Dev`.
+2. Add a permission for project level access:
+    - Control Level: `Project`
+    - Resource Selector: `project/project-a`
+    - Allow or Deny: `Allow`
+    - Actions: `CanAccessProject`
+3. Add a permission for environment level access in `prod` environment:
+    - Control Level: `Environment`
+    - Resource Selector/Editor: `project/project-a:env/prod`
+    - Allow or Deny: `Deny`
+    - Actions: `CanAccessEnv`
+4. Add a permission for feature-flag level access in `dev` environment:
+    - Control Level: `Feature Flag`
+    - Resource Selector/Editor: `project/project-a:env/dev:flag/*`
+        - Project: `project-a`
+        - Environment: `dev`
+        - Feature Flag: `*`
+    - Allow or Deny: `Allow`
+    - Actions: all actions for feature flags.
+
+![](../iam/assets/rbac/example-dev-external-001.png)
+
+5. Save the policy and assign it to group `External Devs`.
+
+
+### Conclusion
+
+By following the above steps, we have successfully created and assigned policies to meet the access control requirements for `Project A` in our organization. Each group and member now has the appropriate permissions to access and manage feature flags according to their roles.
+
+Please remember to regularly review and update the policies as needed to ensure that they continue to meet the evolving needs of your organization.
+
+For any unexpected behaviors or issues, please join our [slack community](https://featbit.com/community) or contact us by email at [contact@featbit.co](mailto:contact@featbit.co)
