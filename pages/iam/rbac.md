@@ -210,7 +210,7 @@ To achieve the above requirements, we need to create the following policies:
 
 ![](../iam/assets/rbac/example-owner-001.png)
 
-4. Save the policy and assign it to member `project-a-owner@featbit.co`
+5. Save the policy and assign it to member `project-a-owner@featbit.co`
 
 ![](../iam/assets/rbac/example-owner-004.png)
 
@@ -239,13 +239,20 @@ NOTE: Be sure that all members in QA groups have removed their default policy as
 
 ### Policy `Project A PM`
 
+Other than policy `Project A Maintainer`, PMs should not have permissions to create, archive or delete feature flags in each environments in `Project A`. Other permissions are the same as maintainers.
+
 1. Create a policy named `Project A PM`. Resource Name (RN) is `policy/policy/Project A PM`.
 2. Add a permission for project level access:
     - Control Level: `Project`
     - Resource Selector: `project/project-a`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessProject`
-3. Add a permission for feature-flag level access:
+3. Add a permission for environment level access:
+    - Control Level: `Environment`
+    - Resource Selector/Editor: `project/project-a:env/dev*`, `project/project-a:env/prod*`
+    - Allow or Deny: `Allow`
+    - Actions: `CanAccessEnv`
+4. Add a permission for feature-flag level access:
     - Control Level: `Feature Flag`
     - Resource Selector/Editor: `project/project-a:env/*:flag/*`
         - Project: `project-a`
@@ -256,8 +263,8 @@ NOTE: Be sure that all members in QA groups have removed their default policy as
 
 ![](../iam/assets/rbac/example-pm-001.png)
 
-4. Save the policy and assign it to group `Project A PMs`.
-5. Assign the policy to all members in the group `Project A PMs`.
+5. Save the policy and assign it to group `Project A PMs`.
+6. Assign the policy to all members in the group `Project A PMs`.
 
 ![](../iam/assets/rbac/example-pm-002.png)
 
