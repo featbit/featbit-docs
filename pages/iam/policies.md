@@ -31,12 +31,12 @@ FeatBit policy now supports the following control levels (also called resource t
 * **Workspace**, which controls members' access to the workspace (including License and SSO).
 * **Organization**, which controls members' access to the organization.
 * **IAM**, which controls members' access to IAM.
-* **Access token**, which controls members' access to access token.
+* **Access token**, which controls members' access to access tokens.
 * **Relay Proxy**, which controls members' access to the relay proxy.
 * **Project**, which controls members' access to projects.
 * **Environment**, which controls members' access to all environments.
-* **Feature flag**, which controls members' access to feature flag.
-* **Segment**, which controls members' access to segment.
+* **Feature flag**, which controls members' access to feature flags.
+* **Segment**, which controls members' access to segments.
 
 ## Built-in policies
 
