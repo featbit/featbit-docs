@@ -194,7 +194,12 @@ To achieve the above requirements, we need to create the following policies:
     - Resource Selector: `project/project-a`
     - Allow or Deny: `Allow`
     - Actions: all actions for project owner.
-3. Add a permission for feature-flag level access:
+3. Add a permission for environment level access:
+    - Control Level: `Environment`
+    - Resource Selector/Editor: `project/project-a:env/dev*`, `project/project-a:env/prod*`
+    - Allow or Deny: `Allow`
+    - Actions: `CanAccessEnv`
+4. Add a permission for feature-flag level access:
     - Control Level: `Feature Flag`
     - Resource Selector/Editor: `project/project-a:env/*:flag/*`
         - Project: `project-a`
@@ -220,10 +225,15 @@ NOTE: Be sure that the member has removed their default policy assignments, othe
     - Resource Selector: `project/project-a`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessProject`
+3. Add a permission for environment level access:
+    - Control Level: `Environment`
+    - Resource Selector/Editor: `project/project-a:env/dev*`, `project/project-a:env/prod*`
+    - Allow or Deny: `Allow`
+    - Actions: `CanAccessEnv`
 
 ![](../iam/assets/rbac/example-qa-001.png)
 
-3. Save the policy and assign it to group `Project A QAs`.
+4. Save the policy and assign it to group `Project A QAs`.
 
 NOTE: Be sure that all members in QA groups have removed their default policy assignments, otherwise they may still have more permissions than expected.
 
