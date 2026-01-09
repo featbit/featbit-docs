@@ -10,7 +10,7 @@ FeatBit, by default, allows no access. User needs explicit permissions to access
 >
 > If an account member has one or more roles, then the account member’s access is defined by those roles. If the roles have conflicting permission levels, access is determined using a deny-override rule: if any role explicitly denies a permission, that deny takes precedence over any allows from other roles. For example, if a member has one role that allows access to a resource, and another role that denies access to a resource, the member is denied to that resource.
 >
-> If a group has one or more roles, then for each account member in the group, the account member’s access is defined by both the member’s role and the roles assigned to the team.
+> If a group has one or more roles, then for each account member in the group, the account member’s access is defined by both the member’s role and the roles assigned to the group.
 >
 > For example, if a member has a Developer role and is assigned another role through their group, then the member will continue to have developer access to all resources through the developer role, in addition to the access granted through their group.
 
