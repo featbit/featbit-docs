@@ -2,14 +2,32 @@
 
 You manage access in FeatBit by creating policies and attaching them to IAM identities (users, groups of users) or FeatBit resources. A policy is an object in FeatBit that, when associated with an identity or resource, defines their permissions. FeatBit evaluates these policies when an IAM member makes a request. Permissions in the policies determine whether the request is allowed or denied.
 
+## Policy algorithm
+
+FeatBit, by default, allows no access. User needs explicit permissions to access a feature. 
+
+> Permissions are not cumulative. 
+>
+> If an account member has one or more roles, then the account member’s access is defined by those roles. If the roles have conflicting permissions levels, the least permissive level of access is applied. For example, if a member has one role that allows access to a resource, and another role that denies access to a resource, the member is denied to that resource.
+>
+> If a group has one or more roles, then for each account member in the group, the account member’s access is defined by both the member’s role and the roles assigned to the team.
+>
+> For example, if a member has a Developer role and is assigned another role through their group, then the member will continue to have developer access to all resources through the developer role, in addition to the access granted through their group.
+
 ## Control level (Resource types)
 
-FeatBit policy now supports three control levels (also called resource types):
+FeatBit policy now supports the following control levels (also called resource types):
 
 * **All**, which controls if all resources are allowed or denied for members (or group of member).
-* **General**, which controls members' access permission of resource-level of Account, IAM and Project
+* **Workspace**, which controls members' access permission of workspace (including License and SSO)
+* **Organization**, which controls members' access permission of organization
+* **IAM**, which controls members' access permission of IAM
+* **Access token**, which controls members' access permission of access token
+* **Relay Proxy**, which controls members' access permission of relay proxy
 * **Project**, which controls members' access permission of projects.
 * **Environment**, which controls members' access permission of all environments.
+* **Feature flag**, which controls members' access permission of feature flag
+* **Segment**, which controls members' access permission of segment
 
 ## Built-in policies
 
