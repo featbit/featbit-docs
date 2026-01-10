@@ -2,7 +2,7 @@
 
 ## Organization Level Access Control
 
-Once you install the FeatBit in your infrastructure, you actually are the owner of a workspace. Each workspace could have multiple organizations. Each organization could have multiple projects. Each project can have multiple environments.
+Once you installed the FeatBit in your infrastructure, you actually are the owner of a workspace. Each workspace could have multiple organizations. Each organization could have multiple projects. Each project can have multiple environments.
 
 For the access control, we start at the organization level. You can control who can access the organization, projects under the organization, and environments under each project, and also the feature flags under each environment.
 
@@ -11,7 +11,7 @@ For the access control, we start at the organization level. You can control who 
 ## Prerequisites
 
 Before you start to manage access control, you should:
-- Have teams and members created in your organization. You can refer to [User and Team Management](./teams) to add members and teams.
+- Have members created in your organization. You can refer to [Team Management](./teams) to add members.
 - Have groups (member collections) created in your organization. You can refer to [Group Management](./groups) to add groups.
 
 ## Quick Start
@@ -124,7 +124,9 @@ We will create a policy that includes only permission settings for feature flag 
 3. In the policy detail page, click on `(+)` icon to add a new permission
     - Choose `Feature Flag` as the control-level (resource type).
     - Select the project and environment where the feature flag belongs to in resource selector. By default, you can only select all flags of all projects/environments, you need to select it then click on the label to change it to specific project/environment.
-    ![](../iam/assets/rbac/specify-ff-prod-n-env.png)
+
+      ![](../iam/assets/rbac/specify-ff-prod-n-env.png)
+   
     - In allow or deny selector, choose `Allow`.
     - In action selector, choose all actions.
 
