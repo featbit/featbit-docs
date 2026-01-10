@@ -4,7 +4,7 @@ You manage access in FeatBit by creating policies and attaching them to IAM iden
 
 ## Policy algorithm
 
-FeatBit, by default, allows no access. User needs explicit permissions to access a feature.
+FeatBit, by default, allows no access. Users need explicit permissions to access a feature.
 
 > Permissions are cumulative. 
 >
