@@ -4,22 +4,22 @@ You manage access in FeatBit by creating policies and attaching them to IAM iden
 
 ## Policy algorithm
 
-FeatBit, by default, allows no access. Users need explicit permissions to access a feature.
+**FeatBit, by default, allows no access.** Users need explicit permissions to access a feature.
 
 > Permissions are cumulative. 
 >
-> If an account member has one or more roles, then the account member’s access is defined by those roles. If the roles have conflicting permission levels, access is determined using a deny-override rule: if any role explicitly denies a permission, that deny takes precedence over any allows from other roles. For example, if a member has one role that allows access to a resource, and another role that denies access to a resource, the member is denied to that resource.
+> If an account member has one or more policies, then the account member’s access is defined by those policies. If the policies have conflicting permission levels, access is determined using a **deny-override rule**: if any policy explicitly denies a permission, that deny takes precedence over any allows from other policies. For example, if a member has one policy that allows access to a resource, and another policy that denies access to a resource, the member is denied to that resource.
 >
-> If a group has one or more roles, then for each account member in the group, the account member’s access is defined by both the member’s role and the roles assigned to the group.
+> If a group has one or more policies, then for each account member in the group, the account member’s access is defined by both the member’s policy and the policies assigned to the group.
 >
-> For example, if a member has a Developer role and is assigned another role through their group, then the member will continue to have developer access to all resources through the developer role, in addition to the access granted through their group.
+> For example, if a member has a Developer policy and is assigned another policy through their group, then the member will continue to have developer access to all resources through the developer policy, in addition to the access granted through their group.
 
 The algorithm for determining whether a policy allows or denies access is as follows:
 
 - If a statement within a policy explicitly denies access to a resource and action, access is denied. This statement overrides any other statement in the policy that allows access to the resource and action.
 - If a statement within a policy explicitly allows access to a resource and action, and no statement denies access, access is allowed.
 - If two different policies have conflicting permission levels, the least permissive level of access is applied.
-- Any resource or action not specifically included within a policy is denied by default.
+- Any resource or action not specifically included within a policy is **denied by default**.
 
 Statement order does not matter.
 
