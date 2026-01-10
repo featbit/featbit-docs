@@ -272,13 +272,17 @@ NOTE: Be sure that all members in `Project A PMs` groups have removed their defa
 
 ### Policy `Project A Dev`
 
+Different from the policies above, this subsection shows how to combine two policies to meet the requirements for developers in `Project A`.
+
+- Policy `Project A QA` (created above) to allow read-only access to Project A (all environments). This policy already meets the read-only access requirement for the `prod` environment.
+- Policy `Project A Dev`:
+    - Full access to `dev` environment.
+    - Allow operate a specific feature flag in `prod` environment.
+
+Create the policy `Project A Dev` as below:
+
 1. Create a policy named `Project A Dev`. Resource Name (RN) is `policy/Project A Dev`.
-2. Add a permission for project level access:
-    - Control Level: `Project`
-    - Resource Selector: `project/project-a`
-    - Allow or Deny: `Allow`
-    - Actions: `CanAccessProject`
-3. Add a permission for feature-flag level access in `dev` environment:
+2. Add a permission for feature-flag level access in `dev` environment:
     - Control Level: `Feature Flag`
     - Resource Selector/Editor: `project/project-a:env/dev:flag/*`
         - Project: `project-a`
@@ -286,7 +290,7 @@ NOTE: Be sure that all members in `Project A PMs` groups have removed their defa
         - Feature Flag: `*`
     - Allow or Deny: `Allow`
     - Actions: all actions for feature flags.
-4. Add a permission for specific feature-flag in `prod` environment:
+3. Add a permission for specific feature-flag in `prod` environment:
     - Control Level: `Feature Flag`
     - Resource Selector/Editor: `project/project-a:env/prod:flag/*`
         - Project: `project-a`
@@ -297,14 +301,17 @@ NOTE: Be sure that all members in `Project A PMs` groups have removed their defa
 
 ![](../iam/assets/rbac/example-dev-001.png)
 
-
-5. Save the policy and assign it to group `Project A Devs`.
+5. Save the policy.
+6. Assign both policies `Project A QA` and `Project A Dev` to group `Project A Devs`.
 
 ![](../iam/assets/rbac/example-dev-002.png)
 
-Note: Be sure that all members in `Project A Devs` groups have removed their default policy assignments, otherwise they may still have more permissions than expected.
+This combination may not satisfy your feeling caused by `Project A QA` name, but it shows you another way to achieve complex access control requirements by combining multiple policies.
+
 
 ### Policy `Project A External Dev`
+
+We create all permissions in a single policy for external developers.
 
 1. Create a policy named `Project A External Dev`. Resource Name (RN) is `policy/Project A External Dev`.
 2. Add a permission for project level access:
@@ -312,10 +319,10 @@ Note: Be sure that all members in `Project A Devs` groups have removed their def
     - Resource Selector: `project/project-a`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessProject`
-3. Add a permission for environment level access in `prod` environment:
+3. Add a permission for environment level access in `dev` environment:
     - Control Level: `Environment`
-    - Resource Selector/Editor: `project/project-a:env/prod`
-    - Allow or Deny: `Deny`
+    - Resource Selector/Editor: `project/project-a:env/dev`
+    - Allow or Deny: `Allow`
     - Actions: `CanAccessEnv`
 4. Add a permission for feature-flag level access in `dev` environment:
     - Control Level: `Feature Flag`
