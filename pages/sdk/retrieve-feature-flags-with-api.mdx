@@ -13,6 +13,24 @@ The differences between client side and server side SDKs are:
 Please note that you need to replace `{Host}` in the API requests with the appropriate host URL for your environment. `{Host}` can be the evaluation server host or the FeatBit Agent host, both of them provides the same API.
 </Callout>
 
+## Polling With Timestamp Parameter
+
+Both APIs support an optional `timestamp` query parameter that enables efficient polling for feature flag updates. When provided, the server will only return flags that have been modified after the specified timestamp. This helps reduce bandwidth and processing overhead by avoiding unnecessary data transfers when flags haven't changed.
+
+**How it works:**
+
+1. Make an initial request without the `timestamp` parameter to get all feature flags
+2. Store the **max** `timestamp` value from the response
+3. In subsequent polling requests, include the stored timestamp as a query parameter: `?timestamp={value}`
+4. The server will only return flags modified after that timestamp
+5. Update your stored timestamp with the latest value from each response
+
+**Benefits:**
+
+* Reduced network bandwidth usage
+* Lower server load
+* Faster response times when no changes have occurred
+
 ## Client Side
 
 For client-side requests, provide the client environment secret in the `Authorization` header.
@@ -20,7 +38,27 @@ For client-side requests, provide the client environment secret in the `Authoriz
 **Request**
 
 ```bash
+# Initial request (no timestamp)
 curl -X POST {Host}/api/public/sdk/client/latest-all \
+-H 'Content-Type: application/json' \
+-H 'Authorization: client-env-secret' \
+-d '{
+    "keyId": "bot-id",
+    "name": "bot",
+    "customizedProperties": [
+        {
+            "name": "level",
+            "value": "high"
+        },
+        {
+            "name": "localtion",
+            "value": "us"
+        }
+    ]
+}'
+
+# Subsequent polling request (with timestamp)
+curl -X POST '{Host}/api/public/sdk/client/latest-all?timestamp=1712755780494' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: client-env-secret' \
 -d '{
@@ -79,7 +117,11 @@ For server-side requests, provide the server environment secret in the `Authoriz
 **Request**
 
 ```bash
+# Initial request (no timestamp)
 curl -H "Authorization: server-env-secret" {Host}/api/public/sdk/server/latest-all
+
+# Subsequent polling request (with timestamp)
+curl -H "Authorization: server-env-secret" '{Host}/api/public/sdk/server/latest-all?timestamp=1712755780494'
 ```
 
 **Response**
