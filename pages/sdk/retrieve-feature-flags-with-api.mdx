@@ -10,7 +10,7 @@ The differences between client side and server side SDKs are:
 * Client side SDK relies on the Evaluation Server to evaluate all the flags while Server side SDK evaluates the flags locally
 
 <Callout type="info" emoji="ℹ️">
-Please note that you need to replace `{Host}` in the API requests with the appropriate host URL for your environment. `{Host}` can be the evaluation server host or the FeatBit Agent host, both of them provides the same API.
+Please note that you need to replace `{Host}` in the API requests with the appropriate host URL for your environment. `{Host}` can be the evaluation server host or the FeatBit Agent host, both of them provide the same API.
 </Callout>
 
 ## Polling With Timestamp Parameter
@@ -51,13 +51,13 @@ curl -X POST {Host}/api/public/sdk/client/latest-all \
             "value": "high"
         },
         {
-            "name": "localtion",
+            "name": "location",
             "value": "us"
         }
     ]
 }'
 
-# Subsequent polling request (with timestamp)
+# Subsequent polling request (with timestamp in milliseconds)
 curl -X POST '{Host}/api/public/sdk/client/latest-all?timestamp=1712755780494' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: client-env-secret' \
@@ -70,7 +70,7 @@ curl -X POST '{Host}/api/public/sdk/client/latest-all?timestamp=1712755780494' \
             "value": "high"
         },
         {
-            "name": "localtion",
+            "name": "location",
             "value": "us"
         }
     ]
@@ -120,7 +120,7 @@ For server-side requests, provide the server environment secret in the `Authoriz
 # Initial request (no timestamp)
 curl -H "Authorization: server-env-secret" {Host}/api/public/sdk/server/latest-all
 
-# Subsequent polling request (with timestamp)
+# Subsequent polling request (with timestamp in milliseconds)
 curl -H "Authorization: server-env-secret" '{Host}/api/public/sdk/server/latest-all?timestamp=1712755780494'
 ```
 
