@@ -26,7 +26,7 @@ Both APIs support an optional `timestamp` query parameter that enables efficient
 **Where to read the timestamp from:**
 
 * **Client-side requests:** Extract the `timestamp` field from each feature flag object in the `data.featureFlags` array. Take the **maximum** value from all timestamps.
-* **Server-side requests:** Extract the `updatedAt` field from all objects in both the `data.featureFlags` and `data.segments` arrays. Find the **latest** among them and convert it to milliseconds. 
+* **Server-side requests:** Extract the `updatedAt` field from all objects in both the `data.featureFlags` and `data.segments` arrays. Find the **latest** among them and convert it to milliseconds.
 
 **Benefits:**
 
