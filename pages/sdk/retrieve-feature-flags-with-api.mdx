@@ -2,7 +2,7 @@ import { Callout } from 'nextra/components'
 
 # Retrieve feature flags with API
 
-The Evaluation Server offers two APIs that allow us to retrieve feature flags for both client-side and server-side SDKs, specific to the given environment.
+The Evaluation Server offers two APIs that allow you to retrieve feature flags for both client-side and server-side SDKs, specific to the given environment.
 
 * **Client-side API:** For single devices used by individual users. Client-side requests retrieve all **evaluated feature flag values for a specific user**. The server performs all flag evaluations and returns only the results.
 * **Server-side API:** For services that handle multiple users. Server-side requests return all **raw feature flags and segments data**. The server-side SDK then uses this data to evaluate feature flag values locally for each given user.
