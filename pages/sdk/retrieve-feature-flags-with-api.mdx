@@ -20,8 +20,8 @@ Both APIs support an optional `timestamp` query parameter that enables efficient
 1. Make an initial request without the `timestamp` parameter to get all feature flags
 2. Store the **max** `timestamp` value from the response
 3. In subsequent polling requests, include the stored timestamp as a query parameter: `?timestamp={value}`
-4. The server will only return flags modified after that timestamp
-5. Update your stored timestamp with the latest value from each response
+4. The server will only return data modified after that timestamp
+5. After each response, recompute and update your stored timestamp with the latest value from each response
 
 **Where to read the timestamp from:**
 
