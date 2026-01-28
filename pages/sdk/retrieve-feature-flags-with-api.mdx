@@ -7,7 +7,7 @@ The Evaluation Server offers two APIs that allow you to retrieve feature flags f
 The differences between client side and server side SDKs are:
 
 * Client side SDK is for single user but Server side SDK is for multiple users
-* Client side SDK relies on the Evaluation Server to evaluate all the flags while Server side SDK evaluates the flags locally
+* Client side SDK relies on the Evaluation Server to evaluate all the flags while Server Side SDK evaluates the flags locally
 
 <Callout type="info" emoji="ℹ️">
 Please note that you need to replace `{Host}` in the API requests with the appropriate host URL for your environment. `{Host}` can be the evaluation server host or the FeatBit Agent host, both of them provide the same API.
@@ -24,6 +24,11 @@ Both APIs support an optional `timestamp` query parameter that enables efficient
 3. In subsequent polling requests, include the stored timestamp as a query parameter: `?timestamp={value}`
 4. The server will only return flags modified after that timestamp
 5. Update your stored timestamp with the latest value from each response
+
+**Where to read the timestamp from:**
+
+* **Client-side requests:** Extract the `timestamp` field from each feature flag object in the `data.featureFlags` array. Take the **maximum** value from all timestamps.
+* **Server-side requests:** Extract the `updatedAt` field from all objects in both the `data.featureFlags` and `data.segments` arrays. Find the **latest** among them and convert it to milliseconds. 
 
 **Benefits:**
 
