@@ -2,12 +2,10 @@ import { Callout } from 'nextra/components'
 
 # Retrieve feature flags with API
 
-The Evaluation Server offers two APIs that allow you to retrieve feature flags for both client-side and server-side sdks, specific to the desired environment.
+The Evaluation Server offers two APIs that allow us to retrieve feature flags for both client-side and server-side SDKs, specific to the given environment.
 
-The differences between client side and server side SDKs are:
-
-* Client side SDK is for single user but Server side SDK is for multiple users
-* Client side SDK relies on the Evaluation Server to evaluate all the flags while Server Side SDK evaluates the flags locally
+* **Client-side API:** For single devices used by individual users. Client-side requests retrieve all **evaluated feature flag values for a specific user**. The server performs all flag evaluations and returns only the results.
+* **Server-side API:** For services that handle multiple users. Server-side requests return all **raw feature flags and segments data**. The Server-side SDK then uses this data to evaluate feature flag values locally for each given user.
 
 <Callout type="info" emoji="ℹ️">
 Please note that you need to replace `{Host}` in the API requests with the appropriate host URL for your environment. `{Host}` can be the evaluation server host or the FeatBit Agent host, both of them provide the same API.
@@ -38,7 +36,7 @@ Both APIs support an optional `timestamp` query parameter that enables efficient
 
 ## Client Side
 
-For client-side requests, provide the client environment secret in the `Authorization` header.
+For client-side requests, provide the **client environment secret** in the `Authorization` header.
 
 **Request**
 
@@ -117,7 +115,7 @@ curl -X POST '{Host}/api/public/sdk/client/latest-all?timestamp=1712755780494' \
 
 ## Server Side
 
-For server-side requests, provide the server environment secret in the `Authorization` header.
+For server-side requests, provide the **server environment secret** in the `Authorization` header.
 
 **Request**
 
