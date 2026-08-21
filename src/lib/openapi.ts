@@ -6,8 +6,15 @@ const document = structuredClone(schema) as unknown as OpenAPIV3_2.Document;
 
 document.servers = [
   {
-    url: 'https://app-api.featbit.co',
-    description: 'FeatBit Cloud',
+    name: 'Custom Server',
+    url: '{baseUrl}',
+    description: 'Choose the FeatBit API server used by requests and code examples.',
+    variables: {
+      baseUrl: {
+        default: 'https://app-api.featbit.co',
+        description: 'Enter your FeatBit API server URL.',
+      },
+    },
   },
 ];
 document.security = [{ AccessToken: [] }];
