@@ -1,0 +1,10 @@
+{
+  "title": "API",
+  "pages": [
+    "overview",
+    "using-featbit-rest-api",
+    "flag-evaluation-api",
+    "track-insights-api",
+    "faq"
+  ]
+}

@@ -1,0 +1,213 @@
+---
+title: Retrieve Feature Flags
+---
+
+The Evaluation Server offers two APIs that allow you to retrieve feature flags for both client-side and server-side SDKs, specific to the given environment.
+
+* **Client-side API:** For single devices used by individual users. Client-side requests retrieve all **evaluated feature flag values for a specific user**. The server performs all flag evaluations and returns only the results.
+* **Server-side API:** For services that handle multiple users. Server-side requests return all **raw feature flags and segments data**. The server-side SDK then uses this data to evaluate feature flag values locally for each given user.
+
+<Callout type="info">
+Please note that you need to replace `{Host}` in the API requests with the appropriate host URL for your environment. `{Host}` can be the evaluation server host or the FeatBit Agent host, both of them provide the same API.
+</Callout>
+
+## Polling With Timestamp Parameter
+
+Both APIs support an optional `timestamp` query parameter that enables efficient polling for feature flag updates. When provided, the server will only return flags that have been modified after the specified timestamp. This helps reduce bandwidth and processing overhead by avoiding unnecessary data transfers when flags haven't changed.
+
+**How it works:**
+
+1. Make an initial request without the `timestamp` parameter to get all feature flags
+2. Store the **max** `timestamp` value from the response
+3. In subsequent polling requests, include the stored timestamp as a query parameter: `?timestamp={value}`
+4. The server will only return data modified after that timestamp
+5. After each response, recompute and update your stored timestamp with the latest value from each response
+
+**Where to read the timestamp from:**
+
+* **Client-side requests:** Extract the `timestamp` field from each feature flag object in the `data.featureFlags` array. Take the **maximum** value from all timestamps.
+* **Server-side requests:** Extract the `updatedAt` field from all objects in both the `data.featureFlags` and `data.segments` arrays. Find the **latest** among them and convert it to milliseconds.
+
+**Benefits:**
+
+* Reduced network bandwidth usage
+* Lower server load
+* Faster response times when no changes have occurred
+
+## Client Side
+
+For client-side requests, provide the **client environment secret** in the `Authorization` header.
+
+**Request**
+
+```bash
+# Initial request (no timestamp)
+curl -X POST {Host}/api/public/sdk/client/latest-all \
+-H 'Content-Type: application/json' \
+-H 'Authorization: client-env-secret' \
+-d '{
+    "keyId": "bot-id",
+    "name": "bot",
+    "customizedProperties": [
+        {
+            "name": "level",
+            "value": "high"
+        },
+        {
+            "name": "location",
+            "value": "us"
+        }
+    ]
+}'
+
+# Subsequent polling request (with timestamp in milliseconds)
+curl -X POST '{Host}/api/public/sdk/client/latest-all?timestamp=1712755780494' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: client-env-secret' \
+-d '{
+    "keyId": "bot-id",
+    "name": "bot",
+    "customizedProperties": [
+        {
+            "name": "level",
+            "value": "high"
+        },
+        {
+            "name": "location",
+            "value": "us"
+        }
+    ]
+}'
+```
+
+**Response**
+
+```json
+{
+   "messageType":"data-sync",
+   "data":{
+      "eventType":"full",
+      "userKeyId":"bot-id",
+      "featureFlags":[
+         {
+            "id":"hello-world",
+            "variation":"false",
+            "variationType":"boolean",
+            "variationId":"3f02a597-a150-4c3f-83b9-27a2de80c7dc",
+            "matchReason":"flag disabled",
+            "variationOptions":[
+               {
+                  "id":"fafb6319-9270-4a4b-b2c3-12d2be29e69a",
+                  "value":"true"
+               },
+               {
+                  "id":"3f02a597-a150-4c3f-83b9-27a2de80c7dc",
+                  "value":"false"
+               }
+            ],
+            "sendToExperiment":false,
+            "timestamp":1712755780494
+         }
+      ]
+   }
+}
+```
+
+## Server Side
+
+For server-side requests, provide the **server environment secret** in the `Authorization` header.
+
+**Request**
+
+```bash
+# Initial request (no timestamp)
+curl -H "Authorization: server-env-secret" {Host}/api/public/sdk/server/latest-all
+
+# Subsequent polling request (with timestamp in milliseconds)
+curl -H "Authorization: server-env-secret" '{Host}/api/public/sdk/server/latest-all?timestamp=1712755780494'
+```
+
+**Response**
+
+```json
+{
+   "messageType":"data-sync",
+   "data":{
+      "eventType":"full",
+      "featureFlags":[
+         {
+            "envId":"1331554d-98c4-41fe-ade4-68e6f5eeb54a",
+            "name":"hello world",
+            "key":"hello-world",
+            "variationType":"boolean",
+            "variations":[
+               {
+                  "id":"bbe8f444-090e-4a3b-99fa-b487bab424aa",
+                  "value":"true"
+               },
+               {
+                  "id":"cf8f9626-0d6f-4d05-a98f-8c3a50c85d0f",
+                  "value":"false"
+               }
+            ],
+            "targetUsers":[
+               
+            ],
+            "rules":[
+               
+            ],
+            "isEnabled":true,
+            "disabledVariationId":"cf8f9626-0d6f-4d05-a98f-8c3a50c85d0f",
+            "fallthrough":{
+               "dispatchKey":null,
+               "includedInExpt":true,
+               "variations":[
+                  {
+                     "id":"bbe8f444-090e-4a3b-99fa-b487bab424aa",
+                     "rollout":[
+                        0,
+                        1
+                     ],
+                     "exptRollout":1
+                  }
+               ]
+            },
+            "exptIncludeAllTargets":true,
+            "tags":[
+               
+            ],
+            "isArchived":false,
+            "disabledVariation":{
+               "id":"cf8f9626-0d6f-4d05-a98f-8c3a50c85d0f",
+               "value":"false"
+            },
+            "creatorId":"b58fa8fd-eca2-460a-ab0f-e7758dbcec6a",
+            "updatorId":"b58fa8fd-eca2-460a-ab0f-e7758dbcec6a",
+            "createdAt":"2023-03-16T09:11:23.739Z",
+            "updatedAt":"2023-03-16T09:11:26.0465535Z",
+            "id":"4daca70f-86ae-4468-aee8-afc700977202"
+         }
+      ],
+      "segments":[
+         {
+            "envId":"1331554d-98c4-41fe-ade4-68e6f5eeb54a",
+            "name":"beta users",
+            "description":"this is a segment for beta users",
+            "included":[
+               
+            ],
+            "excluded":[
+               
+            ],
+            "rules":[
+               
+            ],
+            "isArchived":false,
+            "createdAt":"2023-03-16T09:18:21.1317917Z",
+            "updatedAt":"2023-03-16T09:18:21.1317248Z",
+            "id":"b2b91bbe-5d54-4d8a-882f-afc700995b23"
+         }
+      ]
+   }
+}
+```

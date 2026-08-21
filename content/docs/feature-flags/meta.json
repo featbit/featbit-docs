@@ -1,0 +1,14 @@
+{
+  "title": "Feature Flags",
+  "pages": [
+    "the-flag-list",
+    "organizing-flags",
+    "flag-lifecycle-management",
+    "create-flag-variations",
+    "targeting-users-with-flags",
+    "the-flag-insights",
+    "users-and-user-segments",
+    "feature-workflow",
+    "audit-log"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Targeting users with flags",
+  "pages": [
+    "targeting-rules",
+    "percentage-rollouts",
+    "individual-user-targeting"
+  ]
+}

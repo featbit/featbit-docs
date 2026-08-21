@@ -1,0 +1,10 @@
+{
+  "title": "Tech Stack",
+  "pages": [
+    "overview",
+    "application-services",
+    "infrastructure-components",
+    "data-flows",
+    "benchmark"
+  ]
+}

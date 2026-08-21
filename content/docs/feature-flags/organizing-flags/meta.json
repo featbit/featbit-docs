@@ -1,0 +1,11 @@
+{
+  "title": "Organizing flags",
+  "pages": [
+    "projects",
+    "environments",
+    "copy-flags",
+    "clone-existing-flags",
+    "compare-and-copy-settings",
+    "archiving-and-deleting"
+  ]
+}
