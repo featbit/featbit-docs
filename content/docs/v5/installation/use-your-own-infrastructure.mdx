@@ -1,0 +1,46 @@
+---
+title: Use your own infrastructure
+---
+
+If you want to run FeatBit with your own infrastructure, this guide will show you how to configure each component. This approach gives you more control over your deployment and allows you to use existing infrastructure.
+
+## Set Environment Variables
+
+To use your own infrastructure, you need to modify some environment variables for each service. You can find the environment variables for each service in the following links:
+
+- [UI Environment Variables](https://github.com/featbit/featbit/tree/main/modules/front-end#install-with-docker)
+- [API Server Environment Variables](https://github.com/featbit/featbit/tree/main/modules/back-end#environment-variables)
+- [Evaluation Server Environment Variables](https://github.com/featbit/featbit/tree/main/modules/evaluation-server#environment-variables)
+- [Data Analytics Server Environment Variables](https://github.com/featbit/featbit/tree/main/modules/data-analytics#environment-variables)
+
+## Data Seeding
+
+### MongoDB
+
+Check the [MongoDB initialization scripts](https://github.com/featbit/featbit/blob/main/infra/mongodb/docker-entrypoint-initdb.d) for the database schema and seed data.
+
+### Postgres
+
+Check the [Postgres initialization scripts](https://github.com/featbit/featbit/tree/main/infra/postgresql/docker-entrypoint-initdb.d) for the database schema and seed data.
+
+<Callout type="info">
+You should run initialization scripts in version order, from oldest to your version. For example, if you're installing FeatBit v5.0.5, you'd need to run v0.0.0, then v5.0.4, and finally v5.0.5 against your database. The v0.0.0 script is the base, and subsequent scripts like v5.0.4 are migration scripts that apply incremental updates.
+</Callout>
+
+### Kafka
+
+You need to create the following topics in your kafka:
+
+* featbit-feature-flag-change
+* featbit-segment-change
+* featbit-insights
+* featbit-endusers
+
+<Callout type="info">
+Configure appropriate retention policies and partitioning strategies based on your expected data volume and performance requirements.
+</Callout>
+
+## FAQ
+
+* [How to solve the docker container port conflict problem?](faq.md#how-to-solve-docker-container-port-conflict-problem)
+* [How to make FeatBit portal accessible publically?](faq.md#how-to-make-featbit-portal-accessible-publicly)

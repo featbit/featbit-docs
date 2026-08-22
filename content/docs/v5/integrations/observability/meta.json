@@ -1,0 +1,9 @@
+{
+  "title": "Observability",
+  "pages": [
+    "opentelemetry",
+    "datadog",
+    "newrelic",
+    "grafana"
+  ]
+}

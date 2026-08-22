@@ -1,13 +1,13 @@
 import { source } from '@/lib/source';
-import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
-import { baseOptions } from '@/lib/layout.shared';
+import { VersionedDocsLayout } from '@/components/versioned-docs-layout';
 
 export default function Layout({ children }: LayoutProps<'/docs'>) {
-  const { nav, ...options } = baseOptions();
-
   return (
-    <DocsLayout tree={source.getPageTree()} {...options} nav={{ ...nav, mode: 'top' }}>
+    <VersionedDocsLayout
+      tree={source.getPageTree()}
+      availablePathnames={source.getPages().map((page) => page.url)}
+    >
       {children}
-    </DocsLayout>
+    </VersionedDocsLayout>
   );
 }

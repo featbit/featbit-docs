@@ -1,0 +1,12 @@
+{
+  "title": "Integrations",
+  "pages": [
+    "observability",
+    "data-analytic",
+    "chat-apps",
+    "api-access-tokens",
+    "terraform-provider",
+    "single-sign-on",
+    "webhooks"
+  ]
+}

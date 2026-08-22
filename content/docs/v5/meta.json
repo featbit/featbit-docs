@@ -1,0 +1,19 @@
+{
+  "title": "v5",
+  "pages": [
+    "index",
+    "getting-started",
+    "installation",
+    "feature-flags",
+    "sdk",
+    "api-docs",
+    "api-reference",
+    "integrations",
+    "data-import-and-export",
+    "experimentation",
+    "relay-proxy",
+    "iam",
+    "licenses",
+    "tech-stack"
+  ]
+}
