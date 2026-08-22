@@ -1,0 +1,12 @@
+{
+  "title": "Installation",
+  "pages": [
+    "docker-compose",
+    "use-your-own-infrastructure",
+    "terraform-aws",
+    "deployment-options",
+    "helm-chart",
+    "azure",
+    "faq"
+  ]
+}

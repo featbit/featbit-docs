@@ -1,0 +1,10 @@
+{
+  "title": "Getting Started",
+  "pages": [
+    "create-two-feature-flags",
+    "try-interacting-with-the-demo",
+    "create-a-multi-variant-feature-flag",
+    "connect-an-sdk",
+    "how-to-guides"
+  ]
+}

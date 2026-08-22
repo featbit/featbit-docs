@@ -1,0 +1,13 @@
+{
+  "title": "Flag lifecycle management",
+  "pages": [
+    "define-flag-types",
+    "set-cleanup-expectations",
+    "create-flags-with-agent-guidance",
+    "implement-feature-flags",
+    "monitor-release-health",
+    "control-exposure-and-release-decisions",
+    "detect-stale-feature-flags",
+    "clean-up-feature-flags-with-coding-agents"
+  ]
+}

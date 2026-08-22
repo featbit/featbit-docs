@@ -12,7 +12,7 @@ import { getMDXComponents } from '@/components/mdx';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { gitConfig } from '@/lib/shared';
-import { openapi } from '@/lib/openapi';
+import { getOpenAPIForPage } from '@/lib/openapi';
 import { OpenAPIPage } from '@/components/api-page';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
@@ -41,7 +41,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
             a: createRelativeLink(source, page),
             OpenAPIPage: async (componentProps) => (
               <OpenAPIPage
-                {...(await openapi.preloadOpenAPIPage(page))}
+                {...(await getOpenAPIForPage(page.url).preloadOpenAPIPage(page))}
                 {...componentProps}
               />
             ),
