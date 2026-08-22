@@ -1,0 +1,7 @@
+{
+  "option": "A",
+  "title": "Native Scalar Workbench",
+  "approved": false,
+  "composition": "Full-height endpoint navigation, central reference content, and a persistent request panel.",
+  "risk": "The persistent request panel gives testing maximum prominence but leaves less width for response schemas."
+}

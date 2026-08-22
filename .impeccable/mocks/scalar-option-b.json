@@ -1,0 +1,7 @@
+{
+  "option": "B",
+  "title": "Command Bar First",
+  "approved": false,
+  "composition": "A compact command bar exposes search, server, authentication, guides, and theme above the three-column reference.",
+  "risk": "The command bar is efficient but introduces more custom chrome above Scalar."
+}
