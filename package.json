@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "openapi:generate": "tsx scripts/generate-openapi.ts",
+    "api-reference:generate": "tsx scripts/generate-api-reference.ts",
+    "api-reference:update": "pnpm api-reference:generate && pnpm types:check && pnpm build",
     "types:check": "next typegen && tsc --noEmit",
     "lint": "eslint"
   },

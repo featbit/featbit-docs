@@ -1,0 +1,19 @@
+{
+  "title": "Segments",
+  "pages": [
+    "api/v1/envs/envid/segments/segmentid/get",
+    "api/v1/envs/envid/segments/segmentid/patch",
+    "api/v1/envs/envid/segments/segmentid/delete",
+    "api/v1/envs/envid/segments/get",
+    "api/v1/envs/envid/segments/post",
+    "api/v1/envs/envid/segments/by-ids/get",
+    "api/v1/envs/envid/segments/segmentid/name/put",
+    "api/v1/envs/envid/segments/segmentid/description/put",
+    "api/v1/envs/envid/segments/segmentid/targeting/put",
+    "api/v1/envs/envid/segments/segmentid/archive/put",
+    "api/v1/envs/envid/segments/segmentid/restore/put",
+    "api/v1/envs/envid/segments/segmentid/flag-references/get",
+    "api/v1/envs/envid/segments/all-tags/get",
+    "api/v1/envs/envid/segments/segmentid/tags/put"
+  ]
+}

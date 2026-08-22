@@ -1,0 +1,9 @@
+{
+  "title": "Workspaces",
+  "pages": [
+    "api/v1/workspaces/get",
+    "api/v1/workspaces/put",
+    "api/v1/workspaces/license/put",
+    "api/v1/workspaces/sso-oidc/put"
+  ]
+}

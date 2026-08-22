@@ -1,0 +1,16 @@
+{
+  "title": "Members",
+  "pages": [
+    "api/v1/members/memberid/get",
+    "api/v1/members/add/post",
+    "api/v1/members/remove-from-org/memberid/delete",
+    "api/v1/members/remove-from-workspace/memberid/delete",
+    "api/v1/members/get",
+    "api/v1/members/memberid/groups/get",
+    "api/v1/members/memberid/policies/get",
+    "api/v1/members/memberid/direct-policies/get",
+    "api/v1/members/memberid/inherited-policies/get",
+    "api/v1/members/memberid/add-policy/policyid/put",
+    "api/v1/members/memberid/remove-policy/policyid/put"
+  ]
+}

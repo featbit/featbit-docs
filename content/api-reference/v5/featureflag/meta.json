@@ -1,0 +1,22 @@
+{
+  "title": "Feature Flags",
+  "pages": [
+    "api/v1/envs/envid/feature-flags/get",
+    "api/v1/envs/envid/feature-flags/post",
+    "api/v1/envs/envid/feature-flags/key/get",
+    "api/v1/envs/envid/feature-flags/key/patch",
+    "api/v1/envs/envid/feature-flags/key/delete",
+    "api/v1/envs/envid/feature-flags/key/archive/put",
+    "api/v1/envs/envid/feature-flags/key/restore/put",
+    "api/v1/envs/envid/feature-flags/key/toggle/status/put",
+    "api/v1/envs/envid/feature-flags/key/name/put",
+    "api/v1/envs/envid/feature-flags/key/description/put",
+    "api/v1/envs/envid/feature-flags/key/off-variation/put",
+    "api/v1/envs/envid/feature-flags/key/variations/put",
+    "api/v1/envs/envid/feature-flags/key/pending-changes/get",
+    "api/v1/envs/envid/feature-flags/key/targeting/put",
+    "api/v1/envs/envid/feature-flags/clone/key/post",
+    "api/v1/envs/envid/feature-flags/all-tags/get",
+    "api/v1/envs/envid/feature-flags/key/tags/put"
+  ]
+}

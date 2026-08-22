@@ -1,0 +1,14 @@
+{
+  "title": "Policies",
+  "pages": [
+    "api/v1/policies/id/get",
+    "api/v1/policies/get",
+    "api/v1/policies/post",
+    "api/v1/policies/clone/key/post",
+    "api/v1/policies/policyid/settings/put",
+    "api/v1/policies/policyid/statements/put",
+    "api/v1/policies/policyid/delete",
+    "api/v1/policies/policyid/groups/get",
+    "api/v1/policies/policyid/members/get"
+  ]
+}

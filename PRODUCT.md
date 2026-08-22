@@ -24,19 +24,18 @@ API users work across FeatBit Cloud and self-hosted deployments. They move betwe
 - API authentication exposed in the reference is Access Token only.
 - The default FeatBit Cloud API server is `https://app-api.featbit.co`.
 - Users must be able to enter a custom server URL for self-hosted deployments.
-- The new Scalar reference lives at `/api-reference` as a dedicated application.
-- The existing Fumadocs OpenAPI implementation must remain intact so the change can be reversed easily.
+- The native Fumadocs OpenAPI reference lives at `/api-reference` with one operation per page.
 - Browser-sent requests remain subject to the selected API server's CORS policy. Access Tokens must not be routed through an untrusted public proxy.
 
 ## Brand Commitments
 
-Use the FeatBit name and existing logo assets. API Guides remain in the existing Fumadocs documentation experience; API Reference may use Scalar's dedicated application experience.
+Use the FeatBit name and existing logo assets. API Guides and API Reference share the Fumadocs Notebook header shell, while API Reference uses an API-specific endpoint sidebar.
 
 ## Evidence on Hand
 
 - OpenAPI source: `openapi/featbit.json`
 - Existing FeatBit assets: `public/icon.svg`, `public/logo.png`
-- Existing API reference implementation: `src/lib/openapi.ts`, `src/components/api-page.tsx`, and `content/docs/api-reference/`
+- API reference implementation: `src/lib/openapi.ts`, `src/lib/api-reference-source.ts`, `src/components/api-page.tsx`, and `content/api-reference/`
 
 No testimonials, usage metrics, or unsupported commercial claims should be invented.
 

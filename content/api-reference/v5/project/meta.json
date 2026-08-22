@@ -1,0 +1,10 @@
+{
+  "title": "Projects",
+  "pages": [
+    "api/v1/projects/id/get",
+    "api/v1/projects/id/delete",
+    "api/v1/projects/id/put",
+    "api/v1/projects/get",
+    "api/v1/projects/post"
+  ]
+}

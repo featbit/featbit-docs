@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "auditlog",
+    "environment",
+    "featureflag",
+    "group",
+    "member",
+    "policy",
+    "project",
+    "segment",
+    "workspace",
+    "v5"
+  ],
+  "title": "API Reference"
+}

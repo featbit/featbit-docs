@@ -1,7 +1,0 @@
-{
-  "option": "C",
-  "title": "Reference-first Minimal Chrome",
-  "approved": false,
-  "composition": "Brand, server, authentication, endpoints, and return links share one application rail; documentation and testing fill the remaining space.",
-  "risk": "The cleanest Scalar experience, but server and authentication controls compete with endpoint navigation in the rail."
-}

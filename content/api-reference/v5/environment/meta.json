@@ -1,0 +1,9 @@
+{
+  "title": "Environments",
+  "pages": [
+    "api/v1/projects/projectid/envs/id/get",
+    "api/v1/projects/projectid/envs/id/delete",
+    "api/v1/projects/projectid/envs/id/put",
+    "api/v1/projects/projectid/envs/post"
+  ]
+}

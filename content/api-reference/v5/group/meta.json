@@ -1,0 +1,16 @@
+{
+  "title": "Groups",
+  "pages": [
+    "api/v1/groups/id/get",
+    "api/v1/groups/id/delete",
+    "api/v1/groups/id/put",
+    "api/v1/groups/get",
+    "api/v1/groups/post",
+    "api/v1/groups/groupid/members/get",
+    "api/v1/groups/groupid/add-member/memberid/put",
+    "api/v1/groups/groupid/remove-member/memberid/put",
+    "api/v1/groups/groupid/policies/get",
+    "api/v1/groups/groupid/add-policy/policyid/put",
+    "api/v1/groups/groupid/remove-policy/policyid/put"
+  ]
+}

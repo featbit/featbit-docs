@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import type * as PageTree from 'fumadocs-core/page-tree';
 import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
@@ -22,8 +21,8 @@ export function VersionedDocsLayout({
 }: VersionedDocsLayoutProps) {
   const pathname = usePathname();
   const currentVersion = getDocsVersion(pathname);
-  const versionedTree = useMemo(() => getVersionedPageTree(tree, pathname), [pathname, tree]);
-  const { nav, ...options } = baseOptions();
+  const versionedTree = getVersionedPageTree(tree, pathname);
+  const { nav, ...options } = baseOptions(currentVersion);
 
   return (
     <DocsLayout
