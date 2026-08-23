@@ -20,26 +20,13 @@ Here is an image of the **Users** list:
 
 ![](../../feature-flags/assets/users-and-user-segments/the-user-list/001.webp)
 
-From the list, you can filter users by standard or custom attributes.
-
-### Filtering users 
-
-You can filter users on the **Users** list by standard or custom attributes.
-
-To filter users:
-
-1. Select the attributes.
-![](../../feature-flags/assets/users-and-user-segments/the-user-list/002.webp)
-2. Input the filtering value.
-![](../../feature-flags/assets/users-and-user-segments/the-user-list/003.webp)
-
-It supports only String type filters. Please give us feedback in [FeatBit GitHub's issues or discussion](https://github.com/featbit/featbit) if you want more.
+From the list, you can filter users by name or keyId.
 
 ### Customizing the Users list
 
-You can customize which attributes appear on the **Users** list. To start, click the attributes selector. Here is a screenshot of the attributes selector on the list:
+You can customize which attributes appear on the **Users** list. To start, click the attributes' selector. Here is a screenshot of the attributes selector on the list:
 
-![](../../feature-flags/assets/users-and-user-segments/the-user-list/004.webp)
+![](../../feature-flags/assets/users-and-user-segments/the-user-list/002.png)
 
 ## User storage
 

@@ -13,18 +13,18 @@ For example, a QA team might be responsible for testing new features across mult
 
 1. Go to the **Workspace** page, and switch to the **Global Users** tab.
 
-![](../../feature-flags/assets/users-and-user-segments/global-users/import_button.png)
+![](../../feature-flags/assets/users-and-user-segments/global-users/001.png)
 
 2. Click the **Import** button, and choose the JSON file you want to import.
 
-![](../../feature-flags/assets/users-and-user-segments/global-users/import_modal.png)
+![](../../feature-flags/assets/users-and-user-segments/global-users/002.png)
 
 3. After a successful import, you can see the imported users in the list.
 
-![](../../feature-flags/assets/users-and-user-segments/global-users/imported_users.png)
+![](../../feature-flags/assets/users-and-user-segments/global-users/001.png)
 
 ## Add Global User to Targeting Rules
 
 Go to the **Feature Flags** or **Segments** page, and switch to the **Targeting** tab. In the **Targeting users** section, you can select the global users you want to add.
 
-![](../../feature-flags/assets/users-and-user-segments/global-users/targeting_users.png)
+![](../../feature-flags/assets/users-and-user-segments/global-users/003.png)

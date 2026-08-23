@@ -40,4 +40,4 @@ You can access user pages from the **Users** list. Here is a user pages in the F
 
 ### User segment list
 
-![](../../feature-flags/assets/users-and-user-segments/user-attributes/004.webp)
+![](../../feature-flags/assets/users-and-user-segments/user-attributes/004.png)

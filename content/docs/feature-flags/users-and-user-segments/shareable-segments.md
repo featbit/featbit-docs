@@ -11,13 +11,15 @@ contexts.
 ## Create a Shared Segment
 
 1. Navigate to the **Segments** page.
-2. Click the **Add** button.
-3. Enter a human-readable **Name** for the shared segment.
-4. Choose the **Scopes** of the shared segment.
+2. Click the **+ New segment** button.
+3. Choose the **Shareable** segment type.
+4. Enter a human-readable **Name**.
 5. (Optional) Add a **Description**.
-6. Click the **Save** button. The segment's details page appears.
-
-![](../../feature-flags/assets/users-and-user-segments/shareable-segments/create-shareable-segment.png)
+![](../../feature-flags/assets/users-and-user-segments/shareable-segments/001.png)
+6. Click the **Choose scopes** button.
+7. Select the desired scopes in the choose scopes dialog
+![](../../feature-flags/assets/users-and-user-segments/shareable-segments/002.png)
+8. Click the **Create segment** button. The segment's details page appears.
 
 ## Scopes
 

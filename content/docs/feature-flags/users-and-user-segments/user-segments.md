@@ -26,13 +26,13 @@ You can view segments on the **Segments** list. From the list, you can filter se
 To create a new segment:
 
 1. Navigate to the **Segments** list.
-2.  Click **Add**. The "Add segment" panel appears.
+2.  Click **New segment**. The "New segment" panel appears.
 
 ![](../../feature-flags/assets/users-and-user-segments/user-segments/002.webp)
 3. Give your segment a human-readable **Name**.
 4. (Optional) Add a **Description**.
 ![](../../feature-flags/assets/users-and-user-segments/user-segments/003.webp)
-5. Click **Save**. The segment's **Targeting** tab appears.
+5. Click **Create segment**. The segment's **Targeting** tab appears.
 
 ## Customizing user segments 
 
@@ -41,13 +41,13 @@ You can customize a segment to apply to different users or attributes, or exclud
 To customize a segment:
 
 1. Navigate to the **Targeting** tab of the user segment you wish to modify.
-2.  Individually target users with the **Including users** or **Excluding users** options.
-![](../../feature-flags/assets/users-and-user-segments/user-segments/004.webp)
-3.  Click  **+** button beside **Rules** to create a custom rule for this segment. The custom rule menu appears:\
-![](../../feature-flags/assets/users-and-user-segments/user-segments/005.webp)
+2. Individually target users with the **Including users** or **Excluding users** options.
+![](../../feature-flags/assets/users-and-user-segments/user-segments/004.png)
+3.  Click  **+ Add rule** button on the right side of **Rules** to create a custom rule for this segment. The custom rule menu appears:
+![](../../feature-flags/assets/users-and-user-segments/user-segments/005.png)
 4. Specify an **attribute**, an **operator**, and **values** for the rule.
-5.  If you want to add more criteria, click the **plus button** beside the rule criteria.
-![](../../feature-flags/assets/users-and-user-segments/user-segments/006.webp)
+5. If you want to add more criteria, click the **plus button** at the bottom of the rule criteria.
+![](../../feature-flags/assets/users-and-user-segments/user-segments/006.png)
 6. Click **Save**.
 
 > Understanding segment rule logic
@@ -56,12 +56,33 @@ To customize a segment:
 >
 > If user matched one of the rules, user is treated as a **Included users**
 
-## Deleting segments 
+## Archive segments 
 
-To delete a segment, find the segment you want to delete on the **Segments** list and click **Remove**.
+To archive a segment:
+1. Find the segment you want to archive on the **Segments** list and click the three dots button.
 
-![](../../feature-flags/assets/users-and-user-segments/user-segments/007.webp)
+![](../../feature-flags/assets/users-and-user-segments/user-segments/007.png)
 
-If a feature flag is using the segment, you should first remove it from feature flag.
+2. Click on the **Archive** action button.
+3. Click on the **Archive** button in the archive segment dialog.
+If a feature flag is referencing the segment, you should first remove it from feature flag.
 
-![](../../feature-flags/assets/users-and-user-segments/user-segments/008.webp)
+![](../../feature-flags/assets/users-and-user-segments/user-segments/008.png)
+
+## Restore segments
+
+You can restore an archived segment:
+1. In the segment list page, click on the **Show archived** button
+2. Find the segment you want to archive and click the three dots button
+3. Click on the **Restore** action button.
+![](../../feature-flags/assets/users-and-user-segments/user-segments/009.png)
+4. Click on the **Restore** button in the restore segment dialog.
+
+## Delete segments
+
+You can delete an archived segment:
+1. In the segment list page, click on the **Show archived** button.
+2. Find the segment you want to archive and click the three dots button.
+3. Click on the **Remove** action button.
+![](../../feature-flags/assets/users-and-user-segments/user-segments/009.png)
+4. Click on the **Remove** button in the remove segment dialog.
