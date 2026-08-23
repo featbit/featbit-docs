@@ -45,13 +45,13 @@ and to collect their feedbacks.
 
 1. Go to Segments page and create a segment with following configuration
 
-![](../../getting-started/assets/beta-testing/002.webp)
+![](../../getting-started/assets/beta-testing/002.png)
 
 &#x20; With this configurations, users in the **Including users** are added in the segment.
 
 2. Go to the feature flag **game runner**'s targeting page, set the default rule to return false and add the following two rules
 
-![](../../getting-started/assets/beta-testing/003.webp)
+![](../../getting-started/assets/beta-testing/003.png)
 
 With this configuration, the feature is released to only internal users and all external users younger than 20 years old.
 

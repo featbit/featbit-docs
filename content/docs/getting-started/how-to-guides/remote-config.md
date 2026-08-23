@@ -22,10 +22,10 @@ Here are some remote config examples.
 
 In this example, we created a "bg color" remote config to get different color for different user.
 
-![](../../getting-started/assets/remote-config/001.webp)
+![](../../getting-started/assets/remote-config/001.png)
 
 ### MySql Connection
 
 In this example, we created a "mysql connection" remote config to get different mysql connections for different regional instances.
 
-![](../../getting-started/assets/remote-config/002.webp)
+![](../../getting-started/assets/remote-config/002.png)
