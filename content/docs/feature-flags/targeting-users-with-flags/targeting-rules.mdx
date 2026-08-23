@@ -18,13 +18,13 @@ Each condition has three parts:
 
 Here is an image of a user targeting rule:
 
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/001.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/001.png)
 
 To create a rule that serves `true` to all users whose email address ends with `gmail.com`:
 
-1. Click **Add rules** icon. 
+1. Click **Add rules** icon.
 
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/002.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/002.png)
 
 2. Enter a name for the rule.
 3. Choose `email` from the **Select an attribute** menu.
@@ -48,17 +48,9 @@ Here is an image of the percentage rollout section:
 
 In this example, 25% of users will receive the `true` variation.
 
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/003.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/003.png)
 
 To learn more, read [Percentage rollouts](percentage-rollouts.md).
-
-#### Experimentation <a href="#experimentation" id="experimentation"></a>
-
-After you save a targeting rule, you can click the **Set A/B test rule** button to run an experiment on the rule. To learn more, read [Creating experiments](../../experimentation/creating-experiments.md).
-
-Here is an image of the **et A/B test rule** button on a flag's targeting rule:
-
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/004.webp)
 
 #### User attributes <a href="#user-attributes" id="user-attributes"></a>
 
@@ -87,19 +79,19 @@ FeatBit supports the following operators:
 | greater than `>`, less than `<`, greater than or equal to `>=`, less than or equal to `<=` | number | Numeric comparisons |
 | user is in segment, user is not in segment | segment names | User is included or excluded by the targeting rules for the named segments. To learn more, read [User segments](../users-and-user-segments/user-segments). |
 
-## Setting the default rule <a href="#setting-the-default-rule" id="setting-the-default-rule"></a>
+## Setting the default rule when the flag is ON <a href="#setting-the-default-rule" id="setting-the-default-rule"></a>
 
 FeatBit defines a final default rule, for any users that don't match any of the targeting rules on the page. As with other rules, you can choose to serve a specific variation, or apply a percentage rollout to any remaining users.
 
 Here is an image of the percentage rollout section:
 
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/005.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/005.png)
 
 Now, 30% of all users who have not been targeted by any other rules will receive `true`.
 
 If you do not want to target users based on user key or any custom attributes, you can use the default rule to control the flag's rollout for all users.
 
-## Setting the default off variation <a href="#setting-the-default-off-variation" id="setting-the-default-off-variation"></a>
+## Setting the default rule when the flag is OFF <a href="#setting-the-default-off-variation" id="setting-the-default-off-variation"></a>
 
 When the toggle is turned off, FeatBit will serve the default off variation for your feature flag. For boolean flags, the default off variation is set to `false`. For multivariate flags, you select one of your custom variations. You can customize the default off variation for both boolean and multivariate flags in the **Targeting** tab.
 
@@ -110,13 +102,13 @@ The **Targeting** tab evaluates rules in the order below:
 ### If feature is turned ON
 
 1. Targeting individual users \
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/006.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/006.png)
    1. First variation
    2. Second variation
    3. Third variation
    4. ...
 2. Targeting user customized rules\
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/007.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/007.png)
    1. First rule displayed in UI
    2. Second rule displayed in UI
    3. Third rule displayed in UI
@@ -132,4 +124,4 @@ Customized rules can be re-ordered by clicking on the left edge of a rule and dr
 
 Serve variation pre-defined in OFF section\
 
-![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/008.webp)
+![](../../feature-flags/assets/targeting-users-with-flags/targeting-rules/008.png)

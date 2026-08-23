@@ -16,9 +16,9 @@ Your first project has two environments, Dev and Prod, by default. Each environm
 
 ## Switching environments
 
-There is an area that shows you the current organization, projects and environment in the top-right corner. Click on the project or environment or switch button allows you to quickly switch between projects and environments.
+There is an area that shows you the current organization, projects and environment in the top-left corner. Click on the environment name allows you to quickly switch between projects and environments.
 
-![](../../feature-flags/assets/organizing-flags/environments/001.webp)
+![](../../feature-flags/assets/organizing-flags/environments/001.png)
 
 ## Manage environments
 
@@ -27,7 +27,7 @@ You can manage your environments from the **Projects** page.
 1. Navigate to the **Organization** page.
 2.  Click the **Projects** tab.
 
-![](../../feature-flags/assets/organizing-flags/environments/002.webp)
+![](../../feature-flags/assets/organizing-flags/environments/002.png)
 
 Here are a few things you can do:
 

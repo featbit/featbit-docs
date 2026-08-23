@@ -27,11 +27,11 @@ To schedule a set of flag changes:
 2. Make the changes you want to the flag’s targeting.
 3.  Click the **hamburger icon** at the top right and select "Schedule changes":\
 
-![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/001.webp)
+![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/001.png)
 
 4.  In the "Schedule" section, put a title and select a date, time for when you want the changes to take effect.
 
-![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/002.webp)
+![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/002.png)
 
 
 5. Review and confirm the changes displayed in the dialog.
@@ -46,13 +46,13 @@ You can schedule multiple changes for different dates and times for a single fla
 To view all the scheduled changes for a flag:
 
 1. Navigate to the flags list and select the flag for which you want to view the scheduled changes. The flag's **Targeting** tab appears.
-2.  The number of scheduled changes appear in the upper right corner:\
+2.  The number of scheduled changes appear in the upper right corner:
 
 ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/003.png)
 
 3.  To view the complete list of changes, click on the **clock** icon. A panel appears that displays all the pending changes that are scheduled for this flag. The changes are listed chronologically, with the earliest upcoming change listed first:\
 
-    ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/004.webp)
+    ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/004.png)
 
 ## Deleting scheduled flag changes 
 

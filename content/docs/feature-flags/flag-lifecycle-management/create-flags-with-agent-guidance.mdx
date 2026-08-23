@@ -15,7 +15,7 @@ Before using either path, make sure the token can access the target project, env
 
 ## Configure access token permissions
 
-FeatBit CLI and FeatBit MCP can both use FeatBit tokens, but personal tokens and access tokens get permissions in different ways.
+FeatBit CLI and FeatBit MCP can both use FeatBit access tokens, but personal tokens and access tokens get permissions in different ways.
 
 - A personal token uses the permissions of the user who created it. If that user can create feature flags in the target project and environment, the token can be used by the agent for the same operation.
 - An access token has its own resource permissions. Configure the access token to include the target project, environment, and **Feature flag** resources before using it with an agent.

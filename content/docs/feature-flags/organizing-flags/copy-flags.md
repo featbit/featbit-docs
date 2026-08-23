@@ -6,11 +6,15 @@ title: Copy flags
 
 This topic explains how to copy feature flags across different project environments within your organization.
 
-## Copy Feature Flags
+## Copy a feature Flag
 
-In the flags list page, click the **Copy To** action button and then the dialog shows up:
+In the flags list page, click on the three dots button of any line, a popover would appear.
 
 ![Copy single flag](../../feature-flags/assets/organizing-flags/copy-flags/copy-single-flag.png)
+
+Click on the **Copy to environment** button and then the dialog shows up:
+
+![Copy single flag](../../feature-flags/assets/organizing-flags/copy-flags/copy-single-flag-dialog.png)
 
 After that, choose the target environment to which you want to copy the flag, a precheck will then be done to make sure if we can fully copy the flag to the target environment
 
