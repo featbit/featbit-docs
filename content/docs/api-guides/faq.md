@@ -12,14 +12,7 @@ title: FAQ
 
 ## How to check the REST API doc
 
-You have two ways to check the REST API doc
-
-1. You can check it on the demo site: https://app-api.featbit.co/docs/index.html
-2. If you are running FeatBit on premise, find the OPEN API Endpoint and add the suffix **/docs/index.html**
-
-![](./assets/faq/002.png)
-
-for example: it should be **http://localhost:5000/docs/index.html** in the above example.
+Click [here](/api-reference) to read the Open API reference doc.
 
 ## Feature flag definition
 
