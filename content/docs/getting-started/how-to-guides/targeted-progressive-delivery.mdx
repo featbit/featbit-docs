@@ -29,7 +29,7 @@ After testing in production our "Dino Game", you still worry about if the game c
 
 To achieve this, you just need to modify default rule to serve "rollout percentage", then assign for example 10 percent to `true`, and 90 percent to `false`.
 
-![](../../getting-started/assets/targeted-progressive-delivery/001.webp)
+![](../../getting-started/assets/targeted-progressive-delivery/001.png)
 
 This means 10% of users will receive return variation `true`, and the DinoGame will release to those users who got a true variation.
 
@@ -55,11 +55,11 @@ First, you need to create rule property in Portal. Go to "End users" page, click
 
 Add a new property name "orgId", and click "Save" to create it.
 
-![](../../getting-started/assets/targeted-progressive-delivery/005.webp)
+![](../../getting-started/assets/targeted-progressive-delivery/005.png)
 
 You can add predefined values for the property you created.
 
-![](../../getting-started/assets/targeted-progressive-delivery/006.webp)
+![](../../getting-started/assets/targeted-progressive-delivery/006.png)
 
 ### Pass the property and values to system (for developers only)
 
@@ -76,6 +76,6 @@ Go back to "game runner" feature flag's "Targeting" page. Create a rule with the
 1. Add a new rule with a name (ex. Progressively release to company AA).
 2. Add a condition, if user's "orgId" is in the list, this user has 10% opportunity to receive a `true` variation.
 
-![](../../getting-started/assets/targeted-progressive-delivery/008.webp)
+![](../../getting-started/assets/targeted-progressive-delivery/008.png)
 
 With the rule we set above, the DinoGame will release to 10% of users in Company AA. Whenever you met a worse feedback (bugs) during the release process, you can rollback your feature release immediately by reallocating the rollout percentage.
