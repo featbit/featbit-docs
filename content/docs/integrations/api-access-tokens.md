@@ -68,18 +68,18 @@ Here is a screenshot of the **Access tokens** page:
 
 To create an access token:
 
-1. Navigate to **Integrations/Access** **tokens** page.
-2.  Click on the **Add** button on the top right of the page, the **Add Access Token** panel appears\
+1. Navigate to **Integrations/Access tokens** page.
+2. Click on the **+ New access token** button on the top right of the page, the **Add Access Token** drawer appears
 
 ![](../integrations/assets/api-access-tokens/002.png)
 
 3. Give your token a human-readable **Name.**
 4. Select the type of the token from the dropdown list.
 5. Assign the permissions you want to grant to the token if it's a service token.
-6. Click **Save** button.
+6. Click **Create token** button.
 7. Copy and save the token somewhere secure. After you leave this page, the token is obscured.
 
-After you create a token, you can edit it's name, activate, deactivate or delete it. You can also manage existing tokens from this page.
+After you create a token, you can edit its name, activate, deactivate or delete it. You can also manage existing tokens from this page.
 
 ### Manage access tokens 
 
@@ -87,13 +87,13 @@ To manage an access token:
 
 1. Navigate to the **Integrations/Access** **tokens** page.
 2. Find your token in the list.
-3. Click the **overflow menu** for the token and select from the menu:\
+3. Click the **overflow menu** for the token and select from the menu:
 
    * Edit: modify the name of the access token.
    * Activate/Deactivate: toggle the status of the token. A token can be used only when its status is **active**. Otherwise, API calls made with that token return Forbidden response.
    * Remove: this allows to delete the token. If you take this action, the token can never be restored and it can never be used any more.
 
-Here is a screenshot of the edit and delete options:
+Here is a screenshot with the options:
 
 ![](../integrations/assets/api-access-tokens/003.png)
 
