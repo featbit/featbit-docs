@@ -2,6 +2,6 @@
   "title": "Relay Proxy",
   "pages": [
     "overview",
-    "featbit-agent"
+    "external:[FeatBit Agent](https://github.com/featbit/featbit-agent)"
   ]
 }
