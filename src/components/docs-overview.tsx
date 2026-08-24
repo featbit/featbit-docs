@@ -129,19 +129,23 @@ export function DocsOverview() {
             <div
               className={
                 groupIndex === 1
-                  ? "border-t border-fd-border md:border-t-0 md:border-l"
-                  : ""
+                  ? "border-t border-fd-border md:contents"
+                  : "md:contents"
               }
               key={group.title}
             >
-              <h3 className="border-b border-fd-border px-5 py-3 text-xs font-medium tracking-wide text-fd-muted-foreground uppercase">
+              <h3
+                className={`border-b border-fd-border px-5 py-3 text-xs font-medium tracking-wide text-fd-muted-foreground uppercase ${groupIndex === 1 ? "md:border-l" : ""}`}
+                style={{ gridColumn: groupIndex + 1, gridRow: 1 }}
+              >
                 {group.title}
               </h3>
-              {group.links.map((item) => (
+              {group.links.map((item, itemIndex) => (
                 <Link
-                  className={`group grid min-h-20 grid-cols-[1fr_auto] items-center gap-4 border-b border-fd-border px-5 py-3 text-fd-foreground transition-colors last:border-b-0 hover:bg-fd-muted/50 ${focusClasses}`}
+                  className={`group grid min-h-20 grid-cols-[1fr_auto] items-center gap-4 border-b border-fd-border px-5 py-3 text-fd-foreground transition-colors last:border-b-0 hover:bg-fd-muted/50 ${groupIndex === 1 ? "md:border-l" : ""} ${focusClasses}`}
                   href={item.href}
                   key={item.title}
+                  style={{ gridColumn: groupIndex + 1, gridRow: itemIndex + 2 }}
                 >
                   <span>
                     <span className="block font-medium">{item.title}</span>
