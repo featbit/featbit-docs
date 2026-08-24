@@ -125,7 +125,7 @@ The SDK's GitHub repository contains a full tutorial on how to use it. It also p
 
 We are continuously dedicated to expanding our platform support. However, it is possible that the specific platform you are targeting may not currently have an available SDK. In such instances, we offer two alternatives:
 
-- Use our REST APIs to get feature flags and evaluation result. See the documentation [Evaluation with REST APIs](/docs/api-docs/flag-evaluation-api).
+- Use our REST APIs to get feature flags and evaluation result. See the documentation [Evaluation with REST APIs](/api-guides/flag-evaluation-api).
 - Use our WebSocket interface to get real-time feature flags update and evaluation result of a feature flag. Please join our [Discord server](https://discord.gg/ytK9xGJSw3) to get more information about this feature.
 
 ## Contribution

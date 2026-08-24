@@ -25,9 +25,9 @@ For a broader implementation example across front-end, mobile, and back-end appl
 
 Fine-grained rollout control is useful only when the team can detect problems quickly. Connect feature flag exposure with logs, metrics, traces, APM data, alerting, and team communication channels so a release problem can be found and acted on before the rollout expands.
 
-[FeatBit Webhooks](/docs/integrations/webhooks) are the bridge between flag changes and the rest of the release health workflow. They can send feature flag activity to observability tools so rollout steps appear next to application health signals. They can also send flag changes to teamwork and incident channels so the right people know when exposure changes.
+[FeatBit Webhooks](/integrations/webhooks) are the bridge between flag changes and the rest of the release health workflow. They can send feature flag activity to observability tools so rollout steps appear next to application health signals. They can also send flag changes to teamwork and incident channels so the right people know when exposure changes.
 
-For observability and alerting, the pattern is the same across tools: record the flag change or rollout step, correlate it with health signals, and use alerts to decide whether to continue, pause, or roll back. See the integration guides for [Datadog](/docs/integrations/observability/datadog), [New Relic One](/docs/integrations/observability/newrelic), and [Grafana](/docs/integrations/observability/grafana).
+For observability and alerting, the pattern is the same across tools: record the flag change or rollout step, correlate it with health signals, and use alerts to decide whether to continue, pause, or roll back. See the integration guides for [Datadog](/integrations/observability/datadog), [New Relic One](/integrations/observability/newrelic), and [Grafana](/integrations/observability/grafana).
 
 ![Feature flag changes correlated with observability signals](../assets/flag-lifecycle-management/monitor-release-health/flag-change-observability.svg)
 
@@ -35,7 +35,7 @@ Feature flag evaluation can also be recorded inside traces. When a request calls
 
 ![Feature flag evaluation inside a request flame graph](../assets/flag-lifecycle-management/monitor-release-health/flag-flame-graph.svg)
 
-For team communication, use Webhooks with chat integrations such as [Slack](/docs/integrations/chat-apps/slack). This helps the team see when a flag is turned on, expanded, paused, or rolled back without manually checking the FeatBit dashboard.
+For team communication, use Webhooks with chat integrations such as [Slack](/integrations/chat-apps/slack). This helps the team see when a flag is turned on, expanded, paused, or rolled back without manually checking the FeatBit dashboard.
 
 The practical goal is a short feedback loop: a feature flag change creates an observable event, dashboards and alerts show whether health changes after exposure, the team is notified in the right channel, and rollback can happen through a FeatBit trigger, FeatBit REST API, or an operational runbook.
 

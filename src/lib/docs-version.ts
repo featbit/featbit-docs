@@ -1,5 +1,3 @@
-import { docsRoute } from './shared';
-
 export const latestDocsVersion = 'latest' as const;
 
 export const docsVersions = [
@@ -13,21 +11,15 @@ const archivedVersions = new Set<DocsVersion>(
   docsVersions.filter((version) => version.id !== latestDocsVersion).map((version) => version.id),
 );
 
-export function isDocsPath(pathname: string): boolean {
-  return pathname === docsRoute || pathname.startsWith(`${docsRoute}/`);
-}
-
 export function getDocsVersion(pathname: string): DocsVersion {
-  if (!isDocsPath(pathname)) return latestDocsVersion;
-
-  const firstSegment = pathname.slice(docsRoute.length).split('/').filter(Boolean)[0];
+  const firstSegment = pathname.split('/').filter(Boolean)[0];
   return archivedVersions.has(firstSegment as DocsVersion)
     ? (firstSegment as DocsVersion)
     : latestDocsVersion;
 }
 
 export function getVersionRoot(version: DocsVersion): string {
-  return version === latestDocsVersion ? docsRoute : `${docsRoute}/${version}`;
+  return version === latestDocsVersion ? '/' : `/${version}`;
 }
 
 export function getVersionPathname(
@@ -37,9 +29,9 @@ export function getVersionPathname(
 ): string {
   const currentVersion = getDocsVersion(pathname);
   const currentRoot = getVersionRoot(currentVersion);
-  const suffix = isDocsPath(pathname) ? pathname.slice(currentRoot.length) : '';
+  const suffix = currentVersion === latestDocsVersion ? pathname : pathname.slice(currentRoot.length);
   const targetRoot = getVersionRoot(targetVersion);
-  const candidate = `${targetRoot}${suffix}`;
+  const candidate = targetVersion === latestDocsVersion ? suffix || '/' : `${targetRoot}${suffix}`;
 
   if (availablePathnames.has(candidate)) return candidate;
 

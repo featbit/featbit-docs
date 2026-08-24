@@ -1,9 +1,4 @@
-import {
-  docsVersions,
-  getVersionRoot,
-  latestDocsVersion,
-  type DocsVersion,
-} from './docs-version';
+import { docsVersions, latestDocsVersion, type DocsVersion } from './docs-version';
 
 const apiReferenceRoute = '/api-reference';
 
@@ -23,5 +18,5 @@ export function getApiReferencePath(version: DocsVersion): string {
 }
 
 export function getApiGuidesPath(version: DocsVersion): string {
-  return `${getVersionRoot(version)}/api-docs`;
+  return version === latestDocsVersion ? '/api-guides/overview' : '/v5/api-docs/overview';
 }

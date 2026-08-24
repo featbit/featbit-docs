@@ -4,7 +4,7 @@ title: Detect stale feature flags
 
 ## Overview
 
-After you have already [set cleanup expectations](/docs/v5/feature-flags/flag-lifecycle-management/set-cleanup-expectations), stale flag detection should be handled by a reusable coding-agent skill. The agent only needs to read your cleanup rules, query FeatBit through [FeatBit CLI](/docs/v5/feature-flags/flag-lifecycle-management/create-flags-with-agent-guidance#use-featbit-cli) or [FeatBit MCP](/docs/v5/feature-flags/flag-lifecycle-management/create-flags-with-agent-guidance#use-featbit-mcp), search the repository for flag usage, and return a short cleanup review.
+After you have already [set cleanup expectations](/v5/feature-flags/flag-lifecycle-management/set-cleanup-expectations), stale flag detection should be handled by a reusable coding-agent skill. The agent only needs to read your cleanup rules, query FeatBit through [FeatBit CLI](/v5/feature-flags/flag-lifecycle-management/create-flags-with-agent-guidance#use-featbit-cli) or [FeatBit MCP](/v5/feature-flags/flag-lifecycle-management/create-flags-with-agent-guidance#use-featbit-mcp), search the repository for flag usage, and return a short cleanup review.
 
 ## Write a stale flag review skill
 
@@ -22,4 +22,4 @@ That skill should tell the agent to:
 - Classify each candidate as `remove`, `retain`, or `needs-owner-decision`.
 - Never archive a FeatBit flag until the deployed code no longer evaluates it.
 
-The full pattern is already demonstrated in the [stale flag review example](/docs/v5/feature-flags/flag-lifecycle-management/set-cleanup-expectations#stale-flag-review-example), where a coding agent uses project rules, repository references, and FeatBit state to list stale feature flags.
+The full pattern is already demonstrated in the [stale flag review example](/v5/feature-flags/flag-lifecycle-management/set-cleanup-expectations#stale-flag-review-example), where a coding agent uses project rules, repository references, and FeatBit state to list stale feature flags.

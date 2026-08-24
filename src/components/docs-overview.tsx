@@ -8,17 +8,17 @@ const paths = [
       {
         title: "Getting Started",
         description: "Create flags and connect your first SDK.",
-        href: "/docs/getting-started/create-two-feature-flags",
+        href: "/getting-started/create-two-feature-flags",
       },
       {
         title: "Feature Flags",
         description: "Target users, manage variations, and review changes.",
-        href: "/docs/feature-flags/the-flag-list",
+        href: "/feature-flags/the-flag-list",
       },
       {
         title: "SDK",
         description: "Evaluate flags from your application.",
-        href: "/docs/sdk/overview",
+        href: "/sdk/overview",
       },
     ],
   },
@@ -29,17 +29,17 @@ const paths = [
         title: "Installation",
         description:
           "Run FeatBit on Docker, Kubernetes, or your infrastructure.",
-        href: "/docs/installation/docker-compose",
+        href: "/installation/docker-compose",
       },
       {
         title: "Integrations",
         description: "Connect FeatBit to the tools around your workflow.",
-        href: "/docs/integrations/observability/opentelemetry",
+        href: "/integrations/observability/opentelemetry",
       },
       {
         title: "IAM & Licenses",
         description: "Manage access, policies, and licensed capabilities.",
-        href: "/docs/iam/overview",
+        href: "/iam/overview",
       },
     ],
   },
@@ -52,7 +52,7 @@ const interfaces = [
     description:
       "Configure targeting, variations, segments, and release workflows.",
     linkLabel: "Browse guides",
-    href: "/docs/feature-flags/the-flag-list",
+    href: "/feature-flags/the-flag-list",
   },
   {
     label: "SDKs",
@@ -60,7 +60,7 @@ const interfaces = [
     description:
       "Retrieve flag values and deliver the right experience to each user.",
     linkLabel: "View SDK docs",
-    href: "/docs/sdk/overview",
+    href: "/sdk/overview",
   },
   {
     label: "APIs",
@@ -71,7 +71,7 @@ const interfaces = [
     href: "/api-reference",
     secondaryLink: {
       label: "Read API Guides",
-      href: "/docs/api-guides/overview",
+      href: "/api-guides/overview",
     },
   },
 ] as const;
@@ -85,7 +85,7 @@ export function DocsOverview() {
       <section aria-labelledby="docs-quick-start">
         <Link
           className={`group grid gap-4 rounded-lg border border-fd-border p-5 text-fd-foreground transition-colors hover:bg-fd-muted/50 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:px-6 ${focusClasses}`}
-          href="/docs/getting-started/create-two-feature-flags"
+          href="/getting-started/create-two-feature-flags"
         >
           <Flag aria-hidden="true" className="size-6 text-fd-primary" />
           <div>

@@ -28,7 +28,7 @@ WHERE
   event = 'FlagValue' AND JSONExtract(properties, 'sendToExperiment', 'Bool') = true
 ```
 
-> In this query you will get FeatBit's feature flag usage data (you can also call it Feature Flag Expriment Assignment data) from ClickHouse. For more information about the data, please follow [Data Export Doc](/docs/v5/data-import-and-export/data-export).
+> In this query you will get FeatBit's feature flag usage data (you can also call it Feature Flag Expriment Assignment data) from ClickHouse. For more information about the data, please follow [Data Export Doc](/v5/data-import-and-export/data-export).
 
 Then click the **Save** button.
 
@@ -53,7 +53,7 @@ WHERE
   event = 'CustomEvent' AND JSONExtract(properties, 'eventName', 'String') = '{custom event name}'
 ```
 
-> In this query you will get FeatBit's Experiment events data (you can also call it Metric data) from ClickHouse. For more information about the data, please follow [Data Export Doc](/docs/v5/data-import-and-export/data-export).
+> In this query you will get FeatBit's Experiment events data (you can also call it Metric data) from ClickHouse. For more information about the data, please follow [Data Export Doc](/v5/data-import-and-export/data-export).
 
 ![](../../integrations/assets/growthbook/create-metric.png)
 
