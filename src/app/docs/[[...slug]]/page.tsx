@@ -14,6 +14,7 @@ import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { gitConfig } from '@/lib/shared';
 import { getOpenAPIForPage } from '@/lib/openapi';
 import { OpenAPIPage } from '@/components/api-page';
+import { DocsOverview } from '@/components/docs-overview';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
@@ -22,10 +23,11 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   const MDX = page.data.body;
   const markdownUrl = getPageMarkdownUrl(page).url;
+  const isDocsOverview = page.url === '/docs';
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
+      <DocsTitle>{isDocsOverview ? 'FeatBit Documentation' : page.data.title}</DocsTitle>
       <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6">
         <MarkdownCopyButton markdownUrl={markdownUrl} />
@@ -35,18 +37,22 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         />
       </div>
       <DocsBody>
-        <MDX
-          components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
-            a: createRelativeLink(source, page),
-            OpenAPIPage: async (componentProps) => (
-              <OpenAPIPage
-                {...(await getOpenAPIForPage(page.url).preloadOpenAPIPage(page))}
-                {...componentProps}
-              />
-            ),
-          })}
-        />
+        {isDocsOverview ? (
+          <DocsOverview />
+        ) : (
+          <MDX
+            components={getMDXComponents({
+              // this allows you to link to other pages with relative file paths
+              a: createRelativeLink(source, page),
+              OpenAPIPage: async (componentProps) => (
+                <OpenAPIPage
+                  {...(await getOpenAPIForPage(page.url).preloadOpenAPIPage(page))}
+                  {...componentProps}
+                />
+              ),
+            })}
+          />
+        )}
       </DocsBody>
     </DocsPage>
   );
