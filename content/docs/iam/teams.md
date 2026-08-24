@@ -10,17 +10,16 @@ This topic explains how to manage team members, team maintainers, and team permi
 
 At the moment, FeatBit provides only one default team. You can create, update, delete and manage members on the team page in the IAM section.
 
-
-![](../iam/assets/teams/001.webp)
+![](../iam/assets/teams/001.png)
 
 ### Adding a member to the team
 
 1. Navigate to the Team page in the IAM section.
-2. Click **Add** button. The "Add team member" dialog appears.
+2. Click **Add member** button. The "Add team member" dialog appears.
 3. Enter the email of the member.
 4. Choose the initial permission of the member.
-5. Choose the initial group (it can be empty).
-6. Click **Add** button to create a new member.
+5. Choose the initial group.
+6. Click **Add member** button to create a new member.
 
 ![](../iam/assets/teams/002.webp)
 
@@ -31,7 +30,7 @@ The new member was created with an initial password. It would be best if you pas
 
 ### Delete a member from the team
 
-You can remove a member from **IAM - Team** page. Click the **Remove** button of the member/user you want to delete from the list. Member/User won't be able to log in if it's not in the team list.
+You can remove a member from **IAM - Team** page. Click the **Manage** then **Remove** button of the member/user you want to delete from the list. Member/User won't be able to log in if it's not in the team list.
 
 ![](../iam/assets/teams/004.webp)
 
@@ -45,21 +44,22 @@ Only members him/her-self can modify his/her information, it includes email and 
 
 You can filter members by email.
 
-![](../iam/assets/teams/006.webp)
+![](../iam/assets/teams/006.png)
 
 ## Assign permission policies to a member
 
 Permissions are managed on the Policy page. You can configure member's policies on the **Direct policies** tab on the member detail page.
 
-1. Change selector to option **All**
-2. Click **Add** button on the policy you want to assign.
-3. Switch selector option to **Assigned to current member**
-4. You will only see the policies assigned to the current team member.
-5. You can click **Remove** to detach the policy from the team memebr.
+1. Click the **Attach policies** button, the **attach policies to xxx** drawer should appear
+2. Select the policies, if too many policies, you can filter with policy name.
+3. Click **Attach** button
+4. You can click **Remove** to detach the policy from the team memebr.
 
 ![](../iam/assets/teams/007.webp)
 
-If a member is sent to a group, this user will also inherit the policies from this group.
+![](../iam/assets/teams/011.png)
+
+If a member is added to a group, this user will also inherit the policies from this group.
 
 ![](../iam/assets/teams/008.webp)
 
@@ -69,10 +69,9 @@ You can give member one or multiple groups, this member will inherit all permisi
 
 ![](../iam/assets/teams/009.webp)
 
-* Change selector to option **All**
-* Click **Add** button on the group you want to assign.
-* Switch selector option to **Containing current member**
-* You will only see the group assigned to the current user(member).
-* You can click **Remove** to detach the group from the user(memebr).
+* Click the **Add to groups** button, the **add xxx to groups** drawer should appear
+* Select the groups, if too many groups, you can filter with group name.
+* Click **Add** button
+* You can click **Remove** to detach the group from the user(member).
 
 ![](../iam/assets/teams/010.webp)

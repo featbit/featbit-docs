@@ -17,11 +17,11 @@ You can attach a policy to a group so that all of the users in the user group re
 
 1\. Go to the **Groups** page under the IAM section
 
-2\. Click **Add** button
+2\. Click **Add group** button
 
 ![](../iam/assets/groups/001.webp)
 
-3\. Input the name and the description (optional) of the group
+3\. Input the name, key and the description (optional) of the group
 
 4\. Click **Save** button
 
@@ -52,15 +52,13 @@ In the group list, you can filter groups by name
 
 1\. Go to group detail page, switch to **Team** tab
 
-2\. Set selector to `All`, you will see all members in the organization
+2.\ Click **Add member** button
+
+2\. Select the members, if too many members, you can filter with name or email
 
 ![](../iam/assets/groups/005.webp)
 
-3\. Find the memebrs you want to add to the group. (you can filter by email). Click **Add** button on the member item in list.
-
-![](../iam/assets/groups/006.webp)
-
-4\. Change selector from `All` to `Contained by current group`. You will only see the members contained in the group.
+3\. Click **Add** button.
 
 ![](../iam/assets/groups/007.webp)
 
@@ -70,16 +68,15 @@ In the group list, you can filter groups by name
 
 1\. On the group detail page, switch to **Policies** tab
 
-2\. Set selector to `All`, you will see all policies
+2\. Click **Add policy** button
+
+3\. Select the policies, if too many policies, you can filter with policy name.
 
 ![](../iam/assets/groups/008.webp)
 
-3\. Find the policies you want to attach to the group. (you can filter by policy's name). Click **Add** button on the member item in list.
+4\. Click **Add** button.
 
 ![](../iam/assets/groups/009.webp)
 
-4\. Change selector from `All` to `Attached to current group`. You will only see the policies attached to this group.
-
-![](../iam/assets/groups/010.webp)
-
 5\. Click **Remove** button if you want to remove policies from a group.
+![](../iam/assets/groups/010.webp)

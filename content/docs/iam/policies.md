@@ -46,15 +46,20 @@ FeatBit provides three built-in policies which can't be modified. If needed, you
 
 ![](../iam/assets/policies/001.webp)
 
-## Add a policy
+## Create policy
 
-1\. Go to Policy page, click Add button
+1. Go to **Policies** page under the IAM section
 
-2\. In the Add policy drawer, input name and description of new policy. Then click **Save** to create.
+2. Click **Add policy** button
 
-3\. A new item is added to the policy list. You can filter policies by name to find the policy you just created.
+2. In the Add policy drawer, input name, key and description of new policy.
+![](../iam/assets/policies/000.png)
 
-4\. Click on the policy you just created (or click on the **Details** action button). Go to the policy detail page.
+3. Then click **Save** button to create.
+
+3. A new item is added to the policy list. You can filter policies by name to find the policy you just created.
+
+4. Click on the policy you just created (or click on the **Details** action button). Go to the policy detail page.
 
 ## Policy detail page
 
@@ -69,56 +74,57 @@ The policy detail page is composed of 6 parts:
 
 ## Add permissions
 
-1\. Click `(+)` icon, a new and empty permission form appears.
+1. Click **+ Add permission** button, a new empty permission form appears.
 
-2\. Choose the control-level (resource type). If you want to control access permission of environment-level, choose **`Environment`**
+2. Choose the effect: **allow**.
 
-3\. Select the resource you want to deny or allow access to.
+3. Choose the control-level (resource type). If you want to control access permission of environment-level, choose **`Environment`**
 
-* In resource selector, we choose project/explore:env/Dev. It means the `product` environment we want to assign access to belongs to project `explore`. You can choose multiple resources, here we choose only one.
-* In allow or deny selector, we choose `Allow`
-* In action selector, we choose `Access environments`.
+4. Select the resources and actions you want to deny or allow.
 
-4\. Click **Save**. You can create multiple permissions in on policy.
+* In resources selector, we choose project/demo:env/dev. It means the `dev` environment we want to assign access to belongs to project `demo`. You can choose multiple resources.
+* In actions selector, we choose `Access environments`.
 
-The permission above we created allows members who have this permission to access all resources in `product` environment of project `explore` , but those members can't modify resources.
+4. Click **Save changes**. You can create multiple permissions in on policy.
+![](../iam/assets/policies/007.png)
+
+The permission above we created allows members who have this permission to access all resources in `dev` environment of project `demo` , but those members can't modify resources.
 
 Each policy can add multiple permissions.
 
 ## Remove permission
 
-You can remove permission by clicking on the `Remove` button from permission list.
+You can remove permission by clicking on the recycle bin icon button from permission list.
 
 ![](../iam/assets/policies/002.webp)
 
 ## Assign permission to members
 
-1\. Go to policy detail page, switch to **Team** tab
+1. Go to policy detail page, switch to **Team** tab
 
-2\. Set selector to `All`, you will see all members in the organization
+2. Click **Add member** button
 
+3. Select the members, if too many members, you can filter with name or email
 ![](../iam/assets/policies/003.webp)
 
-3\. Find the members whom you assign the policy to. Click **Add** button on the member item in the list.
-
-4\. Change the selector from `All` to `Members with current policy`. You will only see the members who have the current policy.
+4. Click **Add** button.
 
 ![](../iam/assets/policies/004.webp)
 
-5\. Click the **Remove** button to remove members from the policy.
+5. Click the **Remove** button to remove members from the policy.
 
 ## Assign permission to groups
 
-1\. Go to policy detail page, switch to **Groups** tab
+1. Go to policy detail page, switch to **Groups** tab
 
-2\. Set selector to `All`, you will see all groups in the organization
+2. Click **Add to groups** button
+
+3. Select the groups, if too many groups, you can filter with name
 
 ![](../iam/assets/policies/005.webp)
 
-3\. Find the groups that you assign the policy to. Click **Add** button on the group item in the list.
-
-4\. Change the selector from `All` to `Groups with current policy`. You will only see the members who have the current policy.
+4. Click **Add** button.
 
 ![](../iam/assets/policies/006.webp)
 
-5\. Click the **Remove** button to remove groups from the policy.
+5. Click the **Remove** button to remove groups from the policy.

@@ -31,16 +31,17 @@ In the next sub-sections, we will show you how to manage access control for proj
 ### Enable User Access to Specific Projects
 
 1. Go to the `Policies` page under `IAM` menu.
-2. Click on `Add` button, input the policy name and description, then click `Save`.
-3. In the policy detail page, click on `(+)` icon to add a new permission
-    - Choose `Project` as the control-level (resource type).
-    - Select the project you want to allow access to in resource selector.
+2. Click on `Add policy` button, input the policy name, key and description, then click `Save`.
+3. In the policy detail page, click on `+ Add permission` button to add a new permission
     - In allow or deny selector, choose `Allow`.
+    - Choose `Project` as the control-level (resource type).
+    - Choose `Specific resources`
+    - Select the project you want to allow access to in resource selector.
     - In action selector, choose `CanAccessProject`.
 
 ![](../iam/assets/rbac/enable-project-access-policy.png)
 
-4. Click **Save** to save the permission.
+4. Click **Save changes** to save the permission.
 5. Go to `Team` or `Groups` tab to assign this policy to members or groups.
 
 ![](../iam/assets/rbac/enable-project-access-policy-assign-groups.png)
@@ -52,21 +53,21 @@ In the picture above, we assign the `policy/allow-access-project-a` policy to al
 For groups like `Project Maintainers` and `Project Owner`, they need more permissions to manage the project, such as creating environments, creating feature flags, etc.
 
 1. Go to the `Policies` page under `IAM` menu.
-2. Click on `Add` button, input the policy name and description, then click `Save`.
-3. In the policy detail page, click on `(+)` icon to add a new permission
-    - Choose `Project` as the control-level (resource type).
-    - Select the `project/project-a` in resource selector to assign management permissions for `Project A`.
+2. Click on `Add policy` button, input the policy name, key and description, then click `Save`.
+3. In the policy detail page, click on `+ Add permission` button to add a new permission
     - In allow or deny selector, choose `Allow`.
+    - Choose `Project` as the control-level (resource type).
+    - Select the `project/dev` in resource selector to assign management permissions for `dev`.
     - In action selector, assign all permissions that the group needs. E.g. all permissions for project owner.
 
 ![](../iam/assets/rbac/enable-project-access-full-permission.png)
 
-4. Click **Save** to save the permission.
+4. Click **Save changes** to save the permission.
 5. Go to `Team` or `Groups` tab to assign this policy to members or groups.
 
 ![](../iam/assets/rbac/enable-project-access-policy-assign-groups-project-owner.png)
 
-As shown in the picture above, we assign the `policy/project-a-owner-full-permission` policy to `Project A Owner` group. Because only project owner should have full management permissions for the project, such as deleting project.
+As shown in the picture above, we assign the `policy/p2` policy to `Sales` group. Because only project owner should have full management permissions for the project, such as deleting project.
 
 ## Environment Access Control
 
@@ -77,25 +78,25 @@ For example, developers of Project A can see all environments under Project A, b
 ### Enable User Access to Specific Environments
 
 1. Go to the `Policies` page under `IAM` menu.
-2. Click on `Add` button, input the policy name and description, then click `Save`.
-3. In the policy detail page, click on `(+)` icon to add a new permission
+2. Click on `Add policy` button, input the policy name, key and description, then click `Save`.
+3. In the policy detail page, click on `+ Add permission` button to add a new permission
 4. Add a project access permission first, if not already added:
 5. Add an environment access permission:
+    - In allow or deny selector, choose `Allow`.
     - Choose `Environment` as the control-level (resource type).
     - Select the environment you want to allow access to in resource selector.
-    - In allow or deny selector, choose `Allow`.
     - In action selector, choose `CanAccessEnvironment`.
 
 ![](../iam/assets/rbac/enable-env-access-policy.png)
 
 As shown above, we create a policy to allow access to `dev` and `prod` environment in `Project A`.
 
-6. Click **Save** to save the permission.
+6. Click **Save changes** to save the permission.
 7. Assign this policy to members or groups in `Team` or `Groups` tab.
 
-![](../iam/assets/rbac/enable-env-access-policy-assign-groups.png)
+![](../iam/assets/rbac/enable-project-access-policy-assign-groups-project-owner.png)
 
-As shown above, we assign the policy to the `Project A Developers` related groups. They should all able to read feature flags in both `dev` and `prod` environments.
+As shown above, we assign the policy to the `Sales` related groups. They should all able to read feature flags in both `dev` and `prod` environments.
 
 ### Set Environment Management Permissions
 
@@ -103,9 +104,9 @@ We may assign a environment maintainer roles to allow them to modify environment
 
 ![](../iam/assets/rbac/update-env-settings.png)
 
+- In allow or deny selector, choose `Allow`.
 - Select `Environment` as the control-level (resource type).
 - Select the specific environment in resource selector.
-- In allow or deny selector, choose `Allow`.
 - In action selector, choose `DeleteEnvSecret`, `CanAccessEnv` and `UpdateEnvSettings`.
 - Save the permission and assign the policy to the related groups.
 
@@ -122,44 +123,17 @@ Before read or operate a feature flag access control, **make sure the user has a
 We will create a policy that includes only permission settings for feature flag in a specific project/environment.
 
 1. Go to the `Policies` page under `IAM` menu.
-2. Click on `Add` button, input the policy name and description, then click `Save`.
+2. Click on `+ Add policy` button, input the policy name, key and description, then click `Save`.
 3. In the policy detail page, click on `(+)` icon to add a new permission
-    - Choose `Feature Flag` as the control-level (resource type).
-    - Select the project and environment where the feature flag belongs to in resource selector. By default, you can only select all flags of all projects/environments, you need to select it then click on the label to change it to specific project/environment.
-
-      ![](../iam/assets/rbac/specify-ff-prod-n-env.png)
-   
     - In allow or deny selector, choose `Allow`.
-    - In action selector, choose all actions.
+    - Choose `Feature Flag` as the control-level (resource type).
+    - Select `All resources`.
+    - In action selector, choose `All actions`.
 
 ![](../iam/assets/rbac/operate-all-ff-in-proj-n-env.png)
 
 4. Click **Save** to save the permission.
 5. Go to `Team` or `Groups` tab to assign this policy to members or groups that need to operate feature flags in the specific project/environment.
-
-### Enable User to Operate a Specific Feature Flag
-
-The only difference between this and the previous section is to set a specific feature flag in resource selector, as shown below:
-
-![](../iam/assets/rbac/set-feature-flag-permission.png)
-
-Then save the permission and assign the policy to members or groups.
-
-For multiple feature flags, you need to create multiple permissions, one for each feature flag. Or you can create a `tag` for these feature flags, then set the permission for the tag. As shown below, you can specify the tag name in resource editor popup:
-
-![](../iam/assets/rbac/set-feature-flag-permission-tag.png)
-
-You can add multiple tags by separating them with commas `,`.
-
-### Disable User to Operate a Specific Feature Flag
-
-You may only want to disable user to operate a specific feature flag, while still allow them to operate other feature flags in the same project/environment. In this case, you need to create a deny policy for the specific feature flag.
-
-![](../iam/assets/rbac/deny-specific-feature-flag.png)
-
-As shown above, we create a deny permission for a specific feature flag. You can select the actions that you want to deny for this feature flag.
-
-Then save the permission and assign the policy to members or groups.
 
 ## Example Walkthrough
 
@@ -195,26 +169,24 @@ To achieve the above requirements, we need to create the following policies:
 1. Create a policy named `Project A Maintainer`. Resource Name (RN) is `policy/policy/Project A Maintainer`.
 2. Add a permission for project level access:
     - Control Level: `Project`
-    - Resource Selector: `project/project-a`
+    - Resource Selector: `project/demo`
     - Allow or Deny: `Allow`
     - Actions: all actions for project owner.
 3. Add a permission for environment level access:
     - Control Level: `Environment`
-    - Resource Selector/Editor: `project/project-a:env/dev*`, `project/project-a:env/prod*`
+    - Resource Selector/Editor: `project/demo:env/dev`, `project/demo:env/prod`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessEnv`
 4. Add a permission for feature-flag level access:
     - Control Level: `Feature Flag`
-    - Resource Selector/Editor: `project/project-a:env/*:flag/*`
-        - Project: `project-a`
-        - Environment: `*`
-        - Feature Flag: `*`
+    - Resource Selector: `All resources`
     - Allow or Deny: `Allow`
     - Actions: all actions for feature flags.
 
-![](../iam/assets/rbac/example-owner-001.png)
-
-5. Save the policy and assign it to member `project-a-owner@featbit.co`
+![](../iam/assets/rbac/example-owner-001-1.png)
+![](../iam/assets/rbac/example-owner-001-2.png)
+![](../iam/assets/rbac/example-owner-001-3.png)
+5. Save the policy and assign it to member `33@gg.com`
 
 ![](../iam/assets/rbac/example-owner-004.png)
 
@@ -226,16 +198,17 @@ NOTE: Be sure that the member has removed their default policy assignments, othe
 1. Create a policy named `Project A QA`. Resource Name (RN) is `policy/policy/Project A QA`.
 2. Add a permission for project level access:
     - Control Level: `Project`
-    - Resource Selector: `project/project-a`
+    - Resource Selector: `project/demo`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessProject`
 3. Add a permission for environment level access:
     - Control Level: `Environment`
-    - Resource Selector/Editor: `project/project-a:env/dev*`, `project/project-a:env/prod*`
+    - Resource Selector/Editor: `project/demo:env/dev`, `project/demo:env/prod`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessEnv`
 
-![](../iam/assets/rbac/example-qa-001.png)
+![](../iam/assets/rbac/example-owner-001-1.png)
+![](../iam/assets/rbac/example-owner-001-2.png)
 
 4. Save the policy and assign it to group `Project A QAs`.
 
@@ -248,27 +221,24 @@ Other than policy `Project A Maintainer`, PMs should not have permissions to cre
 1. Create a policy named `Project A PM`. Resource Name (RN) is `policy/policy/Project A PM`.
 2. Add a permission for project level access:
     - Control Level: `Project`
-    - Resource Selector: `project/project-a`
+    - Resource Selector: `project/demo`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessProject`
 3. Add a permission for environment level access:
     - Control Level: `Environment`
-    - Resource Selector/Editor: `project/project-a:env/dev*`, `project/project-a:env/prod*`
+    - Resource Selector/Editor: `project/demo:env/dev`, `project/demo:env/prod`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessEnv`
 4. Add a permission for feature-flag level access:
     - Control Level: `Feature Flag`
-    - Resource Selector/Editor: `project/project-a:env/*:flag/*`
-        - Project: `project-a`
-        - Environment: `*`
-        - Feature Flag: `*`
+    - Resource Selector: `All resources`
     - Allow or Deny: `Allow`
     - Actions: all actions except `CreateFlag`, `ArchiveFlag` and `DeleteFlag`.
 
 ![](../iam/assets/rbac/example-pm-001.png)
 
-5. Save the policy and assign it to group `Project A PMs`.
-6. Assign the policy to all members in the group `Project A PMs`.
+5. Save the policy and assign it to group `PMs`.
+6. Assign the policy to all members in the group `PMs`.
 
 ![](../iam/assets/rbac/example-pm-002.png)
 
@@ -281,34 +251,27 @@ Different from the policies above, this subsection shows how to combine two poli
 - Policy `Project A QA` (created above) to allow read-only access to Project A (all environments). This policy already meets the read-only access requirement for the `prod` environment.
 - Policy `Project A Dev`:
     - Full access to `dev` environment.
-    - Allow operate a specific feature flag in `prod` environment.
+    - Allow to operate a specific feature flag in `prod` environment.
 
 Create the policy `Project A Dev` as below:
 
 1. Create a policy named `Project A Dev`. Resource Name (RN) is `policy/Project A Dev`.
 2. Add a permission for feature-flag level access in `dev` environment:
     - Control Level: `Feature Flag`
-    - Resource Selector/Editor: `project/project-a:env/dev:flag/*`
-        - Project: `project-a`
-        - Environment: `dev`
-        - Feature Flag: `*`
+    - Resource Selector: `All resources`
     - Allow or Deny: `Allow`
     - Actions: all actions for feature flags.
 3. Add a permission for specific feature-flag in `prod` environment:
     - Control Level: `Feature Flag`
-    - Resource Selector/Editor: `project/project-a:env/prod:flag/*`
-        - Project: `project-a`
-        - Environment: `prod`
-        - Feature Flag: `a-specific-flag-for-dev`
+    - Resource Selector: `All resources`
     - Allow or Deny: `Allow`
     - Actions: `UpdateFlagTags`, `UpdateFlagDefaultRule`, `UpdateFlagIndividualTargeting`, `UpdateFlagTargetingRules`
 
-![](../iam/assets/rbac/example-dev-001.png)
+![](../iam/assets/rbac/example-dev-001-1.png)
+![](../iam/assets/rbac/example-dev-001-2.png)
 
 5. Save the policy.
 6. Assign both policies `Project A QA` and `Project A Dev` to group `Project A Devs`.
-
-![](../iam/assets/rbac/example-dev-002.png)
 
 This combination may not satisfy your feeling caused by `Project A QA` name, but it shows you another way to achieve complex access control requirements by combining multiple policies.
 
@@ -320,25 +283,23 @@ We create all permissions in a single policy for external developers.
 1. Create a policy named `Project A External Dev`. Resource Name (RN) is `policy/Project A External Dev`.
 2. Add a permission for project level access:
     - Control Level: `Project`
-    - Resource Selector: `project/project-a`
+    - Resource Selector: `project/demo`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessProject`
 3. Add a permission for environment level access in `dev` environment:
     - Control Level: `Environment`
-    - Resource Selector/Editor: `project/project-a:env/dev`
+    - Resource Selector/Editor: `project/demo:env/dev`
     - Allow or Deny: `Allow`
     - Actions: `CanAccessEnv`
 4. Add a permission for feature-flag level access in `dev` environment:
     - Control Level: `Feature Flag`
-    - Resource Selector/Editor: `project/project-a:env/dev:flag/*`
-        - Project: `project-a`
-        - Environment: `dev`
-        - Feature Flag: `*`
+    - Resource Selector: `All resources`
     - Allow or Deny: `Allow`
     - Actions: all actions for feature flags.
 
 ![](../iam/assets/rbac/example-dev-external-001.png)
-
+![](../iam/assets/rbac/example-dev-external-002.png)
+![](../iam/assets/rbac/example-dev-external-003.png)
 5. Save the policy and assign it to group `External Devs`.
 
 
