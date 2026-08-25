@@ -7,6 +7,10 @@ import { isArchivedPage, type DocsVersion } from './docs-version';
 const tagDisplayNames: Record<string, string> = {
   AuditLog: 'Audit Logs',
   Environment: 'Environments',
+  Experiment: 'Experiments',
+  ExperimentLayer: 'Experiment Layers',
+  ExperimentMetric: 'Experiment Metrics',
+  ExperimentStats: 'Experiment Statistics',
   FeatureFlag: 'Feature Flags',
   Group: 'Groups',
   Member: 'Members',
