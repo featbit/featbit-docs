@@ -30,7 +30,10 @@ export function VersionedDocsLayout({
       tree={versionedTree}
       {...options}
       nav={{ ...nav, mode: 'top' }}
-      sidebar={{ banner: <DocsVersionSwitcher availablePathnames={availablePathnames} /> }}
+      sidebar={{
+        banner: <DocsVersionSwitcher availablePathnames={availablePathnames} />,
+        collapsible: false,
+      }}
     >
       {children}
     </DocsLayout>

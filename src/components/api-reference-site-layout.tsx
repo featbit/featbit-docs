@@ -33,6 +33,7 @@ export function ApiReferenceSiteLayout({
       nav={{ ...nav, mode: 'top' }}
       sidebar={{
         banner: <ApiReferenceVersionSwitcher availablePathnames={availablePathnames} />,
+        collapsible: false,
       }}
     >
       {children}
