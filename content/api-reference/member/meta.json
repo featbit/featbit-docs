@@ -8,6 +8,8 @@
     "api/v1/members/get",
     "api/v1/members/memberid/groups/get",
     "api/v1/members/memberid/policies/get",
+    "api/v1/members/memberid/permissions/get",
+    "api/v1/members/memberid/permissions/evaluate/post",
     "api/v1/members/memberid/direct-policies/get",
     "api/v1/members/memberid/inherited-policies/get",
     "api/v1/members/memberid/add-policy/policyid/put",

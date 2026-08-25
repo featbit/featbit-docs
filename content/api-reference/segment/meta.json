@@ -9,6 +9,7 @@
     "api/v1/envs/envid/segments/by-ids/get",
     "api/v1/envs/envid/segments/segmentid/name/put",
     "api/v1/envs/envid/segments/segmentid/description/put",
+    "api/v1/envs/envid/segments/segmentid/general/put",
     "api/v1/envs/envid/segments/segmentid/targeting/put",
     "api/v1/envs/envid/segments/segmentid/archive/put",
     "api/v1/envs/envid/segments/segmentid/restore/put",

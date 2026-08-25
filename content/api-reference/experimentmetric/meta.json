@@ -1,0 +1,9 @@
+{
+  "title": "Experiment Metrics",
+  "pages": [
+    "api/v1/envs/envid/experiment-metrics/get",
+    "api/v1/envs/envid/experiment-metrics/post",
+    "api/v1/envs/envid/experiment-metrics/id/delete",
+    "api/v1/envs/envid/experiment-metrics/id/put"
+  ]
+}

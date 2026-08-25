@@ -418,6 +418,1676 @@
         }
       }
     },
+    "/api/v1/envs/{envId}/experiments": {
+      "post": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExperiment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExperiment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExperiment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Stage",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FlagKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentVmPagedResultApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}": {
+      "get": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/stage": {
+      "put": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExperimentStage"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExperimentStage"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExperimentStage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/metrics": {
+      "put": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricsUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricsUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricsUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/runs": {
+      "post": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/runs/{runId}": {
+      "delete": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/runs/{runId}/audience": {
+      "put": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunAudienceUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunAudienceUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunAudienceUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/runs/{runId}/observation-window": {
+      "put": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunObservationWindowUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunObservationWindowUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunObservationWindowUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiments/{id}/runs/{runId}/analyze": {
+      "post": {
+        "tags": [
+          "Experiment"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunAnalyzeRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunAnalyzeRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunAnalyzeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDetailVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-layers": {
+      "get": {
+        "tags": [
+          "ExperimentLayer"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "description": "The index of the page to be returned. Default is 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page to be returned. Default is 10.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentLayerVmPagedResultApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ExperimentLayer"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentLayerVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-layers/{id}": {
+      "put": {
+        "tags": [
+          "ExperimentLayer"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentLayerVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ExperimentLayer"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-metrics": {
+      "get": {
+        "tags": [
+          "ExperimentMetric"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "description": "The index of the page to be returned. Default is 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page to be returned. Default is 10.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentMetricVmPagedResultApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ExperimentMetric"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentMetricVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-metrics/{id}": {
+      "put": {
+        "tags": [
+          "ExperimentMetric"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentMetricVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ExperimentMetric"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-stats/query": {
+      "post": {
+        "tags": [
+          "ExperimentStats"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryExperimentStats"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryExperimentStats"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryExperimentStats"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentStatsVmApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/api/v1/envs/{envId}/feature-flags": {
       "get": {
         "tags": [
@@ -1705,6 +3375,87 @@
         }
       }
     },
+    "/api/v1/envs/{envId}/feature-flags/{key}/general": {
+      "put": {
+        "tags": [
+          "FeatureFlag"
+        ],
+        "summary": "Update the general information of a feature flag",
+        "description": "Update the name, description, and tags of a feature flag in a single operation.\nPermissions are checked for each field that is changed.",
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGeneralPayload"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGeneralPayload"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGeneralPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/api/v1/envs/{envId}/feature-flags/{key}/off-variation": {
       "put": {
         "tags": [
@@ -1935,7 +3686,7 @@
           "FeatureFlag"
         ],
         "summary": "Update the targeting of a feature flag",
-        "description": "Update the targeting users, rules and default rule of a feature flag.",
+        "description": "Update the off variation, targeting users, rules and default rule of a feature flag.",
         "parameters": [
           {
             "name": "envId",
@@ -3390,6 +5141,133 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PolicyVmIEnumerableApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/members/{memberId}/permissions": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "Get all assigned permission rules of the member user",
+        "description": "Gets permission rules from direct and inherited policies, including every assignment source.",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberPermissionVmIReadOnlyCollectionApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/members/{memberId}/permissions/evaluate": {
+      "post": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "Evaluate a member user's access to a resource",
+        "description": "Evaluates one concrete resource and action using the same wildcard and deny precedence rules as request authorization.",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateMemberPermissionPayload"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateMemberPermissionPayload"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateMemberPermissionPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberPermissionEvaluationVmApiResponse"
                 }
               }
             }
@@ -5564,6 +7442,87 @@
         }
       }
     },
+    "/api/v1/envs/{envId}/segments/{segmentId}/general": {
+      "put": {
+        "tags": [
+          "Segment"
+        ],
+        "summary": "Update the general information of a segment",
+        "description": "Update the name, description, and tags of a segment in a single operation.\nPermissions are checked for each field that is changed.",
+        "parameters": [
+          {
+            "name": "segmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGeneralPayload2"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGeneralPayload2"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGeneralPayload2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/api/v1/envs/{envId}/segments/{segmentId}/targeting": {
       "put": {
         "tags": [
@@ -6530,6 +8489,32 @@
         },
         "additionalProperties": false
       },
+      "CreateExperiment": {
+        "type": "object",
+        "properties": {
+          "envId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "featBitProjectKey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateFeatureFlag": {
         "type": "object",
         "properties": {
@@ -6821,6 +8806,1343 @@
         "additionalProperties": false,
         "description": "Represents the response of an API call."
       },
+      "EvaluateMemberPermissionPayload": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentActivityVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "actorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentDetailVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "featBitProjectKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "featBitEnvId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "runCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runMethodSummary": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hypothesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "change": {
+            "type": "string",
+            "nullable": true
+          },
+          "constraints": {
+            "type": "string",
+            "nullable": true
+          },
+          "envSecret": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagServerUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "goal": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrails": {
+            "type": "string",
+            "nullable": true
+          },
+          "intent": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastAction": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastLearning": {
+            "type": "string",
+            "nullable": true
+          },
+          "openQuestions": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetric": {
+            "type": "string",
+            "nullable": true
+          },
+          "sandboxStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "sandboxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "variants": {
+            "type": "string",
+            "nullable": true
+          },
+          "conflictAnalysis": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "experimentRuns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentRunVm"
+            },
+            "nullable": true
+          },
+          "activities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentActivityVm"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentDetailVmApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentDetailVm"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentLayerUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentLayerVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "featBitEnvId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentLayerVmApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentLayerVm"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentLayerVmPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of items.",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentLayerVm"
+            },
+            "description": "The items in the current page.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a paged result of items."
+      },
+      "ExperimentLayerVmPagedResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentLayerVmPagedResult"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentMetricUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentMetricVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "featBitEnvId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentMetricVmApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentMetricVm"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentMetricVmPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of items.",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentMetricVm"
+            },
+            "description": "The items in the current page.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a paged result of items."
+      },
+      "ExperimentMetricVmPagedResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentMetricVmPagedResult"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentMetricsUpdate": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "metricKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricName": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricEvent": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedDirection": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrails": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentRunAnalyzeRequest": {
+        "type": "object",
+        "properties": {
+          "forceFresh": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentRunAudienceUpdate": {
+        "type": "object",
+        "properties": {
+          "trafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "trafficOffset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "layerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "audienceFilters": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "treatmentVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "layerKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "allocationKeySelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "sliceStart": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sliceEnd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allocationPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "layerTrafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "analysisSamplingPlan": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentRunObservationWindowUpdate": {
+        "type": "object",
+        "properties": {
+          "observationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "observationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentRunUpdate": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "hypothesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "methodReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetricEvent": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrailEvents": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrailDescriptions": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "treatmentVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficAllocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "minimumSample": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "observationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "observationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "priorProper": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "priorMean": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "priorStddev": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "inputData": {
+            "type": "string",
+            "nullable": true
+          },
+          "analysisResult": {
+            "type": "string",
+            "nullable": true
+          },
+          "decision": {
+            "type": "string",
+            "nullable": true
+          },
+          "decisionSummary": {
+            "type": "string",
+            "nullable": true
+          },
+          "decisionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "whatChanged": {
+            "type": "string",
+            "nullable": true
+          },
+          "whatHappened": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmedOrRefuted": {
+            "type": "string",
+            "nullable": true
+          },
+          "whyItHappened": {
+            "type": "string",
+            "nullable": true
+          },
+          "nextHypothesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "runId": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "layerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "audienceFilters": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficOffset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "layerKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "allocationKeySelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "sliceStart": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sliceEnd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allocationPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "layerTrafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "analysisSamplingPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataSourceMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerEndpointConfig": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentRunVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "experimentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "hypothesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "methodReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetricEvent": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrailEvents": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrailDescriptions": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "treatmentVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficAllocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "minimumSample": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "observationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "observationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "priorProper": {
+            "type": "boolean"
+          },
+          "priorMean": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "priorStddev": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "inputData": {
+            "type": "string",
+            "nullable": true
+          },
+          "analysisResult": {
+            "type": "string",
+            "nullable": true
+          },
+          "decision": {
+            "type": "string",
+            "nullable": true
+          },
+          "decisionSummary": {
+            "type": "string",
+            "nullable": true
+          },
+          "decisionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "whatChanged": {
+            "type": "string",
+            "nullable": true
+          },
+          "whatHappened": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmedOrRefuted": {
+            "type": "string",
+            "nullable": true
+          },
+          "whyItHappened": {
+            "type": "string",
+            "nullable": true
+          },
+          "nextHypothesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "runId": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "layerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "audienceFilters": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficOffset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "layerKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "allocationKeySelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "sliceStart": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sliceEnd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allocationPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "layerTrafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "analysisSamplingPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataSourceMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerEndpointConfig": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentStatsVm": {
+        "type": "object",
+        "properties": {
+          "envId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "flagKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricEvent": {
+            "type": "string",
+            "nullable": true
+          },
+          "window": {
+            "$ref": "#/components/schemas/ExperimentStatsWindowVm"
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentVariantStatsVm"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentStatsVmApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentStatsVm"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentStatsWindowVm": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "nullable": true
+          },
+          "end": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "hypothesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "change": {
+            "type": "string",
+            "nullable": true
+          },
+          "constraints": {
+            "type": "string",
+            "nullable": true
+          },
+          "envSecret": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagServerUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "goal": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardrails": {
+            "type": "string",
+            "nullable": true
+          },
+          "intent": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastAction": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastLearning": {
+            "type": "string",
+            "nullable": true
+          },
+          "openQuestions": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryMetric": {
+            "type": "string",
+            "nullable": true
+          },
+          "sandboxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "variants": {
+            "type": "string",
+            "nullable": true
+          },
+          "conflictAnalysis": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryMode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentVariantStatsVm": {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "type": "string",
+            "nullable": true
+          },
+          "users": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "conversions": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sumValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "sumSquares": {
+            "type": "number",
+            "format": "double"
+          },
+          "conversionRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgValue": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "featBitProjectKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "featBitEnvId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "runCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runMethodSummary": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentVmApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentVm"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "ExperimentVmPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of items.",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentVm"
+            },
+            "description": "The items in the current page.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a paged result of items."
+      },
+      "ExperimentVmPagedResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentVmPagedResult"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
       "Fallthrough": {
         "type": "object",
         "properties": {
@@ -6934,6 +10256,14 @@
           },
           "isArchived": {
             "type": "boolean"
+          },
+          "committedVersion": {
+            "type": "integer",
+            "description": "Monotonic version of the last COMMITTED change to this flag. The committed\nvalue is the authoritative value that may be safely served to evaluators.",
+            "format": "int64"
+          },
+          "pending": {
+            "$ref": "#/components/schemas/PendingFlagChange"
           }
         },
         "additionalProperties": false
@@ -7127,6 +10457,11 @@
       "FlagTargeting": {
         "type": "object",
         "properties": {
+          "disabledVariationId": {
+            "type": "string",
+            "description": "The variation served when the feature flag is disabled.",
+            "nullable": true
+          },
           "targetUsers": {
             "type": "array",
             "items": {
@@ -7587,6 +10922,153 @@
         "additionalProperties": false,
         "description": "Represents the response of an API call."
       },
+      "MemberPermissionEvaluationVm": {
+        "type": "object",
+        "properties": {
+          "granted": {
+            "type": "boolean"
+          },
+          "decision": {
+            "type": "string",
+            "nullable": true
+          },
+          "resource": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          },
+          "matchedRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberPermissionVm"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberPermissionEvaluationVmApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/MemberPermissionEvaluationVm"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
+      "MemberPermissionSourceVm": {
+        "type": "object",
+        "properties": {
+          "assignmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "groupName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberPermissionVm": {
+        "type": "object",
+        "properties": {
+          "statementId": {
+            "type": "string",
+            "nullable": true
+          },
+          "resourceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "effect": {
+            "type": "string",
+            "nullable": true
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "policyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "policyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "policyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberPermissionSourceVm"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberPermissionVmIReadOnlyCollectionApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicating whether the API call was successful."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection of error messages returned by the API call.",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberPermissionVm"
+            },
+            "description": "The data returned by the API call.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response of an API call."
+      },
       "MemberPolicyVm": {
         "type": "object",
         "properties": {
@@ -7785,6 +11267,33 @@
         },
         "additionalProperties": false
       },
+      "PendingChangeReviewerVm": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PendingChangesVm": {
         "type": "object",
         "properties": {
@@ -7846,7 +11355,7 @@
           "reviewers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Reviewer"
+              "$ref": "#/components/schemas/PendingChangeReviewerVm"
             },
             "nullable": true
           }
@@ -7879,6 +11388,47 @@
         },
         "additionalProperties": false,
         "description": "Represents the response of an API call."
+      },
+      "PendingFlagChange": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "description": "Monotonic version this pending change will carry once it is promoted to committed.",
+            "format": "int64"
+          },
+          "value": {
+            "$ref": "#/components/schemas/FeatureFlag"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A staged-but-not-committed change to a Domain.FeatureFlags.FeatureFlag. Held alongside the\ncommitted value so the authoritative (committed) read can ignore it until promotion."
+      },
+      "PendingSegmentChange": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "description": "Monotonic version this pending change will carry once it is promoted to committed.",
+            "format": "int64"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Segment"
+          },
+          "operatorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "operation": {
+            "type": "string",
+            "nullable": true
+          },
+          "isTargetingChange": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A staged-but-not-committed change to a Domain.Segments.Segment. Held alongside the\ncommitted value so the authoritative (committed) read can ignore it until promotion."
       },
       "PolicyGroup": {
         "type": "object",
@@ -8282,6 +11832,112 @@
         "additionalProperties": false,
         "description": "Represents the response of an API call."
       },
+      "QueryExperimentStats": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "envId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "flagKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricEvent": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "trafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "trafficOffset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "layerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "treatmentVariants": {
+            "type": "string",
+            "nullable": true
+          },
+          "layerKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "allocationKeySelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "sliceStart": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sliceEnd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allocationPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          },
+          "layerTrafficPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "analysisSamplingPlan": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResourceChangeRequest": {
         "type": "object",
         "properties": {
@@ -8293,25 +11949,6 @@
         },
         "additionalProperties": false,
         "description": "Optional payload carrying a user-supplied comment for operations that do not have a dedicated request body.\nThis allows users to provide context for their actions, which can be valuable for auditing and understanding the\nhistory of changes."
-      },
-      "Reviewer": {
-        "type": "object",
-        "properties": {
-          "memberId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "action": {
-            "type": "string",
-            "nullable": true
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "RolloutVariation": {
         "type": "object",
@@ -8436,6 +12073,14 @@
           },
           "isArchived": {
             "type": "boolean"
+          },
+          "committedVersion": {
+            "type": "integer",
+            "description": "Monotonic version of the last COMMITTED change to this segment. The committed\nvalue is the authoritative value that may be safely served to evaluators.",
+            "format": "int64"
+          },
+          "pending": {
+            "$ref": "#/components/schemas/PendingSegmentChange"
           },
           "isEnvironmentSpecific": {
             "type": "boolean",
@@ -8816,6 +12461,82 @@
           },
           "settings": {
             "$ref": "#/components/schemas/EnvironmentSettings"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateExperimentStage": {
+        "type": "object",
+        "properties": {
+          "envId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateGeneralPayload": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string",
+            "description": "Optional comment describing why the change was made.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The new name for the feature flag.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The new description for the feature flag.",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The collection of tags to set for the feature flag.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateGeneralPayload2": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string",
+            "description": "Optional comment describing why the change was made.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The new name for the segment.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The new description for the segment.",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The collection of tags to set for the segment.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9243,6 +12964,18 @@
     },
     {
       "name": "Environment"
+    },
+    {
+      "name": "Experiment"
+    },
+    {
+      "name": "ExperimentLayer"
+    },
+    {
+      "name": "ExperimentMetric"
+    },
+    {
+      "name": "ExperimentStats"
     },
     {
       "name": "FeatureFlag"
