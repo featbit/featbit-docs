@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { appName, gitConfig } from './shared';
+import { appName } from './shared';
 import { BrandLogo } from '@/components/brand-logo';
 import { SidebarCollapseButton } from '@/components/sidebar-collapse-button';
 import { getApiReferencePath } from './api-reference-version';
@@ -16,7 +16,7 @@ export function baseOptions(version: DocsVersion = latestDocsVersion): BaseLayou
       ),
       children: <SidebarCollapseButton />,
     },
-    githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
+    githubUrl: 'https://github.com/featbit/featbit',
     links: [
       { text: 'Docs', url: getVersionRoot(version), active: 'nested-url' },
       {
