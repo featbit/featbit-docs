@@ -11,6 +11,7 @@
     "api/v1/envs/envid/feature-flags/key/toggle/status/put",
     "api/v1/envs/envid/feature-flags/key/name/put",
     "api/v1/envs/envid/feature-flags/key/description/put",
+    "api/v1/envs/envid/feature-flags/key/general/put",
     "api/v1/envs/envid/feature-flags/key/off-variation/put",
     "api/v1/envs/envid/feature-flags/key/variations/put",
     "api/v1/envs/envid/feature-flags/key/pending-changes/get",

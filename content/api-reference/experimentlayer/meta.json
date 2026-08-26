@@ -1,0 +1,9 @@
+{
+  "title": "Experiment Layers",
+  "pages": [
+    "api/v1/envs/envid/experiment-layers/get",
+    "api/v1/envs/envid/experiment-layers/post",
+    "api/v1/envs/envid/experiment-layers/id/delete",
+    "api/v1/envs/envid/experiment-layers/id/put"
+  ]
+}

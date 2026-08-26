@@ -1,0 +1,18 @@
+{
+  "title": "Experiments",
+  "pages": [
+    "api/v1/envs/envid/experiments/get",
+    "api/v1/envs/envid/experiments/post",
+    "api/v1/envs/envid/experiments/id/get",
+    "api/v1/envs/envid/experiments/id/delete",
+    "api/v1/envs/envid/experiments/id/put",
+    "api/v1/envs/envid/experiments/id/stage/put",
+    "api/v1/envs/envid/experiments/id/metrics/put",
+    "api/v1/envs/envid/experiments/id/runs/post",
+    "api/v1/envs/envid/experiments/id/runs/runid/delete",
+    "api/v1/envs/envid/experiments/id/runs/runid/put",
+    "api/v1/envs/envid/experiments/id/runs/runid/audience/put",
+    "api/v1/envs/envid/experiments/id/runs/runid/observation-window/put",
+    "api/v1/envs/envid/experiments/id/runs/runid/analyze/post"
+  ]
+}

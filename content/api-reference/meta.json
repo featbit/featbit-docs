@@ -2,6 +2,10 @@
   "pages": [
     "auditlog",
     "environment",
+    "experiment",
+    "experimentlayer",
+    "experimentmetric",
+    "experimentstats",
     "featureflag",
     "group",
     "member",
