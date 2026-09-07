@@ -2,13 +2,13 @@
 title: Application Services
 ---
 
-FeatBit consists of four core services that work together, each service can be deployed independently, allowing teams
+FeatBit consists of three core services that work together. Each service can be deployed independently, allowing teams
 to adapt their deployment strategy based on organizational requirements, traffic volume, and infrastructure preferences.
 
 ## UI Service (UI)
 
-An Angular-based web interface for managing feature flags, segments, experiments, and other configurations through an
-intuitive dashboard.
+A web interface built with React, shadcn/ui, and Tailwind CSS for managing feature flags, segments, experiments, and other
+configurations through an intuitive dashboard.
 
 Refer to the [UI README.md](https://github.com/featbit/featbit/tree/main/modules/front-end) for more details (how to
 run, environment variables, etc.).
@@ -28,11 +28,3 @@ SDKs. Optimized for minimal latency and high throughput.
 
 Refer to the [ELS README.md](https://github.com/featbit/featbit/tree/main/modules/evaluation-server) for more details
 (health check, environment variables, etc.).
-
-## Data Analytics Service (DAS)
-
-A Python-based near real-time analytics engine written in Python that processes event data, calculates experiment
-results, and generates insights for feature flag usage metrics (for example: feature flag reporting).
-
-Refer to the [DAS README.md](https://github.com/featbit/featbit/tree/main/modules/data-analytics) for more details (how
-to run, environment variables, etc.).
