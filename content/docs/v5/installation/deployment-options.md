@@ -45,8 +45,7 @@ For API service (API) and Evaluation Server Service (ELS):
 - **Database (DbProvider)**: Postgres or MongoDB
 - **Message Queue (MqProvider)**: Kafka
 - **Caching (CacheProvider)**: Redis
-- **Analytics Database(OLAPProvider)**: ClickHouse
-- **ClickHouse(ClickHouse__HttpEndpoint)**: Use your value
-- **ClickHouse(ClickHouse__Database)**: Use your value
-- **ClickHouse(ClickHouse__User)**: Use your value
-- **ClickHouse(ClickHouse__Password)**: Use your value
+
+For Data Analytics Service (DAS):
+
+- **Analytics Database(DbProvider)**: ClickHouse

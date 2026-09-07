@@ -7,7 +7,7 @@ FeatBit [Application Services](application-services.md) relies on three critical
 ## Database
 
 The main database, used to store all feature flags, segments, end-users, etc. It corresponds to the **DbProvider**
-environment variable **for API and ELS**.
+environment variable **for API, ELS, and DAS**.
 
 Available options include:
 
