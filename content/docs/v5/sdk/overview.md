@@ -30,98 +30,121 @@ To getting started with our SDKs, we offer two ways:
 
 ## Supported SDKs
 
-We provide a variety of client-side, server-side, and mobile SDKs to choose from. You can select the language you're good at to accelerate completing your quick start.
+Choose a client-side or server-side SDK based on where your application runs. Client-side SDKs include SDKs for web, mobile, desktop, and embedded applications.
 
-### JavaScript
+### Client-side SDKs
+
+Client-side SDKs are intended for a single-user context and retrieve feature flag evaluation results from the server.
+
+#### JavaScript
 
 We provide a client-side [Javascript/Typescript SDK](https://github.com/featbit/featbit-js-client-sdk). We also provide a "Dino Game" sample for [Vue](https://github.com/featbit/featbit-samples/tree/main/samples/dino-game/interactive-demo-vue). This SDK works perfectly with Typescript, React, Vue, Angular, etc.
 
 The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it. It also provides a sample project for you to try out.
 
-### ReactJS
+#### ReactJS
 
 We provide a client-side [React SDK](https://github.com/featbit/featbit-react-client-sdk).
 
 The SDK's GitHub repository contains full tutorials for React and NextJs APPs on how to use it. It also provides three sample projects for you to try out.
 
-### React Native
+#### React Native
 
 We provide a client-side [React Native SDK](https://github.com/featbit/featbit-react-native-sdk).
 
 The SDK's GitHub repository contains full tutorials for React Native APPs on how to use it. It also provides two sample projects for you to try out.
 
+#### iOS
 
-### Node.js
+The [iOS SDK](https://github.com/featbit/featbit-ios-sdk) is a **community-maintained** client-side SDK for use in Swift applications.
+
+The SDK's GitHub repository contains installation instructions and usage examples to help you get started.
+
+#### Android
+
+The [Android SDK](https://github.com/featbit/featbit-android-sdk) is a **community-maintained** client-side SDK for use in Kotlin/Android applications.
+
+The SDK's GitHub repository contains installation instructions and usage examples to help you get started.
+
+#### .NET Client
+
+The [Client-Side .NET SDK](https://github.com/featbit/featbit-dotnet-client-sdk) is intended for use in a single-user context, which can be mobile, desktop or embedded applications.
+
+The SDK's GitHub repository contains a full tutorial on how to use it. It also provides examples for you to try out.
+
+### Server-side SDKs
+
+Server-side SDKs are intended for multi-user environments and evaluate feature flags locally.
+
+#### Node.js
 
 We provide a [server-side Node.js SDK](https://github.com/featbit/featbit-node-server-sdk) for you to use. This SDK can be used in your console APP or Express.js and other web application framework APP.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-### .NET
+#### .NET Server
 
-We provide .NET SDKs for both client-side and server-side applications.
-- The [Server-Side .NET SDK](https://github.com/featbit/featbit-dotnet-sdk)  is designed primarily for use in multi-user systems such as ASP.NET Core.
-- The [Client-Side .NET SDK](https://github.com/featbit/featbit-dotnet-client-sdk) is intended for use in a single-user context, which can be mobile, desktop or embedded applications.
+The [Server-Side .NET SDK](https://github.com/featbit/featbit-dotnet-sdk) is designed primarily for use in multi-user systems such as ASP.NET Core.
 
-The SDK's GitHub repository contains a full tutorial on how to use it. It also provides some examples project for you to try out.
+The SDK's GitHub repository contains a full tutorial on how to use it. It also provides examples for you to try out.
 
-### Java
+#### Java
 
 We provide a [Java SDK](https://github.com/featbit/featbit-java-sdk) for you to use. This SDK can be used in your console APP or Spring Boot APP. 
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-### Python
+#### Python
 
 We provide a [Python SDK](https://github.com/featbit/featbit-python-sdk). The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-### Ruby
+#### Ruby
 
 We provide a [server-side Ruby SDK](https://github.com/featbit/featbit-ruby-server-sdk) for use in Rails applications, background workers, and command-line applications.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides console and Rails examples for you to try out.
 
-### Go
+#### Go
 
 We provide a [Go SDK](https://github.com/featbit/featbit-go-sdk). The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-### Rust
+#### Rust
 
 We provide a [Rust SDK](https://github.com/featbit/featbit-rust-sdk). The SDK's GitHub repository contains a full tutorial on how to use it. It also provides sample projects for you to try out.
 
 ### OpenFeature Providers
 
-#### JavaScript
+#### JavaScript (Client-side)
 
 We provide a [OpenFeature provider for Javascript SDK](https://github.com/featbit/featbit-js-client-openfeature-provider) for you to use. Be aware, this is a client side SDK, it is intended for use in a single-user context, which can be mobile, desktop or embedded applications. This SDK can only be ran in a browser environment, it is not suitable for NodeJs applications.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-#### Node.js
+#### Node.js (Server-side)
 
 We provide a [OpenFeature provider for Node.js SDK](https://github.com/featbit/openfeature-provider-node-server) for you to use. This SDK can be used in your console APP or Express.js and other web application framework APP.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-#### .NET
+#### .NET (Server-side)
 
 We provide a [OpenFeature Provider for .NET Server-Side SDK](https://github.com/featbit/openfeature-provider-dotnet-server) for you to use. This SDK can be used in your .NET web or desktop application.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-#### Java
+#### Java (Server-side)
 
 We provide a [OpenFeature provider for Java Server SDK](https://github.com/featbit/featbit-openfeature-provider-java-server) for you to use. This SDK can be used in your console APP or Spring Boot APP. 
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-#### Python
+#### Python (Server-side)
 
 We provide an [OpenFeature provider for the Python server-side SDK](https://github.com/featbit/openfeature-provider-python-server) for integrating FeatBit with OpenFeature in Python applications. 
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
-#### Rust
+#### Rust (Server-side)
 
 We provide an [OpenFeature provider for the Rust server-side SDK](https://github.com/featbit/openfeature-provider-rust-server) for integrating FeatBit with OpenFeature in Rust applications. 
 
