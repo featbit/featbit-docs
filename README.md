@@ -3,17 +3,37 @@
 The FeatBit documentation site, built with Next.js and Fumadocs. Migrated
 documentation lives under `content/docs` and is served from `/docs`.
 
-Run development server:
+Install dependencies with pnpm 10.33.4 using the committed lockfile, then start
+the development server. `npx` runs the required pnpm version even if your global
+installation is older:
 
 ```bash
+npx --yes pnpm@10.33.4 install --frozen-lockfile
 npm run dev
-# or
-pnpm dev
-# or
-yarn dev
 ```
 
 Open http://localhost:3000 with your browser to see the result.
+
+If you previously installed the Nextra version of this site, your `node_modules`
+may still contain Next.js 13 and React 18. Errors mentioning those packages
+alongside Fumadocs indicate that the old installation needs to be replaced.
+From the repository root in PowerShell:
+
+```powershell
+Remove-Item -LiteralPath node_modules -Recurse -Force
+if (Test-Path -LiteralPath .next) {
+  Remove-Item -LiteralPath .next -Recurse -Force
+}
+npx --yes pnpm@10.33.4 install --frozen-lockfile
+npm run dev
+```
+
+Keep `pnpm-lock.yaml` so the reinstall uses the project's recorded dependency
+versions.
+
+If Next.js reports that `pages` and `app` must be under the same folder, check
+for an empty root-level `pages` directory left by the migration and remove it.
+The current app lives in `src/app`.
 
 ## Explore
 
