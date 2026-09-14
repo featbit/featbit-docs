@@ -21,7 +21,7 @@ export function DocsVersionSwitcher({ availablePathnames }: DocsVersionSwitcherP
   const options = docsVersions.map((version) => ({
     title: version.label,
     description:
-      version.id === latestDocsVersion ? 'Current documentation' : 'Archived documentation',
+      version.id === latestDocsVersion ? 'Current version (v6)' : 'Previous version',
     url: getVersionPathname(pathname, version.id, paths),
     props: {
       'aria-current': version.id === currentVersion ? ('page' as const) : undefined,
