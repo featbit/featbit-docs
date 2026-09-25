@@ -73,7 +73,7 @@ You'll be directed to the feature flag **Experimentation** tab. Click on the sta
 
 ## Creating experiment audiences 
 
-You can run an experiment on a flag's default rule, or you can create a custom experiment audience by selecting a specific flag targeting rule to include in your experiment. You can target by any user attribute you collect. To learn how, read [Targeting rules](../feature-flags/targeting-users-with-flags/targeting-rules.md).
+You can run an experiment on a flag's default rule, or you can create a custom experiment audience by selecting a specific flag targeting rule to include in your experiment. You can target by any user attribute you collect. To learn how, read [Targeting rules](../feature-flags/targeting-users-with-flags/targeting-rules.mdx).
 
 When you build your experiment, you can allocate all or a percentage of the user traffic that encounters a flag in an experiment. Audience allocation gives you flexibility when selecting your experiment audience and ensures accurate experiment results. FeatBit analyzes only users that you choose to be part of the experiment.
 

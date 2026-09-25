@@ -36,7 +36,7 @@ To create a new segment:
 
 ## Customizing user segments 
 
-You can customize a segment to apply to different users or attributes, or exclude users and attributes, in the segment's **Targeting** tab. Segment targeting rules function the same way as flag targeting rules. To learn more, read [Targeting users](../targeting-users-with-flags/targeting-rules.md).
+You can customize a segment to apply to different users or attributes, or exclude users and attributes, in the segment's **Targeting** tab. Segment targeting rules function the same way as flag targeting rules. To learn more, read [Targeting users](../targeting-users-with-flags/targeting-rules.mdx).
 
 To customize a segment:
 

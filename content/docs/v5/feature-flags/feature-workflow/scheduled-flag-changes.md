@@ -58,7 +58,7 @@ To view all the scheduled changes for a flag:
 
 To delete a scheduled flag change:
 
-1. Follow the steps in [Viewing scheduled flag changes](scheduled-flag-changes.md#viewing-scheduled-flag-changes) to open the list of pending scheduled changes for the flag.
+1. Follow the steps in [Viewing scheduled flag changes](./scheduled-flag-changes.md#viewing-scheduled-flag-changes) to open the list of pending scheduled changes for the flag.
 2.  For the scheduled change you wish to delete, click on the **Remove** button in the upper right:\
 
     ![](../../feature-flags/assets/feature-workflow/scheduled-flag-changes/005.png)

@@ -22,7 +22,7 @@ Here is what the rule would look like:
 
 ![](../../feature-flags/assets/users-and-user-segments/user-attributes/001.webp)
 
-After you have set up the conditions for your rule, you can decide whether your users will receive one variation, or a percentage rollout across several variations. To learn more, read [Targeting rules](../targeting-users-with-flags/targeting-rules.md).
+After you have set up the conditions for your rule, you can decide whether your users will receive one variation, or a percentage rollout across several variations. To learn more, read [Targeting rules](../targeting-users-with-flags/targeting-rules.mdx).
 
 ## Viewing and managing users 
 

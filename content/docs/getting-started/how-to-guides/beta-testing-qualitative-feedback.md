@@ -24,9 +24,9 @@ The goal of the alpha test is to catch as many issues as possible before the pro
 
 We assume that you've already completed the last three tutorials in "Get Started":
 
-* You have successfully created two feature flags, `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.md).
-* You have essential experience with how to [interact with the "`Dino Game` " demo](../try-interacting-with-the-demo.md).
-* You know how to [connect an SDK](../connect-an-sdk/) to your program or the "Dino Game" demo:
+* You have successfully created two feature flags, `game runner` and `difficulty mode` in the tutorial [Create 2 flags for the demo](../create-two-feature-flags.mdx).
+* You have essential experience with how to [interact with the "`Dino Game` " demo](../try-interacting-with-the-demo.mdx).
+* You know how to [connect an SDK](../connect-an-sdk.mdx) to your program or the "Dino Game" demo:
   * Download a demo code sample
   * Initialize SDK
   * Identify a user with customized properties.
