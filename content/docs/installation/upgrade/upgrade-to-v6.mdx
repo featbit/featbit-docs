@@ -52,26 +52,29 @@ Check the `DbProvider` setting used by your FeatBit API and Evaluation Server. A
 | `DbProvider=Postgres` | [PostgreSQL `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/postgresql/docker-entrypoint-initdb.d/v6.0.0.sql) |
 | `DbProvider=MongoDb` | [MongoDB `v6.0.0.js`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/mongodb/docker-entrypoint-initdb.d/v6.0.0.js) |
 
+<Callout type="info" title="Notes">
+Both supplied scripts target a database named `featbit`. If `Postgres__ConnectionString` selects another PostgreSQL database or `MongoDb__Database` is not `featbit`, tailor the selected script to target that database before running it.
+</Callout>
+
 Review the exact scripts and back up the affected databases before running them. Run each applicable script once with an authenticated database client suited to your environment. Record the output and exit status. If a script fails, inspect the partial state before retrying; do not assume that rerunning it is safe.
 
 ## ClickHouse changes
 
-This section applies **only to FeatBit Professional deployments using ClickHouse**. Follow it in addition to the business database migration selected by `DbProvider` above.
+This section applies **only to FeatBit Professional deployments using Kafka & ClickHouse**. Follow it in addition to the business database migration selected by `DbProvider` above.
 
 ### Configure the API service
 
-v6 adds `OLAPProvider` to select where the API queries Insights data. If it is unset, Insights uses `DbProvider`. Set these values on the API service before starting v6 with ClickHouse:
+v6 adds `OLAPProvider` to select where the API queries Insights data. If it is unset, Insights uses `DbProvider`. Set the following values on the API service before starting v6 with ClickHouse:
 
 | Setting | Required value or default |
 | --- | --- |
 | `OLAPProvider` | Set to `ClickHouse` to query Insights from ClickHouse. |
-| `MqProvider` | Must be `Kafka` when `OLAPProvider=ClickHouse`. |
 | `ClickHouse__HttpEndpoint` | Required ClickHouse HTTP URL, for example `http://clickhouse-server:8123`. Use your own reachable endpoint. |
 | `ClickHouse__Database` | Defaults to `featbit`. Set it to the database used by your ClickHouse migration. |
 | `ClickHouse__User` | Defaults to `default`. Set it to your ClickHouse user. |
 | `ClickHouse__Password` | Defaults to empty. Set it if your ClickHouse user requires a password. |
 
-Keep `DbProvider` configured for the existing business database. Deployments that query Insights from PostgreSQL or MongoDB do not need to set `OLAPProvider`.
+For FeatBit Professional, `MqProvider` should be `Kafka` on both the API and Evaluation Server: the Evaluation Server publishes Insights events to Kafka, and ClickHouse consumes them from there.
 
 ### Historical data and schema changes
 
