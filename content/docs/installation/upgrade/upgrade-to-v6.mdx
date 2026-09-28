@@ -17,28 +17,11 @@ Before moving to v6, we recommend that you upgrade your existing installation to
 
 **What's new:** A redesigned React UI, rebuilt experimentation, a new Insights pipeline, and an optional Control Plane for multi-data-center deployments. The standalone Data Analytics service is retired. Review integrations that use v5 experimentation APIs or the old analytics service.
 
-## Update the Insights store configuration
-
-v6 adds `OLAPProvider` to select where the API queries Insights data. If it is unset, Insights uses the database selected by `DbProvider`; deployments using PostgreSQL or MongoDB for Insights do not need a new setting. Keep `DbProvider` configured for your existing business database.
-
-If your deployment uses ClickHouse for Insights, set these values on the **API service** before starting v6:
-
-| Setting | Required value or default |
-| --- | --- |
-| `OLAPProvider` | Set to `ClickHouse` to query Insights from ClickHouse. |
-| `MqProvider` | Must be `Kafka` when `OLAPProvider=ClickHouse`. |
-| `ClickHouse__HttpEndpoint` | Required ClickHouse HTTP URL, for example `http://clickhouse-server:8123`. Use your own reachable endpoint. |
-| `ClickHouse__Database` | Defaults to `featbit`. Set it to the database used by your ClickHouse migration. |
-| `ClickHouse__User` | Defaults to `default`. Set it to your ClickHouse user. |
-| `ClickHouse__Password` | Defaults to empty. Set it if your ClickHouse user requires a password. |
-
-The supplied ClickHouse migration script creates objects in the `featbit` database and assumes specific Kafka settings. If your database or Kafka configuration differs, adapt and review that script before running it; changing the API settings alone does not change the script's targets.
-
-## Apply the database migrations
+## Business database migration
 
 ### Historical data
 
-In v5, the `events` table or collection held events used by the old analytics and experimentation flow. The `experiments` and `experiment_metrics` tables or collections held experiment definitions and metrics. Professional deployments also stored analytics events in ClickHouse's `featbit.events` table. These records may be needed for historical reporting or a later data migration.
+In v5, the `events` table or collection held events used by the old analytics and experimentation flow. The `experiments` and `experiment_metrics` tables or collections held experiment definitions and metrics. These records may be needed for historical reporting or a later data migration.
 
 The v6 scripts **preserve these records but do not convert them into the new experiment model**:
 
@@ -46,7 +29,6 @@ The v6 scripts **preserve these records but do not convert them into the new exp
 | --- | --- | --- |
 | PostgreSQL | `events`, `experiments`, `experiment_metrics` | `events_legacy`, `experiments_legacy`, `experiment_metrics_legacy` |
 | MongoDB | `Events`, `Experiments`, `ExperimentMetrics` | `EventsLegacy`, `ExperimentsLegacy`, `ExperimentMetricsLegacy` |
-| ClickHouse | `featbit.events` | `featbit.events_legacy` |
 
 The archived v5 records are not converted into v6 experiment data, so historical experiment reports are not automatically available in the v6 UI.
 
@@ -60,21 +42,48 @@ The v6 `experiments` and `experiment_metrics` tables in PostgreSQL, and the corr
 | --- | --- |
 | PostgreSQL | Adds `committed_version` and `pending` fields to feature flags and segments; creates `dc_leases` for Control Plane; creates new tables and indexes for experiments, metrics, layers, runs, assignments, exposure and metric events, and MCP authorization. |
 | MongoDB | Initializes `committedVersion` on existing feature flags and segments; adds indexes for data-center leases and the new experiment, event, and MCP authorization collections. The new experiment and metric collections use the v6 structure. |
-| ClickHouse, if used | Creates separate exposure and metric event tables; detaches the old Kafka ingestion objects and creates a new Kafka queue and materialized views for v6 events. |
 
-### Choose the scripts
+### Choose the script
 
-Check the `DbProvider` setting used by your FeatBit API and Evaluation Server. Apply **one** business-database script, then apply the ClickHouse script **as well** if your FeatBit Professional deployment uses ClickHouse.
+Check the `DbProvider` setting used by your FeatBit API and Evaluation Server. Apply **one** matching database script.
 
 | Configuration | Script from the `6.0.0-preview` tag |
 | --- | --- |
 | `DbProvider=Postgres` | [PostgreSQL `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/postgresql/docker-entrypoint-initdb.d/v6.0.0.sql) |
 | `DbProvider=MongoDb` | [MongoDB `v6.0.0.js`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/mongodb/docker-entrypoint-initdb.d/v6.0.0.js) |
-| FeatBit Professional with ClickHouse | [ClickHouse `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/clickhouse/docker-entrypoint-initdb.d/v6.0.0.sql) **in addition to** the matching `DbProvider` script |
 
 Review the exact scripts and back up the affected databases before running them. Run each applicable script once with an authenticated database client suited to your environment. Record the output and exit status. If a script fails, inspect the partial state before retrying; do not assume that rerunning it is safe.
 
-The ClickHouse script targets a default single-node layout with Kafka at `kafka:9092`, topic `featbit-insights`, and consumer group `ch_group`. It rejects some archive collisions and replicated or distributed layouts. Custom Kafka settings or ClickHouse clusters need a tailored script. Do not run concurrent upgrades, suppress errors, or reset the Kafka consumer offsets.
+## ClickHouse changes
+
+This section applies **only to FeatBit Professional deployments using ClickHouse**. Follow it in addition to the business database migration selected by `DbProvider` above.
+
+### Configure the API service
+
+v6 adds `OLAPProvider` to select where the API queries Insights data. If it is unset, Insights uses `DbProvider`. Set these values on the API service before starting v6 with ClickHouse:
+
+| Setting | Required value or default |
+| --- | --- |
+| `OLAPProvider` | Set to `ClickHouse` to query Insights from ClickHouse. |
+| `MqProvider` | Must be `Kafka` when `OLAPProvider=ClickHouse`. |
+| `ClickHouse__HttpEndpoint` | Required ClickHouse HTTP URL, for example `http://clickhouse-server:8123`. Use your own reachable endpoint. |
+| `ClickHouse__Database` | Defaults to `featbit`. Set it to the database used by your ClickHouse migration. |
+| `ClickHouse__User` | Defaults to `default`. Set it to your ClickHouse user. |
+| `ClickHouse__Password` | Defaults to empty. Set it if your ClickHouse user requires a password. |
+
+Keep `DbProvider` configured for the existing business database. Deployments that query Insights from PostgreSQL or MongoDB do not need to set `OLAPProvider`.
+
+### Historical data and schema changes
+
+The old `featbit.events` table stored analytics events. The v6 script preserves it as `featbit.events_legacy` when it exists; it does not convert those records into the new v6 event tables. Keep the legacy table if you need historical reporting or future migration assistance. Delete it only when you are certain it is no longer required and after verifying the upgrade.
+
+The script creates separate `experiment_exposure_events` and `experiment_metric_events` tables. It detaches the old Kafka ingestion objects and creates a new Kafka queue and materialized views to populate the v6 tables.
+
+### Apply the ClickHouse migration
+
+In addition to the matching business-database script, review and run the [ClickHouse `v6.0.0.sql` script](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/clickhouse/docker-entrypoint-initdb.d/v6.0.0.sql) once. Back up the affected data and record the script's output and exit status. If it fails, inspect the partial state before retrying.
+
+The supplied script creates objects in the `featbit` database and targets a default single-node layout with Kafka at `kafka:9092`, topic `featbit-insights`, and consumer group `ch_group`. It rejects some archive collisions and replicated or distributed layouts. Custom database or Kafka settings and ClickHouse clusters need a tailored script; changing the API settings alone does not change the script's targets. Do not run concurrent upgrades, suppress errors, or reset the Kafka consumer offsets.
 
 ## Remove the legacy Data Analytics service
 
