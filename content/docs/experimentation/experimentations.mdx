@@ -1,0 +1,268 @@
+---
+title: Experiments
+description: Run a Bayesian checkout experiment and use a coding agent with FeatBit MCP to interpret results, record a decision, and capture learning.
+---
+
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import createCheckoutExperiment from './assets/experimentations/create-checkout-experiment.jpg';
+import intentAndHypothesis from './assets/experimentations/intent-and-hypothesis.jpg';
+import createSimplifiedCheckoutFlag from './assets/experimentations/create-simplified-checkout-flag.jpg';
+import flagTargeting5050 from './assets/experimentations/flag-targeting-50-50.jpg';
+import configurePrimaryAndGuardrail from './assets/experimentations/configure-primary-and-guardrail.jpg';
+import savedExposureAndMetrics from './assets/experimentations/saved-exposure-and-metrics.jpg';
+import createBayesianRun from './assets/experimentations/create-bayesian-run.jpg';
+import runLayerAssignment from './assets/layers/run-layer-assignment.jpg';
+import observationWindow from './assets/experimentations/observation-window.jpg';
+import bayesianAnalysisResults from './assets/experimentations/bayesian-analysis-results.jpg';
+import decisionAndLearning from './assets/experimentations/decision-and-learning.jpg';
+import codingAgentSetup from './assets/experimentations/coding-agent-setup.jpg';
+import copyCodingAgentPrompt from './assets/experimentations/copy-coding-agent-prompt.jpg';
+import codingAgentRecommendation from './assets/experimentations/coding-agent-recommendation.jpg';
+
+## Overview
+
+This walkthrough answers a concrete question: **Does a shorter checkout improve completion without increasing checkout errors?** You will save a hypothesis, bind a feature flag and metrics, configure a Bayesian Run, collect events, and inspect the evidence. Then you will connect a coding agent through FeatBit MCP to interpret the results, record a recommendation, and capture learning.
+
+The screenshots use **demonstration data** from the same **First Project / Dev** environment throughout. They illustrate the workflow and do not establish that a real checkout change improves customer outcomes.
+
+## Before you begin
+
+Prepare the following resources in the same project environment:
+
+| Resource | Name or setting |
+| --- | --- |
+| Primary metric | **Checkout completed** / `checkout-completed`: Binary conversion, Once per user |
+| Guardrail | **Checkout errors** / `checkout-errors`: Numeric value, Count all |
+| Layer | **Checkout experience** / `checkout-experience`: `user.keyId` |
+| Application instrumentation | An official SDK connected to the matching environment and Evaluation Server |
+
+Follow [Metrics](./metrics.mdx) and [Layers](./layers.mdx) to create these resources. You will create the flag below. The application needs to evaluate that flag when a user encounters checkout and send outcome events afterward, using the same stable user ID.
+
+## Create the experiment and write the hypothesis
+
+1. Confirm the project and environment in the header, then open **Experiments** under **Release Decision**.
+2. Click **New experiment**. Enter **Name**: `Simplify checkout`.
+3. Enter **Description**: `Learn whether fewer checkout steps improve completion without increasing checkout errors.`
+4. Click **Create experiment**. The experiment opens in **Intent & Hypothesis**.
+
+<ImageZoom src={createCheckoutExperiment} alt="New Simplify checkout experiment in First Project and Dev" className="rounded-lg" />
+
+5. Click **Edit details** and fill in the following fields, then click **Save**:
+
+| Field | Example |
+| --- | --- |
+| Goal | Increase checkout completion without increasing checkout errors. |
+| Intent | Reduce abandonment caused by unnecessary checkout steps. |
+| Hypothesis | For users who start checkout, fewer form steps will increase the share who complete checkout because there is less effort before payment. |
+| Change | Use simplified-checkout: Control (false) keeps the current flow; Treatment (true) uses fewer steps. |
+| Constraints | Local demonstration data only. Keep a 50/50 flag split; use checkout-errors as a guardrail. Turning the flag off returns Control. |
+
+6. Refresh the page and confirm the saved details.
+
+<ImageZoom src={intentAndHypothesis} alt="Saved checkout goal, intent, hypothesis, change, and constraints" className="rounded-lg" />
+
+For a real experiment, also agree on a useful improvement, a representative observation period, and acceptable guardrail behavior before collecting data. A testable hypothesis connects the proposed change to a user behavior and explains why that behavior might change.
+
+## Prepare the feature flag
+
+1. Open **Feature Flags** in the same environment and click **New flag**.
+2. Enter **Name**: `Simplified checkout` and **Key**: `simplified-checkout`.
+3. Enter **Description**: `Compare a shorter checkout with the current experience.`
+4. Keep **Variation type** as **BOOLEAN**. Rename the `true` variation to **Treatment** and the `false` variation to **Control**.
+5. Keep **Serve when off** as **Control**. Leave **Turn on after creation** off while preparing the rollout, then click **Create flag**.
+
+<ImageZoom src={createSimplifiedCheckoutFlag} alt="Boolean flag creation with Treatment true and Control false" className="rounded-lg" />
+
+6. On the new flag's **Targeting** tab, under **Default rule → When flag is ON**, select **Rollout percentage**.
+7. Set **Treatment** to `50%` and **Control** to `50%`, with **Dispatch by** set to `keyId`. Click **Apply**.
+8. Click **Review & save**, review the change, and click **Save changes**.
+9. Turn **Flag status** on and confirm. Refresh to verify **ON**, the saved 50/50 rollout, **No users added** under individual targeting, and **No rules yet** under targeting rules.
+
+<ImageZoom src={flagTargeting5050} alt="Enabled simplified-checkout flag with a saved 50/50 default rollout and no targeting overrides" className="rounded-lg" />
+
+The new flag uses default experiment-exposure collection. Keep SDK event collection enabled and verify that exposure samples appear when you analyze the Run. The current **Targeting** UI does not expose a separate experiment-collection switch.
+
+The flag controls application behavior. Selecting Control and Treatment in a Run later only chooses how to compare those variants; it does not configure flag rollout.
+
+## Bind the flag and metrics
+
+1. Return to **Simplify checkout** and click **Continue to Exposure**.
+2. Click **Select flag**, choose **Simplified checkout**, and click **Select flag** to save.
+3. Inspect the saved variation table. Confirm **Control = false** and **Treatment = true**, and use the displayed variation IDs to distinguish the actual variants.
+4. Click **Add metrics**.
+5. Choose **Checkout completed (checkout-completed)** as the **Primary metric** and keep **Direction → Higher is better**.
+6. Click **Add guardrail** and choose **Checkout errors (checkout-errors)**. Set **Alert if → Increases**.
+7. Click **Save metrics**, refresh, and confirm the saved configuration.
+
+<ImageZoom src={configurePrimaryAndGuardrail} alt="Experiment metric editor with Checkout completed as Primary and Checkout errors alerting on increases" className="rounded-lg" />
+
+<ImageZoom src={savedExposureAndMetrics} alt="Saved flag variation values and IDs, Primary direction Higher is better, and Guardrail direction Increase is bad" className="rounded-lg" />
+
+The saved guardrail label is **Increase is bad**; analysis displays the equivalent preferred direction as **Lower is better**. Directions belong to this experiment's metric bindings, while the underlying metric definitions remain reusable.
+
+Your variation IDs will differ from the screenshot. Select by the confirmed name and value, not by list position.
+
+## Create a Bayesian Run
+
+1. Click **Continue to Measuring**, then **New run**.
+2. Keep **Analysis method → Bayesian A/B/n**.
+3. Under **Control**, explicitly select the variation named **Control** (`false`). Do not accept the initially selected first variation without checking it.
+4. Under **Treatments**, check the variation named **Treatment** (`true`).
+5. Set **Start date and time** to the beginning of your collection period.
+6. Keep **End → No fixed end** while collecting the demonstration batch.
+7. Set **Minimum sample per variant** to `500` for this example, then click **Create run**.
+
+<ImageZoom src={createBayesianRun} alt="Bayesian Run creation with Control false, Treatment true, an observation-window start, and a 500-per-variant minimum" className="rounded-lg" />
+
+The new `run-1` appears under **Measuring**. The minimum is checked for each variant, not against the combined total. It is a demonstration threshold, not a universal sample-size recommendation. Passing it does not guarantee a useful or conclusive effect.
+
+Before analysis, **Full analysis** may show **No evaluable data** and **Window: Not recorded**. Inspect **Observation window** to verify the saved Run configuration; the analysis metadata is populated when analysis runs.
+
+## Configure Layer eligibility and sampling
+
+1. In `run-1`, click **Edit assignment** under **Experiment traffic assignment**.
+2. Verify the Control and Treatment selections again.
+3. Select **Layer → Checkout experience (checkout-experience)**.
+4. Keep **Assignment unit** as `user.keyId`. Set **Bucket start** to `0` and **Bucket end** to `50`.
+5. Keep both variants' **Analysis sampling** at `100%`, and leave **Audience filters** empty.
+6. Click **Save changes**. Refresh and reopen the editor to check that all settings persisted.
+
+<ImageZoom src={runLayerAssignment} alt="Run assignment with the Checkout experience Layer, a 0 to 50 percent range, and full analysis sampling" className="rounded-lg" />
+
+This selects the first half of the Layer for analysis. The flag still serves its own 50/50 split across users. Analysis sampling retains all eligible users in each variant. See [Layers](./layers.mdx#distinguish-eligibility-serving-and-sampling) for the distinction and the saved reservation display.
+
+## Collect events and analyze
+
+1. Use the [.NET Server SDK example](./metrics.mdx#report-metric-events), or another [official SDK](../sdk/overview.md), in the same environment.
+2. For each user who encounters checkout, evaluate `simplified-checkout` with a stable user ID and serve the corresponding flow.
+3. After an actual completion, send `checkout-completed` for that user. For each actual checkout error, send `checkout-errors` with value `1`. Users with no outcome event still contribute to the exposed-user denominator.
+4. Allow queued SDK events to flush and the server to process them.
+5. In **Measuring → run-1**, click **Analyze latest data**. Wait for analysis to finish and inspect **Data as of**, the analysis **Window**, sample counts, and metrics.
+
+The screenshots below came from **4,000 demonstration users** evaluated by the official .NET SDK, without prefiltering by Layer. Simulated outcomes were generated after each actual flag evaluation. The Layer retained **1,982** users: **994 Control** and **988 Treatment**. Your counts and results will depend on your users, instrumentation, and observation window.
+
+### Finish the demonstration window
+
+For a reproducible snapshot of a finished collection period:
+
+1. Click **Observation window** on `run-1`.
+2. Select **End → On a specific date** and set an end after your last intended event.
+3. Click **Save window**, then **Analyze latest data** again.
+4. Refresh and confirm that the saved analysis **Window** matches the Run's configured window.
+
+<ImageZoom src={observationWindow} alt="Observation window editor with the example start and end times" className="rounded-lg" />
+
+Date and time inputs use your browser's local time. Choose a window that includes your own events.
+
+After changing a window, old results can remain visible with a notice that they use the saved analysis window. Analyze again before interpreting them. Ending a Run's observation window does not turn off its flag.
+
+## Read the evidence
+
+<ImageZoom src={bayesianAnalysisResults} alt="Saved Bayesian results with 994 Control users, 988 Treatment users, conversion improvement, passed sample check, and a clear error guardrail" className="rounded-lg" />
+
+The actual results for this demonstration were:
+
+| Result | Control | Treatment |
+| --- | ---: | ---: |
+| Samples (n) | 994 | 988 |
+| Checkout completions | 318 | 408 |
+| Completion rate | 32.0% | 41.3% |
+| Checkout errors per user | 0.0503 | 0.0283 |
+
+Read the page in this order:
+
+1. **Window and Data as of:** Confirm that the analysis covers the intended events and was recomputed after configuration changes.
+2. **SRM:** The page reports the sample ratio mismatch check. Here it shows **p=0.8928 · ok**. A mismatch deserves investigation before trusting the effect; an `ok` result is not proof that all instrumentation is correct.
+3. **Sample check:** Both variants pass the configured minimum of `500`. Read the per-variant counts rather than the combined total.
+4. **Primary metric:** Treatment's observed completion rate is 41.3%, compared with 32.0% for Control. The displayed **relative lift** is **+29.1%**, with a **95% credible interval of 13.9%–44.2%** and **P(win) greater than 99.9%**.
+5. **Guardrail:** Errors fall from 0.0503 to 0.0283 per user. The page shows **−43.7% relative lift**, a **95% credible interval of −69.3% to −18.1%**, **P(harm) below 0.1%**, and **guardrail clear**.
+
+Relative lift compares the change with the Control baseline. Here the absolute conversion-rate difference is about **9.3 percentage points**; that is different from a **29.1% relative lift**. The credible interval and probabilities summarize uncertainty under the analysis model and its displayed prior. The posterior chart is labeled as a **Normal approximation**.
+
+The primary metric reports a strong signal in this dataset, and the guardrail supports an improvement in the preferred direction. Because these outcomes are simulated, the result validates the demonstration workflow, not the business hypothesis for real customers.
+
+If you see **No evaluable data**, check environment, flag key, exposure collection, user IDs, metric keys, window, Layer range, and sampling before collecting more data. If samples are below the minimum or evidence remains uncertain, record that limitation instead of declaring a winner.
+
+## Set up Coding Agent Mode
+
+FeatBit calculates the experiment statistics. A coding agent, such as Codex, uses the **FeatBit experimentation skill** and **FeatBit MCP** to review those statistics in context and save recommendations and learning back to the experiment.
+
+1. Click **Coding Agent Mode** in the experiment's upper-right corner.
+2. Under **Install release-decision skill**, copy and run the installation command once at the user or project level:
+
+```sh
+npx skills add featbit/featbit-skills --skill featbit-experimentation
+```
+
+3. Under **Connect FeatBit MCP**, click **Create MCP token** if no token exists or the saved token has expired. If **Token ready** is already shown, reuse that token.
+4. Click **Copy setup prompt** and paste it into your coding agent. Ask it to apply the connection configuration and verify access by listing the FeatBit tools and reading this experiment. Complete any restart or reload the agent requires before continuing.
+
+<ImageZoom src={codingAgentSetup} alt="Coding Agent Mode setup with skill installation, a ready MCP token, and Copy setup prompt" className="rounded-lg" />
+
+The setup prompt contains your token; keep it private and out of source control. Setup is shared across experiments your account can access in the organization. When the token expires, create a new one and repeat the connection step. **Token ready** confirms that a token exists; the agent's successful experiment read confirms the connection works.
+
+## Record the decision and learning
+
+Use the connected coding agent for the following steps. **Analyze latest data** produces statistical results; the agent interprets the evidence and writes the Run's recommendation and learning through MCP.
+
+### Ask for a recommendation
+
+1. Return to **Measuring** and select `run-1`.
+2. Click **Copy coding agent prompt** next to the analysis.
+3. Paste the copied prompt unchanged into the coding agent where you configured FeatBit MCP. It identifies the experiment and selected Run, and asks the agent to record a recommendation, summary, reason, and the analysis **Window** and **Data as of**.
+
+<ImageZoom src={copyCodingAgentPrompt} alt="Selected run-1 with Copy coding agent prompt above its saved analysis" className="rounded-lg" />
+
+The agent should read the saved experiment, review the hypothesis, sample health, SRM, primary metric, guardrails, and observation window, then explain its recommendation. For this walkthrough, make clear that the outcomes are **demonstration data**. You can ask follow-up questions before accepting the reasoning.
+
+4. After the agent confirms that it saved the recommendation, refresh FeatBit and return to **Measuring → run-1**.
+5. Check **Coding Agent recommendation**, its decision label and **Summary**, then expand **Reason** to review the evidence and limitations.
+
+<ImageZoom src={codingAgentRecommendation} alt="Codex recommendation saved through FeatBit MCP, showing CONTINUE and its supporting primary metric, guardrail, sample, and SRM evidence" className="rounded-lg" />
+
+In this walkthrough, a follow-up clarified that the recommendation concerns the recorded demonstration data. Codex then saved **CONTINUE**: Treatment improves checkout completion, the error guardrail is clear, both samples pass the minimum, and SRM passes. This supports the example's next step; real customer benefit still needs validation with representative traffic.
+
+| Decision | Recommended next step |
+| --- | --- |
+| CONTINUE | Move toward Treatment when the evidence and rollout conditions support it. |
+| PAUSE | Hold the current rollout while investigating a concern. |
+| ROLLBACK | Return to the safer experience when the evidence shows harm. |
+| INCONCLUSIVE | Collect better evidence before choosing a rollout direction. |
+
+The recommendation is advice for human review. Saving it does not execute a feature-flag change. If you decide to change rollout or targeting, explicitly request and review that separate action.
+
+The current recommendation panel may label its separate timestamp fields **Not recorded**. Check the **Window** and **Data as of** included in the agent's reason against **Full analysis**. After changing data or configuration, refresh the analysis and ask the agent to review the Run again.
+
+### Capture learning in the same conversation
+
+Continue in the same coding-agent conversation. For example:
+
+```text
+Capture the learning for run-1: what changed, what happened, what was
+confirmed or refuted, why, and the next hypothesis. Distinguish the
+demonstration results from claims about real customers. Save the learning
+to this Run through FeatBit MCP and update the experiment's Key learning
+summary. Keep the original hypothesis for comparison.
+```
+
+1. Discuss the agent's interpretation and refine the next hypothesis as needed.
+2. Ask it to save the agreed learning through FeatBit MCP. A response in chat alone does not update FeatBit.
+3. Refresh FeatBit and open **Learning**. Check **Key learning** for the experiment summary and **Experiment run learnings → run-1** for the Run's decision summary and learning fields.
+
+<ImageZoom src={decisionAndLearning} alt="Structured run-1 learning saved by the coding agent, covering the change, outcome, interpretation, and next hypothesis" className="rounded-lg" />
+
+In this example, the learning records the higher completion rate and clear error guardrail that support **CONTINUE** within the walkthrough. It preserves the original hypothesis and proposes testing it with representative real-customer traffic in a new Run.
+
+**Edit learning** can update the experiment-level note manually. The coding-agent workflow also fills the structured Run learning shown below it, keeping the interpretation attached to the evidence from that Run.
+
+## Keep discussing the experiment with your agent
+
+You can use the same conversation throughout the experiment, from intent and hypothesis to exposure, measurement, decisions, and the next iteration. Ask it to read the current FeatBit state when answering questions such as:
+
+- “Is our hypothesis specific enough to test, and what result would challenge it?”
+- “Explain how the flag's 50/50 rollout, the Layer range, and analysis sampling affect this Run.”
+- “Which results support this recommendation, and what limitations should I review?”
+- “What would change the recommendation, and what should we measure next?”
+- “Review the whole experiment and point out any missing steps before the next Run.”
+
+Ask for explanations when exploring an idea, and explicitly ask the agent to save agreed changes when you want FeatBit updated. Reopen **Coding Agent Mode** to copy the experiment's **Start using it** prompt when starting a new conversation.
