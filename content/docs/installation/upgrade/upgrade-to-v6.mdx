@@ -1,0 +1,68 @@
+---
+title: Upgrade to v6
+description: Evaluate the v5 to v6.0.0-preview upgrade in a test or pre-production environment.
+---
+
+<Callout type="warning">
+The procedure below currently covers the `6.0.0-preview` release only. We recommend using this preview in a test or pre-production environment, not upgrading production to it. This page will be updated for the stable v6 release; do not apply these preview commands to a later release without checking its instructions.
+</Callout>
+
+Before moving to v6, we recommend that you upgrade your existing installation to `v5.4.10` first. If you are running v4, upgrade to v5 first. Within v5, you may skip intermediate application versions, but you must review their release notes and apply any required migrations or configuration changes in order. Read the [general upgrade guidelines](/installation/upgrade/general-guidelines) before starting.
+
+## Overview
+
+**Upgrade status:** Additional steps required. This preview changes the deployment and database schemas.
+
+**Release:** [v6.0.0-preview on GitHub](https://github.com/featbit/featbit/releases/tag/6.0.0-preview).
+
+**What's new:** A redesigned React UI, rebuilt experimentation, a new Insights pipeline, and an optional Control Plane for multi-data-center deployments. The standalone Data Analytics service is retired. Review integrations that use v5 experimentation APIs or the old analytics service.
+
+## Apply the database migrations
+
+### Historical data
+
+In v5, the `events` table or collection held events used by the old analytics and experimentation flow. The `experiments` and `experiment_metrics` tables or collections held experiment definitions and metrics. Professional deployments also stored analytics events in ClickHouse's `featbit.events` table. These records may be needed for historical reporting or a later data migration.
+
+The v6 scripts **preserve these records but do not convert them into the new experiment model**:
+
+| Database | Existing object | Preserved as |
+| --- | --- | --- |
+| PostgreSQL | `events`, `experiments`, `experiment_metrics` | `events_legacy`, `experiments_legacy`, `experiment_metrics_legacy` |
+| MongoDB | `Events`, `Experiments`, `ExperimentMetrics` | `EventsLegacy`, `ExperimentsLegacy`, `ExperimentMetricsLegacy` |
+| ClickHouse | `featbit.events` | `featbit.events_legacy` |
+
+The archived v5 records are not converted into v6 experiment data, so historical experiment reports are not automatically available in the v6 UI.
+
+Keep the legacy data if you need historical reporting or future migration assistance. Delete it only when you are certain it is no longer required and after verifying that the v6 upgrade is successful.
+
+### Database schema changes in v6
+
+The v6 `experiments` and `experiment_metrics` tables in PostgreSQL, and the corresponding `Experiments` and `ExperimentMetrics` collections in MongoDB, reuse the v5 names but have entirely different structures. They hold new v6 data, not the archived v5 records. Exposure events and metric events also move to separate storage.
+
+| Database | Changes introduced by the `6.0.0-preview` scripts |
+| --- | --- |
+| PostgreSQL | Adds `committed_version` and `pending` fields to feature flags and segments; creates `dc_leases` for Control Plane; creates new tables and indexes for experiments, metrics, layers, runs, assignments, exposure and metric events, and MCP authorization. |
+| MongoDB | Initializes `committedVersion` on existing feature flags and segments; adds indexes for data-center leases and the new experiment, event, and MCP authorization collections. The new experiment and metric collections use the v6 structure. |
+| ClickHouse, if used | Creates separate exposure and metric event tables; detaches the old Kafka ingestion objects and creates a new Kafka queue and materialized views for v6 events. |
+
+### Choose the scripts
+
+Check the `DbProvider` setting used by your FeatBit API and Evaluation Server. Apply **one** business-database script, then apply the ClickHouse script **as well** if your FeatBit Professional deployment uses ClickHouse.
+
+| Configuration | Script from the `6.0.0-preview` tag |
+| --- | --- |
+| `DbProvider=Postgres` | [PostgreSQL `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/postgresql/docker-entrypoint-initdb.d/v6.0.0.sql) |
+| `DbProvider=MongoDb` | [MongoDB `v6.0.0.js`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/mongodb/docker-entrypoint-initdb.d/v6.0.0.js) |
+| FeatBit Professional with ClickHouse | [ClickHouse `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/clickhouse/docker-entrypoint-initdb.d/v6.0.0.sql) **in addition to** the matching `DbProvider` script |
+
+Review the exact scripts and back up the affected databases before running them. Run each applicable script once with an authenticated database client suited to your environment. Record the output and exit status. If a script fails, inspect the partial state before retrying; do not assume that rerunning it is safe.
+
+The ClickHouse script targets a default single-node layout with Kafka at `kafka:9092`, topic `featbit-insights`, and consumer group `ch_group`. It rejects some archive collisions and replicated or distributed layouts. Custom Kafka settings or ClickHouse clusters need a tailored script. Do not run concurrent upgrades, suppress errors, or reset the Kafka consumer offsets.
+
+## Remove the legacy Data Analytics service
+
+The v6 experimentation and Insights flow no longer uses `da-server` (image `featbit/featbit-data-analytics-server`). Stop this service and remove it from your deployment definition when moving to v6. Review any monitoring or integrations that depend on it.
+
+## Recover from a failed upgrade
+
+If the upgrade fails, retain logs and the failed state for diagnosis. A full return to v5 requires restoring the pre-upgrade database backups together with the matching old images and deployment configuration.

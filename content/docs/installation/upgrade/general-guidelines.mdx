@@ -1,0 +1,41 @@
+---
+title: General Guidelines
+description: Prepare, perform, verify, and recover a FeatBit upgrade.
+---
+
+Before changing an existing installation, check the applicable version guide and the [GitHub releases](https://github.com/featbit/featbit/releases). Use [Upgrade to v6](/installation/upgrade/upgrade-to-v6) when moving from v5 to v6; use [v6 upgrades](/installation/upgrade/v6) for releases within v6.
+
+Upgrade **one major version at a time**. For example, move from v4 to v5 before moving to v6. Within one major version, you can skip intermediate application versions, such as upgrading from v4.1.2 directly to v4.3.0. Read the release notes and upgrade entries for **every intervening version**, and apply any required migrations or configuration changes in order. Skipping an intermediate installation does not mean skipping its upgrade requirements.
+
+Each version entry links to its GitHub release and records any extra steps needed beyond updating the application version. An entry marked **No additional upgrade steps** means no manual migration or configuration change is documented for that release after its upgrade requirements have been checked. It does not replace backups, deployment-specific checks, or the verification below. Do not infer this status for releases without an entry.
+
+## Back up your data
+
+Before each upgrade, back up the business database that FeatBit uses for organizations, workspaces, projects, environments, feature flags, segments, users, permissions, and experiment configuration. This business data is usually much smaller than the event history, so a backup of it is typically quick. Use the backup method appropriate for your PostgreSQL or MongoDB deployment, and verify that you can restore it before proceeding.
+
+Event history can be much larger. Its main storage objects depend on the version and database:
+
+| Database | v5 and earlier event data | v6 event data |
+| --- | --- | --- |
+| PostgreSQL | `events` | `experiment_exposure_events`, `experiment_metric_events` |
+| MongoDB | `Events` | `ExperimentExposureEvents`, `ExperimentMetricEvents` |
+| ClickHouse, if used | `featbit.events` | `featbit.experiment_exposure_events`, `featbit.experiment_metric_events` |
+
+Decide whether to back up event data based on its size, retention requirements, historical reporting needs, and the migrations in your upgrade path. It is **usually unnecessary** to include the full event history in every routine upgrade backup. If you need to restore historical reports or roll back a migration that changes event storage, include the affected event data.
+
+If you exclude event data, confirm that your backup still contains all business data and record what was omitted. Keep the backup and its restore procedure available until the upgrade has been verified. For deployments with more than one database, take backups that represent a consistent point in time across the affected stores.
+
+## Before every upgrade
+
+1. Record your current release, deployment configuration, database provider, and the application image versions or digests actually running.
+2. Read the release notes and version-guide entries for all intervening releases. Check for database migrations, configuration changes, and compatibility requirements, even if you will not deploy every intermediate application version.
+3. Back up FeatBit business data as described above, and decide whether the event data also needs a backup.
+4. Always upgrade a test environment first and verify the result before upgrading production.
+5. Before applying a migration script to production, review the exact script you will run and the changes it makes to existing data and schema. The version-specific upgrade notes summarize these changes, but you should inspect the script yourself again before execution.
+
+## After every upgrade
+
+1. Confirm the running application versions and, where applicable, image digests match the intended release.
+2. Sign in and verify existing organizations, projects, environments, flags, segments, and permissions.
+3. Connect an SDK, evaluate flags, and verify live flag and segment updates.
+4. Review application logs for errors or warnings that may indicate issues with the upgrade.
