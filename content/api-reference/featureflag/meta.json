@@ -6,6 +6,7 @@
     "api/v1/envs/envid/feature-flags/key/get",
     "api/v1/envs/envid/feature-flags/key/patch",
     "api/v1/envs/envid/feature-flags/key/delete",
+    "api/v1/envs/envid/feature-flags/by-id/id/get",
     "api/v1/envs/envid/feature-flags/key/archive/put",
     "api/v1/envs/envid/feature-flags/key/restore/put",
     "api/v1/envs/envid/feature-flags/key/toggle/status/put",

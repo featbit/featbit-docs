@@ -25,7 +25,7 @@ Our official offered SDK is the best choice for you to get started with Feature 
 
 To getting started with our SDKs, we offer two ways:
 
-- Follow the guide in the portal to quickly implement SDK in your project. You can read quick start guide [here](../getting-started/connect-an-sdk).
+- Follow the guide in the portal to quickly implement SDK in your project. You can read quick start guide [here](../getting-started/connect-an-sdk.mdx).
 - Read the README file of the SDK on GitHub to manually implement SDK in your project.
 
 ## Supported SDKs

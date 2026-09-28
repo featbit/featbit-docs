@@ -13,8 +13,8 @@ For the access control, we start at the organization level. You can control who 
 ## Prerequisites
 
 Before you start to manage access control, you should:
-- Have members created in your organization. You can refer to [Team Management](./teams) to add members.
-- Have groups (member collections) created in your organization. You can refer to [Group Management](./groups) to add groups.
+- Have members created in your organization. You can refer to [Team Management](./teams.md) to add members.
+- Have groups (member collections) created in your organization. You can refer to [Group Management](./groups.md) to add groups.
 
 ## Quick Start
 

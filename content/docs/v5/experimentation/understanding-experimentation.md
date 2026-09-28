@@ -39,7 +39,7 @@ Some of the things you can do with Experimentation include:
 
 Experiment data is collected on **Experimentation** tab in feature flag detail page, which displays experiment data in near-real time.
 
-As your experiment collects data, FeatBit calculates the variation that is most likely to be the best choice out of all the variations you're testing. After you decide which flag variation has the impact you want, you can gradually roll that variation out to 100% of your users with FeatBit's percentage rollouts feature. To learn more about percentage rollouts, read [Percentage rollouts](../feature-flags/targeting-users-with-flags/percentage-rollouts.md).
+As your experiment collects data, FeatBit calculates the variation that is most likely to be the best choice out of all the variations you're testing. After you decide which flag variation has the impact you want, you can gradually roll that variation out to 100% of your users with FeatBit's percentage rollouts feature. To learn more about percentage rollouts, read [Percentage rollouts](../feature-flags/targeting-users-with-flags/percentage-rollouts.mdx).
 
 You can export experiment data to an external destination using Clickhouse & APIs.
 

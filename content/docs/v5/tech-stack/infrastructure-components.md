@@ -2,7 +2,7 @@
 title: Infrastructure Components
 ---
 
-FeatBit [Application Services](application-services.md) relies on three critical infrastructure components: **Database**, **Message Queue**, and **Caching**.
+FeatBit [Application Services](./application-services.md) relies on three critical infrastructure components: **Database**, **Message Queue**, and **Caching**.
 
 ## Database
 

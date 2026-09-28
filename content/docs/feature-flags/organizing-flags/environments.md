@@ -8,7 +8,7 @@ This topic explains what environments are in FeatBit and how to use them to mana
 
 Environments are organizational units contained within projects. Environments allow you to manage your feature flags throughout your entire development lifecycle, from local development through production. Typical environments within a project could be Production, QA, Staging, or individual environments.
 
-You can create multiple environments within each project, and all projects must have at least one environment. To learn more about projects, read [Projects](projects.md).
+You can create multiple environments within each project, and all projects must have at least one environment. To learn more about projects, read [Projects](./projects.mdx).
 
 ## Understanding environments
 
@@ -37,4 +37,4 @@ Here are a few things you can do:
 
 ## Migrating content between environments
 
-You can migrate some, but not all, content between environments from the flags list. To learn more, read [Copying feature flags](the-flags-list.md#copying-feature-flags).
+You can migrate some, but not all, content between environments from the flags list. To learn more, read [Copying feature flags](./copy-flags.md).

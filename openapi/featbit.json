@@ -517,10 +517,11 @@
             }
           },
           {
-            "name": "FlagKey",
+            "name": "FlagId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           },
           {
@@ -975,6 +976,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunCreate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunCreate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperimentRunCreate"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -1435,6 +1455,13 @@
             }
           },
           {
+            "name": "SearchText",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Name",
             "in": "query",
             "schema": {
@@ -1544,17 +1571,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+                "$ref": "#/components/schemas/CreateExperimentLayerRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+                "$ref": "#/components/schemas/CreateExperimentLayerRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+                "$ref": "#/components/schemas/CreateExperimentLayerRequest"
               }
             }
           }
@@ -1624,17 +1651,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+                "$ref": "#/components/schemas/UpdateExperimentLayerRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+                "$ref": "#/components/schemas/UpdateExperimentLayerRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentLayerUpdate"
+                "$ref": "#/components/schemas/UpdateExperimentLayerRequest"
               }
             }
           }
@@ -1657,8 +1684,71 @@
             "description": "Forbidden"
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-layers/{id}/archive": {
+      "put": {
+        "tags": [
+          "ExperimentLayer"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-layers/{id}/restore": {
+      "put": {
         "tags": [
           "ExperimentLayer"
         ],
@@ -1731,6 +1821,13 @@
             "schema": {
               "type": "string",
               "format": "uuid"
+            }
+          },
+          {
+            "name": "SearchText",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -1843,17 +1940,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+                "$ref": "#/components/schemas/CreateExperimentMetricRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+                "$ref": "#/components/schemas/CreateExperimentMetricRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+                "$ref": "#/components/schemas/CreateExperimentMetricRequest"
               }
             }
           }
@@ -1923,17 +2020,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+                "$ref": "#/components/schemas/UpdateExperimentMetricRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+                "$ref": "#/components/schemas/UpdateExperimentMetricRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ExperimentMetricUpdate"
+                "$ref": "#/components/schemas/UpdateExperimentMetricRequest"
               }
             }
           }
@@ -1956,8 +2053,71 @@
             "description": "Forbidden"
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-metrics/{id}/archive": {
+      "put": {
+        "tags": [
+          "ExperimentMetric"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/experiment-metrics/{id}/restore": {
+      "put": {
         "tags": [
           "ExperimentMetric"
         ],
@@ -2949,6 +3109,68 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BooleanApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/envs/{envId}/feature-flags/by-id/{id}": {
+      "get": {
+        "tags": [
+          "FeatureFlag"
+        ],
+        "summary": "Get a feature flag by id within an environment",
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Organization",
+            "in": "header",
+            "description": "The organization ID associated with the request. Some APIs require this header to identify the organization context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Workspace",
+            "in": "header",
+            "description": "The workspace ID associated with the request. Some APIs require this header to identify the workspace context. When authenticating with an Access Token, this header is automatically populated from the token and does not need to be provided manually.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureFlagApiResponse"
                 }
               }
             }
@@ -8504,11 +8726,60 @@
             "type": "string",
             "nullable": true
           },
-          "flagKey": {
+          "flagId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateExperimentLayerRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "featBitProjectKey": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateExperimentMetricRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
             "type": "string",
             "nullable": true
           }
@@ -8820,49 +9091,6 @@
         },
         "additionalProperties": false
       },
-      "ExperimentActivityVm": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "detail": {
-            "type": "string",
-            "nullable": true
-          },
-          "actorId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "actorName": {
-            "type": "string",
-            "nullable": true
-          },
-          "actorEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "actorType": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
       "ExperimentDetailVm": {
         "type": "object",
         "properties": {
@@ -8882,15 +9110,20 @@
             "type": "string",
             "nullable": true
           },
+          "flagId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "flagKey": {
             "type": "string",
             "nullable": true
           },
-          "featBitProjectKey": {
+          "flagName": {
             "type": "string",
             "nullable": true
           },
-          "featBitEnvId": {
+          "envId": {
             "type": "string",
             "format": "uuid",
             "nullable": true
@@ -8902,6 +9135,9 @@
           "runMethodSummary": {
             "type": "string",
             "nullable": true
+          },
+          "stateSummary": {
+            "$ref": "#/components/schemas/ExperimentListStateSummaryVm"
           },
           "createdAt": {
             "type": "string",
@@ -8915,10 +9151,6 @@
             "type": "string",
             "nullable": true
           },
-          "accessToken": {
-            "type": "string",
-            "nullable": true
-          },
           "change": {
             "type": "string",
             "nullable": true
@@ -8927,20 +9159,15 @@
             "type": "string",
             "nullable": true
           },
-          "envSecret": {
-            "type": "string",
-            "nullable": true
-          },
-          "flagServerUrl": {
-            "type": "string",
-            "nullable": true
-          },
           "goal": {
             "type": "string",
             "nullable": true
           },
-          "guardrails": {
-            "type": "string",
+          "guardrailMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuardrailMetricConfig"
+            },
             "nullable": true
           },
           "intent": {
@@ -8955,31 +9182,10 @@
             "type": "string",
             "nullable": true
           },
-          "openQuestions": {
-            "type": "string",
-            "nullable": true
-          },
           "primaryMetric": {
-            "type": "string",
-            "nullable": true
-          },
-          "sandboxStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "sandboxId": {
-            "type": "string",
-            "nullable": true
-          },
-          "variants": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/PrimaryMetricConfig"
           },
           "conflictAnalysis": {
-            "type": "string",
-            "nullable": true
-          },
-          "entryMode": {
             "type": "string",
             "nullable": true
           },
@@ -8987,13 +9193,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExperimentRunVm"
-            },
-            "nullable": true
-          },
-          "activities": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExperimentActivityVm"
             },
             "nullable": true
           }
@@ -9022,10 +9221,75 @@
         "additionalProperties": false,
         "description": "Represents the response of an API call."
       },
-      "ExperimentLayerUpdate": {
+      "ExperimentLayerAllocationVm": {
         "type": "object",
         "properties": {
-          "name": {
+          "activeRunCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reservedPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "freePercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "overlaps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentLayerOverlapVm"
+            },
+            "nullable": true
+          },
+          "mixedAssignmentUnits": {
+            "type": "boolean"
+          },
+          "overAllocated": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentLayerOverlapVm": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "number",
+            "format": "double"
+          },
+          "end": {
+            "type": "number",
+            "format": "double"
+          },
+          "runIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentLayerRunVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "experimentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "experimentName": {
             "type": "string",
             "nullable": true
           },
@@ -9033,7 +9297,12 @@
             "type": "string",
             "nullable": true
           },
-          "description": {
+          "layerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "layerKey": {
             "type": "string",
             "nullable": true
           },
@@ -9041,8 +9310,24 @@
             "type": "string",
             "nullable": true
           },
-          "status": {
+          "start": {
+            "type": "number",
+            "format": "double"
+          },
+          "end": {
+            "type": "number",
+            "format": "double"
+          },
+          "includedInAllocation": {
+            "type": "boolean"
+          },
+          "observationStart": {
             "type": "string",
+            "format": "date-time"
+          },
+          "observationEnd": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },
@@ -9055,7 +9340,7 @@
             "type": "string",
             "format": "uuid"
           },
-          "featBitEnvId": {
+          "envId": {
             "type": "string",
             "format": "uuid"
           },
@@ -9086,6 +9371,16 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "experimentRuns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentLayerRunVm"
+            },
+            "nullable": true
+          },
+          "allocationSummary": {
+            "$ref": "#/components/schemas/ExperimentLayerAllocationVm"
           }
         },
         "additionalProperties": false
@@ -9154,31 +9449,56 @@
         "additionalProperties": false,
         "description": "Represents the response of an API call."
       },
-      "ExperimentMetricUpdate": {
+      "ExperimentListStateSummaryVm": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
+          "hasLearning": {
+            "type": "boolean"
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentRunStateSummaryVm"
+            },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentMetricRunVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
           },
           "key": {
             "type": "string",
             "nullable": true
           },
-          "description": {
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperimentMetricUsageVm": {
+        "type": "object",
+        "properties": {
+          "experimentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "experimentName": {
             "type": "string",
             "nullable": true
           },
-          "metricType": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricAgg": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentMetricRunVm"
+            },
             "nullable": true
           }
         },
@@ -9191,7 +9511,7 @@
             "type": "string",
             "format": "uuid"
           },
-          "featBitEnvId": {
+          "envId": {
             "type": "string",
             "format": "uuid"
           },
@@ -9200,6 +9520,10 @@
             "nullable": true
           },
           "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventName": {
             "type": "string",
             "nullable": true
           },
@@ -9226,6 +9550,13 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "experimentUsage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentMetricUsageVm"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9297,41 +9628,14 @@
       "ExperimentMetricsUpdate": {
         "type": "object",
         "properties": {
-          "metricId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
+          "primaryMetric": {
+            "$ref": "#/components/schemas/PrimaryMetricSelection"
           },
-          "metricKey": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricName": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricEvent": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricType": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricAgg": {
-            "type": "string",
-            "nullable": true
-          },
-          "expectedDirection": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "guardrails": {
-            "type": "string",
+          "guardrailMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuardrailMetricSelection"
+            },
             "nullable": true
           }
         },
@@ -9361,10 +9665,7 @@
           },
           "layerId": {
             "type": "string",
-            "nullable": true
-          },
-          "audienceFilters": {
-            "type": "string",
+            "format": "uuid",
             "nullable": true
           },
           "method": {
@@ -9375,8 +9676,11 @@
             "type": "string",
             "nullable": true
           },
-          "treatmentVariant": {
-            "type": "string",
+          "treatmentVariants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "layerKey": {
@@ -9417,6 +9721,42 @@
         },
         "additionalProperties": false
       },
+      "ExperimentRunCreate": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlVariant": {
+            "type": "string",
+            "nullable": true
+          },
+          "treatmentVariants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "minimumSample": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "observationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "observationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ExperimentRunObservationWindowUpdate": {
         "type": "object",
         "properties": {
@@ -9433,6 +9773,37 @@
         },
         "additionalProperties": false
       },
+      "ExperimentRunStateSummaryVm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "observationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "decision": {
+            "type": "string",
+            "nullable": true
+          },
+          "hasLearning": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "ExperimentRunUpdate": {
         "type": "object",
         "properties": {
@@ -9440,35 +9811,7 @@
             "type": "string",
             "nullable": true
           },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "hypothesis": {
-            "type": "string",
-            "nullable": true
-          },
           "method": {
-            "type": "string",
-            "nullable": true
-          },
-          "methodReason": {
-            "type": "string",
-            "nullable": true
-          },
-          "primaryMetricEvent": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "guardrailEvents": {
-            "type": "string",
-            "nullable": true
-          },
-          "guardrailDescriptions": {
             "type": "string",
             "nullable": true
           },
@@ -9476,12 +9819,11 @@
             "type": "string",
             "nullable": true
           },
-          "treatmentVariant": {
-            "type": "string",
-            "nullable": true
-          },
-          "trafficAllocation": {
-            "type": "string",
+          "treatmentVariants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "minimumSample": {
@@ -9513,10 +9855,6 @@
             "format": "double",
             "nullable": true
           },
-          "inputData": {
-            "type": "string",
-            "nullable": true
-          },
           "analysisResult": {
             "type": "string",
             "nullable": true
@@ -9553,18 +9891,6 @@
             "type": "string",
             "nullable": true
           },
-          "runId": {
-            "type": "string",
-            "nullable": true
-          },
-          "primaryMetricAgg": {
-            "type": "string",
-            "nullable": true
-          },
-          "primaryMetricType": {
-            "type": "string",
-            "nullable": true
-          },
           "trafficPercent": {
             "type": "number",
             "format": "double",
@@ -9572,10 +9898,7 @@
           },
           "layerId": {
             "type": "string",
-            "nullable": true
-          },
-          "audienceFilters": {
-            "type": "string",
+            "format": "uuid",
             "nullable": true
           },
           "trafficOffset": {
@@ -9617,14 +9940,6 @@
           "analysisSamplingPlan": {
             "type": "string",
             "nullable": true
-          },
-          "dataSourceMode": {
-            "type": "string",
-            "nullable": true
-          },
-          "customerEndpointConfig": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9644,48 +9959,36 @@
             "type": "string",
             "nullable": true
           },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "hypothesis": {
-            "type": "string",
-            "nullable": true
-          },
           "method": {
             "type": "string",
             "nullable": true
           },
-          "methodReason": {
-            "type": "string",
+          "primaryMetric": {
+            "$ref": "#/components/schemas/PrimaryMetricConfig"
+          },
+          "guardrailMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuardrailMetricConfig"
+            },
             "nullable": true
           },
-          "primaryMetricEvent": {
-            "type": "string",
-            "nullable": true
-          },
-          "metricDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "guardrailEvents": {
-            "type": "string",
-            "nullable": true
-          },
-          "guardrailDescriptions": {
-            "type": "string",
+          "variations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Variation"
+            },
             "nullable": true
           },
           "controlVariant": {
             "type": "string",
             "nullable": true
           },
-          "treatmentVariant": {
-            "type": "string",
-            "nullable": true
-          },
-          "trafficAllocation": {
-            "type": "string",
+          "treatmentVariants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "minimumSample": {
@@ -9716,10 +10019,6 @@
             "format": "double",
             "nullable": true
           },
-          "inputData": {
-            "type": "string",
-            "nullable": true
-          },
           "analysisResult": {
             "type": "string",
             "nullable": true
@@ -9756,18 +10055,6 @@
             "type": "string",
             "nullable": true
           },
-          "runId": {
-            "type": "string",
-            "nullable": true
-          },
-          "primaryMetricAgg": {
-            "type": "string",
-            "nullable": true
-          },
-          "primaryMetricType": {
-            "type": "string",
-            "nullable": true
-          },
           "trafficPercent": {
             "type": "number",
             "format": "double",
@@ -9775,10 +10062,7 @@
           },
           "layerId": {
             "type": "string",
-            "nullable": true
-          },
-          "audienceFilters": {
-            "type": "string",
+            "format": "uuid",
             "nullable": true
           },
           "trafficOffset": {
@@ -9818,14 +10102,6 @@
             "nullable": true
           },
           "analysisSamplingPlan": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataSourceMode": {
-            "type": "string",
-            "nullable": true
-          },
-          "customerEndpointConfig": {
             "type": "string",
             "nullable": true
           },
@@ -9919,15 +10195,12 @@
             "type": "string",
             "nullable": true
           },
-          "flagKey": {
+          "flagId": {
             "type": "string",
+            "format": "uuid",
             "nullable": true
           },
           "hypothesis": {
-            "type": "string",
-            "nullable": true
-          },
-          "accessToken": {
             "type": "string",
             "nullable": true
           },
@@ -9939,19 +10212,7 @@
             "type": "string",
             "nullable": true
           },
-          "envSecret": {
-            "type": "string",
-            "nullable": true
-          },
-          "flagServerUrl": {
-            "type": "string",
-            "nullable": true
-          },
           "goal": {
-            "type": "string",
-            "nullable": true
-          },
-          "guardrails": {
             "type": "string",
             "nullable": true
           },
@@ -9967,27 +10228,7 @@
             "type": "string",
             "nullable": true
           },
-          "openQuestions": {
-            "type": "string",
-            "nullable": true
-          },
-          "primaryMetric": {
-            "type": "string",
-            "nullable": true
-          },
-          "sandboxId": {
-            "type": "string",
-            "nullable": true
-          },
-          "variants": {
-            "type": "string",
-            "nullable": true
-          },
           "conflictAnalysis": {
-            "type": "string",
-            "nullable": true
-          },
-          "entryMode": {
             "type": "string",
             "nullable": true
           }
@@ -10047,15 +10288,20 @@
             "type": "string",
             "nullable": true
           },
+          "flagId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "flagKey": {
             "type": "string",
             "nullable": true
           },
-          "featBitProjectKey": {
+          "flagName": {
             "type": "string",
             "nullable": true
           },
-          "featBitEnvId": {
+          "envId": {
             "type": "string",
             "format": "uuid",
             "nullable": true
@@ -10067,6 +10313,9 @@
           "runMethodSummary": {
             "type": "string",
             "nullable": true
+          },
+          "stateSummary": {
+            "$ref": "#/components/schemas/ExperimentListStateSummaryVm"
           },
           "createdAt": {
             "type": "string",
@@ -10704,6 +10953,61 @@
         },
         "additionalProperties": false,
         "description": "Represents the response of an API call."
+      },
+      "GuardrailMetricConfig": {
+        "required": [
+          "metricId"
+        ],
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "metricKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuardrailMetricSelection": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "GuidApiResponse": {
         "type": "object",
@@ -11722,6 +12026,61 @@
         "additionalProperties": false,
         "description": "Represents the response of an API call."
       },
+      "PrimaryMetricConfig": {
+        "required": [
+          "metricId"
+        ],
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "metricKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedDirection": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrimaryMetricSelection": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expectedDirection": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProjectVm": {
         "type": "object",
         "properties": {
@@ -11897,7 +12256,10 @@
             "nullable": true
           },
           "treatmentVariants": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "layerKey": {
@@ -12464,6 +12826,50 @@
           }
         },
         "additionalProperties": false
+      },
+      "UpdateExperimentLayerRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentUnitSelector": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateExperimentMetricRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricType": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricAgg": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
       },
       "UpdateExperimentStage": {
         "type": "object",
