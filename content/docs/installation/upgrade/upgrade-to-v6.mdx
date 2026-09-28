@@ -17,6 +17,23 @@ Before moving to v6, we recommend that you upgrade your existing installation to
 
 **What's new:** A redesigned React UI, rebuilt experimentation, a new Insights pipeline, and an optional Control Plane for multi-data-center deployments. The standalone Data Analytics service is retired. Review integrations that use v5 experimentation APIs or the old analytics service.
 
+## Update the Insights store configuration
+
+v6 adds `OLAPProvider` to select where the API queries Insights data. If it is unset, Insights uses the database selected by `DbProvider`; deployments using PostgreSQL or MongoDB for Insights do not need a new setting. Keep `DbProvider` configured for your existing business database.
+
+If your deployment uses ClickHouse for Insights, set these values on the **API service** before starting v6:
+
+| Setting | Required value or default |
+| --- | --- |
+| `OLAPProvider` | Set to `ClickHouse` to query Insights from ClickHouse. |
+| `MqProvider` | Must be `Kafka` when `OLAPProvider=ClickHouse`. |
+| `ClickHouse__HttpEndpoint` | Required ClickHouse HTTP URL, for example `http://clickhouse-server:8123`. Use your own reachable endpoint. |
+| `ClickHouse__Database` | Defaults to `featbit`. Set it to the database used by your ClickHouse migration. |
+| `ClickHouse__User` | Defaults to `default`. Set it to your ClickHouse user. |
+| `ClickHouse__Password` | Defaults to empty. Set it if your ClickHouse user requires a password. |
+
+The supplied ClickHouse migration script creates objects in the `featbit` database and assumes specific Kafka settings. If your database or Kafka configuration differs, adapt and review that script before running it; changing the API settings alone does not change the script's targets.
+
 ## Apply the database migrations
 
 ### Historical data
