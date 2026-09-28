@@ -2,6 +2,7 @@
   "title": "Installation",
   "pages": [
     "docker-compose",
+    "upgrade",
     "use-your-own-infrastructure",
     "terraform-aws",
     "deployment-options",
