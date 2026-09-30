@@ -1,21 +1,23 @@
 ---
 title: Upgrade to v6
-description: Evaluate the v5 to v6.0.0-preview upgrade in a test or pre-production environment.
+description: Upgrade from v5 to v6.0.0 with database migrations, deployment changes, and historical data guidance.
 ---
 
-<Callout type="warning">
-The procedure below currently covers the `6.0.0-preview` release only. We recommend using this preview in a test or pre-production environment, not upgrading production to it. This page will be updated for the stable v6 release; do not apply these preview commands to a later release without checking its instructions.
+<Callout type="idea">
+This guide covers the stable `6.0.0` release. Back up your databases and deployment configuration, and validate the upgrade in a test or pre-production environment before upgrading production.
 </Callout>
 
 Before moving to v6, we recommend that you upgrade your existing installation to `v5.4.10` first. If you are running v4, upgrade to v5 first. Within v5, you may skip intermediate application versions, but you must review their release notes and apply any required migrations or configuration changes in order. Read the [general upgrade guidelines](/installation/upgrade/general-guidelines) before starting.
 
 ## Overview
 
-**Upgrade status:** Additional steps required. This preview changes the deployment and database schemas.
+**Upgrade status:** Additional steps required. v6.0.0 changes the deployment and database schemas.
 
-**Release:** [v6.0.0-preview on GitHub](https://github.com/featbit/featbit/releases/tag/6.0.0-preview).
+**Release:** [v6.0.0 on GitHub](https://github.com/featbit/featbit/releases/tag/6.0.0).
 
 **What's new:** A redesigned React UI, rebuilt experimentation, a new Insights pipeline, and an optional Control Plane for multi-data-center deployments. The standalone Data Analytics service is retired. Review integrations that use v5 experimentation APIs or the old analytics service.
+
+Control Plane is disabled by default. Standard deployments do not need to add this service when upgrading to v6.
 
 ## Business database migration
 
@@ -38,7 +40,7 @@ Keep the legacy data if you need historical reporting or future migration assist
 
 The v6 `experiments` and `experiment_metrics` tables in PostgreSQL, and the corresponding `Experiments` and `ExperimentMetrics` collections in MongoDB, reuse the v5 names but have entirely different structures. They hold new v6 data, not the archived v5 records. Exposure events and metric events also move to separate storage.
 
-| Database | Changes introduced by the `6.0.0-preview` scripts |
+| Database | Changes introduced by the `6.0.0` scripts |
 | --- | --- |
 | PostgreSQL | Adds `committed_version` and `pending` fields to feature flags and segments; creates `dc_leases` for Control Plane; creates new tables and indexes for experiments, metrics, layers, runs, assignments, exposure and metric events, and MCP authorization. |
 | MongoDB | Initializes `committedVersion` on existing feature flags and segments; adds indexes for data-center leases and the new experiment, event, and MCP authorization collections. The new experiment and metric collections use the v6 structure. |
@@ -47,12 +49,12 @@ The v6 `experiments` and `experiment_metrics` tables in PostgreSQL, and the corr
 
 Check the `DbProvider` setting used by your FeatBit API and Evaluation Server. Apply **one** matching database script.
 
-| Configuration | Script from the `6.0.0-preview` tag |
+| Configuration | Script from the `6.0.0` tag |
 | --- | --- |
-| `DbProvider=Postgres` | [PostgreSQL `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/postgresql/docker-entrypoint-initdb.d/v6.0.0.sql) |
-| `DbProvider=MongoDb` | [MongoDB `v6.0.0.js`](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/mongodb/docker-entrypoint-initdb.d/v6.0.0.js) |
+| `DbProvider=Postgres` | [PostgreSQL `v6.0.0.sql`](https://github.com/featbit/featbit/blob/6.0.0/infra/postgresql/docker-entrypoint-initdb.d/v6.0.0.sql) |
+| `DbProvider=MongoDb` | [MongoDB `v6.0.0.js`](https://github.com/featbit/featbit/blob/6.0.0/infra/mongodb/docker-entrypoint-initdb.d/v6.0.0.js) |
 
-<Callout type="info" title="Notes">
+<Callout type="info">
 Both supplied scripts target a database named `featbit`. If `Postgres__ConnectionString` selects another PostgreSQL database or `MongoDb__Database` is not `featbit`, tailor the selected script to target that database before running it.
 </Callout>
 
@@ -84,13 +86,26 @@ The script creates separate `experiment_exposure_events` and `experiment_metric_
 
 ### Apply the ClickHouse migration
 
-In addition to the matching business-database script, review and run the [ClickHouse `v6.0.0.sql` script](https://github.com/featbit/featbit/blob/6.0.0-preview/infra/clickhouse/docker-entrypoint-initdb.d/v6.0.0.sql) once. Back up the affected data and record the script's output and exit status. If it fails, inspect the partial state before retrying.
+In addition to the matching business-database script, review and run the [ClickHouse `v6.0.0.sql` script](https://github.com/featbit/featbit/blob/6.0.0/infra/clickhouse/docker-entrypoint-initdb.d/v6.0.0.sql) once. Back up the affected data and record the script's output and exit status. If it fails, inspect the partial state before retrying.
 
 The supplied script creates objects in the `featbit` database and targets a default single-node layout with Kafka at `kafka:9092`, topic `featbit-insights`, and consumer group `ch_group`. It rejects some archive collisions and replicated or distributed layouts. Custom database or Kafka settings and ClickHouse clusters need a tailored script; changing the API settings alone does not change the script's targets. Do not run concurrent upgrades, suppress errors, or reset the Kafka consumer offsets.
 
 ## Remove the legacy Data Analytics service
 
 The v6 experimentation and Insights flow no longer uses `da-server` (image `featbit/featbit-data-analytics-server`). Stop this service and remove it from your deployment definition when moving to v6. Review any monitoring or integrations that depend on it.
+
+Remove `OLAP__ServiceHost` from the API service configuration as well. In earlier versions, this environment variable pointed to the `da-server` URL; v6 no longer requires it.
+
+## Verify the upgrade
+
+- Confirm that the UI, API, and Evaluation Server are running `6.0.0`, and inspect their startup logs for database or configuration errors.
+- Sign in and confirm that existing projects, environments, feature flags, and segments are available with the expected access permissions.
+- Connect an SDK using an existing environment key and verify flag evaluation. Make a controlled flag change and confirm that the SDK receives it.
+- Create a v6 test experiment, generate exposure and metric events, and confirm that they are persisted in the configured storage and available through Insights after asynchronous processing.
+
+<Callout type="info">
+Historical v5 experiment reports are not expected to appear in the v6 UI; their records remain in the legacy tables or collections described above.
+</Callout>
 
 ## Recover from a failed upgrade
 
