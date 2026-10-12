@@ -62,7 +62,7 @@ The SDK's GitHub repository contains installation instructions and usage example
 
 #### Android
 
-The [Android SDK](https://github.com/featbit/featbit-android-sdk) is a **community-maintained** client-side SDK for use in Kotlin/Android applications.
+We provide a client-side [Android SDK](https://github.com/featbit/featbit-android-client-sdk).
 
 The SDK's GitHub repository contains installation instructions and usage examples to help you get started.
 
@@ -119,6 +119,10 @@ We provide a [Rust SDK](https://github.com/featbit/featbit-rust-sdk). The SDK's 
 We provide a [OpenFeature provider for Javascript SDK](https://github.com/featbit/featbit-js-client-openfeature-provider) for you to use. Be aware, this is a client side SDK, it is intended for use in a single-user context, which can be mobile, desktop or embedded applications. This SDK can only be ran in a browser environment, it is not suitable for NodeJs applications.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
+
+#### Android (Client-side)
+
+We provide an [OpenFeature provider for the Android client-side SDK](https://github.com/featbit/openfeature-provider-android-client) for you to use. This SDK can be used in your Android application.
 
 #### Node.js (Server-side)
 
