@@ -3,6 +3,14 @@ title: v6 Upgrades
 description: Release-by-release upgrade notes for stable FeatBit v6 versions.
 ---
 
-This page will record upgrades between stable v6 releases, starting with `6.0.0` and later versions. Each release entry will link to its GitHub release, summarize the changes, and state whether additional upgrade steps are required.
+This page records upgrades between stable v6 releases. Read the [general upgrade guidelines](/installation/upgrade/general-guidelines) before upgrading. If you are moving from v5 to v6, follow [Upgrade to v6](/installation/upgrade/upgrade-to-v6) first, then apply the relevant entries below.
 
-No stable v6 release has been published yet, so there are no version entries to apply. Read the [general upgrade guidelines](/installation/upgrade/general-guidelines) before upgrading when entries become available.
+## v6.0.1
+
+**Upgrade status:** No additional upgrade steps when upgrading from `6.0.0`. Update the FeatBit application images to `6.0.1` using your existing deployment process. No database migration is required.
+
+**Release:** [v6.0.1 on GitHub](https://github.com/featbit/featbit/releases/tag/6.0.1).
+
+**What's changed:** Fixed Evaluation Server rejecting non-empty custom string variation IDs that are not GUIDs as malformed data. GUID variation IDs remain supported.
+
+**Who is affected:** Deployments with feature flags that use custom, non-GUID variation IDs should upgrade to restore normal operation. Flags created through the UI use GUID variation IDs and are unaffected, as are custom IDs supplied through the API that are valid GUIDs.
