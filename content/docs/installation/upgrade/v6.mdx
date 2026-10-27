@@ -5,6 +5,21 @@ description: Release-by-release upgrade notes for stable FeatBit v6 versions.
 
 This page records upgrades between stable v6 releases. Read the [general upgrade guidelines](/installation/upgrade/general-guidelines) before upgrading. If you are moving from v5 to v6, follow [Upgrade to v6](/installation/upgrade/upgrade-to-v6) first, then apply the relevant entries below.
 
+## v6.1.0
+
+**Upgrade status:** Database migration is required when upgrading from `6.0.0` or `6.0.1`. Apply the migration for your database before updating the FeatBit application images to `6.1.0`.
+
+**Release:** [v6.1.0 on GitHub](https://github.com/featbit/featbit/releases/tag/6.1.0).
+
+**What's changed:** Added per-flag insight collection controls, IAM audit logs, and a dedicated SDK secret-view permission, alongside API documentation improvements and fixes. See the release notes for details and compatibility changes.
+
+**Data migration:** Run the script for your database:
+
+| Database | Script | Changes made |
+| --- | --- | --- |
+| PostgreSQL | [v6.1.0.sql](https://github.com/featbit/featbit/blob/6.1.0/infra/postgresql/docker-entrypoint-initdb.d/v6.1.0.sql) | Adds the per-flag insights setting, updates secret-view permissions, and updates audit-log structure, historical data, and indexes. |
+| MongoDB | [v6.1.0.js](https://github.com/featbit/featbit/blob/6.1.0/infra/mongodb/docker-entrypoint-initdb.d/v6.1.0.js) | Updates secret-view permissions, backfills historical audit-log data, and updates audit-log indexes. |
+
 ## v6.0.1
 
 **Upgrade status:** No additional upgrade steps when upgrading from `6.0.0`. Update the FeatBit application images to `6.0.1` using your existing deployment process. No database migration is required.
