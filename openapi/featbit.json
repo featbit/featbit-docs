@@ -12901,6 +12901,16 @@
           "operatorId": {
             "$ref": "#/components/schemas/Guid"
           },
+          "organizationId": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/GuidNullable"
+              }
+            ]
+          },
           "operation": {
             "$ref": "#/components/schemas/String"
           },
