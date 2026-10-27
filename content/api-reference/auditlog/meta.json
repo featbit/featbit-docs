@@ -1,6 +1,7 @@
 {
   "title": "Audit Logs",
   "pages": [
-    "api/v1/envs/envid/audit-logs/get"
+    "api/v1/envs/envid/audit-logs/get",
+    "api/v1/audit-logs/get"
   ]
 }

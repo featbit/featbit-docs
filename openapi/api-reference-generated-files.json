@@ -1,6 +1,7 @@
 {
   "version": 1,
   "files": [
+    "auditlog/api/v1/audit-logs/get.mdx",
     "auditlog/api/v1/envs/envid/audit-logs/get.mdx",
     "auditlog/meta.json",
     "environment/api/v1/projects/projectid/envs/id/delete.mdx",
@@ -45,6 +46,7 @@
     "featureflag/api/v1/envs/envid/feature-flags/key/description/put.mdx",
     "featureflag/api/v1/envs/envid/feature-flags/key/general/put.mdx",
     "featureflag/api/v1/envs/envid/feature-flags/key/get.mdx",
+    "featureflag/api/v1/envs/envid/feature-flags/key/insight-collection/put.mdx",
     "featureflag/api/v1/envs/envid/feature-flags/key/name/put.mdx",
     "featureflag/api/v1/envs/envid/feature-flags/key/off-variation/put.mdx",
     "featureflag/api/v1/envs/envid/feature-flags/key/patch.mdx",
