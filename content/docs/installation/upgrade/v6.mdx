@@ -7,7 +7,7 @@ This page records upgrades between stable v6 releases. Read the [general upgrade
 
 ## v6.1.0
 
-**Upgrade status:** Database migration is required when upgrading from `6.0.0` or `6.0.1`. Apply the migration for your database before updating the FeatBit application images to `6.1.0`.
+**Upgrade status:** Database migration is required when upgrading from `6.0.0`, `6.0.1`, or `6.0.2`. Apply the migration for your database before updating the FeatBit application images to `6.1.0`.
 
 **Release:** [v6.1.0 on GitHub](https://github.com/featbit/featbit/releases/tag/6.1.0).
 
@@ -19,6 +19,14 @@ This page records upgrades between stable v6 releases. Read the [general upgrade
 | --- | --- | --- |
 | PostgreSQL | [v6.1.0.sql](https://github.com/featbit/featbit/blob/6.1.0/infra/postgresql/docker-entrypoint-initdb.d/v6.1.0.sql) | Adds the per-flag insights setting, updates secret-view permissions, and updates audit-log structure, historical data, and indexes. |
 | MongoDB | [v6.1.0.js](https://github.com/featbit/featbit/blob/6.1.0/infra/mongodb/docker-entrypoint-initdb.d/v6.1.0.js) | Updates secret-view permissions, backfills historical audit-log data, and updates audit-log indexes. |
+
+## v6.0.2
+
+**Upgrade status:** You can upgrade directly from `6.0.0` or `6.0.1` by updating the FeatBit application images to `6.0.2`. No database migration is required.
+
+**Release:** [v6.0.2 on GitHub](https://github.com/featbit/featbit/releases/tag/6.0.2).
+
+**What's changed:** Fixed an issue where new users could get stuck after signing in with SSO. Affected users can sign in again to complete their account setup.
 
 ## v6.0.1
 
