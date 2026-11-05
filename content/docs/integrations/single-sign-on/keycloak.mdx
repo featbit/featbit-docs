@@ -15,7 +15,6 @@ The final configuration should be similar to the following:
 {
     "clientId": "test-oidc-client",
     "clientSecret": "tr8XwUrWo8U2wdJFb7EZ5HbqVWZEns5V",
-    "redirectUri": "http://localhost:4200/login?sso-logged-in=true",
     "tokenEndpoint": "http://localhost:9000/realms/featbit/protocol/openid-connect/token",
     "clientAuthenticationMethod": "client_secret_post",
     "authorizationEndpoint": "http://localhost:9000/realms/featbit/protocol/openid-connect/auth",
@@ -59,14 +58,14 @@ Setting the following environment variables for FeatBit Api Service in `docker-c
 SSOEnabled=true
 ```
 
-Start FeatBit and you should be able to see the SSO tab on the login page.
+Start FeatBit and you should be able to see the SSO login page.
 ```bash
 cd featbit
 docker-compose up -d
 ```
 ![](../assets/single-sign-on/sso-login.png)
 
-Then click the `Login` tab and log in with the default credentials `test@featbit.com`/`123456`
+Then click the `Back to sign in` link and log in with the default credentials `test@featbit.com`/`123456`
 
 ### 6. Configure OIDC Settings
 
