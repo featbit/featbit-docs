@@ -13,11 +13,11 @@ This page records upgrades between stable v6 releases. Read the [general upgrade
 
 **What's changed:** Fixed SSO account setup, PostgreSQL user-name loading, and the per-flag insights setting in SDK synchronization and evaluation API payloads. Improved variation change reviews, audit logs, SSO configuration, and Evaluation Server authentication and performance.
 
-**Compatibility notes:**
+**Behavior changes:**
 
 - Evaluation Server HTTP SDK sync endpoints require the matching client or server secret. Invalid secrets return `401`, disallowed secret types return `403`, and unavailable secret verification returns `503`.
 - Successful secret lookups are cached locally for 30 seconds for HTTP and streaming authentication. Secret revocation may take up to 30 seconds plus an in-flight lookup to affect new authentication attempts. Cache hits do not extend expiration.
-- Client hostname resolution is disabled by default. Set `Streaming__TrackClientHostName=true` if you need hostname resolution for detailed logging.
+- Client hostname resolution is now disabled by default. Set `Streaming__TrackClientHostName=true` if you need hostname resolution for detailed logging.
 
 ## v6.1.0
 
