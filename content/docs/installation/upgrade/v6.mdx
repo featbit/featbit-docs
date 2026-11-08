@@ -9,15 +9,9 @@ This page records upgrades between stable v6 releases. Read the [general upgrade
 
 **Upgrade status:** You can upgrade directly from `6.1.0` by updating the FeatBit application images to `6.1.1`. No additional database migration is required.
 
-**Release:** [v6.1.1 on GitHub](https://github.com/featbit/featbit/releases/tag/6.1.1).
+**Release:** [v6.1.1 on GitHub](https://github.com/featbit/featbit/releases/tag/6.1.1). This release includes behavior changes; review the release notes before upgrading.
 
 **What's changed:** Fixed SSO account setup, PostgreSQL user-name loading, and the per-flag insights setting in SDK synchronization and evaluation API payloads. Improved variation change reviews, audit logs, SSO configuration, and Evaluation Server authentication and performance.
-
-**Behavior changes:**
-
-- Client hostname resolution is now disabled by default. Set `Streaming__TrackClientHostName=true` if you need hostname resolution for detailed logging.
-- Evaluation Server HTTP SDK sync endpoints require the matching client or server secret. Invalid secrets return `401`, disallowed secret types return `403`, and unavailable secret verification returns `503`.
-- Successful secret lookups are cached locally for 30 seconds for HTTP and streaming authentication. Secret revocation may take up to 30 seconds to take effect on new authentication attempts. Cache hits do not extend expiration.
 
 ## v6.1.0
 
