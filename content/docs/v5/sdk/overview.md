@@ -138,7 +138,7 @@ The SDK's GitHub repository contains a full tutorial on how to use it. It also p
 
 #### Java (Server-side)
 
-We provide a [OpenFeature provider for Java Server SDK](https://github.com/featbit/featbit-openfeature-provider-java-server) for you to use. This SDK can be used in your console APP or Spring Boot APP. 
+We provide a [OpenFeature provider for Java Server SDK](https://github.com/featbit/openfeature-provider-java-server) for you to use. This SDK can be used in your console APP or Spring Boot APP.
 
 The SDK's GitHub repository contains a full tutorial on how to use it. It also provides a sample project for you to try out.
 
