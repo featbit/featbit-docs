@@ -56,7 +56,6 @@ The request body should be a JSON array of `Insight` objects. Each insight objec
 | ------------------ | ----------- | -------- | ----------------------------------------------------------------- |
 | `featureFlagKey`   | `string`    | Yes      | The key of the feature flag                                       |
 | `variation`        | `Variation` | Yes      | The variation that was served                                     |
-| `sendToExperiment` | `boolean`   | Yes      | Whether this variation should be included in experiment analysis  |
 | `timestamp`        | `number`    | Yes      | Unix timestamp in **milliseconds** when this variation was served |
 
 **Variation**
@@ -105,7 +104,6 @@ The request body should be a JSON array of `Insight` objects. Each insight objec
           "id": "3c9f8e2a-5b1d-4f7c-a3e6-8d4b2c1a9f5e",
           "value": "true"
         },
-        "sendToExperiment": true,
         "timestamp": 1704067200000
       }
     ],
@@ -140,7 +138,6 @@ The request body should be a JSON array of `Insight` objects. Each insight objec
           "id": "7d2e4f3b-8c6a-4d9e-b2f7-1a5c3e8b6d4f",
           "value": "algorithm-v2"
         },
-        "sendToExperiment": true,
         "timestamp": 1704067300000
       }
     ],
@@ -182,7 +179,6 @@ The request body should be a JSON array of `Insight` objects. Each insight objec
           "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
           "value": "control"
         },
-        "sendToExperiment": true,
         "timestamp": 1704067200000
       }
     ],
@@ -200,7 +196,6 @@ The request body should be a JSON array of `Insight` objects. Each insight objec
           "id": "f9e8d7c6-b5a4-4938-8271-6a5b4c3d2e1f",
           "value": "treatment"
         },
-        "sendToExperiment": true,
         "timestamp": 1704067300000
       }
     ],
@@ -249,7 +244,6 @@ When your application evaluates a feature flag and serves a variation to a user,
           "id": "variation-id",
           "value": "variation-value"
         },
-        "sendToExperiment": true,
         "timestamp": 1704067200000
       }
     ],
@@ -302,7 +296,6 @@ Track both variation views and metrics in the same request:
           "id": "b8c7d6e5-f4a3-4b92-8c1d-7e6f5a4b3c2d",
           "value": "new-flow"
         },
-        "sendToExperiment": true,
         "timestamp": 1704067100000
       }
     ],

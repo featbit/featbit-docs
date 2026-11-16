@@ -106,7 +106,6 @@ We can build a custom payload for the webhook request using a [Handlebars templa
       "isEnabled": {{data.object.isEnabled}},
       "disabledVariationId": "{{data.object.disabledVariationId}}",
       "fallthrough": {{json data.object.fallthrough}},
-      "exptIncludeAllTargets": {{data.object.exptIncludeAllTargets}},
       "tags": {{json data.object.tags}},
 {{/eq}}
 {{#eq data.kind "segment"}}

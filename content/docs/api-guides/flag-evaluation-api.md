@@ -106,7 +106,6 @@ The API returns an array of evaluation results, one for each matching feature fl
 | `type`   | `string` | The variation type (e.g., "string", "boolean", "number", "json") |
 | `value`  | `string` | The variation value                                              |
 | `matchReason` | `string` | Explanation of why this variation was selected. Possible values: <br/>• `"flag disabled"` - The flag is disabled<br/>• `"targeted"` - The user is targeted individually<br/>• `"{rule name}"` - The user matched a specific rule (returns the rule name)<br/>• `"default"` - The user matched the default rule |
-| `sendToExperiment` | `boolean` | Indicates whether this variation should be included in experiment analysis. Needed when tracking insights. |
 
 ### Example
 
@@ -118,8 +117,7 @@ The API returns an array of evaluation results, one for each matching feature fl
       "id": "08aceef3-5513-4b38-80ad-4b27bebe8871",
       "type": "boolean",
       "value": "true",
-      "matchReason": "premium user rule",
-      "sendToExperiment": true
+      "matchReason": "premium user rule"
     }
   },
   {
@@ -128,8 +126,7 @@ The API returns an array of evaluation results, one for each matching feature fl
       "id": "c5364cfd-292a-4e06-8e8e-b0ae7387f791",
       "type": "string",
       "value": "dark",
-      "matchReason": "default",
-      "sendToExperiment": false
+      "matchReason": "default"
     }
   },
   {
@@ -138,8 +135,7 @@ The API returns an array of evaluation results, one for each matching feature fl
       "id": "34683e86-b436-4694-b335-29628c0896e3",
       "type": "number",
       "value": "104857600",
-      "matchReason": "premium user rule",
-      "sendToExperiment": true
+      "matchReason": "premium user rule"
     }
   }
 ]
@@ -205,8 +201,7 @@ To evaluate against a single feature flag, use the `filter.keys` parameter with 
       "id": "ac727073-8cc5-4ec5-9405-59737ea737bb",
       "type": "boolean",
       "value": "false",
-      "matchReason": "flag disabled",
-      "sendToExperiment": false
+      "matchReason": "flag disabled"
     }
   }
 ]
