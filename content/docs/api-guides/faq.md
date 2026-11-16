@@ -54,7 +54,6 @@ The feature flag API allows you to control percentage rollouts, target specific 
       "id": "aa1641dc-6e20-44ff-8f60-afe5c5e7c447",
       "name": "Rule 1",
       "dispatchKey": null,
-      "includedInExpt": false,
       "conditions": [
         {
           "property": "keyId",
@@ -65,8 +64,7 @@ The feature flag API allows you to control percentage rollouts, target specific 
       "variations": [
         {
           "id": "73590b69-00e2-4ea0-99b3-67de155f0d90",
-          "rollout": [0, 1],
-          "exptRollout": 1
+          "rollout": [0, 1]
         }
       ]
     }
@@ -75,16 +73,13 @@ The feature flag API allows you to control percentage rollouts, target specific 
   "disabledVariationId": "986379ec-3d4c-44fe-83db-2ea607db0cab",
   "fallthrough": {
     "dispatchKey": null,
-    "includedInExpt": true,
     "variations": [
       {
         "id": "986379ec-3d4c-44fe-83db-2ea607db0cab",
-        "rollout": [0, 1],
-        "exptRollout": 1
+        "rollout": [0, 1]
       }
     ]
   },
-  "exptIncludeAllTargets": true,
   "tags": [],
   "isArchived": false,
   "disabledVariation": {

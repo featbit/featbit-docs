@@ -25,7 +25,7 @@ SELECT
 FROM
   events
 WHERE
-  event = 'FlagValue' AND JSONExtract(properties, 'sendToExperiment', 'Bool') = true
+  event = 'FlagValue'
 ```
 
 > In this query you will get FeatBit's feature flag usage data (you can also call it Feature Flag Expriment Assignment data) from ClickHouse. For more information about the data, please follow [Data Export Doc](/data-import-and-export/data-export).

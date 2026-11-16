@@ -105,7 +105,6 @@ curl -X POST '{Host}/api/public/sdk/client/latest-all?timestamp=1712755780494' \
                   "value":"false"
                }
             ],
-            "sendToExperiment":false,
             "timestamp":1712755780494
          }
       ]
@@ -160,19 +159,16 @@ curl -H "Authorization: server-env-secret" '{Host}/api/public/sdk/server/latest-
             "disabledVariationId":"cf8f9626-0d6f-4d05-a98f-8c3a50c85d0f",
             "fallthrough":{
                "dispatchKey":null,
-               "includedInExpt":true,
                "variations":[
                   {
                      "id":"bbe8f444-090e-4a3b-99fa-b487bab424aa",
                      "rollout":[
                         0,
                         1
-                     ],
-                     "exptRollout":1
+                     ]
                   }
                ]
             },
-            "exptIncludeAllTargets":true,
             "tags":[
                
             ],

@@ -47,7 +47,6 @@ The data structures are not exactly the same between the FeatBit Pro and Standar
 | `properties/route` | The route of the event |
 | `properties/flagId` | The unique id of the feature flag |
 | `properties/featureFlagKey` | The key of the feature flag |
-| `properties/sendToExperiment` | Whether the FlagValue event should be considered in experiment |
 | `properties/userKeyId` | The unique id of the user |
 | `properties/userName` | The name of the user |
 | `properties/variationId` | The unique id of the variation. E.g. the id of True variation in a Boolean feature flag |
@@ -71,7 +70,6 @@ SELECT
     JSONExtract(properties, 'accountId', 'String') as AccountId,
     JSONExtract(properties, 'projectId', 'String') as ProjectId,
     JSONExtract(properties, 'featureFlagKey', 'String') as FeatureFlagKey,
-    JSONExtract(properties, 'sendToExperiment', 'Bool') as SendToExperiment,
     JSONExtract(properties, 'userKeyId', 'String') as UserId,
     JSONExtract(properties, 'userName', 'String') as Username,
     JSONExtract(properties, 'variationId', 'String') as VariationId,
@@ -220,7 +218,6 @@ curl --location --request POST 'https://api.segment.io/v1/track' \
   "AccountId": "",
   "ProjectId": "",
   "FeatureFlagKey": "growthbook-test-001",
-  "SendToExperiment": true,
   "Username": "tester-6973",
   "Tag0": "tester-id-6973",
   "Tag1": "7e03db60-7605-4428-a972-aa3b66a3f898",
