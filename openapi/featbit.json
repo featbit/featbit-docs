@@ -3276,6 +3276,7 @@
                         "id": "f5a5629e-523d-459e-b0b0-f4996e32842a",
                         "name": "Rule 2",
                         "dispatchKey": "name",
+                        "includedInExpt": false,
                         "conditions": [
                           {
                             "property": "keyId",
@@ -3289,14 +3290,16 @@
                             "rollout": [
                               0,
                               0.64
-                            ]
+                            ],
+                            "exptRollout": 1
                           },
                           {
                             "id": "990c319a-a21d-418b-a900-4fd4713ade29",
                             "rollout": [
                               0.64,
                               1
-                            ]
+                            ],
+                            "exptRollout": 1
                           }
                         ]
                       },
@@ -11568,6 +11571,10 @@
             "description": "The dispatch key of the default rule.",
             "$ref": "#/components/schemas/String"
           },
+          "includedInExpt": {
+            "description": "Whether the default rule is included in experiments.",
+            "$ref": "#/components/schemas/Boolean"
+          },
           "variations": {
             "description": "The served variations.",
             "$ref": "#/components/schemas/RolloutVariationICollection"
@@ -11612,6 +11619,9 @@
           },
           "fallthrough": {
             "$ref": "#/components/schemas/Fallthrough"
+          },
+          "exptIncludeAllTargets": {
+            "$ref": "#/components/schemas/Boolean"
           },
           "insightsEnabled": {
             "description": "Whether evaluation insights are collected for this flag. Defaults to true; a stored flag without\nthe field is treated as enabled.",
@@ -11850,6 +11860,10 @@
           "fallthrough": {
             "description": "The default rule for the feature flag, which applies to users who do not match any of the target users or rules above.",
             "$ref": "#/components/schemas/Fallthrough"
+          },
+          "exptIncludeAllTargets": {
+            "description": "Whether all targets should be included in experiments related to this feature flag. Defaults to `true`.",
+            "$ref": "#/components/schemas/Boolean"
           }
         }
       },
@@ -13570,6 +13584,10 @@
           "rollout": {
             "description": "The rollout range for the variation.",
             "$ref": "#/components/schemas/DoubleArray"
+          },
+          "exptRollout": {
+            "description": "The rollout percentage for experiments.",
+            "$ref": "#/components/schemas/Double"
           }
         }
       },
@@ -13935,6 +13953,10 @@
           "dispatchKey": {
             "description": "The dispatch key for the rule.",
             "$ref": "#/components/schemas/String"
+          },
+          "includedInExpt": {
+            "description": "Whether the rule is included in experiments.",
+            "$ref": "#/components/schemas/Boolean"
           },
           "conditions": {
             "description": "The conditions for the rule.",
