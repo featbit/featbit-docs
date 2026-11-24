@@ -56,3 +56,23 @@ ui:
   networks:
     - featbit-network
 ```
+
+### Why am I logged out after five minutes when deploying behind a URL path prefix?
+
+**Q:** My FeatBit API is deployed behind a path prefix such as `/deployment-prefix/manage`. Why does the portal return to the login page after five minutes?
+
+**A:** The browser must send the refresh token cookie when the access token expires. If the cookie's path does not include your public API prefix, the browser will omit it from the refresh request and session renewal will fail.
+
+Set `Authentication__RefreshTokenCookiePath` on the **API service** to the full public identity path. For example, if the refresh endpoint is `/deployment-prefix/manage/api/v1/identity/refresh-token`, add the following environment variable to the API service's existing configuration in `docker-compose.yml`:
+
+```yaml
+api-server:
+  environment:
+    - Authentication__RefreshTokenCookiePath=/deployment-prefix/manage/api/v1/identity
+```
+
+Replace `/deployment-prefix/manage` with your actual public API prefix. The value must start with `/` and include `/api/v1/identity`; do not include the hostname or `/refresh-token`.
+
+Recreate the API container to apply the environment variable, clear the old `refresh-token` cookie in your browser, and sign in again.
+
+If the variable is unset or empty, the API uses `Request.PathBase + /api/v1/identity`. When `PathBase` is empty, the default remains `/api/v1/identity`, so deployments without a path prefix do not need this setting.
