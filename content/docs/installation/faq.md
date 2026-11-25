@@ -73,6 +73,4 @@ api-server:
 
 Replace `/deployment-prefix/manage` with your actual public API prefix. The value must start with `/` and include `/api/v1/identity`; do not include the hostname or `/refresh-token`.
 
-Recreate the API container to apply the environment variable, clear the old `refresh-token` cookie in your browser, and sign in again.
-
-If the variable is unset or empty, the API uses `Request.PathBase + /api/v1/identity`. When `PathBase` is empty, the default remains `/api/v1/identity`, so deployments without a path prefix do not need this setting.
+If the variable is unset or empty, the API uses `/api/v1/identity`. Deployments without a path prefix do not need this setting.
