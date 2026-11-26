@@ -135,6 +135,89 @@ We will create a policy that includes only permission settings for feature flag 
 4. Click **Save** to save the permission.
 5. Go to `Team` or `Groups` tab to assign this policy to members or groups that need to operate feature flags in the specific project/environment.
 
+## Limit Access to Specific Resources with Custom Resource Names (RN)
+
+> Available since FeatBit [v6.1.3](https://github.com/featbit/featbit/releases/tag/6.1.3).
+
+The resource selector lists the projects and environments that exist in your organization. When you need a narrower or broader scope than that list offers, such as **only one feature flag**, **every flag whose key starts with `checkout-`**, or **every flag tagged `team-payments`**, you can add a custom resource name (RN) to the permission.
+
+Custom RNs are supported for the `Project`, `Environment`, `Feature Flag` and `Segment` control levels, in both IAM policies and [service access tokens](../integrations/api-access-tokens.md).
+
+### Resource name format
+
+An RN describes a path from the project down to the resource. Each level is written as `type/key` and levels are joined by `:`. Flags and segments can also carry tags after a `;`.
+
+| Control level | RN format | Example |
+| --- | --- | --- |
+| Project | `project/<project-key>` | `project/demo` |
+| Environment | `project/<project-key>:env/<env-key>` | `project/demo:env/prod` |
+| Feature Flag | `project/<project-key>:env/<env-key>:flag/<flag-key>` | `project/demo:env/prod:flag/new-checkout` |
+| Segment | `project/<project-key>:env/<env-key>:segment/<segment-key>` | `project/demo:env/prod:segment/beta-users` |
+
+Matching rules:
+
+- **Keys, not names.** Use the project key, environment key, flag key and segment key. Matching is case-sensitive, so `project/Demo` doesn't match the project `demo`.
+- **Wildcards.** `*` matches any characters at that level. Use it alone (`flag/*`) to cover every resource at that level, or with text (`flag/checkout-*`, `flag/*-beta`) to cover every resource whose key matches the pattern.
+- **Tags.** Add `;<tag>` to a flag or segment RN to match only resources that have that tag. Separate several tags with commas; a resource matches when it has **any** of them. A tag can end with a wildcard, for example `;team-*`.
+- **Characters.** Values can't contain `{`, `}` or `:`.
+- **Creating flags and segments.** `CreateFlag` and `CreateSegment` are checked against the whole environment (`flag/*` or `segment/*`), because the new resource doesn't exist yet. A key pattern such as `flag/checkout-*` or a tag filter doesn't grant them. To let a member create flags, allow `CreateFlag` on `project/<project-key>:env/<env-key>:flag/*`.
+
+Some useful patterns:
+
+| RN | What it covers |
+| --- | --- |
+| `project/demo:env/prod:flag/new-checkout` | Only the `new-checkout` flag in the `prod` environment of `demo` |
+| `project/demo:env/*:flag/new-checkout` | The `new-checkout` flag in every environment of `demo` |
+| `project/demo:env/prod:flag/checkout-*` | Every flag in `prod` whose key starts with `checkout-` |
+| `project/demo:env/prod:flag/*;team-payments` | Every flag in `prod` tagged `team-payments` |
+| `project/demo:env/*:segment/*;internal,qa` | Every segment in any `demo` environment tagged `internal` or `qa` |
+| `project/*:env/dev` | The `dev` environment of every project |
+
+### Add a custom RN to a permission
+
+The following steps limit a user to changing a single feature flag, `game-runner`, in the `prod` environment of project `featbit-demo`.
+
+1. Go to the `Policies` page under `IAM` menu and open the policy you want to edit (or create one with `Add policy`).
+2. Click `+ Add permission` to add a new permission:
+    - In allow or deny selector, choose `Allow`.
+    - Choose `Feature Flag` as the control-level (resource type).
+    - Choose `Specific resources`, then click `Manage`.
+3. In the resource picker, click `Add custom RN`. In the dialog:
+    - All levels start as `Any` (`*`). Untick `Any project`, `Any environment` and `Any feature flag`, then enter `featbit-demo` in `Project`, `prod` in `Environment` and `game-runner` in `Feature flag`. Leave a level ticked to keep `*` at that level.
+    - Optionally, enter tags in `Tags` (for example `team-payments, release`).
+    - Check `Resulting resource RN`. It should read `project/featbit-demo:env/prod:flag/game-runner`.
+    - Click `Apply`.
+
+![](../iam/assets/rbac/custom-rn-dialog.png)
+
+4. Back in the resource picker, the new RN is selected. Click `Done` to apply your selection to the permission. Pressing `Esc` or clicking outside the picker discards the changes.
+5. In action selector, choose the actions the user can perform on this flag, for example `Toggle flags` (`ToggleFlag`), `Update default rule` (`UpdateFlagDefaultRule`), `Update individual targeting` (`UpdateFlagIndividualTargeting`) and `Update targeting rules` (`UpdateFlagTargetingRules`). Click `Done`. The permission now looks like this:
+
+![](../iam/assets/rbac/custom-rn-permission.png)
+
+6. Click **Save changes**, then assign the policy to members or groups in the `Team` or `Groups` tab.
+
+To change an RN later, click `Edit RN` next to it in the selected resources list. A policy can't contain the same RN twice.
+
+> **Note:** Selecting individual actions for the `Feature Flag` and `Segment` control levels requires the Fine-grained access control add-on. Without it, a custom RN can still be used with `All actions`.
+
+### What the user can see and change
+
+Flag and segment RNs control what a user can **change**. Viewing is controlled by the project and environment permissions:
+
+- To see the flag at all, the user still needs `CanAccessProject` on the project and `CanAccessEnv` on the environment (see [Project Access Control](#project-access-control) and [Environment Access Control](#environment-access-control)).
+- `CanAccessEnv` lets the user view every flag and segment in that environment. With the policy above, the user can open any flag in `prod`, but can only change `game-runner`. Other flags are read-only for them.
+- Make sure the user doesn't also have a broader policy (such as a built-in Developer policy) that allows changes to all flags. Permissions from every policy add up.
+
+### Combine allow and deny
+
+Because a `Deny` always wins over an `Allow`, you can grant a broad scope and carve out exceptions:
+
+- `Allow` all flag actions on `project/demo:env/prod:flag/*`.
+- `Deny` all flag actions on `project/demo:env/prod:flag/*;locked`.
+
+Members with this policy can manage every flag in `prod` except the ones tagged `locked`. See [Policies](./policies.md#policy-algorithm) for how FeatBit evaluates allow and deny statements.
+
 ## Example Walkthrough
 
 ### Context
@@ -263,7 +346,7 @@ Create the policy `Project A Dev` as below:
     - Actions: all actions for feature flags.
 3. Add a permission for specific feature-flag in `prod` environment:
     - Control Level: `Feature Flag`
-    - Resource Selector: `All resources`
+    - Resource Selector: `Specific resources`, then add the custom RN `project/demo:env/prod:flag/<flag-key>` (see [Limit Access to Specific Resources with Custom Resource Names (RN)](#limit-access-to-specific-resources-with-custom-resource-names-rn))
     - Allow or Deny: `Allow`
     - Actions: `UpdateFlagTags`, `UpdateFlagDefaultRule`, `UpdateFlagIndividualTargeting`, `UpdateFlagTargetingRules`
 
