@@ -3864,17 +3864,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateName"
+                "$ref": "#/components/schemas/UpdateNamePayload"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateName"
+                "$ref": "#/components/schemas/UpdateNamePayload"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateName"
+                "$ref": "#/components/schemas/UpdateNamePayload"
               }
             }
           },
@@ -3959,17 +3959,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDescription"
+                "$ref": "#/components/schemas/UpdateDescriptionPayload"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDescription"
+                "$ref": "#/components/schemas/UpdateDescriptionPayload"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDescription"
+                "$ref": "#/components/schemas/UpdateDescriptionPayload"
               }
             }
           },
@@ -4243,17 +4243,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateOffVariation"
+                "$ref": "#/components/schemas/UpdateOffVariationPayload"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateOffVariation"
+                "$ref": "#/components/schemas/UpdateOffVariationPayload"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateOffVariation"
+                "$ref": "#/components/schemas/UpdateOffVariationPayload"
               }
             }
           },
@@ -4338,17 +4338,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateVariations"
+                "$ref": "#/components/schemas/UpdateVariationsPayload"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateVariations"
+                "$ref": "#/components/schemas/UpdateVariationsPayload"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateVariations"
+                "$ref": "#/components/schemas/UpdateVariationsPayload"
               }
             }
           },
@@ -4765,17 +4765,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SetTags"
+                "$ref": "#/components/schemas/SetTagsPayload"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SetTags"
+                "$ref": "#/components/schemas/SetTagsPayload"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SetTags"
+                "$ref": "#/components/schemas/SetTagsPayload"
               }
             }
           },
@@ -7806,7 +7806,7 @@
         "description": "Get a single segment by id.",
         "parameters": [
           {
-            "name": "segmentId",
+            "name": "envId",
             "in": "path",
             "required": true,
             "schema": {
@@ -7814,11 +7814,11 @@
             }
           },
           {
-            "name": "envId",
+            "name": "segmentId",
             "in": "path",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/String"
+              "$ref": "#/components/schemas/Guid"
             }
           },
           {
@@ -7879,7 +7879,7 @@
         "description": "Use with caution as this can make arbitrary changes to the segment, incorrect usage may lead to malformed data.\nPerform a partial update to a segment. The request body must be a valid JSON patch.",
         "parameters": [
           {
-            "name": "segmentId",
+            "name": "envId",
             "in": "path",
             "required": true,
             "schema": {
@@ -7887,11 +7887,11 @@
             }
           },
           {
-            "name": "envId",
+            "name": "segmentId",
             "in": "path",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/String"
+              "$ref": "#/components/schemas/Guid"
             }
           },
           {
@@ -8324,17 +8324,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSegment"
+                "$ref": "#/components/schemas/CreateSegmentPayload"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSegment"
+                "$ref": "#/components/schemas/CreateSegmentPayload"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSegment"
+                "$ref": "#/components/schemas/CreateSegmentPayload"
               }
             }
           },
@@ -8383,18 +8383,18 @@
         "description": "Retrieve multiple segments by providing an array of segment IDs.",
         "parameters": [
           {
-            "name": "ids",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/GuidArray"
-            }
-          },
-          {
             "name": "envId",
             "in": "path",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/String"
+              "$ref": "#/components/schemas/Guid"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GuidArray"
             }
           },
           {
@@ -8493,17 +8493,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateName2"
+                "$ref": "#/components/schemas/UpdateNamePayload2"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateName2"
+                "$ref": "#/components/schemas/UpdateNamePayload2"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateName2"
+                "$ref": "#/components/schemas/UpdateNamePayload2"
               }
             }
           },
@@ -8588,17 +8588,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDescription2"
+                "$ref": "#/components/schemas/UpdateDescriptionPayload2"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDescription2"
+                "$ref": "#/components/schemas/UpdateDescriptionPayload2"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDescription2"
+                "$ref": "#/components/schemas/UpdateDescriptionPayload2"
               }
             }
           },
@@ -8647,7 +8647,7 @@
         "description": "Update the name, description, and tags of a segment in a single operation.\nPermissions are checked for each field that is changed.",
         "parameters": [
           {
-            "name": "segmentId",
+            "name": "envId",
             "in": "path",
             "required": true,
             "schema": {
@@ -8655,11 +8655,11 @@
             }
           },
           {
-            "name": "envId",
+            "name": "segmentId",
             "in": "path",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/String"
+              "$ref": "#/components/schemas/Guid"
             }
           },
           {
@@ -8742,7 +8742,7 @@
         "description": "Update the targeting rules, included and excluded users for a segment.",
         "parameters": [
           {
-            "name": "segmentId",
+            "name": "envId",
             "in": "path",
             "required": true,
             "schema": {
@@ -8750,11 +8750,11 @@
             }
           },
           {
-            "name": "envId",
+            "name": "segmentId",
             "in": "path",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/String"
+              "$ref": "#/components/schemas/Guid"
             }
           },
           {
@@ -9245,17 +9245,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SetTags2"
+                "$ref": "#/components/schemas/SetTagsPayload2"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SetTags2"
+                "$ref": "#/components/schemas/SetTagsPayload2"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SetTags2"
+                "$ref": "#/components/schemas/SetTagsPayload2"
               }
             }
           },
@@ -9731,14 +9731,6 @@
       "CloneFlagPayload": {
         "type": "object",
         "properties": {
-          "envId": {
-            "description": "The ID of the environment the feature flag belongs to. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "originFlagKey": {
-            "description": "The unique key of the feature flag to clone from. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/String"
-          },
           "name": {
             "description": "The name for the cloned feature flag",
             "$ref": "#/components/schemas/String"
@@ -10003,23 +9995,12 @@
           }
         }
       },
-      "CreateSegment": {
+      "CreateSegmentPayload": {
         "required": [
           "scopes"
         ],
         "type": "object",
         "properties": {
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "workspaceId": {
-            "description": "The ID of the workspace the segment belongs to. Retrieved from the request header.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "envId": {
-            "description": "The ID of the environment the segment belongs to. Retrieved from URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
           "type": {
             "description": "The type of the segment. Can be \"environment-specific\" or \"shared\".",
             "$ref": "#/components/schemas/String"
@@ -13829,23 +13810,9 @@
           }
         }
       },
-      "SetTags": {
+      "SetTagsPayload": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "envId": {
-            "description": "The ID of the environment the feature flag belongs to. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "key": {
-            "description": "The unique key of the feature flag. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/String"
-          },
           "tags": {
             "description": "The collection of tags to set for the feature flag. Tags are used for categorization and filtering of feature flags.",
             "$ref": "#/components/schemas/StringArray"
@@ -13856,19 +13823,9 @@
           }
         }
       },
-      "SetTags2": {
+      "SetTagsPayload2": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "id": {
-            "description": "The ID of the segment to set tags for. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
           "tags": {
             "description": "The collection of tags to set for the segment. Tags are used for categorization and filtering of segments.",
             "$ref": "#/components/schemas/StringArray"
@@ -13993,23 +13950,9 @@
           "$ref": "#/components/schemas/TargetUser"
         }
       },
-      "UpdateDescription": {
+      "UpdateDescriptionPayload": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "envId": {
-            "description": "The ID of the environment the feature flag belongs to. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "key": {
-            "description": "The unique key of the feature flag. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/String"
-          },
           "description": {
             "description": "The new description for the feature flag",
             "$ref": "#/components/schemas/String"
@@ -14020,19 +13963,9 @@
           }
         }
       },
-      "UpdateDescription2": {
+      "UpdateDescriptionPayload2": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "id": {
-            "description": "The ID of the segment to update. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
           "description": {
             "description": "The new description for the segment.",
             "$ref": "#/components/schemas/String"
@@ -14198,23 +14131,9 @@
           }
         }
       },
-      "UpdateName": {
+      "UpdateNamePayload": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "envId": {
-            "description": "The ID of the environment the feature flag belongs to. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "key": {
-            "description": "The unique key of the feature flag. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/String"
-          },
           "name": {
             "description": "The new name for the feature flag",
             "$ref": "#/components/schemas/String"
@@ -14225,19 +14144,9 @@
           }
         }
       },
-      "UpdateName2": {
+      "UpdateNamePayload2": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "id": {
-            "description": "The ID of the segment to update. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
           "name": {
             "description": "The new name for the segment.",
             "$ref": "#/components/schemas/String"
@@ -14248,23 +14157,9 @@
           }
         }
       },
-      "UpdateOffVariation": {
+      "UpdateOffVariationPayload": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "envId": {
-            "description": "The ID of the environment the feature flag belongs to. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "key": {
-            "description": "The unique key of the feature flag. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/String"
-          },
           "revision": {
             "description": "The revision ID of the feature flag for optimistic concurrency control",
             "$ref": "#/components/schemas/Guid"
@@ -14390,23 +14285,9 @@
           }
         }
       },
-      "UpdateVariations": {
+      "UpdateVariationsPayload": {
         "type": "object",
         "properties": {
-          "workspaceId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "orgId": {
-            "$ref": "#/components/schemas/Guid"
-          },
-          "envId": {
-            "description": "The ID of the environment the feature flag belongs to. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/Guid"
-          },
-          "key": {
-            "description": "The unique key of the feature flag. Retrieved from the URL path.",
-            "$ref": "#/components/schemas/String"
-          },
           "revision": {
             "description": "The revision ID of the feature flag for optimistic concurrency control",
             "$ref": "#/components/schemas/Guid"
